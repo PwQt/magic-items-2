@@ -1,0 +1,73 @@
+{{#if hasVisibleItems}}
+<div class="magic-items-spells-content">
+	<div class="inventory-filters spellbook-filters magic-items-head">
+		<label><h3>Magic Items - {{localize "MAGICITEMS.SheetTot"}}: {{magicItemsCount}}, {{localize "MAGICITEMS.SheetActives"}}:
+			{{magicItemsActiveCount}}</h3></label>
+	</div>
+	{{#each items as |item i|}}
+	{{#if (and visible active hasSpells)}}
+	<li class="items-header spellbook-header flexrow">
+		<h3 class="item-name flexrow">{{name}}</h3>
+		{{#if chargesOnWholeItem}}
+	    <div class="spell-slots">
+	        <input data-item-id="magicitems.{{id}}.uses" type="text" value="{{uses}}" placeholder="0"/>
+	        <span class="sep"> / </span>
+	        <input type="text" value="{{charges}}" placeholder="0"/>
+	    </div>
+		<div class="spell-rechargeable">{{rechargeableLabel}}</div>
+		{{/if}}
+		<div class="spell-level">{{localize "MAGICITEMS.SheetLevel"}}</div>
+	    <div class="spell-consumption">{{localize "MAGICITEMS.SheetConsumption"}}</div>
+	    <div class="spell-upcast">{{localize "MAGICITEMS.SheetCanUpcast"}}</div>
+	</li>
+	<ol class="item-list">
+	    {{#each spells as |spell|}}
+	        <li class="item flexrow magic-item" data-magic-item-id="{{../id}}" data-item-id="{{spell.id}}" draggable="true">
+	            <div class="item-name flexrow rollable">
+	                <div class="item-image magic-item-image" style="background-image: url({{spell.img}})">
+						<i class="fa fa-dice-d20"></i>
+					</div>
+	                <h4 class="spell-name">{{spell.displayName}}</h4>
+	            </div>
+				{{#if ../chargesPerSpell}}
+				<div class="spell-slots">
+					<input data-item-id="magicitems.{{../id}}.{{spell.id}}.uses" type="text" value="{{spell.uses}}" placeholder="0"/>
+					<span class="sep"> / </span>
+					<input type="text" value="{{../charges}}" placeholder="0"/>
+				</div>
+				<div class="spell-rechargeable">{{../rechargeableLabel}}</div>
+				{{/if}}
+				<div class="spell-level">{{spell.level}}</div>
+	            <div class="spell-consumption">{{spell.consumption}}</div>
+	            <div class="spell-upcast">{{spell.canUpcastLabel}}</div>
+	        </li>
+	    {{/each}}
+
+		{{#if hasTableAsSpells}}
+		{{#each tableAsSpells as |table|}}
+		<li class="item flexrow magic-item" data-magic-item-id="{{../id}}" data-item-id="{{table.id}}" draggable="true">
+			<div class="item-name flexrow rollable">
+				<div class="item-image magic-item-image" style="background-image: url({{table.img}})">
+				</div>
+				<h4 class="spell-name">{{table.displayName}}</h4>
+			</div>
+			{{#if ../chargesPerSpell}}
+			<div class="spell-slots">
+				<input data-item-id="magicitems.{{../id}}.{{table.id}}.uses" type="text" value="{{table.uses}}" placeholder="0"/>
+				<span class="sep"> / </span>
+				<input type="text" value="{{../charges}}" placeholder="0"/>
+			</div>
+			<div class="spell-rechargeable">{{../rechargeableLabel}}</div>
+			{{/if}}
+			<div class="spell-level"> - </div>
+			<div class="spell-consumption">{{table.consumption}}</div>
+			<div class="spell-upcast"> - </div>
+		</li>
+		{{/each}}
+		{{/if}}
+
+	</ol>
+	{{/if}}
+	{{/each}}
+</div>
+{{/if}}

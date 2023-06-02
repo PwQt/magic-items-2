@@ -1,0 +1,18 @@
+<form id="spell-config-form">
+    <div class="form-group">
+        <label>{{localize "MAGICITEMS.UpcastDialogLevel"}}</label>
+        <div class="form-fields">
+            <select name="level">
+                {{#each allowedLevels as |name key|}}
+                <option value="{{key}}">{{name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>{{localize "MAGICITEMS.UpcastDialogConsumption"}}</label>
+        <div class="form-fields">
+            <input type="text" name="consumption" value="{{consumption}}" readonly>
+        </div>
+    </div>
+</form>

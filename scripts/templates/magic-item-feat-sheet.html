@@ -1,0 +1,47 @@
+{{#if hasVisibleItems}}
+<div class="magic-items-feats-content">
+	<div class="inventory-filters spellbook-filters magic-items-head">
+		<label><h3>Magic Items - {{localize "MAGICITEMS.SheetTot"}}: {{magicItemsCount}}, {{localize "MAGICITEMS.SheetActives"}}:
+			{{magicItemsActiveCount}}</h3></label>
+	</div>
+	{{#each items as |item i|}}
+	{{#if (and visible active hasFeats)}}
+	<li class="items-header spellbook-header flexrow">
+		<h3 class="item-name flexrow">{{name}}</h3>
+	    <div class="spell-slots">
+	        <input data-item-id="magicitems.{{id}}.uses"  type="text" value="{{uses}}" placeholder="0"/>
+	        <span class="sep"> / </span>
+	        <input type="text" value="{{charges}}" placeholder="0"/>
+	    </div>
+		<div class="spell-rechargeable">{{rechargeableLabel}}</div>
+	    <div class="spell-consumption">{{localize "MAGICITEMS.SheetFeatOnUsage"}}</div>
+	</li>
+	<ol class="item-list">
+	    {{#each feats as |feat|}}
+	        <li class="item flexrow magic-item" data-magic-item-id="{{../id}}" data-item-id="{{feat.id}}" draggable="true">
+	            <div class="item-name flexrow rollable">
+	                <div class="item-image magic-item-image" style="background-image: url({{feat.img}})">
+						<i class="fa fa-dice-d20"></i>
+					</div>
+	                <h4 class="spell-name">{{feat.displayName}}</h4>
+	            </div>
+	            <div class="spell-consumption">{{feat.consumptionLabel}}</div>
+	        </li>
+	    {{/each}}
+		{{#if hasTableAsFeats}}
+		{{#each tableAsFeats as |table|}}
+		<li class="item flexrow magic-item" data-magic-item-id="{{../id}}" data-item-id="{{table.id}}" draggable="true">
+			<div class="item-name flexrow rollable">
+				<div class="item-image magic-item-image" style="background-image: url({{table.img}})">
+				</div>
+				<h4 class="spell-name">{{table.displayName}}</h4>
+			</div>
+			<div class="spell-consumption">{{table.consumption}}</div>
+		</li>
+		{{/each}}
+		{{/if}}
+	</ol>
+	{{/if}}
+	{{/each}}
+</div>
+{{/if}}
