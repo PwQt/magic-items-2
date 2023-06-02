@@ -110,4 +110,4 @@ Original Magic Items is a module for Foundry VTT by Simone and is licensed under
 
 Magic Items 2 is a module for Foundry VTT by PwQt and is licensed under [MIT License](https://github.com/PwQt/magic-items-2/blob/master/LICENSE).
 
-This work is licensed under Foundry Virtual Tabletop [EULA - Limited License Agreement for module development v 0.1.6](http://foundryvtt.com/pages/license.html).
+This work is licensed under Foundry Virtual Tabletop [EULA](https://foundryvtt.com/article/license/).
