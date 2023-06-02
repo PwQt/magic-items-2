@@ -1,4 +1,4 @@
-# Still in progress of fixing/transporting - please don't download yet
+# :warning: Still in progress of fixing/transporting - please don't download yet  :warning:
 
 # FoundryVTT - Magic Items 2
 
