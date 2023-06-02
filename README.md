@@ -106,7 +106,8 @@ Every suggestions/feedback are appreciated.
 ## Original Project
 
 This is a fork of Magic Items module created by Simone found at [this address](https://gitlab.com/riccisi/foundryvtt-magic-items/).
-Original Magic Items is a module for Foundry VTT by Simone and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+
+Magic Items is a module for Foundry VTT by Simone and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
 
 ## License
 
