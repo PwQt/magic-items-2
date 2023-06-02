@@ -83,8 +83,8 @@
 		"entity": "RollTable"
 	}],
   "url": "https://github.com/PwQt/magic-items-2",
-  "manifest": "https://github.com/PwQt/magic-items-2/blob/master/module.json",
-  "download": "#{DOWNLOAD}#",
+  "manifest": "https://github.com/PwQt/magic-items-2/releases/latest/download/module.json",
+  "download": "https://github.com/PwQt/magic-items-2/releases/latest/download/module.zip",
   "license": "LICENSE",
   "readme": "README.md"
 }
