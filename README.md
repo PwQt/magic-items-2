@@ -71,7 +71,7 @@ From here you can cast spells or use feats provided by the items and monitor the
 
 ## Compatibility
 
-Tested on 0.4.7 version.
+Tested with [Tidy5e Sheet 0.8.41](https://github.com/sdenec/tidy5e-sheet).
 
 ### Sheet Integration
 
