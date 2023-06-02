@@ -81,7 +81,7 @@ export class MagicItemSheet {
      * @returns {Promise<void>}
      */
     async renderTemplate(name, cls, tab) {
-        let template = await renderTemplate(`modules/magicitems/templates/${name}.html`, this.actor);
+        let template = await renderTemplate(`modules/magic-items-2/templates/${name}.html`, this.actor);
         let el = this.html.find(`.${cls}`);
         if(el.length) {
             el.replaceWith(template);

@@ -83,7 +83,7 @@ export class MagicItemTab {
 
         this.magicItem.sort();
 
-        let template = await renderTemplate('modules/magicitems/templates/magic-item-tab.html', this.magicItem);
+        let template = await renderTemplate('modules/magic-items-2/templates/magic-item-tab.html', this.magicItem);
         let el = this.html.find(`.magic-items-content`);
         if(el.length) {
             el.replaceWith(template);

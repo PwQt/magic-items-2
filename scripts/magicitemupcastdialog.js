@@ -20,7 +20,7 @@ export class MagicItemUpcastDialog extends Dialog {
     }
 
     static async create(magicItem, item) {
-        const html = await renderTemplate("modules/magicitems/templates/magic-item-upcast-dialog.html", item);
+        const html = await renderTemplate("modules/magic-items-2/templates/magic-item-upcast-dialog.html", item);
 
         // Create the Dialog and return as a Promise
         return new Promise((resolve, reject) => {
