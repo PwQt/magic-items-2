@@ -10,7 +10,7 @@ magic wands, which will be automatically inherited from the character who owns t
 To install, follow these instructions:
 
 1.  Inside Foundry, select the Game Modules tab in the Configuration and Setup menu.
-2.  Click the Install Module button and enter the following URL: https://github.com/PwQt/magic-items-2/blob/master/module.json
+2.  Click the Install Module button and enter the following URL: https://github.com/PwQt/magic-items-2/releases/latest/download/module.json
 3.  Click Install and wait for installation to complete.
 
 ## Usage Instructions
