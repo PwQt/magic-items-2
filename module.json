@@ -1,7 +1,7 @@
 {
   "id": "magic-items-2",
   "title": "Magic Items 2",
-  "description": "Module that adds the ability to create magical items with spells or feats that belong to the item itself, such as staffs or magic wands, which will be automatically inherited from the character who owns the item. Fork of https://gitlab.com/riccisi/foundryvtt-magic-items/",
+  "description": "Module that adds the ability to create magical items with spells or feats that belong to the item itself, such as staffs or magic wands, which will be automatically inherited from the character who owns the item.",
   "version": "1.0.3",
   "library": "false",
   "manifestPlusVersion": "1.2.0",
