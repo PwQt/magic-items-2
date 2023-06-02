@@ -1,51 +1,90 @@
 {
-  "id": "module",
-  "title": "New Module",
-  "description": "",
-  "version": "#{VERSION}#",
+  "id": "magic-items-2",
+  "title": "Magic Items 2",
+  "description": "Module that adds the ability to create magical items with spells or feats that belong to the item itself, such as staffs or magic wands, which will be automatically inherited from the character who owns the item. Fork of https://gitlab.com/riccisi/foundryvtt-magic-items/",
+  "version": "1.0.0",
   "library": "false",
   "manifestPlusVersion": "1.2.0",
   "compatibility": {
     "minimum": 10,
-    "verified": 10,
-    "maximum": 11
+    "verified": 10.999,
+    "maximum": 10
   },
   "authors": [
     {
-      "name": "The League of Extraordinary FVTT Developers",
-      "url": "https://github.com/League-of-Foundry-Developers",
-      "discord": "discordID#0001"
+      "name": "PwQt",
+      "url": "https://github.com/PwQt/magic-items-2",
+      "discord": "PwQt#7620"
     }
   ],
   "relationships": {
-    "systems": [],
-    "requires": []
+    "systems": [{
+			"id": "dnd5e",
+			"type": "system",
+			"manifest": "https://raw.githubusercontent.com/foundryvtt/dnd5e/master/system.json",
+			"compatibility": {
+				"verified": "2.2"
+			}
+		}]
   },
   "esmodules": [
-    "scripts/module.js"
+    "scripts/magicitem.js.js"
   ],
-  "scripts": [
-    "scripts/lib/lib.js"
-  ],
+  "scripts": [ ],
   "styles": [
-    "styles/module.css"
+    "styles/magicitems.css"
   ],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "languages/en.json"
-    }
-  ],
-  "url": "#{URL}#",
-  "manifest": "#{MANIFEST}#",
+	"languages": [{
+		"lang": "en",
+		"name": "English",
+		"path": "./lang/en.json"
+	}, {
+		"lang": "it",
+		"name": "Italian",
+		"path": "./lang/it.json"
+	}, {
+		"lang": "ko",
+		"name": "Korean",
+		"path": "./lang/ko.json"
+	}, {
+    "lang": "pt-BR",
+    "name": "Português (Brasil)",
+    "path": "./lang/pt-BR.json"
+	}, {
+    "lang": "fr",
+    "name": "Francais",
+    "path": "./lang/fr.json"
+	}, {
+    "lang": "de",
+    "name": "Deutsch",
+    "path": "./lang/de.json"
+	}, {
+		"lang": "cs",
+		"name": "Česky",
+		"path": "./lang/cs.json"
+	}],
+  "packs": [{
+		"name": "magicitems",
+		"label": "Magic Items",
+		"system": "dnd5e",
+		"path": "./packs/magic-items.db",
+		"entity": "Item"
+	}, {
+		"name": "magicitem-feats",
+		"label": "Magic Items: Item Feats",
+		"system": "dnd5e",
+		"path": "./packs/magic-items-item-feats.db",
+		"entity": "Item"
+	}, {
+		"name": "magicitem-tables",
+		"label": "Magic Items: Item Tables",
+		"system": "dnd5e",
+		"path": "./packs/magic-items-item-tables.db",
+		"entity": "RollTable"
+	}],
+  "url": "https://github.com/PwQt/magic-items-2",
+  "manifest": "https://github.com/PwQt/magic-items-2/blob/master/module.json",
   "download": "#{DOWNLOAD}#",
   "license": "LICENSE",
-  "readme": "README.md",
-  "media": [
-    {
-      "type": "icon",
-      "url": "https://avatars2.githubusercontent.com/u/71292812?s=400&u=ccdb4eeb7abf551ca8f314e5a9bfd0479a4d3d41&v=4"
-    }
-  ]
+  "readme": "README.md"
 }

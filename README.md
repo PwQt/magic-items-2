@@ -1,71 +1,108 @@
-![](https://img.shields.io/badge/Foundry-v10-informational)
-<!--- Downloads @ Latest Badge -->
-<!--- replace <user>/<repo> with your username/repository -->
-<!--- ![Latest Release Download Count](https://img.shields.io/github/downloads/<user>/<repo>/latest/module.zip) -->
+# FoundryVTT - Magic Items
 
-<!--- Forge Bazaar Install % Badge -->
-<!--- replace <your-module-name> with the `name` in your manifest -->
-<!--- ![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2F<your-module-name>&colorB=4aa94a) -->
+This module for Foundry VTT and specific for the **DnD5e system**, adds the ability to create magical items with spells or feats that belong to the item itself, such as staffs or 
+magic wands, which will be automatically inherited from the character who owns the item.
 
+## Installation
 
-# How to use this Template to create a versioned Release
+To install, follow these instructions:
 
-1. Open your repository's releases page.
+1.  Inside Foundry, select the Game Modules tab in the Configuration and Setup menu.
+2.  Click the Install Module button and enter the following URL: https://github.com/PwQt/magic-items-2/blob/master/module.json
+3.  Click Install and wait for installation to complete.
 
-![Where to click to open repository releases.](https://user-images.githubusercontent.com/7644614/93409301-9fd25080-f864-11ea-9e0c-bdd09e4418e4.png)
+## Usage Instructions
 
-2. Click "Draft a new release"
+Once activated, a new tab named 'Magic Item' will be available for each items of type 'weapon', 'equipment' or 'consumable'.  
+In this tab, you can drag spells from a compendium and configure its consumption which will be subtracted from the total number of charges each time the spell is used.  
+It is also possible to configure the max number of charges, if they can be can be recharged and when, and if the item will be destroyed when the charges reach 0.
 
-![Draft a new release button.](https://user-images.githubusercontent.com/7644614/93409364-c1333c80-f864-11ea-89f1-abfcb18a8d9f.png)
+<div align="center">
 
-3. Fill out the release version as the tag name.
+![example0](/example0.png?raw=true)
+</div>
 
-If you want to add details at this stage you can, or you can always come back later and edit them.
+Using combinations of these parameters is possible to create, for example:
 
-![Release Creation Form](https://user-images.githubusercontent.com/7644614/93409543-225b1000-f865-11ea-9a19-f1906a724421.png)
+* A legendary staff equipped with great thaumaturgical spells
 
-4. Hit submit.
+<div align="center">
 
-5. Wait a few minutes.
+![example1](/example1.png?raw=true)
+</div>
 
-A Github Action will run to populate the `module.json` and `module.zip` with the correct urls that you can then use to distribute this release. You can check on its status in the "Actions" tab.
+* A globe with a perennial light spell.
 
-![Actions Tab](https://user-images.githubusercontent.com/7644614/93409820-c1800780-f865-11ea-8c6b-c3792e35e0c8.png)
+<div align="center">
 
-6. Grab the module.json url from the release's details page.
+![example2](/example2.png?raw=true)
+</div>
 
-![image](https://user-images.githubusercontent.com/7644614/93409960-10c63800-f866-11ea-83f6-270cc5d10b71.png)
+* A scroll with a powerful necromantic spell that dissolves once pronounced.
 
-This `module.json` will only ever point at this release's `module.zip`, making it useful for sharing a specific version for compatibility purposes.
+<div align="center">
 
-7. You can use the url `https://github.com/<user>/<repo>/releases/latest/download/module.json` to refer to the manifest.
+![example3](/example3.png?raw=true)
+</div>
 
-This is the url you want to use to install the module typically, as it will get updated automatically.
+In addition to spells, it is also possible to assign feats to the items, or combinations of both:
 
-# How to List Your Releases on Package Admin
+<div align="center">
 
-To request a package listing for your first release, go to the [Package Submission Form](https://foundryvtt.com/packages/submit) (accessible via a link at the bottom of the "[Systems and Modules](https://foundryvtt.com/packages/)" page on the Foundry website).
+![example5](/example5.png?raw=true)
+</div>
 
-Fill in the form. "Package Name" must match the name in the module manifest.  Package Title will be the display name for the package.  Package URL should be your repo URL.
-![image](https://user-images.githubusercontent.com/36359784/120664263-b49e5500-c482-11eb-9126-af7006389903.png)
+When a character is equipped with one or more magical objects, within his sheet in the spellbook/features section, 
+a set of inherited spells/feats divided by item will be displayed after his owned items:
 
+<div align="center">
 
-One of the Foundry staff will typically get back to you with an approval or any further questions within a few days, and give you access to the package admin pages.
+![example4](/example4.png?raw=true)
+</div>
 
-Once you have access to the [module admin page](https://foundryvtt.com/admin/packages/package/), you can release a new version by going into the page for your module, scrolling to the bottom, and filling in a new Package Version.
+<div align="center">
 
-When listing a new version, Version should be the version number you set above, and the Manifest URL should be the manifest __for that specific version__ (do not use /latest/ here).
-![image](https://user-images.githubusercontent.com/36359784/120664346-c4b63480-c482-11eb-9d8b-731b50d70939.png)
+![example6](/example6.png?raw=true)
+</div>
 
-> ### :warning: Important :warning:
-> 
-> It is very important that you use the specific release manifest url, and not the `/latest` url here. For more details about why this is important and how Foundry Installs/Updates packages, read [this wiki article](https://foundryvtt.wiki/en/development/guides/releases-and-history).
+From here you can cast spells or use feats provided by the items and monitor the consumption/recharges.
 
-Clicking "Save" in the bottom right will save the new version, which means that anyone installing your module from within Foundry will get that version, and a post will be generated in the #release-announcements channel on the official Foundry VTT Discord.
+## Compatibility
 
+Tested on 0.4.7 version.
 
-# FoundryVTT Module
+### Sheet Integration
 
-Does something, probably
+The following are added to `window.MagicItems` to facilitate custom sheet integration:
+- `bindCharacterSheet`
+- `bindItemSheet`
 
-## Changelog
+To implement Magic Items within a character sheet, do this:
+```js
+Hooks.on(`renderMyCoolCharacterSheet`, (app, html, data) => {
+  if (window.MagicItems && window.MagicItems.bindCharacterSheet) {
+    window.MagicItems.bindCharacterSheet(app, html, data);
+  }
+});
+```
+
+To implement Magic Items within an item sheet, do this:
+```js
+Hooks.on(`renderMyCoolItemSheet`, (app, html, data) => {
+  if (window.MagicItems && window.MagicItems.bindItemSheet) {
+    window.MagicItems.bindItemSheet(app, html, data);
+  }
+});
+```
+
+## Feedback
+
+Every suggestions/feedback are appreciated, if so, please contact me on discord (PwQt#7620)
+
+## License
+
+This is a fork of Magic Items module created by Simone found at [this address](https://gitlab.com/riccisi/foundryvtt-magic-items/).
+
+Magic Items 2 is a module for Foundry VTT by PwQt and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+
+This work is licensed under Foundry Virtual Tabletop [EULA - Limited License Agreement for module development v 0.1.6](http://foundryvtt.com/pages/license.html).
