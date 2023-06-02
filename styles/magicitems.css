@@ -250,3 +250,37 @@
 .dnd5e.sheet .items-list .item .item-name .item-image .fa-dice-d20 {
     display: none;
 }
+
+.tidy5e.sheet.actor .magic-items-head {
+    display: none;
+}
+
+.tidy5e.sheet.actor .list-layout .item-list .magic-item {
+    background-color: rgba(255,255,0,.3) !important;
+    margin: 2px 0 !important;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1) inset !important;
+}
+
+.tidy5e.sheet.actor .magic-items-spells-content,
+.tidy5e.sheet.actor .magic-items-feats-content {
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.tidy5e.sheet.actor .item-list .magic-item {
+    background-color: transparent !important;
+    margin: 3px 3px !important;
+}
+
+.tidy5e.sheet.actor .items-list .item.magic-item.equipped,
+.tidy5e.sheet.actor .items-list .item.magic-item.prepared {
+    background: var(--t5e-equipped) !important;
+    box-shadow: 0 0 0 2px var(--prepared-outline) !important;
+    border: 1px solid var(--t5e-magic-accent) !important;
+}
+
+.tidy5e.sheet.actor .list-layout .items-list .item.magic-item.equipped,
+.tidy5e.sheet.actor .list-layout .items-list .item.magic-item.prepared {
+    box-shadow: none !important;
+}
