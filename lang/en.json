@@ -28,7 +28,7 @@
     "MAGICITEMS.DestroyCheckAlways": "Always",
     "MAGICITEMS.DestroyCheck1D20":  "1 on d20",
     "MAGICITEMS.JusDestroyType": "Just Destroy",
-    "MAGICITEMS.LoosePowersType":  "Loose Powers",
+    "MAGICITEMS.LoosePowersType":  "Lose Powers",
 
     "MAGICITEMS.EffectTypeConsume": "Consume",
     "MAGICITEMS.EffectTypeDestroy": "Destroy",
@@ -107,8 +107,7 @@
     "MAGICITEMS.SheetFeatEffect0": "Consume",
     "MAGICITEMS.SheetFeatEffect1": "Destroy",
 
-    "MAGICITEMS.WarnNoActor": "you have no controlled actor, select an actor and retry.",
+    "MAGICITEMS.WarnNoActor": "You have no controlled actor, select an actor and retry.",
     "MAGICITEMS.WarnNoMagicItem": "Your controlled Actor does not have an item named ",
-    "MAGICITEMS.WarnNoMagicItemSpell": "Your controlled Actor does not have a spell/feat named ",
-    "MAGICITEMS.WarnItemNoLongerExists": "Sembra che "
+    "MAGICITEMS.WarnNoMagicItemSpell": "Your controlled Actor does not have a spell/feat named "
 }
