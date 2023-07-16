@@ -940,7 +940,7 @@ class OwnedMagicItemSpell extends AbstractOwnedEntry {
                 spell.prepareFinalAttributes();
             }
 
-            let chatData = await spell.roll({
+            let chatData = await spell.use({
                 "configureDialog": false,
                 "createMessage": false
             });
@@ -995,7 +995,7 @@ class OwnedMagicItemFeat extends AbstractOwnedEntry {
         };
 
         let proceed = async () => {
-            let chatData = await this.ownedItem.roll({
+            let chatData = await this.ownedItem.use({
                 "createMessage": false,
                 "configureDialog": false
             });
