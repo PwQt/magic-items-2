@@ -454,7 +454,7 @@ class MagicItemTable extends MagicItemEntry {
             const entity = pack.getDocument ? await pack.getDocument(id) : pack.get(id);
             if(entity) {
                 let item = (await actor.createEmbeddedDocuments("Item", [entity]))[0];
-                const chatData = await item.roll({createMessage: false});
+                const chatData = await item.use({},{createMessage: false});
                 ChatMessage.create(
                     mergeObject(chatData, {
                         "flags.dnd5e.itemData": item
@@ -940,7 +940,7 @@ class OwnedMagicItemSpell extends AbstractOwnedEntry {
                 spell.prepareFinalAttributes();
             }
 
-            let chatData = await spell.use({
+            let chatData = await spell.use({},{
                 "configureDialog": false,
                 "createMessage": false
             });
@@ -995,7 +995,7 @@ class OwnedMagicItemFeat extends AbstractOwnedEntry {
         };
 
         let proceed = async () => {
-            let chatData = await this.ownedItem.use({
+            let chatData = await this.ownedItem.use({},{
                 "createMessage": false,
                 "configureDialog": false
             });
