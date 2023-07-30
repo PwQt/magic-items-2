@@ -843,7 +843,7 @@ class AbstractOwnedEntry {
             r.toMessage({
                 flavor: `<b>${this.name}</b> ${game.i18n.localize("MAGICITEMS.MagicItemDestroyCheck")} 
             - ${destroyed ? game.i18n.localize("MAGICITEMS.MagicItemDestroyCheckFailure") : game.i18n.localize("MAGICITEMS.MagicItemDestroyCheckSuccess")}`,
-                speaker: ChatMessage.getSpeaker({actor: this.actor, token: this.actor.token})
+                speaker: ChatMessage.getSpeaker({actor: this.magicItem.actor, token: this.magicItem.actor.token})
             });
         }
         if(destroyed) {
