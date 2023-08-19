@@ -119,12 +119,12 @@
     "maximum": 11
   },
   "manifestPlusVersion": "1.2.1",
-  "url": "https://github.com/p4535992/foundryvtt-magic-items-2",
-  "manifest": "https://github.com/p4535992/foundryvtt-magic-items-2/releases/download/1.2.2/module.json",
-  "download": "https://github.com/p4535992/foundryvtt-magic-items-2/releases/download/1.2.2/module.zip",
-  "readme": "https://github.com/p4535992/foundryvtt-magic-items-2/blob/master/README.md",
-  "changelog": "https://github.com/p4535992/foundryvtt-magic-items-2/blob/master/CHANGELOG.md",
-  "bugs": "https://github.com/p4535992/foundryvtt-magic-items-2/issues",
+  "url": "https://github.com/PwQt/magic-items-2",
+  "manifest": "https://github.com/PwQt/magic-items-2/releases/download/1.2.2/module.json",
+  "download": "https://github.com/PwQt/magic-items-2/releases/download/1.2.2/module.zip",
+  "readme": "https://github.com/PwQt/magic-items-2/blob/master/README.md",
+  "changelog": "https://github.com/PwQt/magic-items-2/blob/master/CHANGELOG.md",
+  "bugs": "https://github.com/PwQt/magic-items-2/issues",
   "allowBugReporter": true,
   "relationships": {
     "systems": [
