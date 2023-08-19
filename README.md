@@ -21,7 +21,7 @@ It is also possible to configure the max number of charges, if they can be can b
 
 <div align="center">
 
-![example0](/example0.png?raw=true)
+![example0](/wiki/example0.png?raw=true)
 </div>
 
 Using combinations of these parameters is possible to create, for example:
@@ -30,28 +30,28 @@ Using combinations of these parameters is possible to create, for example:
 
 <div align="center">
 
-![example1](/example1.png?raw=true)
+![example1](/wiki/example1.png?raw=true)
 </div>
 
 * A globe with a perennial light spell.
 
 <div align="center">
 
-![example2](/example2.png?raw=true)
+![example2](/wiki/example2.png?raw=true)
 </div>
 
 * A scroll with a powerful necromantic spell that dissolves once pronounced.
 
 <div align="center">
 
-![example3](/example3.png?raw=true)
+![example3](/wiki/example3.png?raw=true)
 </div>
 
 In addition to spells, it is also possible to assign feats to the items, or combinations of both:
 
 <div align="center">
 
-![example5](/example5.png?raw=true)
+![example5](/wiki/example5.png?raw=true)
 </div>
 
 When a character is equipped with one or more magical objects, within his sheet in the spellbook/features section, 
@@ -59,12 +59,12 @@ a set of inherited spells/feats divided by item will be displayed after his owne
 
 <div align="center">
 
-![example4](/example4.png?raw=true)
+![example4](/wiki/example4.png?raw=true)
 </div>
 
 <div align="center">
 
-![example6](/example6.png?raw=true)
+![example6](/wiki/example6.png?raw=true)
 </div>
 
 From here you can cast spells or use feats provided by the items and monitor the consumption/recharges.
