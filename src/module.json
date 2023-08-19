@@ -3,88 +3,141 @@
   "title": "Magic Items 2",
   "description": "Module that adds the ability to create magical items with spells or feats that belong to the item itself, such as staffs or magic wands, which will be automatically inherited from the character who owns the item.",
   "version": "1.2.2",
-  "library": "false",
-  "manifestPlusVersion": "1.2.0",
-  "compatibility": {
-    "minimum": "10",
-    "verified": "11.306",
-    "maximum": ""
-  },
   "authors": [
     {
       "name": "PwQt",
       "url": "https://github.com/PwQt/magic-items-2",
       "discord": "PwQt#7620"
+    },
+    {
+      "name": "p4535992",
+      "url": "https://github.com/p4535992",
+      "discord": "",
+      "twitter": "",
+      "patreon": "",
+      "github": "p4535992",
+      "ko-fi": "",
+      "reddit": "",
+      "email": ""
     }
   ],
-  "relationships": {
-    "systems": [{
-			"id": "dnd5e",
-			"type": "system",
-			"manifest": "https://raw.githubusercontent.com/foundryvtt/dnd5e/master/system.json",
-			"compatibility": {
-				"verified": "2.2"
-			}
-		}]
+  "type": "module",
+  "socket": true,
+  "includes": [
+    "./assets/**",
+    "./lang/**",
+    "./languages/**",
+    "./scripts/**",
+    "./styles/**",
+    "./templates/**",
+    "./module.json",
+    "./README.md",
+    "./icons/**",
+    "packs/**"
+  ],
+  "media": [
+    {
+      "type": "icon",
+      "location": ""
+    },
+    {
+      "type": "cover",
+      "location": ""
+    },
+    {
+      "type": "screenshot",
+      "location": ""
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "./lang/en.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italian",
+      "path": "./lang/it.json"
+    },
+    {
+      "lang": "ko",
+      "name": "Korean",
+      "path": "./lang/ko.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "./lang/pt-BR.json"
+    },
+    {
+      "lang": "fr",
+      "name": "Francais",
+      "path": "./lang/fr.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "./lang/de.json"
+    },
+    {
+      "lang": "cs",
+      "name": "Česky",
+      "path": "./lang/cs.json"
+    }
+  ],
+  "packs": [
+    {
+      "name": "magicitems",
+      "label": "Magic Items",
+      "system": "dnd5e",
+      "path": "packs/magic-items.db",
+      "type": "Item"
+    },
+    {
+      "name": "magicitem-feats",
+      "label": "Magic Items: Item Feats",
+      "system": "dnd5e",
+      "path": "packs/magic-items-item-feats.db",
+      "type": "Item"
+    },
+    {
+      "name": "magicitem-tables",
+      "label": "Magic Items: Item Tables",
+      "system": "dnd5e",
+      "path": "packs/magic-items-item-tables.db",
+      "type": "RollTable"
+    }
+  ],
+  "systems": [],
+  "scripts": [],
+  "esmodules": ["module.js"],
+  "styles": ["styles/magicitems.css"],
+  "compatibility": {
+    "minimum": 11,
+    "verified": 11,
+    "maximum": 11
   },
-  "esmodules": [
-    "scripts/magicitems.js"
-  ],
-  "scripts": [ ],
-  "styles": [
-    "styles/magicitems.css"
-  ],
-	"languages": [{
-		"lang": "en",
-		"name": "English",
-		"path": "./lang/en.json"
-	}, {
-		"lang": "it",
-		"name": "Italian",
-		"path": "./lang/it.json"
-	}, {
-		"lang": "ko",
-		"name": "Korean",
-		"path": "./lang/ko.json"
-	}, {
-		"lang": "pt-BR",
-		"name": "Português (Brasil)",
-		"path": "./lang/pt-BR.json"
-	}, {
-		"lang": "fr",
-		"name": "Francais",
-		"path": "./lang/fr.json"
-	}, {
-		"lang": "de",
-		"name": "Deutsch",
-		"path": "./lang/de.json"
-	}, {
-		"lang": "cs",
-		"name": "Česky",
-		"path": "./lang/cs.json"
-	}],
-  "packs": [{
-		"name": "magicitems",
-		"label": "Magic Items",
-		"system": "dnd5e",
-		"path": "./packs/magic-items.db",
-		"type": "Item"
-	}, {
-		"name": "magicitem-feats",
-		"label": "Magic Items: Item Feats",
-		"system": "dnd5e",
-		"path": "./packs/magic-items-item-feats.db",
-		"type": "Item"
-	}, {
-		"name": "magicitem-tables",
-		"label": "Magic Items: Item Tables",
-		"system": "dnd5e",
-		"path": "./packs/magic-items-item-tables.db",
-		"type": "RollTable"
-	}],
-  "url": "https://github.com/PwQt/magic-items-2",
-  "manifest": "https://github.com/PwQt/magic-items-2/releases/latest/download/module.json",
-  "download": "https://github.com/PwQt/magic-items-2/releases/latest/download/module.zip",
-  "license": "LICENSE",
-  "readme": "README.md"
+  "manifestPlusVersion": "1.2.1",
+  "url": "https://github.com/p4535992/foundryvtt-magic-items-2",
+  "manifest": "https://github.com/p4535992/foundryvtt-magic-items-2/releases/download/1.2.2/module.json",
+  "download": "https://github.com/p4535992/foundryvtt-magic-items-2/releases/download/1.2.2/module.zip",
+  "readme": "https://github.com/p4535992/foundryvtt-magic-items-2/blob/master/README.md",
+  "changelog": "https://github.com/p4535992/foundryvtt-magic-items-2/blob/master/CHANGELOG.md",
+  "bugs": "https://github.com/p4535992/foundryvtt-magic-items-2/issues",
+  "allowBugReporter": true,
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "manifest": "https://raw.githubusercontent.com/foundryvtt/dnd5e/master/system.json",
+        "compatibility": {
+          "verified": "2.2"
+        }
+      }
+    ],
+    "requires": [],
+    "conflicts": []
+  }
 }
