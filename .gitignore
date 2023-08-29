@@ -104,6 +104,20 @@ out
 # TernJS port file
 .tern-port
 
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
