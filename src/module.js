@@ -50,6 +50,13 @@ Hooks.once("createActor", (actor) => {
   }
 });
 
+Hooks.once("createToken", (token) => {
+    const actor = token.actor;
+    if (actor.permission >= 2) {
+        MagicItemActor.bind(actor);
+    }
+});
+
 Hooks.on(`renderItemSheet5e`, (app, html, data) => {
   if (!game.user.isGM && game.settings.get("magic-items-2", "hideFromPlayers")) {
     return;
