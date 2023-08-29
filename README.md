@@ -73,7 +73,7 @@ From here you can cast spells or use feats provided by the items and monitor the
 | **Name** | **Compatibility** | **Additional information** |
 |----------|:-----------------:|----------------------------|
 |Default DnD 5e sheet|:heavy_check_mark:||
-|[Tidy5e Sheet 0.8.41](https://github.com/sdenec/tidy5e-sheet)|:heavy_check_mark:||
+|[Tidy5e Sheet](https://github.com/sdenec/tidy5e-sheet)|:heavy_check_mark:|works on 0.8.41+|
 |[Compact DnDBeyond-like 5e Character Sheet](https://github.com/eastcw/foundryvtt-compactBeyond5eSheet)|:interrobang:|Works, but doesn't show in Actions tab.|
 
 Want to check/add your sheet? Please contact me.
