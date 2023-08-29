@@ -946,13 +946,15 @@ class OwnedMagicItemSpell extends AbstractOwnedEntry {
           createMessage: false,
         }
       );
-      ChatMessage.create(
-        mergeObject(chatData, {
-          "flags.dnd5e.itemData": this.ownedItem.toJSON(),
-        })
-      );
-      this.consume(consumption);
-      this.magicItem.update();
+      if (chatData) {
+          ChatMessage.create(
+            mergeObject(chatData, {
+              "flags.dnd5e.itemData": this.ownedItem.toJSON(),
+            })
+          );
+          this.consume(consumption);
+          this.magicItem.update();
+      }
     };
 
     if (this.hasCharges(consumption)) {
@@ -1006,13 +1008,15 @@ class OwnedMagicItemFeat extends AbstractOwnedEntry {
           configureDialog: false,
         }
       );
-      ChatMessage.create(
-        mergeObject(chatData, {
-          "flags.dnd5e.itemData": this.ownedItem.toJSON(),
-        })
-      );
-      onUsage();
-      this.magicItem.update();
+      if (chatData) {
+          ChatMessage.create(
+            mergeObject(chatData, {
+              "flags.dnd5e.itemData": this.ownedItem.toJSON(),
+            })
+          );
+          onUsage();
+          this.magicItem.update();
+      }
     };
 
     if (this.item.effect === "e2" || this.hasCharges(consumption)) {
