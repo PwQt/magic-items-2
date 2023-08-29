@@ -70,8 +70,13 @@ a set of inherited spells/feats divided by item will be displayed after his owne
 From here you can cast spells or use feats provided by the items and monitor the consumption/recharges.
 
 ## Compatibility
+| **Name** | **Compatibility** | **Additional information** |
+|----------|:-----------------:|----------------------------|
+|Default DnD 5e sheet|:heavy_check_mark:||
+|[Tidy5e Sheet 0.8.41](https://github.com/sdenec/tidy5e-sheet)|:heavy_check_mark:||
+|[Compact DnDBeyond-like 5e Character Sheet](https://github.com/eastcw/foundryvtt-compactBeyond5eSheet)|:interrobang:|Works, but doesn't show in Actions tab.|
 
-Tested with [Tidy5e Sheet 0.8.41](https://github.com/sdenec/tidy5e-sheet).
+Want to check/add your sheet? Please contact me.
 
 ### Sheet Integration
 
