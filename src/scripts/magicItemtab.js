@@ -1,5 +1,5 @@
 import { MAGICITEMS } from "./config.js";
-import { MagicItem } from "./magicitem.js";
+import { MagicItem } from "./magic-item/MagicItem.js";
 
 const magicItemTabs = [];
 
