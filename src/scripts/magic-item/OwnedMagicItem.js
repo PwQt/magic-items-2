@@ -1,3 +1,8 @@
+import CONSTANTS from "../constants/constants";
+import { MagiItemHelpers } from "../magic-item-helpers";
+import { OwnedMagicItemFeat } from "../magic-item-owned-entry/OwnedMagicItemFeat";
+import { OwnedMagicItemSpell } from "../magic-item-owned-entry/OwnedMagicItemSpell";
+import { OwnedMagicItemTable } from "../magic-item-owned-entry/OwnedMagicItemTable";
 import { MagicItem } from "./MagicItem";
 
 export class OwnedMagicItem extends MagicItem {
@@ -13,7 +18,7 @@ export class OwnedMagicItem extends MagicItem {
 
     this.rechargeableLabel = this.rechargeable
       ? `(${game.i18n.localize("MAGICITEMS.SheetRecharge")}: ${this.rechargeText} ${
-          MAGICITEMS.localized(MAGICITEMS.rechargeUnits)[this.rechargeUnit]
+          MagiItemHelpers.localized(MAGICITEMS.rechargeUnits)[this.rechargeUnit]
         } )`
       : game.i18n.localize("MAGICITEMS.SheetNoRecharge");
 
@@ -37,7 +42,7 @@ export class OwnedMagicItem extends MagicItem {
    * Tests if the owned magic items can visualize his powers.
    */
   get visible() {
-    let identifiedOnly = game.settings.get("magic-items-2", "identifiedOnly");
+    let identifiedOnly = game.settings.get(CONSTANTS.MODULE_ID, "identifiedOnly");
     return !identifiedOnly || this.item.system.identified;
   }
 

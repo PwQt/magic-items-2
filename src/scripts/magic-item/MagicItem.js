@@ -1,4 +1,5 @@
 import { MAGICITEMS } from "../config.js";
+import { MagiItemHelpers } from "../magic-item-helpers.js";
 
 export class MagicItem {
   constructor(flags) {
@@ -123,23 +124,23 @@ export class MagicItem {
   }
 
   get chargeTypes() {
-    return MAGICITEMS.localized(MAGICITEMS.chargeTypes);
+    return MagiItemHelpers.localized(MAGICITEMS.chargeTypes);
   }
 
   get destroyChecks() {
-    return MAGICITEMS.localized(MAGICITEMS.destroyChecks);
+    return MagiItemHelpers.localized(MAGICITEMS.destroyChecks);
   }
 
   get destroyTypes() {
-    return MAGICITEMS.localized(MAGICITEMS.destroyTypes);
+    return MagiItemHelpers.localized(MAGICITEMS.destroyTypes);
   }
 
   get rechargeUnits() {
-    return MAGICITEMS.localized(MAGICITEMS.rechargeUnits);
+    return MagiItemHelpers.localized(MAGICITEMS.rechargeUnits);
   }
 
   get rechargeTypes() {
-    return MAGICITEMS.localized(MAGICITEMS.rechargeTypes);
+    return MagiItemHelpers.localized(MAGICITEMS.rechargeTypes);
   }
 
   get rechargeText() {
@@ -269,10 +270,7 @@ export class MagicItem {
   }
 
   addEntity(entity, pack) {
-    let name =
-      game.babele && entity.getFlag("babele", "hasTranslation")
-        ? entity.getFlag("babele", "originalName")
-        : entity.name;
+    let name = MagiItemHelpers.getEntityNameWithBabele(entity);
     if (entity.type === "spell") {
       this.addSpell({
         id: entity.id,

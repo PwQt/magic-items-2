@@ -1,14 +1,12 @@
+import { MagiItemHelpers } from "../magic-item-helpers";
+
 export class MagicItemEntry {
   constructor(data) {
     mergeObject(this, data);
   }
 
   get displayName() {
-    if (this.pack !== "world" && game.babele?.isTranslated(this.pack)) {
-      return game.babele.translateField("name", this.pack, { name: this.name });
-    } else {
-      return this.name;
-    }
+    return MagiItemHelpers.getEntityNameCompendiumWithBabele(this.pack, this.name);
   }
 
   renderSheet() {
