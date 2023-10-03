@@ -36,4 +36,18 @@ export class MagiItemHelpers {
       return nameToCheck;
     }
   }
+
+  static sortByName(a, b) {
+    if (a.displayName < b.displayName) {
+      return -1;
+    }
+    if (a.displayName > b.displayName) {
+      return 1;
+    }
+    return 0;
+  }
+
+  static sortByLevel(a, b) {
+    return a.level === b.level ? MagicItem.sortByName(a, b) : a.level - b.level;
+  }
 }

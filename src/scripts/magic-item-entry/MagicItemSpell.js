@@ -1,6 +1,6 @@
 import { MagicItemEntry } from "./AbstractMagicItemEntry";
 
-class MagicItemSpell extends MagicItemEntry {
+export class MagicItemSpell extends MagicItemEntry {
   constructor(data) {
     super(data);
     this.baseLevel = parseInt(this.baseLevel);

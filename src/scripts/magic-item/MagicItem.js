@@ -1,4 +1,7 @@
 import { MAGICITEMS } from "../config.js";
+import { MagicItemFeat } from "../magic-item-entry/MagicItemFeat.js";
+import { MagicItemSpell } from "../magic-item-entry/MagicItemSpell.js";
+import { MagicItemTable } from "../magic-item-entry/MagicItemTable.js";
 import { MagiItemHelpers } from "../magic-item-helpers.js";
 
 export class MagicItem {
@@ -43,26 +46,12 @@ export class MagicItem {
     this.savedTables = this.tables.length;
   }
 
-  static sortByName(a, b) {
-    if (a.displayName < b.displayName) {
-      return -1;
-    }
-    if (a.displayName > b.displayName) {
-      return 1;
-    }
-    return 0;
-  }
-
-  static sortByLevel(a, b) {
-    return a.level === b.level ? MagicItem.sortByName(a, b) : a.level - b.level;
-  }
-
   sort() {
     if (this.sorting === "a") {
-      this.spells = this.spells.sort(MagicItem.sortByName);
+      this.spells = this.spells.sort(MagiItemHelpers.sortByName);
     }
     if (this.sorting === "l") {
-      this.spells = this.spells.sort(MagicItem.sortByLevel);
+      this.spells = this.spells.sort(MagiItemHelpers.sortByLevel);
     }
   }
 
