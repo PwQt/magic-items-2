@@ -16,7 +16,7 @@ export class MagiItemHelpers {
   };
 
   static getEntityNameWithBabele(entity) {
-    if (game.modules("babele")?.active) {
+    if (game.modules.get("babele")?.active) {
       return game.babele && entity.getFlag("babele", "hasTranslation")
         ? entity.getFlag("babele", "originalName")
         : entity.name;
@@ -26,7 +26,7 @@ export class MagiItemHelpers {
   }
 
   static getEntityNameCompendiumWithBabele(packToCheck, nameToCheck) {
-    if (game.modules("babele")?.active) {
+    if (game.modules.get("babele")?.active) {
       if (packToCheck !== "world" && game.babele?.isTranslated(packToCheck)) {
         return game.babele.translateField("name", packToCheck, { name: nameToCheck });
       } else {

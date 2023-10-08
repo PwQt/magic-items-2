@@ -1,6 +1,6 @@
 import { MagiItemHelpers } from "../magic-item-helpers";
 
-export class MagicItemEntry {
+export class AbstractMagicItemEntry {
   constructor(data) {
     mergeObject(this, data);
   }

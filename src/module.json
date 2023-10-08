@@ -78,12 +78,8 @@
       "type": "RollTable"
     }
   ],
-  "esmodules": [
-    "module.js"
-  ],
-  "styles": [
-    "styles/magicitems.css"
-  ],
+  "esmodules": ["module.js"],
+  "styles": ["styles/magicitems.css"],
   "manifestPlusVersion": "1.2.0",
   "url": "https://github.com/PwQt/magic-items-2",
   "manifest": "https://github.com/PwQt/magic-items-2/releases/download/latest/module.json",

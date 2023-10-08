@@ -1,6 +1,6 @@
-import { MagicItemEntry } from "./AbstractMagicItemEntry";
+import { AbstractMagicItemEntry } from "./AbstractMagicItemEntry";
 
-export class MagicItemSpell extends MagicItemEntry {
+export class MagicItemSpell extends AbstractMagicItemEntry {
   constructor(data) {
     super(data);
     this.baseLevel = parseInt(this.baseLevel);

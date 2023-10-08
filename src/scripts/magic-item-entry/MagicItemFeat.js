@@ -1,7 +1,7 @@
 import { MagiItemHelpers } from "../magic-item-helpers";
-import { MagicItemEntry } from "./AbstractMagicItemEntry";
+import { AbstractMagicItemEntry } from "./AbstractMagicItemEntry";
 
-export class MagicItemFeat extends MagicItemEntry {
+export class MagicItemFeat extends AbstractMagicItemEntry {
   constructor(data) {
     super(data);
     this.effect = this.effect ? this.effect : "e1";

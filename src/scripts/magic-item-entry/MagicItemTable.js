@@ -1,7 +1,7 @@
 import { MagiItemHelpers } from "../magic-item-helpers";
-import { MagicItemEntry } from "./AbstractMagicItemEntry";
+import { AbstractMagicItemEntry } from "./AbstractMagicItemEntry";
 
-export class MagicItemTable extends MagicItemEntry {
+export class MagicItemTable extends AbstractMagicItemEntry {
   entityCls() {
     return CONFIG["RollTable"];
   }
