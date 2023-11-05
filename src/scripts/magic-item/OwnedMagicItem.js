@@ -1,3 +1,4 @@
+import { MAGICITEMS } from "../config";
 import CONSTANTS from "../constants/constants";
 import { MagiItemHelpers } from "../magic-item-helpers";
 import { OwnedMagicItemFeat } from "../magic-item-owned-entry/OwnedMagicItemFeat";

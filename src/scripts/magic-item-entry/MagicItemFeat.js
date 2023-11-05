@@ -1,3 +1,4 @@
+import { MAGICITEMS } from "../config";
 import { MagiItemHelpers } from "../magic-item-helpers";
 import { AbstractMagicItemEntry } from "./AbstractMagicItemEntry";
 
