@@ -48,8 +48,8 @@ export class MagicItemTab {
       const dragDrop = new DragDrop({
         dropSelector: ".tab.magic-items",
         permissions: {
-          dragstart: this.app._canDragStart.bind(this.app),
-          drop: this.app._canDragDrop.bind(this.app),
+          dragstart: this._canDragStart.bind(this.app),
+          drop: this._canDragDrop.bind(this.app),
         },
         callbacks: {
           dragstart: this.app._onDragStart.bind(this.app),
@@ -297,5 +297,13 @@ export class MagicItemTab {
 
   isActive() {
     return $(this.html).find('a.item[data-tab="magicitems"]').hasClass("active");
+  }
+
+  _canDragDrop(){
+    return true;
+  }
+
+  _canDragStart(){
+    return true;
   }
 }
