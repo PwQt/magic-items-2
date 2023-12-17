@@ -17,6 +17,7 @@ export class MagicItemFeat extends AbstractMagicItemEntry {
   serializeData() {
     return {
       consumption: this.consumption,
+      uuid: this.uuid,
       id: this.id,
       img: this.img,
       name: this.name,

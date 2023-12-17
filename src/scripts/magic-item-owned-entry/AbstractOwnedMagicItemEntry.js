@@ -5,6 +5,10 @@ export class AbstractOwnedEntry {
     this.uses = parseInt("uses" in this.item ? this.item.uses : this.magicItem.charges);
   }
 
+  get uuid() {
+    return this.item.uuid;
+  }
+
   get id() {
     return this.item.id;
   }

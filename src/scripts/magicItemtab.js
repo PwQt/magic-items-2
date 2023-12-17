@@ -301,11 +301,11 @@ export class MagicItemTab {
     return $(this.html).find('a.item[data-tab="magicitems"]').hasClass("active");
   }
 
-  _canDragDrop(){
+  _canDragDrop() {
     return true;
   }
 
-  _canDragStart(){
+  _canDragStart() {
     return true;
   }
 }

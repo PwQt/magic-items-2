@@ -9,6 +9,7 @@ import { MagicItem } from "./MagicItem";
 export class OwnedMagicItem extends MagicItem {
   constructor(item, actor, magicItemActor) {
     super(item.flags.magicitems);
+    this.uuid = item.uuid;
     this.id = item.id;
     this.item = item;
     this.actor = actor;

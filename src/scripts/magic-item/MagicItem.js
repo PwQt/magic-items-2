@@ -262,6 +262,7 @@ export class MagicItem {
     let name = MagiItemHelpers.getEntityNameWithBabele(entity);
     if (entity.type === "spell") {
       this.addSpell({
+        uuid: entity.uuid,
         id: entity.id,
         name: name,
         img: entity.img,
@@ -276,6 +277,7 @@ export class MagicItem {
     }
     if (entity.type === "feat") {
       this.addFeat({
+        uuid: entity.uuid,
         id: entity.id,
         name: name,
         img: entity.img,
@@ -287,6 +289,7 @@ export class MagicItem {
     }
     if (entity.documentName === "RollTable") {
       this.addTable({
+        uuid: entity.uuid,
         id: entity.id,
         name: name,
         img: entity.img,
@@ -300,6 +303,10 @@ export class MagicItem {
 
   hasItem(itemId) {
     return this.hasSpell(itemId) || this.hasFeat(itemId) || this.hasTable(itemId);
+  }
+
+  findByUuid(itemUuid) {
+    return this.items.filter((item) => item.uuid === itemUuid)[0];
   }
 
   findById(itemId) {

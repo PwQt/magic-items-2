@@ -62,6 +62,7 @@ export class MagicItemSpell extends AbstractMagicItemEntry {
     return {
       baseLevel: this.baseLevel,
       consumption: this.consumption,
+      uuid: this.uuid,
       id: this.id,
       img: this.img,
       level: this.level,
