@@ -3,9 +3,8 @@
   "title": "Magic Items 2",
   "description": "Module that adds the ability to create magical items with spells or feats that belong to the item itself, such as staffs or magic wands, which will be automatically inherited from the character who owns the item.",
   "version": "1.3.2",
-  "minimumCoreVersion": "10",
   "compatibility": {
-    "minimum": 10,
+    "minimum": 11,
     "verified": 11,
     "maximum": 11
   },
@@ -14,6 +13,17 @@
       "name": "PwQt",
       "url": "https://github.com/PwQt/magic-items-2",
       "discord": "PwQt#7620"
+    },
+    {
+      "name": "p4535992",
+      "url": "https://github.com/p4535992",
+      "discord": "",
+      "twitter": "",
+      "patreon": "p4535992",
+      "github": "p4535992",
+      "ko-fi": "",
+      "reddit": "",
+      "email": ""
     }
   ],
   "type": "module",
@@ -59,23 +69,44 @@
     {
       "name": "magicitems",
       "label": "Magic Items",
-      "system": "dnd5e",
       "path": "packs/magic-items.db",
-      "type": "Item"
+      "type": "Item",
+      "system": "dnd5e",
+      "ownership": {
+        "PLAYER": "NONE",
+        "TRUSTED": "NONE",
+        "ASSISTANT": "OWNER"
+      },
+      "module": "magic-items-2",
+      "flags": {}
     },
     {
       "name": "magicitem-feats",
       "label": "Magic Items: Item Feats",
-      "system": "dnd5e",
       "path": "packs/magic-items-item-feats.db",
-      "type": "Item"
+      "type": "Item",
+      "system": "dnd5e",
+      "ownership": {
+        "PLAYER": "NONE",
+        "TRUSTED": "NONE",
+        "ASSISTANT": "OWNER"
+      },
+      "module": "magic-items-2",
+      "flags": {}
     },
     {
       "name": "magicitem-tables",
       "label": "Magic Items: Item Tables",
-      "system": "dnd5e",
       "path": "packs/magic-items-item-tables.db",
-      "type": "RollTable"
+      "type": "RollTable",
+      "system": "dnd5e",
+      "ownership": {
+        "PLAYER": "NONE",
+        "TRUSTED": "NONE",
+        "ASSISTANT": "OWNER"
+      },
+      "module": "magic-items-2",
+      "flags": {}
     }
   ],
   "esmodules": ["module.js"],
@@ -94,7 +125,7 @@
         "type": "system",
         "manifest": "https://raw.githubusercontent.com/foundryvtt/dnd5e/master/system.json",
         "compatibility": {
-          "verified": "2.3"
+          "verified": "2.3.1"
         }
       }
     ],

@@ -1,4 +1,4 @@
-export class AbstractOwnedEntry {
+export class AbstractOwnedMagicItemEntry {
   constructor(magicItem, item) {
     this.magicItem = magicItem;
     this.item = item;

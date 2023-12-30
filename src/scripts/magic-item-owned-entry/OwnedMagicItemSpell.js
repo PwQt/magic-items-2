@@ -1,7 +1,7 @@
 import { MagicItemUpcastDialog } from "../magicitemupcastdialog";
-import { AbstractOwnedEntry } from "./AbstractOwnedMagicItemEntry";
+import { AbstractOwnedMagicItemEntry } from "./AbstractOwnedMagicItemEntry";
 
-export class OwnedMagicItemSpell extends AbstractOwnedEntry {
+export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
   async roll() {
     let upcastLevel = this.item.level;
     let consumption = this.item.consumption;

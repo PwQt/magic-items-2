@@ -50,4 +50,65 @@ export class MagiItemHelpers {
   static sortByLevel(a, b) {
     return a.level === b.level ? MagicItem.sortByName(a, b) : a.level - b.level;
   }
+
+  /**
+   *
+   * @param {options}
+   * @param {string} [options.documentName]
+   * @param {string} [options.documentId]
+   * @param {("User"|"Folder"|"Actor"|"Item"|"Scene"|"Combat"|"JournalEntry"|"Macro"|"Playlist"|"RollTable"|"Cards"|"ChatMessage"|"Setting"|"FogExploration")} [options.collection]
+   * @param {string} [options.documentPack]
+   */
+  static retrieveUuid({ documentName, documentId, documentCollectionType, documentPack }) {
+    let uuid = null;
+    if (documentCollectionType || pack === "world") {
+      const collection = game.collections.get(documentCollectionType);
+      if (!collection) {
+        // DO NOTHING
+      } else {
+        // Get the original document, if the name still matches - take no action
+        const original = documentId ? collection.get(documentId) : null;
+        if (original) {
+          if (documentName) {
+            if (original.name !== documentName) {
+              // DO NOTHING
+            } else {
+              return original.uuid;
+            }
+          } else {
+            return original.uuid;
+          }
+        }
+        // Otherwise, find the document by ID or name (ID preferred)
+        const doc = collection.find((e) => e.id === documentId || e.name === documentName) || null;
+        if (doc) {
+          return doc.uuid;
+        }
+      }
+    }
+    if (documentPack) {
+      const pack = documentPack;
+
+      // Get the original entry, if the name still matches - take no action
+      const original = documentId ? pack.index.get(documentId) : null;
+      if (original) {
+        if (documentName) {
+          if (original.name !== documentName) {
+            // DO NOTHING
+          } else {
+            return original.uuid;
+          }
+        } else {
+          return original.uuid;
+        }
+      }
+
+      // Otherwise, find the document by ID or name (ID preferred)
+      const doc = pack.index.find((i) => i._id === documentId || i.name === documentName) || null;
+      if (doc) {
+        return doc.uuid;
+      }
+    }
+    return uuid;
+  }
 }

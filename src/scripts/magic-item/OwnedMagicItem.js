@@ -16,7 +16,7 @@ export class OwnedMagicItem extends MagicItem {
     this.actor = actor;
     this.name = item.name;
     this.img = item.img;
-
+    this.pack = item.pack;
     this.uses = parseInt("uses" in item.flags.magicitems ? item.flags.magicitems.uses : this.charges);
 
     this.rechargeableLabel = this.rechargeable

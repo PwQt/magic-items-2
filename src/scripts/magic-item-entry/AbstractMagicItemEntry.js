@@ -10,14 +10,16 @@ export class AbstractMagicItemEntry {
     return MagiItemHelpers.getEntityNameCompendiumWithBabele(this.pack, this.name);
   }
 
-  renderSheet() {
+  async renderSheet() {
     this.entity().then((entity) => {
       const sheet = entity.sheet;
+      /* TODO TO REMOVE ??
       if (this.pack === "world") {
         sheet.options.compendium = this.pack;
       } else {
         sheet.options.editable = false;
       }
+      */
       sheet.render(true);
     });
   }

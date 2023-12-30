@@ -134,12 +134,29 @@ export class MagicItemSheet {
    *
    * @param evt
    */
-  onItemShow(evt) {
+  async onItemShow(evt) {
     evt.preventDefault();
     let dataset = evt.currentTarget.closest(".item").dataset;
     let magicItemId = dataset.magicItemId;
     let itemId = dataset.itemId;
-    this.actor.renderSheet(magicItemId, itemId);
+    let itemUuid = dataset.itemUuid;
+    let itemPack = dataset.itemPack;
+
+    let uuid = null;
+    if (itemUuid) {
+      uuid = itemUuid;
+    } else {
+      uuid = MagiItemHelpers.retrieveUuid({
+        documentName: null,
+        documentId: itemId,
+        documentCollectionType: "Item",
+        documentPack: itemPack,
+      });
+    }
+    const itemTmp = await fromUuid(uuid);
+    itemTmp.sheet.render(true);
+    // TODO TO REMOVE ??? OR UPDATE SOMEHOW ?
+    await this.actor.renderSheet(magicItemId, itemId);
   }
 
   /**

@@ -1,6 +1,6 @@
-import { AbstractOwnedEntry } from "./AbstractOwnedMagicItemEntry";
+import { AbstractOwnedMagicItemEntry } from "./AbstractOwnedMagicItemEntry";
 
-export class OwnedMagicItemTable extends AbstractOwnedEntry {
+export class OwnedMagicItemTable extends AbstractOwnedMagicItemEntry {
   async roll() {
     let item = this.item;
     let consumption = item.consumption;
