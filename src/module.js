@@ -81,8 +81,9 @@ Hooks.on(`renderActorSheet5eNPC`, (app, html, data) => {
 });
 
 Hooks.on("hotbarDrop", async (bar, data, slot) => {
-  if (data.type !== "MagicItem") return;
-
+  if (data.type !== "MagicItem") {
+    return;
+  }
   const command = `MagicItems.roll("${data.magicItemName}","${data.itemName}");`;
   let macro = game.macros.find((m) => m.name === data.name && m.command === command);
   if (!macro) {

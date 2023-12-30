@@ -1,3 +1,4 @@
+import { warn } from "../lib/lib";
 import { MagiItemHelpers } from "../magic-item-helpers";
 
 export class AbstractMagicItemEntry {
@@ -28,7 +29,7 @@ export class AbstractMagicItemEntry {
         if (entity) {
           resolve(entity);
         } else {
-          ui.notifications.warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + itemName);
+          warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + itemName, true);
           reject();
         }
       } else {

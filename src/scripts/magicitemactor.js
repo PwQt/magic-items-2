@@ -1,4 +1,5 @@
 import { MAGICITEMS } from "./config.js";
+import { warn } from "./lib/lib.js";
 import { OwnedMagicItem } from "./magic-item/OwnedMagicItem.js";
 
 /**
@@ -240,7 +241,8 @@ export class MagicItemActor {
   rollByName(magicItemName, itemName) {
     let found = this.items.filter((item) => item.name === magicItemName);
     if (!found.length) {
-      return ui.notifications.warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItem") + itemName);
+      warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItem") + itemName, true);
+      return;
     }
     let item = found[0];
     item.rollByName(itemName);

@@ -16,28 +16,6 @@ So when you set up to run a macro with this module these arguments are already "
 - **event**: The javascript event passed from the module to the macro.
 - **args**: Additional arguments passed from the module to the macro.
 
-
-  roll: function (magicItemName, itemName) {
-    const speaker = ChatMessage.getSpeaker();
-    let actor;
-    if (speaker.token) actor = game.actors.tokens[speaker.token];
-    if (!actor) actor = game.actors.get(speaker.actor);
-
-    const magicItemActor = actor ? MagicItemActor.get(actor.id) : null;
-    if (!magicItemActor) {
-      return ui.notifications.warn(game.i18n.localize("MAGICITEMS.WarnNoActor"));
-    }
-    magicItemActor.rollByName(magicItemName, itemName);
-  },
-
-  bindItemSheet: function (app, html, data) {
-    MagicItemTab.bind(app, html, data);
-  },
-
-  bindCharacterSheet: function (app, html, data) {
-    MagicItemSheet.bind(app, html, data);
-  },
-
 ## OLD API (Remain for retro compatibility, but is not very clear ?)
 
 #### actor(id) ⇒ <code>Actor</code>
