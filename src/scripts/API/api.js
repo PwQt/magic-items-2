@@ -1,6 +1,6 @@
-import { MagicItemTab } from "../magicItemtab";
-import { MagicItemActor } from "../magicitemactor";
-import { MagicItemSheet } from "../magicitemsheet";
+import { MagicItemTab } from "../magicItemtab.js";
+import { MagicItemActor } from "../magicitemactor.js";
+import { MagicItemSheet } from "../magicitemsheet.js";
 
 /**
  * Create a new API class and export it as default
@@ -10,17 +10,21 @@ const API = {
     return MagicItemActor.get(id);
   },
 
-  roll: function (magicItemName, itemName) {
+  roll: function (magicItemName, innerChildMagicItemName) {
     const speaker = ChatMessage.getSpeaker();
     let actor;
-    if (speaker.token) actor = game.actors.tokens[speaker.token];
-    if (!actor) actor = game.actors.get(speaker.actor);
-
+    if (speaker.token) {
+      actor = game.actors.tokens[speaker.token];
+    }
+    if (!actor) {
+      actor = game.actors.get(speaker.actor);
+    }
     const magicItemActor = actor ? MagicItemActor.get(actor.id) : null;
     if (!magicItemActor) {
-      return ui.notifications.warn(game.i18n.localize("MAGICITEMS.WarnNoActor"));
+      ui.notifications.warn(game.i18n.localize("MAGICITEMS.WarnNoActor"));
+      return;
     }
-    magicItemActor.rollByName(magicItemName, itemName);
+    magicItemActor.rollByName(magicItemName, innerChildMagicItemName);
   },
 
   bindItemSheet: function (app, html, data) {

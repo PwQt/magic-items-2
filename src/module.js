@@ -40,9 +40,7 @@ Hooks.once("init", () => {
 
 Hooks.once("setup", () => {
   // Set API
-  const data = game.modules.get(CONSTANTS.MODULE_ID);
-  data.api = API;
-
+  game.modules.get(CONSTANTS.MODULE_ID).api = API;
   window.MagicItems = game.modules.get(CONSTANTS.MODULE_ID).api;
 });
 
