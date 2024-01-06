@@ -1,5 +1,7 @@
-import { OwnedMagicItem } from "./magicitem.js";
 import { MAGICITEMS } from "./config.js";
+import { warn } from "./lib/lib.js";
+import { MagiItemHelpers } from "./magic-item-helpers.js";
+import { OwnedMagicItem } from "./magic-item/OwnedMagicItem.js";
 
 /**
  * "Aspect" class that dynamically extends the original Actor in order to handle magic items.
@@ -240,7 +242,8 @@ export class MagicItemActor {
   rollByName(magicItemName, itemName) {
     let found = this.items.filter((item) => item.name === magicItemName);
     if (!found.length) {
-      return ui.notifications.warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItem") + itemName);
+      warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItem") + itemName, true);
+      return;
     }
     let item = found[0];
     item.rollByName(itemName);
@@ -264,11 +267,26 @@ export class MagicItemActor {
    * @param itemId
    * @param ownedItemId
    */
-  renderSheet(itemId, ownedItemId) {
-    let found = this.items.filter((item) => item.id === itemId);
+  async renderSheet(itemId, ownedItemId) {
+    let found = this.items.filter((item) => {
+      return item.id === itemId || item.uuid === itemId;
+    });
     if (found.length) {
       let item = found[0];
       item.renderSheet(ownedItemId);
+      // let uuid = null;
+      // if (item.uuid) {
+      //   uuid = item.uuid;
+      // } else {
+      //   uuid = MagiItemHelpers.retrieveUuid({
+      //     documentName: item.name,
+      //     documentId: item.id,
+      //     documentCollectionType: "Item",
+      //     documentPack: item.pack,
+      //   });
+      // }
+      // const itemTmp = await fromUuid(uuid);
+      // itemTmp.sheet.render(true);
     }
   }
 

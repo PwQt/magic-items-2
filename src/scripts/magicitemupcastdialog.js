@@ -1,3 +1,5 @@
+import CONSTANTS from "./constants/constants";
+
 /**
  * A specialized Dialog subclass for casting a spell item at a certain level
  * @type {Dialog}
@@ -19,7 +21,7 @@ export class MagicItemUpcastDialog extends Dialog {
   }
 
   static async create(magicItem, item) {
-    const html = await renderTemplate("modules/magic-items-2/templates/magic-item-upcast-dialog.html", item);
+    const html = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-upcast-dialog.html`, item);
 
     // Create the Dialog and return as a Promise
     return new Promise((resolve, reject) => {

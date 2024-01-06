@@ -5,19 +5,37 @@ magic wands, which will be automatically inherited from the character who owns t
 
 Fork of [Magic Items](https://gitlab.com/riccisi/foundryvtt-magic-items/), since it seems like the original author's inactive.
 
+## Difference between [Magic Items 2](https://github.com/PwQt/magic-items-2) and [Item with Spells](https://github.com/krbz999/foundryvtt-items-with-spells-5e)
+
+They work very differently under the hood.
+
+- **[Item with Spells]()**: adds the _actual_ items to the actor but hides them if they should be unavailable, with modifications, and can these make use of the parent item's Limited Uses. Magic Items does not do that.
+  - The benefit is that you can thus change or tweak the embedded items, which you can't do with Magic Items
+  - There is a active developer/monster like Zhell to maintain the module O.O
+
+- **[Magic Items 2](https://github.com/PwQt/magic-items-2)**: adds the _reference_ to the items are just references to where the actual item is stored.
+  - Has more options
+  - You can add Feature and Rolltable items to the parent item
+  - Using reference instead actual items let you better integrate external modules like [Item Linking](https://github.com/elizeuangelo/fvtt-module-item-linking)
+
+
 ## Installation
 
-To install, follow these instructions:
+It's always easiest to install modules from the in game add-on browser.
 
-1.  Inside Foundry, select the Game Modules tab in the Configuration and Setup menu.
-2.  Click the Install Module button and enter the following URL: https://github.com/PwQt/magic-items-2/releases/latest/download/module.json
-3.  Click Install and wait for installation to complete.
+To install this module manually:
+1.  Inside the Foundry "Configuration and Setup" screen, click "Add-on Modules"
+2.  Click "Install Module"
+3.  In the "Manifest URL" field, paste the following url:
+`https://github.com/PwQt/magic-items-2/releases/latest/download/module.json`
+4.  Click 'Install' and wait for installation to complete
+5.  Don't forget to enable the module in game using the "Manage Module" button
 
 ## Usage Instructions
 
-Once activated, a new tab named 'Magic Item' will be available for each items of type 'weapon', 'equipment' or 'consumable'.  
-In this tab, you can drag spells from a compendium and configure its consumption which will be subtracted from the total number of charges each time the spell is used.  
-It is also possible to configure the max number of charges, if they can be can be recharged and when, and if the item will be destroyed when the charges reach 0.
+1) Once activated, a new tab named 'Magic Item' will be available for each items of type 'weapon', 'equipment' or 'consumable'.  
+2) In this tab, you can drag spells from a compendium and configure its consumption which will be subtracted from the total number of charges each time the spell is used.  
+3) It is also possible to configure the max number of charges, if they can be can be recharged and when, and if the item will be destroyed when the charges reach 0.
 
 <div align="center">
 
@@ -69,6 +87,10 @@ a set of inherited spells/feats divided by item will be displayed after his owne
 
 From here you can cast spells or use feats provided by the items and monitor the consumption/recharges.
 
+## Api
+
+All informations about the api and the sheet integration can be found here [API](./wiki/api.md)
+
 ## Compatibility
 | **Name** | **Compatibility** | **Additional information** |
 |----------|:-----------------:|----------------------------|
@@ -76,44 +98,74 @@ From here you can cast spells or use feats provided by the items and monitor the
 |[Tidy5e Sheet](https://github.com/sdenec/tidy5e-sheet)|:heavy_check_mark:|works on 0.8.41+|
 |[Compact DnDBeyond-like 5e Character Sheet](https://github.com/eastcw/foundryvtt-compactBeyond5eSheet)|:interrobang:|Works, but doesn't show in Actions tab.|
 
-Want to check/add your sheet? Please contact me.
+# Build
 
-### Sheet Integration
+## Install all packages
 
-The following are added to `window.MagicItems` to facilitate custom sheet integration:
-- `bindCharacterSheet`
-- `bindItemSheet`
-
-To implement Magic Items within a character sheet, do this:
-```js
-Hooks.on(`renderMyCoolCharacterSheet`, (app, html, data) => {
-  if (window.MagicItems && window.MagicItems.bindCharacterSheet) {
-    window.MagicItems.bindCharacterSheet(app, html, data);
-  }
-});
+```bash
+npm install
 ```
 
-To implement Magic Items within an item sheet, do this:
-```js
-Hooks.on(`renderMyCoolItemSheet`, (app, html, data) => {
-  if (window.MagicItems && window.MagicItems.bindItemSheet) {
-    window.MagicItems.bindItemSheet(app, html, data);
-  }
-});
+### dev
+
+`dev` will let you develop you own code with hot reloading on the browser
+
+```bash
+npm run dev
 ```
 
-## Feedback
+## npm build scripts
 
-Every suggestions/feedback are appreciated.
+### build
 
-## Original Project
+`build` will build and set up a symlink between `dist` and your `dataPath`.
+
+```bash
+npm run build
+```
+
+### build-watch
+
+`build-watch` will build and watch for changes, rebuilding automatically.
+
+```bash
+npm run build-watch
+```
+
+### prettier-format
+
+`prettier-format` launch the prettier plugin based on the configuration [here](./.prettierrc)
+
+```bash
+npm run-script prettier-format
+```
+
+### lint and lint:fix
+
+`lint` launch the eslint process based on the configuration [here](./.eslintrc.json)
+
+```bash
+npm run-script lint
+```
+
+`lint:fix` launch the eslint process with the fix argument
+
+```bash
+npm run-script lint:fix
+```
+
+## [Changelog](./CHANGELOG.md)
+
+## Issues
+
+Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/PwQt/magic-items-2/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
+
+## License
+
+This package is under an [MIT license](LICENSE) and the [Foundry Virtual Tabletop Limited License Agreement for module development](https://foundryvtt.com/article/license/).
+
+## Credit
 
 This is a fork of Magic Items module created by Simone found at [this address](https://gitlab.com/riccisi/foundryvtt-magic-items/).
 
 Magic Items is a module for Foundry VTT by Simone and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
-
-## License
-
-Magic Items 2 is a module for Foundry VTT by PwQt and is licensed under [MIT License](https://github.com/PwQt/magic-items-2/blob/master/LICENSE).
-
-This work is licensed under Foundry Virtual Tabletop [EULA](https://foundryvtt.com/article/license/).

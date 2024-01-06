@@ -58,18 +58,3 @@ MAGICITEMS.tableUsages = {
 MAGICITEMS.TABLE_USAGE_AS_SPELL = "u1";
 MAGICITEMS.TABLE_USAGE_AS_FEAT = "u2";
 MAGICITEMS.TABLE_USAGE_TRIGGER = "u3";
-
-MAGICITEMS.localized = function (cfg) {
-  return Object.keys(cfg).reduce((i18nCfg, key) => {
-    i18nCfg[key] = game.i18n.localize(cfg[key]);
-    return i18nCfg;
-  }, {});
-};
-
-MAGICITEMS.numeric = function (value, fallback) {
-  if ($.isNumeric(value)) {
-    return parseInt(value);
-  } else {
-    return fallback;
-  }
-};

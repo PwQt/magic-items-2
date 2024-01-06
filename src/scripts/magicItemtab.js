@@ -1,5 +1,7 @@
 import { MAGICITEMS } from "./config.js";
-import { MagicItem } from "./magicitem.js";
+import CONSTANTS from "./constants/constants.js";
+import { MagiItemHelpers } from "./magic-item-helpers.js";
+import { MagicItem } from "./magic-item/MagicItem.js";
 
 const magicItemTabs = [];
 
@@ -78,7 +80,7 @@ export class MagicItemTab {
   async render() {
     this.magicItem.sort();
 
-    let template = await renderTemplate("modules/magic-items-2/templates/magic-item-tab.html", this.magicItem);
+    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.html`, this.magicItem);
     let el = this.html.find(`.magic-items-content`);
     if (el.length) {
       el.replaceWith(template);
@@ -164,7 +166,7 @@ export class MagicItemTab {
       this.render();
     });
     this.html.find('input[name="flags.magicitems.charges"]').change((evt) => {
-      this.magicItem.charges = MAGICITEMS.numeric(evt.target.value, this.magicItem.charges);
+      this.magicItem.charges = MagiItemHelpers.numeric(evt.target.value, this.magicItem.charges);
       this.render();
     });
     this.html.find('select[name="flags.magicitems.chargeType"]').change((evt) => {
@@ -227,7 +229,7 @@ export class MagicItemTab {
         this.render();
       });
       this.html.find(`input[name="flags.magicitems.spells.${idx}.consumption"]`).change((evt) => {
-        spell.consumption = MAGICITEMS.numeric(evt.target.value, spell.consumption);
+        spell.consumption = MagiItemHelpers.numeric(evt.target.value, spell.consumption);
         this.render();
       });
       this.html.find(`select[name="flags.magicitems.spells.${idx}.upcast"]`).change((evt) => {
@@ -235,7 +237,7 @@ export class MagicItemTab {
         this.render();
       });
       this.html.find(`input[name="flags.magicitems.spells.${idx}.upcastCost"]`).change((evt) => {
-        spell.upcastCost = MAGICITEMS.numeric(evt.target.value, spell.cost);
+        spell.upcastCost = MagiItemHelpers.numeric(evt.target.value, spell.cost);
         this.render();
       });
       this.html.find(`input[name="flags.magicitems.spells.${idx}.flatDc"]`).click((evt) => {
@@ -256,7 +258,7 @@ export class MagicItemTab {
         this.render();
       });
       this.html.find(`input[name="flags.magicitems.feats.${idx}.consumption"]`).change((evt) => {
-        feat.consumption = MAGICITEMS.numeric(evt.target.value, feat.consumption);
+        feat.consumption = MagiItemHelpers.numeric(evt.target.value, feat.consumption);
         this.render();
       });
       this.html.find(`a[data-feat-idx="${idx}"]`).click((evt) => {
@@ -265,7 +267,7 @@ export class MagicItemTab {
     });
     this.magicItem.tables.forEach((table, idx) => {
       this.html.find(`input[name="flags.magicitems.tables.${idx}.consumption"]`).change((evt) => {
-        table.consumption = MAGICITEMS.numeric(evt.target.value, table.consumption);
+        table.consumption = MagiItemHelpers.numeric(evt.target.value, table.consumption);
       });
       this.html.find(`a[data-table-idx="${idx}"]`).click((evt) => {
         table.renderSheet();
@@ -299,11 +301,11 @@ export class MagicItemTab {
     return $(this.html).find('a.item[data-tab="magicitems"]').hasClass("active");
   }
 
-  _canDragDrop(){
+  _canDragDrop() {
     return true;
   }
 
-  _canDragStart(){
+  _canDragStart() {
     return true;
   }
 }

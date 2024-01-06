@@ -1,8 +1,10 @@
 {{#if hasVisibleItems}}
 <div class="magic-items-feats-content">
 	<div class="inventory-filters spellbook-filters magic-items-head">
-		<label><h3>Magic Items - {{localize "MAGICITEMS.SheetTot"}}: {{magicItemsCount}}, {{localize "MAGICITEMS.SheetActives"}}:
-			{{magicItemsActiveCount}}</h3></label>
+		<label>
+			<h3>Magic Items - {{localize "MAGICITEMS.SheetTot"}}: {{magicItemsCount}}, {{localize "MAGICITEMS.SheetActives"}}:
+			{{magicItemsActiveCount}}</h3>
+		</label>
 	</div>
 	{{#each items as |item i|}}
 	{{#if (and visible active hasFeats)}}
@@ -17,8 +19,10 @@
 	    <div class="spell-consumption">{{localize "MAGICITEMS.SheetFeatOnUsage"}}</div>
 	</li>
 	<ol class="item-list">
+		<!-- FEATURES INTEGRATION -->
 	    {{#each feats as |feat|}}
-	        <li class="item flexrow magic-item" data-magic-item-id="{{../id}}" data-item-id="{{feat.id}}" draggable="true">
+	        <li class="item flexrow magic-item" data-magic-item-id="{{../id}}" 
+				data-item-id="{{feat.id}}" data-item-uuid="{{feat.uuid}}" draggable="true">
 	            <div class="item-name flexrow rollable">
 	                <div class="item-image magic-item-image" style="background-image: url({{feat.img}})">
 						<i class="fa fa-dice-d20"></i>
@@ -28,9 +32,11 @@
 	            <div class="spell-consumption">{{feat.consumptionLabel}}</div>
 	        </li>
 	    {{/each}}
+		<!-- ROLLTABLES INTEGRATION -->
 		{{#if hasTableAsFeats}}
 		{{#each tableAsFeats as |table|}}
-		<li class="item flexrow magic-item" data-magic-item-id="{{../id}}" data-item-id="{{table.id}}" draggable="true">
+		<li class="item flexrow magic-item" data-magic-item-id="{{../id}}" 
+			data-item-id="{{table.id}}" data-item-id="{{table.uuid}}" draggable="true">
 			<div class="item-name flexrow rollable">
 				<div class="item-image magic-item-image" style="background-image: url({{table.img}})">
 				</div>

@@ -1,4 +1,6 @@
 import { MAGICITEMS } from "./config.js";
+import CONSTANTS from "./constants/constants.js";
+import { MagiItemHelpers } from "./magic-item-helpers.js";
 import { MagicItemActor } from "./magicitemactor.js";
 
 const magicItemSheets = [];
@@ -82,7 +84,7 @@ export class MagicItemSheet {
    * @returns {Promise<void>}
    */
   async renderTemplate(name, cls, tab) {
-    let template = await renderTemplate(`modules/magic-items-2/templates/${name}.html`, this.actor);
+    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/${name}.html`, this.actor);
     let el = this.html.find(`.${cls}`);
     if (el.length) {
       el.replaceWith(template);
@@ -99,12 +101,12 @@ export class MagicItemSheet {
     this.html.find(".item h4.spell-name").click((evt) => this.onItemShow(evt));
     this.actor.items.forEach((item) => {
       this.html.find(`input[data-item-id="magicitems.${item.id}.uses"]`).change((evt) => {
-        item.setUses(MAGICITEMS.numeric(evt.currentTarget.value, item.uses));
+        item.setUses(MagiItemHelpers.numeric(evt.currentTarget.value, item.uses));
         item.update();
       });
       item.ownedEntries.forEach((entry) => {
         this.html.find(`input[data-item-id="magicitems.${item.id}.${entry.id}.uses"]`).change((evt) => {
-          entry.uses = MAGICITEMS.numeric(evt.currentTarget.value, entry.uses);
+          entry.uses = MagiItemHelpers.numeric(evt.currentTarget.value, entry.uses);
           item.update();
         });
       });
@@ -132,12 +134,29 @@ export class MagicItemSheet {
    *
    * @param evt
    */
-  onItemShow(evt) {
+  async onItemShow(evt) {
     evt.preventDefault();
     let dataset = evt.currentTarget.closest(".item").dataset;
     let magicItemId = dataset.magicItemId;
     let itemId = dataset.itemId;
-    this.actor.renderSheet(magicItemId, itemId);
+    let itemUuid = dataset.itemUuid;
+    let itemPack = dataset.itemPack;
+
+    let uuid = null;
+    if (itemUuid) {
+      uuid = itemUuid;
+    } else {
+      uuid = MagiItemHelpers.retrieveUuid({
+        documentName: null,
+        documentId: itemId,
+        documentCollectionType: "Item",
+        documentPack: itemPack,
+      });
+    }
+    const itemTmp = await fromUuid(uuid);
+    itemTmp.sheet.render(true);
+    // TODO TO REMOVE ??? OR UPDATE SOMEHOW ?
+    await this.actor.renderSheet(magicItemId, itemId);
   }
 
   /**

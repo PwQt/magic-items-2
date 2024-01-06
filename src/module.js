@@ -1,3 +1,5 @@
+import API from "./scripts/API/api.js";
+import CONSTANTS from "./scripts/constants/constants.js";
 import { MagicItemActor } from "./scripts/magicitemactor.js";
 import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
@@ -9,7 +11,7 @@ Handlebars.registerHelper("enabled", function (value, options) {
 });
 
 Hooks.once("init", () => {
-  game.settings.register("magic-items-2", "identifiedOnly", {
+  game.settings.register(CONSTANTS.MODULE_ID, "identifiedOnly", {
     name: "MAGICITEMS.SettingIdentifiedOnly",
     hint: "MAGICITEMS.SettingIdentifiedOnlyHint",
     scope: "world",
@@ -18,7 +20,7 @@ Hooks.once("init", () => {
     config: true,
   });
 
-  game.settings.register("magic-items-2", "hideFromPlayers", {
+  game.settings.register(CONSTANTS.MODULE_ID, "hideFromPlayers", {
     name: "MAGICITEMS.SettingHideFromPlayers",
     hint: "MAGICITEMS.SettingHideFromPlayersHint",
     scope: "world",
@@ -29,11 +31,17 @@ Hooks.once("init", () => {
 
   if (typeof Babele !== "undefined") {
     Babele.get().register({
-      module: "magic-items-2",
+      module: CONSTANTS.MODULE_ID,
       lang: "it",
       dir: "lang/packs/it",
     });
   }
+});
+
+Hooks.once("setup", () => {
+  // Set API
+  game.modules.get(CONSTANTS.MODULE_ID).api = API;
+  window.MagicItems = game.modules.get(CONSTANTS.MODULE_ID).api;
 });
 
 Hooks.once("ready", () => {
@@ -51,14 +59,14 @@ Hooks.once("createActor", (actor) => {
 });
 
 Hooks.once("createToken", (token) => {
-    const actor = token.actor;
-    if (actor.permission >= 2) {
-        MagicItemActor.bind(actor);
-    }
+  const actor = token.actor;
+  if (actor.permission >= 2) {
+    MagicItemActor.bind(actor);
+  }
 });
 
 Hooks.on(`renderItemSheet5e`, (app, html, data) => {
-  if (!game.user.isGM && game.settings.get("magic-items-2", "hideFromPlayers")) {
+  if (!game.user.isGM && game.settings.get(CONSTANTS.MODULE_ID, "hideFromPlayers")) {
     return;
   }
   MagicItemTab.bind(app, html, data);
@@ -73,8 +81,9 @@ Hooks.on(`renderActorSheet5eNPC`, (app, html, data) => {
 });
 
 Hooks.on("hotbarDrop", async (bar, data, slot) => {
-  if (data.type !== "MagicItem") return;
-
+  if (data.type !== "MagicItem") {
+    return;
+  }
   const command = `MagicItems.roll("${data.magicItemName}","${data.itemName}");`;
   let macro = game.macros.find((m) => m.name === data.name && m.command === command);
   if (!macro) {
@@ -123,29 +132,3 @@ Hooks.on(`deleteItem`, (item) => {
     }
   }
 });
-
-window.MagicItems = {
-  actor: function (id) {
-    return MagicItemActor.get(id);
-  },
-
-  roll: function (magicItemName, itemName) {
-    const speaker = ChatMessage.getSpeaker();
-    let actor;
-    if (speaker.token) actor = game.actors.tokens[speaker.token];
-    if (!actor) actor = game.actors.get(speaker.actor);
-
-    const magicItemActor = actor ? MagicItemActor.get(actor.id) : null;
-    if (!magicItemActor) return ui.notifications.warn(game.i18n.localize("MAGICITEMS.WarnNoActor"));
-
-    magicItemActor.rollByName(magicItemName, itemName);
-  },
-
-  bindItemSheet: function (app, html, data) {
-    MagicItemTab.bind(app, html, data);
-  },
-
-  bindCharacterSheet: function (app, html, data) {
-    MagicItemSheet.bind(app, html, data);
-  },
-};
