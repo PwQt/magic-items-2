@@ -7,7 +7,18 @@ export class MagiItemHelpers {
     // } else {
     //   return fallback;
     // }
-    return isRealNumber(value) ? parseInt(value) : fallback;
+    // if is a number
+    if (isRealNumber(value)) {
+      return value;
+    }
+    // if is a string but with a numeric value
+    else if (!isNaN(parseFloat(n)) && isFinite(n)) {
+      return parseInt(value);
+    }
+    // if is something else
+    else {
+      return fallback;
+    }
   };
 
   static localized = function (cfg) {
