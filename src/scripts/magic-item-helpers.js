@@ -12,7 +12,7 @@ export class MagiItemHelpers {
       return value;
     }
     // if is a string but with a numeric value
-    else if (!isNaN(parseFloat(n)) && isFinite(n)) {
+    else if (!isNaN(parseFloat(value)) && isFinite(value)) {
       return parseInt(value);
     }
     // if is something else

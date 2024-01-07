@@ -1,4 +1,4 @@
-### 1.4.2-3
+### 1.4.2-3-4
 
 - Bug fix https://github.com/PwQt/magic-items-2/issues/33
 
