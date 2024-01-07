@@ -1,3 +1,9 @@
+### 1.4.2
+
+- Bug fix https://github.com/PwQt/magic-items-2/issues/33
+
+### 1.4.0-1
+
 ### 1.3.4
 
 - Add uuid property to the magic items flags

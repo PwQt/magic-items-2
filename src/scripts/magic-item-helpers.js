@@ -1,3 +1,5 @@
+import { isRealNumber } from "./lib/lib";
+
 export class MagiItemHelpers {
   static numeric = function (value, fallback) {
     // if ($.isNumeric(value)) {
