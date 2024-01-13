@@ -42,11 +42,14 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
         }
       );
       if (chatData) {
-        ChatMessage.create(
-          mergeObject(chatData, {
-            "flags.dnd5e.itemData": this.ownedItem.toJSON(),
-          })
-        );
+        // Fix https://github.com/PwQt/magic-items-2/issues/22
+        if (!game.modules.get("ready-set-roll-5e")?.active) {
+          ChatMessage.create(
+            mergeObject(chatData, {
+              "flags.dnd5e.itemData": this.ownedItem.toJSON(),
+            })
+          );
+        }
         onUsage();
         this.magicItem.update();
       }
