@@ -1,3 +1,8 @@
+### 1.4.5
+
+- Bug fix: https://github.com/PwQt/magic-items-2/issues/22, by using the patch suggested from @david-simoes-93 on https://github.com/PwQt/magic-items-2/issues/38
+
+
 ### 1.4.2-3-4
 
 - Bug fix https://github.com/PwQt/magic-items-2/issues/33
