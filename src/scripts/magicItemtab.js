@@ -71,9 +71,16 @@ export class MagicItemTab {
 
   hack(app) {
     let tab = this;
-    app.setPosition = function (position = {}) {
+    app.setPosition = function(position = {}) {
       position.height = tab.isActive() && !position.height ? "auto" : position.height;
-      return this.__proto__.__proto__.setPosition.apply(this, [position]);
+      let that = this;
+      for (let i = 0; i < 100; i++) {
+        if (that.constructor.name === ItemSheet.name) {
+          break;
+        }
+        that = Object.getPrototypeOf(that);
+      }
+      return that.setPosition.apply(this, [position]);
     };
   }
 
