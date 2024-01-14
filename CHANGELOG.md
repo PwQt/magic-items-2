@@ -1,3 +1,6 @@
+### 1.4.6
+- Bug fix: [#40] Updates `hack` function to support varying numbers of parent Item Sheet classes by @kgar in https://github.com/PwQt/magic-items-2/pull/41
+
 ### 1.4.5
 
 - Bug fix: https://github.com/PwQt/magic-items-2/issues/22, by using the patch suggested from @david-simoes-93 on https://github.com/PwQt/magic-items-2/issues/38
