@@ -1,110 +1,49 @@
 import CONSTANTS from "../constants/constants.js";
+import Logger from "./Logger.js";
+import { RetrieveHelpers } from "./retrieve-helpers.js";
 
 // ================================
 // Logger utility
 // ================================
 
-// export let debugEnabled = 0;
-// 0 = none, warnings = 1, debug = 2, all = 3
-
 export function debug(msg, ...args) {
-  try {
-    if (
-      game.settings.get(CONSTANTS.MODULE_ID, "debug") ||
-      game.modules.get("_dev-mode")?.api?.getPackageDebugValue(CONSTANTS.MODULE_ID, "boolean")
-    ) {
-      console.log(`DEBUG | ${CONSTANTS.MODULE_ID} | ${msg}`, ...args);
-    }
-  } catch (e) {
-    console.error(e.message);
-  }
-  return msg;
+  return Logger.debug(msg, args);
 }
 
 export function log(message, ...args) {
-  try {
-    message = `${CONSTANTS.MODULE_ID} | ${message}`;
-    console.log(message.replace("<br>", "\n"), ...args);
-  } catch (e) {
-    console.error(e.message);
-  }
-  return message;
+  return Logger.log(message, args);
 }
 
 export function notify(message, ...args) {
-  try {
-    message = `${CONSTANTS.MODULE_ID} | ${message}`;
-    ui.notifications?.notify(message);
-    console.log(message.replace("<br>", "\n"), ...args);
-  } catch (e) {
-    console.error(e.message);
-  }
-  return message;
+  return Logger.notify(message, args);
 }
 
 export function info(info, notify = false, ...args) {
-  try {
-    info = `${CONSTANTS.MODULE_ID} | ${info}`;
-    if (notify) {
-      ui.notifications?.info(info);
-    }
-    console.log(info.replace("<br>", "\n"), ...args);
-  } catch (e) {
-    console.error(e.message);
-  }
-  return info;
+  return Logger.info(info, notify, args);
 }
 
 export function warn(warning, notify = false, ...args) {
-  try {
-    warning = `${CONSTANTS.MODULE_ID} | ${warning}`;
-    if (notify) {
-      ui.notifications?.warn(warning);
-    }
-    console.warn(warning.replace("<br>", "\n"), ...args);
-  } catch (e) {
-    console.error(e.message);
-  }
-  return warning;
+  return Logger.warn(warning, notify, args);
 }
 
 export function error(error, notify = true, ...args) {
-  try {
-    error = `${CONSTANTS.MODULE_ID} | ${error}`;
-    if (notify) {
-      ui.notifications?.error(error);
-    }
-    console.error(error.replace("<br>", "\n"), ...args);
-  } catch (e) {
-    console.error(e.message);
-  }
-  return new Error(error.replace("<br>", "\n"));
+  return Logger.error(error, notify, args);
 }
 
 export function timelog(message) {
-  warn(Date.now(), message);
+  return Logger.timelog(message);
 }
 
 export const i18n = (key) => {
-  return game.i18n.localize(key)?.trim();
+  return Logger.i18n(key);
 };
 
 export const i18nFormat = (key, data = {}) => {
-  return game.i18n.format(key, data)?.trim();
+  return Logger.i18nFormat(key, data);
 };
 
-// export const setDebugLevel = (debugText): void => {
-//   debugEnabled = { none: 0, warn: 1, debug: 2, all: 3 }[debugText] || 0;
-//   // 0 = none, warnings = 1, debug = 2, all = 3
-//   if (debugEnabled >= 3) CONFIG.debug.hooks = true;
-// };
-
 export function dialogWarning(message, icon = "fas fa-exclamation-triangle") {
-  return `<p class="${CONSTANTS.MODULE_ID}-dialog">
-        <i style="font-size:3rem;" class="${icon}"></i><br><br>
-        <strong style="font-size:1.2rem;">${CONSTANTS.MODULE_ID}</strong>
-        <br><br>${message}
-    </p>`;
+  return Logger.dialogWarning(message, icon);
 }
 
 // =========================================================================================
@@ -130,106 +69,12 @@ export function getSubstring(string, char1, char2) {
 
 // =========================================================================================
 
-export function getMacroSync(target, ignoreError = false, ignoreName = true) {
-  if (!target) {
-    throw error(`Macro is undefined`, true, target);
-  }
-  if (target instanceof Macro) {
-    return target;
-  }
-  // This is just a patch for compatibility with others modules
-  if (target.document) {
-    target = target.document;
-  }
-  if (target.uuid) {
-    target = target.uuid;
-  }
-
-  if (target instanceof Macro) {
-    return target;
-  }
-  if (stringIsUuid(target)) {
-    target = fromUuidSync(target);
-  } else {
-    target = game.macros.get(target);
-    if (!target && !ignoreName) {
-      target = game.macros.getName(target);
-    }
-  }
-  if (!target) {
-    if (ignoreError) {
-      warn(`Macro is not found`, true, target);
-      return;
-    } else {
-      throw error(`Macro is not found`, true, target);
-    }
-  }
-  // Type checking
-  if (!(target instanceof Macro)) {
-    if (ignoreError) {
-      warn(`Invalid Macro`, true, target);
-      return;
-    } else {
-      throw error(`Invalid Macro`, true, target);
-    }
-  }
-  return target;
-}
-
-export async function getMacroAsync(target, ignoreError = false, ignoreName = true) {
-  if (!target) {
-    throw error(`Macro is undefined`, true, target);
-  }
-  if (target instanceof Macro) {
-    return target;
-  }
-  // This is just a patch for compatibility with others modules
-  if (target.document) {
-    target = target.document;
-  }
-  if (target.uuid) {
-    target = target.uuid;
-  }
-
-  if (target instanceof Macro) {
-    return target;
-  }
-  if (stringIsUuid(target)) {
-    target = await fromUuid(target);
-  } else {
-    target = game.macros.get(target);
-    if (!target && !ignoreName) {
-      target = game.macros.getName(target);
-    }
-  }
-  if (!target) {
-    if (ignoreError) {
-      warn(`Macro is not found`, true, target);
-      return;
-    } else {
-      throw error(`Macro is not found`, true, target);
-    }
-  }
-  // Type checking
-  if (!(target instanceof Macro)) {
-    if (ignoreError) {
-      warn(`Invalid Macro`, true, target);
-      return;
-    } else {
-      throw error(`Invalid Macro`, true, target);
-    }
-  }
-  return target;
-}
-
-/* ========================================== */
-
 export async function runMacro(macroReference, ...macroData) {
   return runMacro(null, macroReference, macroData);
 }
 
 export async function runMacroOnExplicitActor(explicitActor, macroReference, ...macroData) {
-  let macroFounded = await getMacroAsync(macroReference, false, true);
+  let macroFounded = await RetrieveHelpers.getMacroAsync(macroReference, false, true);
   if (!macroFounded) {
     throw error(`Could not find macro with reference "${macroReference}"`, true);
   }
