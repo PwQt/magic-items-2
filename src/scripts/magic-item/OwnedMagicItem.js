@@ -1,7 +1,7 @@
 import { MAGICITEMS } from "../config";
 import CONSTANTS from "../constants/constants";
 import { warn } from "../lib/lib";
-import { MagiItemHelpers } from "../magic-item-helpers";
+import { MagicItemHelpers } from "../magic-item-helpers";
 import { OwnedMagicItemFeat } from "../magic-item-owned-entry/OwnedMagicItemFeat";
 import { OwnedMagicItemSpell } from "../magic-item-owned-entry/OwnedMagicItemSpell";
 import { OwnedMagicItemTable } from "../magic-item-owned-entry/OwnedMagicItemTable";
@@ -21,7 +21,7 @@ export class OwnedMagicItem extends MagicItem {
 
     this.rechargeableLabel = this.rechargeable
       ? `(${game.i18n.localize("MAGICITEMS.SheetRecharge")}: ${this.rechargeText} ${
-          MagiItemHelpers.localized(MAGICITEMS.rechargeUnits)[this.rechargeUnit]
+          MagicItemHelpers.localized(MAGICITEMS.rechargeUnits)[this.rechargeUnit]
         } )`
       : game.i18n.localize("MAGICITEMS.SheetNoRecharge");
 

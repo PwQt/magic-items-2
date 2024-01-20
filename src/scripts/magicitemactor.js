@@ -1,6 +1,6 @@
 import { MAGICITEMS } from "./config.js";
 import { warn } from "./lib/lib.js";
-import { MagiItemHelpers } from "./magic-item-helpers.js";
+import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { OwnedMagicItem } from "./magic-item/OwnedMagicItem.js";
 
 /**

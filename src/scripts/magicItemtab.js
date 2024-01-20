@@ -1,6 +1,6 @@
 import { MAGICITEMS } from "./config.js";
 import CONSTANTS from "./constants/constants.js";
-import { MagiItemHelpers } from "./magic-item-helpers.js";
+import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { MagicItem } from "./magic-item/MagicItem.js";
 
 const magicItemTabs = [];
@@ -173,7 +173,7 @@ export class MagicItemTab {
       this.render();
     });
     this.html.find('input[name="flags.magicitems.charges"]').change((evt) => {
-      this.magicItem.charges = MagiItemHelpers.numeric(evt.target.value, this.magicItem.charges);
+      this.magicItem.charges = MagicItemHelpers.numeric(evt.target.value, this.magicItem.charges);
       this.render();
     });
     this.html.find('select[name="flags.magicitems.chargeType"]').change((evt) => {
@@ -236,7 +236,7 @@ export class MagicItemTab {
         this.render();
       });
       this.html.find(`input[name="flags.magicitems.spells.${idx}.consumption"]`).change((evt) => {
-        spell.consumption = MagiItemHelpers.numeric(evt.target.value, spell.consumption);
+        spell.consumption = MagicItemHelpers.numeric(evt.target.value, spell.consumption);
         this.render();
       });
       this.html.find(`select[name="flags.magicitems.spells.${idx}.upcast"]`).change((evt) => {
@@ -244,7 +244,7 @@ export class MagicItemTab {
         this.render();
       });
       this.html.find(`input[name="flags.magicitems.spells.${idx}.upcastCost"]`).change((evt) => {
-        spell.upcastCost = MagiItemHelpers.numeric(evt.target.value, spell.cost);
+        spell.upcastCost = MagicItemHelpers.numeric(evt.target.value, spell.cost);
         this.render();
       });
       this.html.find(`input[name="flags.magicitems.spells.${idx}.flatDc"]`).click((evt) => {
@@ -265,7 +265,7 @@ export class MagicItemTab {
         this.render();
       });
       this.html.find(`input[name="flags.magicitems.feats.${idx}.consumption"]`).change((evt) => {
-        feat.consumption = MagiItemHelpers.numeric(evt.target.value, feat.consumption);
+        feat.consumption = MagicItemHelpers.numeric(evt.target.value, feat.consumption);
         this.render();
       });
       this.html.find(`a[data-feat-idx="${idx}"]`).click((evt) => {
@@ -274,7 +274,7 @@ export class MagicItemTab {
     });
     this.magicItem.tables.forEach((table, idx) => {
       this.html.find(`input[name="flags.magicitems.tables.${idx}.consumption"]`).change((evt) => {
-        table.consumption = MagiItemHelpers.numeric(evt.target.value, table.consumption);
+        table.consumption = MagicItemHelpers.numeric(evt.target.value, table.consumption);
       });
       this.html.find(`a[data-table-idx="${idx}"]`).click((evt) => {
         table.renderSheet();

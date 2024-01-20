@@ -2,7 +2,7 @@ import { MAGICITEMS } from "../config.js";
 import { MagicItemFeat } from "../magic-item-entry/MagicItemFeat.js";
 import { MagicItemSpell } from "../magic-item-entry/MagicItemSpell.js";
 import { MagicItemTable } from "../magic-item-entry/MagicItemTable.js";
-import { MagiItemHelpers } from "../magic-item-helpers.js";
+import { MagicItemHelpers } from "../magic-item-helpers.js";
 
 export class MagicItem {
   constructor(flags) {
@@ -48,10 +48,10 @@ export class MagicItem {
 
   sort() {
     if (this.sorting === "a") {
-      this.spells = this.spells.sort(MagiItemHelpers.sortByName);
+      this.spells = this.spells.sort(MagicItemHelpers.sortByName);
     }
     if (this.sorting === "l") {
-      this.spells = this.spells.sort(MagiItemHelpers.sortByLevel);
+      this.spells = this.spells.sort(MagicItemHelpers.sortByLevel);
     }
   }
 
@@ -113,23 +113,23 @@ export class MagicItem {
   }
 
   get chargeTypes() {
-    return MagiItemHelpers.localized(MAGICITEMS.chargeTypes);
+    return MagicItemHelpers.localized(MAGICITEMS.chargeTypes);
   }
 
   get destroyChecks() {
-    return MagiItemHelpers.localized(MAGICITEMS.destroyChecks);
+    return MagicItemHelpers.localized(MAGICITEMS.destroyChecks);
   }
 
   get destroyTypes() {
-    return MagiItemHelpers.localized(MAGICITEMS.destroyTypes);
+    return MagicItemHelpers.localized(MAGICITEMS.destroyTypes);
   }
 
   get rechargeUnits() {
-    return MagiItemHelpers.localized(MAGICITEMS.rechargeUnits);
+    return MagicItemHelpers.localized(MAGICITEMS.rechargeUnits);
   }
 
   get rechargeTypes() {
-    return MagiItemHelpers.localized(MAGICITEMS.rechargeTypes);
+    return MagicItemHelpers.localized(MAGICITEMS.rechargeTypes);
   }
 
   get rechargeText() {
@@ -259,7 +259,7 @@ export class MagicItem {
   }
 
   addEntity(entity, pack) {
-    let name = MagiItemHelpers.getEntityNameWithBabele(entity);
+    let name = MagicItemHelpers.getEntityNameWithBabele(entity);
     if (entity.type === "spell") {
       this.addSpell({
         uuid: entity.uuid,
