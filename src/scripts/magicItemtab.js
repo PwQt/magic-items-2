@@ -1,5 +1,6 @@
 import { MAGICITEMS } from "./config.js";
 import CONSTANTS from "./constants/constants.js";
+import Logger from "./lib/Logger.js";
 import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { MagicItem } from "./magic-item/MagicItem.js";
 
@@ -28,20 +29,30 @@ export class MagicItemTab {
   }
 
   init(html, data) {
-    if (html[0].localName !== "div") {
-      html = $(html[0].parentElement.parentElement);
+    
+    if (this.app.constructor.name !== "Tidy5eKgarItemSheet") {
+      if (html[0].localName !== "div") {
+        html = $(html[0].parentElement.parentElement);
+      }
+      let tabs = html.find(`form nav.sheet-navigation.tabs`);
+      if (tabs.find("a[data-tab=magicitems]").length > 0) {
+        return; // already initialized, duplication bug!
+      }
+
+      tabs.append($('<a class="item" data-tab="magicitems">Magic Item</a>'));
+
+      $(html.find(`.sheet-body`)).append(
+        $('<div class="tab magic-items" data-group="primary" data-tab="magicitems"></div>')
+      );
     }
-
-    let tabs = html.find(`form nav.sheet-navigation.tabs`);
-    if (tabs.find("a[data-tab=magicitems]").length > 0) {
-      return; // already initialized, duplication bug!
+    else {
+      html = $(html[0]);
+      Logger.logObject(html);
+      let tabs = html.find(`form nav.tidy-tabs`);
+      if (tabs.find("a[data-tab-id=magic-items]").length > 0) {
+        return;
+      }
     }
-
-    tabs.append($('<a class="item" data-tab="magicitems">Magic Item</a>'));
-
-    $(html.find(`.sheet-body`)).append(
-      $('<div class="tab magic-items" data-group="primary" data-tab="magicitems"></div>')
-    );
 
     this.html = html;
     this.editable = data.editable;
@@ -86,8 +97,7 @@ export class MagicItemTab {
 
   async render() {
     this.magicItem.sort();
-
-    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.html`, this.magicItem);
+    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.hbs`, this.magicItem);
     let el = this.html.find(`.magic-items-content`);
     if (el.length) {
       el.replaceWith(template);
@@ -144,8 +154,10 @@ export class MagicItemTab {
 
     this.app.setPosition();
 
-    if (this.activate && !this.isActive()) {
+    if (this.app.constructor.name !== "Tidy5eKgarItemSheet" && this.activate && !this.isActive()) {
       this.app._tabs[0].activate("magicitems");
+      this.activate = false;
+    } else {
       this.activate = false;
     }
   }
@@ -305,7 +317,9 @@ export class MagicItemTab {
   }
 
   isActive() {
-    return $(this.html).find('a.item[data-tab="magicitems"]').hasClass("active");
+    return this.app.constructor.name !== "Tidy5eKgarItemSheet" ? 
+      $(this.html).find('a.item[data-tab="magicitems"]').hasClass("active") : 
+      $(this.html).find('a.item[data-tab-id="magic-items"]').hasClass("active")
   }
 
   _canDragDrop() {

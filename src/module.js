@@ -1,5 +1,6 @@
 import API from "./scripts/API/api.js";
 import CONSTANTS from "./scripts/constants/constants.js";
+import Logger from "./scripts/lib/Logger.js";
 import { MagicItemActor } from "./scripts/magicitemactor.js";
 import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
@@ -65,11 +66,33 @@ Hooks.once("createToken", (token) => {
   }
 });
 
+Hooks.once('tidy5e-sheet.ready', (api) => {
+  const myTab = new api.models.HandlebarsTab({
+    title: 'Magic Items',
+    tabId: 'magic-items',
+    path: '/modules/magic-items-2/templates/magic-item-tab.hbs',
+    enabled: (data) => { return ["weapon", "equipment", "consumable", "tool", "backpack", "feat"].includes(data.item.type) },
+    onRender(params) {
+      if (!game.user.isGM && game.settings.get(CONSTANTS.MODULE_ID, "hideFromPlayers")) {
+        return;
+      }
+      var htmlArr = [];
+      htmlArr.push($(params.element));
+      MagicItemTab.bind(params.app, htmlArr, params.data);
+    },
+  });
+  Logger.logObject(myTab);
+  api.registerItemTab(myTab);
+});
+
+
 Hooks.on(`renderItemSheet5e`, (app, html, data) => {
-  if (!game.user.isGM && game.settings.get(CONSTANTS.MODULE_ID, "hideFromPlayers")) {
-    return;
+  if (app.constructor.name !== "Tidy5eKgarItemSheet") {
+    if (!game.user.isGM && game.settings.get(CONSTANTS.MODULE_ID, "hideFromPlayers")) {
+      return;
+    }
+    MagicItemTab.bind(app, html, data);
   }
-  MagicItemTab.bind(app, html, data);
 });
 
 Hooks.on(`renderActorSheet5eCharacter`, (app, html, data) => {
