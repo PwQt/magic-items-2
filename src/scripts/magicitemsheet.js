@@ -1,6 +1,6 @@
 import { MAGICITEMS } from "./config.js";
 import CONSTANTS from "./constants/constants.js";
-import { MagiItemHelpers } from "./magic-item-helpers.js";
+import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { MagicItemActor } from "./magicitemactor.js";
 
 const magicItemSheets = [];
@@ -101,12 +101,12 @@ export class MagicItemSheet {
     this.html.find(".item h4.spell-name").click((evt) => this.onItemShow(evt));
     this.actor.items.forEach((item) => {
       this.html.find(`input[data-item-id="magicitems.${item.id}.uses"]`).change((evt) => {
-        item.setUses(MagiItemHelpers.numeric(evt.currentTarget.value, item.uses));
+        item.setUses(MagicItemHelpers.numeric(evt.currentTarget.value, item.uses));
         item.update();
       });
       item.ownedEntries.forEach((entry) => {
         this.html.find(`input[data-item-id="magicitems.${item.id}.${entry.id}.uses"]`).change((evt) => {
-          entry.uses = MagiItemHelpers.numeric(evt.currentTarget.value, entry.uses);
+          entry.uses = MagicItemHelpers.numeric(evt.currentTarget.value, entry.uses);
           item.update();
         });
       });
@@ -146,7 +146,7 @@ export class MagicItemSheet {
     if (itemUuid) {
       uuid = itemUuid;
     } else {
-      uuid = MagiItemHelpers.retrieveUuid({
+      uuid = MagicItemHelpers.retrieveUuid({
         documentName: null,
         documentId: itemId,
         documentCollectionType: "Item",

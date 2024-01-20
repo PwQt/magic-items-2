@@ -1,5 +1,5 @@
 import { MAGICITEMS } from "../config";
-import { MagiItemHelpers } from "../magic-item-helpers";
+import { MagicItemHelpers } from "../magic-item-helpers";
 import { AbstractMagicItemEntry } from "./AbstractMagicItemEntry";
 
 export class MagicItemTable extends AbstractMagicItemEntry {
@@ -8,7 +8,7 @@ export class MagicItemTable extends AbstractMagicItemEntry {
   }
 
   get usages() {
-    return MagiItemHelpers.localized(MAGICITEMS.tableUsages);
+    return MagicItemHelpers.localized(MAGICITEMS.tableUsages);
   }
 
   async roll(actor) {

@@ -1,6 +1,6 @@
 import { isRealNumber } from "./lib/lib";
 
-export class MagiItemHelpers {
+export class MagicItemHelpers {
   static numeric = function (value, fallback) {
     // if ($.isNumeric(value)) {
     //   return parseInt(value);
@@ -61,7 +61,7 @@ export class MagiItemHelpers {
   }
 
   static sortByLevel(a, b) {
-    return a.level === b.level ? MagicItem.sortByName(a, b) : a.level - b.level;
+    return a.level === b.level ? MagicItemHelpers.sortByName(a, b) : a.level - b.level;
   }
 
   /**
