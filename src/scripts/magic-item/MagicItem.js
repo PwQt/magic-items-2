@@ -44,6 +44,8 @@ export class MagicItem {
     this.savedFeats = this.feats.length;
     this.savedTables = this.tables.length;
 
+    this.sort();
+
     if (!this.enabled) {
       this.clear();
     }

@@ -91,9 +91,6 @@ export class MagicItemTab {
   }
 
   async render() {
-    // TODO: Sort as part of the magic item adapter when enumerating items
-    this.magicItem.sort();
-
     let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.hbs`, this.magicItem);
     let el = this.html.find(`.magic-items-content`);
     if (el.length) {
