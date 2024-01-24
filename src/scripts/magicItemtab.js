@@ -29,30 +29,19 @@ export class MagicItemTab {
   }
 
   init(html, data) {
-    
-    if (this.app.constructor.name !== "Tidy5eKgarItemSheet") {
-      if (html[0].localName !== "div") {
-        html = $(html[0].parentElement.parentElement);
-      }
-      let tabs = html.find(`form nav.sheet-navigation.tabs`);
-      if (tabs.find("a[data-tab=magicitems]").length > 0) {
-        return; // already initialized, duplication bug!
-      }
-
-      tabs.append($('<a class="item" data-tab="magicitems">Magic Item</a>'));
-
-      $(html.find(`.sheet-body`)).append(
-        $('<div class="tab magic-items" data-group="primary" data-tab="magicitems"></div>')
-      );
+    if (html[0].localName !== "div") {
+      html = $(html[0].parentElement.parentElement);
     }
-    else {
-      html = $(html[0]);
-      Logger.logObject(html);
-      let tabs = html.find(`form nav.tidy-tabs`);
-      if (tabs.find("a[data-tab-id=magic-items]").length > 0) {
-        return;
-      }
+    let tabs = html.find(`form nav.sheet-navigation.tabs`);
+    if (tabs.find("a[data-tab=magicitems]").length > 0) {
+      return; // already initialized, duplication bug!
     }
+
+    tabs.append($('<a class="item" data-tab="magicitems">Magic Item</a>'));
+
+    $(html.find(`.sheet-body`)).append(
+      $('<div class="tab magic-items" data-group="primary" data-tab="magicitems"></div>')
+    );
 
     this.html = html;
     this.editable = data.editable;
@@ -82,7 +71,7 @@ export class MagicItemTab {
 
   hack(app) {
     let tab = this;
-    app.setPosition = function(position = {}) {
+    app.setPosition = function (position = {}) {
       position.height = tab.isActive() && !position.height ? "auto" : position.height;
       let that = this;
       for (let i = 0; i < 100; i++) {
@@ -154,7 +143,7 @@ export class MagicItemTab {
 
     this.app.setPosition();
 
-    if (this.app.constructor.name !== "Tidy5eKgarItemSheet" && this.activate && !this.isActive()) {
+    if (this.activate && !this.isActive()) {
       this.app._tabs[0].activate("magicitems");
       this.activate = false;
     } else {
@@ -317,9 +306,7 @@ export class MagicItemTab {
   }
 
   isActive() {
-    return this.app.constructor.name !== "Tidy5eKgarItemSheet" ? 
-      $(this.html).find('a.item[data-tab="magicitems"]').hasClass("active") : 
-      $(this.html).find('a.item[data-tab-id="magic-items"]').hasClass("active")
+    $(this.html).find('a.item[data-tab="magicitems"]').hasClass("active");
   }
 
   _canDragDrop() {
