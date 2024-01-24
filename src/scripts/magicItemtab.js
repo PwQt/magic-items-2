@@ -136,7 +136,7 @@ export class MagicItemTab {
   }
 
   activateTabManagementListeners() {
-    this.html.find(".magic-items-content").on("change", ":input, :focus", (evt) => {
+    this.html.find(".magic-items-content").on("change", ":input", (evt) => {
       this.activate = true;
     });
   }
