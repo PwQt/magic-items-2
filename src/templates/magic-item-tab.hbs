@@ -3,7 +3,7 @@
     <label>{{localize "MAGICITEMS.SheetEnabled"}}</label>
     <input type="checkbox" name="flags.magicitems.enabled" {{checked enabled}} />
   </div>
-  <div class="magic-item-enabled {{#unless enabled}}hidden{{/unless}}">
+  <div class="magic-item-enabled {{ifThen enabled '' 'hidden'}}">
     <div class="form-group">
       <label>{{localize "MAGICITEMS.SheetActivation"}}</label>
       {{localize "MAGICITEMS.SheetActivationEquipped"}}
@@ -36,27 +36,28 @@
           {{/each}}
         {{/select}}
       </select>
-        <select 
-          name="flags.magicitems.destroyType" 
-          class="magic-item-destroy-type {{#unless (eq chargeType "c1")}}hidden{{/unless}}" 
-          {{disabled (eq destroy false)}}>
-          {{#select destroyType}}
-            {{#each destroyTypes as |name key|}}
-              <option value="{{key}}">{{name}}</option>
-            {{/each}}
-          {{/select}}
-        </select>
+      <select
+        name="flags.magicitems.destroyType"
+        class="magic-item-destroy-type {{ifThen (eq chargeType 'c1') '' 'hidden'}}"
+        {{disabled (eq destroy false)}}
+      >
+        {{#select destroyType}}
+          {{#each destroyTypes as |name key|}}
+            <option value="{{key}}">{{name}}</option>
+          {{/each}}
+        {{/select}}
+      </select>
     </div>
-    <div class="form-group stacked magic-item-destroy-flavor-text {{#unless destroy}}hidden{{/unless}}">
+    <div class="form-group stacked magic-item-destroy-flavor-text {{ifThen destroy '' 'hidden'}}">
       <label>{{localize "MAGICITEMS.SheetDestroyFlavorText"}}</label>
       <input type="text" name="flags.magicitems.destroyFlavorText" value="{{destroyFlavorText}}" />
     </div>
-    
+
     <div class="form-group">
       <label>{{localize "MAGICITEMS.SheetRechargeable"}}</label>
       <input type="checkbox" name="flags.magicitems.rechargeable" {{checked rechargeable}} />
     </div>
-    <div class="form-group magic-item-recharge {{#unless rechargeable}}hidden{{/unless}}">
+    <div class="form-group magic-item-recharge {{ifThen rechargeable '' 'hidden'}}">
       <label>{{localize "MAGICITEMS.SheetRecharge"}}</label>
       <div class="form-fields">
         <input
