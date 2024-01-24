@@ -8,8 +8,7 @@ const magicItemTabs = [];
 
 export class MagicItemTab {
   static bind(app, html, item) {
-    let acceptedTypes = ["weapon", "equipment", "consumable", "tool", "backpack", "feat"];
-    if (acceptedTypes.includes(item.document.type)) {
+    if (MagicItemTab.isAcceptedItemType(item.document)) {
       let tab = magicItemTabs[app.id];
       if (!tab) {
         tab = new MagicItemTab(app);
@@ -58,7 +57,11 @@ export class MagicItemTab {
           dragover: this.app._onDragOver.bind(this.app),
           drop: (event) => {
             this.activate = true;
-            this.onDrop.call(this, event);
+            MagicItemTab.onDrop({
+              event: event,
+              item: this.item,
+              magicItem: this.magicItem,
+            });
           },
         },
       });
@@ -110,8 +113,7 @@ export class MagicItemTab {
         },
       });
     } else {
-      this.html.find("input").prop("disabled", true);
-      this.html.find("select").prop("disabled", true);
+      MagicItemTab.disableMagicItemTabInputs(this.html);
     }
 
     this.app.setPosition();
@@ -121,32 +123,6 @@ export class MagicItemTab {
       this.activate = false;
     } else {
       this.activate = false;
-    }
-  }
-
-  async onDrop(evt) {
-    evt.preventDefault();
-
-    let data;
-    try {
-      data = JSON.parse(evt.dataTransfer.getData("text/plain"));
-      if (!this.magicItem.support(data.type)) {
-        return;
-      }
-    } catch (err) {
-      return false;
-    }
-
-    const entity = await fromUuid(data.uuid);
-    const pack = entity.pack ? entity.pack : "world";
-
-    if (entity && this.magicItem.compatible(entity)) {
-      this.magicItem.addEntity(entity, pack);
-      this.item.update({
-        flags: {
-          magicitems: this.magicItem.serializeData(),
-        },
-      });
     }
   }
 
@@ -166,6 +142,49 @@ export class MagicItemTab {
     this.html.find(".magic-items-content").on("change", ":input, :focus", (evt) => {
       this.activate = true;
     });
+  }
+
+  /**
+   * Disable all relevant inputs in the magic items tab.
+   */
+  static disableMagicItemTabInputs(html) {
+    html.find(".magic-items-content input").prop("disabled", true);
+    html.find(".magic-items-content select").prop("disabled", true);
+  }
+
+  /**
+   * Handles drop event for compatible magic item source (for example, a spell).
+   *
+   * @param {object} params Parameters needed to handle item drops to the magic item tab.
+   * @param {DragEvent} params.event The drop event.
+   * @param {Item5e} params.item The target item.
+   * @param {MagicItem} params.magicItem The relevant magic item associated with the target item.
+   * @returns
+   */
+  static async onDrop({ event, item, magicItem }) {
+    event.preventDefault();
+
+    let data;
+    try {
+      data = JSON.parse(event.dataTransfer.getData("text/plain"));
+      if (!magicItem.support(data.type)) {
+        return;
+      }
+    } catch (err) {
+      return false;
+    }
+
+    const entity = await fromUuid(data.uuid);
+    const pack = entity.pack ? entity.pack : "world";
+
+    if (entity && magicItem.compatible(entity)) {
+      magicItem.addEntity(entity, pack);
+      item.update({
+        flags: {
+          magicitems: magicItem.serializeData(),
+        },
+      });
+    }
   }
 
   /**
@@ -225,5 +244,17 @@ export class MagicItemTab {
         table.renderSheet();
       });
     });
+  }
+
+  static get acceptedItemTypes() {
+    return ["weapon", "equipment", "consumable", "tool", "backpack", "feat"];
+  }
+
+  static isAcceptedItemType(document) {
+    return MagicItemTab.acceptedItemTypes.includes(document?.type);
+  }
+
+  static isAllowedToShow() {
+    return game.user.isGM || !game.settings.get(CONSTANTS.MODULE_ID, "hideFromPlayers");
   }
 }

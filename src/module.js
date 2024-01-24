@@ -4,6 +4,7 @@ import Logger from "./scripts/lib/Logger.js";
 import { MagicItemActor } from "./scripts/magicitemactor.js";
 import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
+import { MagicItem } from "./scripts/magic-item/MagicItem.js";
 
 //CONFIG.debug.hooks = true;
 
@@ -66,33 +67,50 @@ Hooks.once("createToken", (token) => {
   }
 });
 
-Hooks.once('tidy5e-sheet.ready', (api) => {
-  const myTab = new api.models.HandlebarsTab({
-    title: 'Magic Items',
-    tabId: 'magic-items',
-    path: '/modules/magic-items-2/templates/magic-item-tab.hbs',
-    enabled: (data) => { return ["weapon", "equipment", "consumable", "tool", "backpack", "feat"].includes(data.item.type) },
+let tidyApi;
+Hooks.once("tidy5e-sheet.ready", (api) => {
+  tidyApi = api;
+  const magicItemsTab = new api.models.HandlebarsTab({
+    title: "Magic Items",
+    tabId: "magic-items",
+    path: "/modules/magic-items-2/templates/magic-item-tab.hbs",
+    enabled: (data) => {
+      return MagicItemTab.isAcceptedItemType(data.item) && MagicItemTab.isAllowedToShow();
+    },
+    getData(data) {
+      return new MagicItem(data.item.flags.magicitems);
+    },
     onRender(params) {
-      if (!game.user.isGM && game.settings.get(CONSTANTS.MODULE_ID, "hideFromPlayers")) {
-        return;
+      const html = $(params.element);
+
+      if (params.data.editable) {
+        const magicItem = new MagicItem(params.data.item.flags.magicitems);
+        MagicItemTab.activateTabContentsListeners({
+          html: html,
+          item: params.data.item,
+          magicItem: magicItem,
+        });
+        params.element.querySelector(`.magic-items-content`).addEventListener("drop", (event) => {
+          MagicItemTab.onDrop({ event, item: params.data.item, magicItem: magicItem });
+        });
+      } else {
+        MagicItemTab.disableMagicItemTabInputs(html);
       }
-      var htmlArr = [];
-      htmlArr.push($(params.element));
-      MagicItemTab.bind(params.app, htmlArr, params.data);
     },
   });
-  Logger.logObject(myTab);
-  api.registerItemTab(myTab);
+  api.registerItemTab(magicItemsTab);
 });
 
-
 Hooks.on(`renderItemSheet5e`, (app, html, data) => {
-  if (app.constructor.name !== "Tidy5eKgarItemSheet") {
-    if (!game.user.isGM && game.settings.get(CONSTANTS.MODULE_ID, "hideFromPlayers")) {
-      return;
-    }
-    MagicItemTab.bind(app, html, data);
+  if (tidyApi?.isTidy5eItemSheet(app)) {
+    return;
   }
+
+  if (!MagicItemTab.isAllowedToShow()) {
+    return;
+  }
+
+  MagicItemTab.bind(app, html, data);
 });
 
 Hooks.on(`renderActorSheet5eCharacter`, (app, html, data) => {
