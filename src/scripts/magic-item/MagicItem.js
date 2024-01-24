@@ -23,7 +23,6 @@ export class MagicItem {
     this.destroyFlavorText = data.destroyFlavorText;
     this.sorting = data.sorting;
     this.sortingModes = { l: "MAGICITEMS.SheetSortByLevel", a: "MAGICITEMS.SheetSortAlphabetically" };
-    this.updateDestroyTarget();
 
     this.spells = Object.values(data.spells ? data.spells : {})
       .filter((spell) => spell !== "null")
@@ -44,6 +43,10 @@ export class MagicItem {
     this.savedSpells = this.spells.length;
     this.savedFeats = this.feats.length;
     this.savedTables = this.tables.length;
+
+    if (!this.enabled) {
+      this.clear();
+    }
   }
 
   sort() {
@@ -55,11 +58,10 @@ export class MagicItem {
     }
   }
 
-  updateDestroyTarget() {
-    this.destroyTarget =
-      this.chargeType === "c1"
-        ? game.i18n.localize("MAGICITEMS.SheetObjectTarget")
-        : game.i18n.localize("MAGICITEMS.SheetSpellTarget");
+  get destroyTarget() {
+    return this.chargeType === "c1"
+      ? game.i18n.localize("MAGICITEMS.SheetObjectTarget")
+      : game.i18n.localize("MAGICITEMS.SheetSpellTarget");
   }
 
   defaultData() {
