@@ -85,53 +85,15 @@ export class MagicItemTab {
   }
 
   async render() {
+    // TODO: Sort as part of the magic item adapter when enumerating items
     this.magicItem.sort();
+
     let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.hbs`, this.magicItem);
     let el = this.html.find(`.magic-items-content`);
     if (el.length) {
       el.replaceWith(template);
     } else {
       this.html.find(".tab.magic-items").append(template);
-    }
-
-    let magicItemEnabled = this.html.find(".magic-item-enabled");
-    if (this.magicItem.enabled) {
-      magicItemEnabled.show();
-    } else {
-      magicItemEnabled.hide();
-    }
-
-    let magicItemDestroyType = this.html.find('select[name="flags.magicitems.destroyType"]');
-    if (this.magicItem.chargeType === "c1") {
-      magicItemDestroyType.show();
-    } else {
-      magicItemDestroyType.hide();
-    }
-
-    let magicItemDestroyCheck = this.html.find('select[name="flags.magicitems.destroyCheck"]');
-    let magicItemFlavorText = this.html.find(".magic-item-destroy-flavor-text");
-    if (this.magicItem.destroy) {
-      magicItemDestroyCheck.prop("disabled", false);
-      magicItemDestroyType.prop("disabled", false);
-      magicItemFlavorText.show();
-    } else {
-      magicItemDestroyCheck.prop("disabled", true);
-      magicItemDestroyType.prop("disabled", true);
-      magicItemFlavorText.hide();
-    }
-
-    let magicItemRecharge = this.html.find(".form-group.magic-item-recharge");
-    if (this.magicItem.rechargeable) {
-      magicItemRecharge.show();
-    } else {
-      magicItemRecharge.hide();
-    }
-
-    let rechargeField = this.html.find('input[name="flags.magicitems.recharge"]');
-    if (this.magicItem.rechargeType === MAGICITEMS.FORMULA_FULL) {
-      rechargeField.prop("disabled", true);
-    } else {
-      rechargeField.prop("disabled", false);
     }
 
     if (this.editable) {
