@@ -107,10 +107,9 @@ export class MagicItemTab {
       MagicItemTab.disableMagicItemTabInputs(this.html);
     }
 
-    app.setPosition();
-
     if (this.activate && !this.isActive()) {
       app._tabs[0].activate("magicitems");
+      app.setPosition();
       this.activate = false;
     } else {
       this.activate = false;
@@ -118,7 +117,7 @@ export class MagicItemTab {
   }
 
   isActive() {
-    $(this.html).find('a.item[data-tab="magicitems"]').hasClass("active");
+    return $(this.html).find('a.item[data-tab="magicitems"]').hasClass("active");
   }
 
   _canDragDrop() {
