@@ -1,7 +1,4 @@
-import { MAGICITEMS } from "./config.js";
 import CONSTANTS from "./constants/constants.js";
-import Logger from "./lib/Logger.js";
-import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { MagicItem } from "./magic-item/MagicItem.js";
 
 const magicItemTabs = [];
@@ -14,20 +11,20 @@ export class MagicItemTab {
         tab = new MagicItemTab(app);
         magicItemTabs[app.id] = tab;
       }
-      tab.init(html, item);
+      tab.init(html, item, app);
     }
   }
 
   constructor(app) {
-    this.app = app;
-    this.item = app.item;
-
-    this.hack(this.app);
-
+    this.hack(app);
     this.activate = false;
   }
 
-  init(html, data) {
+  init(html, data, app) {
+    this.item = app.item;
+    this.html = html;
+    this.editable = data.editable;
+
     if (html[0].localName !== "div") {
       html = $(html[0].parentElement.parentElement);
     }
@@ -42,19 +39,16 @@ export class MagicItemTab {
       $('<div class="tab magic-items" data-group="primary" data-tab="magicitems"></div>')
     );
 
-    this.html = html;
-    this.editable = data.editable;
-
     if (this.editable) {
       const dragDrop = new DragDrop({
         dropSelector: ".tab.magic-items",
         permissions: {
-          dragstart: this._canDragStart.bind(this.app),
-          drop: this._canDragDrop.bind(this.app),
+          dragstart: this._canDragStart.bind(app),
+          drop: this._canDragDrop.bind(app),
         },
         callbacks: {
-          dragstart: this.app._onDragStart.bind(this.app),
-          dragover: this.app._onDragOver.bind(this.app),
+          dragstart: app._onDragStart.bind(app),
+          dragover: app._onDragOver.bind(app),
           drop: (event) => {
             this.activate = true;
             MagicItemTab.onDrop({
@@ -66,13 +60,13 @@ export class MagicItemTab {
         },
       });
 
-      this.app._dragDrop.push(dragDrop);
-      dragDrop.bind(this.app.form);
+      app._dragDrop.push(dragDrop);
+      dragDrop.bind(app.form);
     }
 
-    this.magicItem = new MagicItem(this.item.flags.magicitems);
+    this.magicItem = new MagicItem(app.item.flags.magicitems);
 
-    this.render();
+    this.render(app);
   }
 
   hack(app) {
@@ -90,7 +84,7 @@ export class MagicItemTab {
     };
   }
 
-  async render() {
+  async render(app) {
     let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.hbs`, this.magicItem);
     let el = this.html.find(`.magic-items-content`);
     if (el.length) {
@@ -113,10 +107,10 @@ export class MagicItemTab {
       MagicItemTab.disableMagicItemTabInputs(this.html);
     }
 
-    this.app.setPosition();
+    app.setPosition();
 
     if (this.activate && !this.isActive()) {
-      this.app._tabs[0].activate("magicitems");
+      app._tabs[0].activate("magicitems");
       this.activate = false;
     } else {
       this.activate = false;
