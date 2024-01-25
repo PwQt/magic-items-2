@@ -99,6 +99,45 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
     },
   });
   api.registerItemTab(magicItemsTab);
+
+  api.registerCharacterContent(
+    new api.models.HandlebarsContent({
+      path: `modules/${CONSTANTS.MODULE_ID}/templates/magic-item-spell-sheet.html`,
+      injectParams: {
+        position: "beforeend",
+        selector: `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_SPELLBOOK}"] .scroll-container`,
+      },
+      enabled(data) {
+        const actor = MagicItemActor.get(data.actor.id);
+        return actor?.hasItemsSpells();
+      },
+      getData(data) {
+        return MagicItemActor.get(data.actor.id);
+      },
+    })
+  );
+
+  api.registerCharacterContent(
+    new api.models.HandlebarsContent({
+      path: `modules/${CONSTANTS.MODULE_ID}/templates/magic-item-feat-sheet.html`,
+      injectParams: {
+        position: "beforeend",
+        selector: `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_FEATURES}"] .scroll-container`,
+      },
+      enabled(data) {
+        const actor = MagicItemActor.get(data.actor.id);
+        return actor?.hasItemsFeats();
+      },
+      getData(data) {
+        return MagicItemActor.get(data.actor.id);
+      },
+    })
+  );
+});
+
+Hooks.on("tidy5e-sheet.renderActorSheet", (app, element, data) => {
+  // Place wand for visible magic items
+  // Wire events for custom tidy content
 });
 
 Hooks.on(`renderItemSheet5e`, (app, html, data) => {
@@ -114,10 +153,16 @@ Hooks.on(`renderItemSheet5e`, (app, html, data) => {
 });
 
 Hooks.on(`renderActorSheet5eCharacter`, (app, html, data) => {
+  if (tidyApi?.isTidy5eCharacterSheet(app)) {
+    return;
+  }
   MagicItemSheet.bind(app, html, data);
 });
 
 Hooks.on(`renderActorSheet5eNPC`, (app, html, data) => {
+  if (tidyApi?.isTidy5eNpcSheet(app)) {
+    return;
+  }
   MagicItemSheet.bind(app, html, data);
 });
 
