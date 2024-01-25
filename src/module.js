@@ -137,7 +137,21 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
 
 Hooks.on("tidy5e-sheet.renderActorSheet", (app, element, data) => {
   // Place wand for visible magic items
+  const actor = MagicItemActor.get(data.actor.id);
+  const html = $(element);
+  actor?.items
+    .filter((item) => item.visible)
+    .forEach((item) => {
+      let itemEl = html.find(
+        `[data-tidy-sheet-part="${tidyApi.constants.SHEET_PARTS.ITEM_TABLE_ROW}"][data-item-id="${item.id}"]`
+      );
+      let itemNameContainer = itemEl.find(`[data-tidy-sheet-part=${tidyApi.constants.SHEET_PARTS.ITEM_NAME}]`);
+      let iconHtml = tidyApi.useHandlebarsRendering(CONSTANTS.HTML.MAGIC_ITEM_ICON);
+      itemNameContainer.append(iconHtml);
+    });
+
   // Wire events for custom tidy content
+  // TODO
 });
 
 Hooks.on(`renderItemSheet5e`, (app, html, data) => {
