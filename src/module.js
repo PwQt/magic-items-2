@@ -71,7 +71,7 @@ let tidyApi;
 Hooks.once("tidy5e-sheet.ready", (api) => {
   tidyApi = api;
   const magicItemsTab = new api.models.HandlebarsTab({
-    title: "Magic Items",
+    title: "Magic Item",
     tabId: "magic-items",
     path: "/modules/magic-items-2/templates/magic-item-tab.hbs",
     enabled: (data) => {
