@@ -107,7 +107,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
     new api.models.HandlebarsContent({
       path: `modules/${CONSTANTS.MODULE_ID}/templates/magic-item-spell-sheet.html`,
       injectParams: {
-        position: "beforeend",
+        position: "afterbegin",
         selector: `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_SPELLBOOK}"] .scroll-container`,
       },
       enabled(data) {
@@ -130,7 +130,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
     new api.models.HandlebarsContent({
       path: `modules/${CONSTANTS.MODULE_ID}/templates/magic-item-feat-sheet.html`,
       injectParams: {
-        position: "beforeend",
+        position: "afterbegin",
         selector: magicItemFeatureTargetSelector,
       },
       enabled(data) {
