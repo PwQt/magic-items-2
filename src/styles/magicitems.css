@@ -252,3 +252,15 @@
   display: flex;
   justify-content: center;
 }
+
+[data-sheet-module="tidy5e-sheet"][data-document-name="Item"] .magic-items-content .spell-drag-content {
+  margin: 0.25rem;
+  height: 4.375rem;
+  text-align: center;
+  color: var(--t5e-primary-font-color);
+  color: var(--t5ek-primary-font-color);
+  line-height: 5;
+  border: 0.125rem dashed;
+  border-color: var(--t5e-primary-font-color);
+  border-color: var(--t5ek-primary-font-color);
+}
