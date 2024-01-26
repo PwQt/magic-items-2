@@ -112,6 +112,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
       },
       enabled(data) {
         const actor = MagicItemActor.get(data.actor.id);
+        // Required for Tidy to have accurate item data
         actor.buildItems();
         return ["character", "npc"].includes(data.actor.type) && actor?.hasItemsSpells();
       },
@@ -136,6 +137,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
       },
       enabled(data) {
         const actor = MagicItemActor.get(data.actor.id);
+        // Required for Tidy to have accurate item data
         actor.buildItems();
         return ["character", "npc"].includes(data.actor.type) && actor?.hasItemsFeats();
       },
