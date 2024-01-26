@@ -122,7 +122,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
 
   // Register character and NPC feature tab custom content
   const npcAbilitiesTabContainerSelector = `[data-tidy-sheet-part="${api.constants.SHEET_PARTS.NPC_ABILITIES_CONTAINER}"]`;
-  const characterFeaturesContainerSelector = `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_FEATURES}"] [data-tidy-sheet-part="${api.constants.SHEET_PARTS.NPC_ABILITIES_CONTAINER}"]`;
+  const characterFeaturesContainerSelector = `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_FEATURES}"] [data-tidy-sheet-part="${api.constants.SHEET_PARTS.ITEMS_CONTAINER}"]`;
   const magicItemFeatureTargetSelector = [npcAbilitiesTabContainerSelector, characterFeaturesContainerSelector].join(
     ", "
   );
@@ -160,11 +160,8 @@ Hooks.on("tidy5e-sheet.renderActorSheet", (app, element, data) => {
       itemNameContainer.append(iconHtml);
     });
 
-  // Wire events for custom tidy content
-  // 1. item rolls
-  // 2. show item on name click
-  // 3. Handle item uses change
-  // 4. Handle individual item uses/max change
+  // Wire events for custom tidy actor sheet content
+  MagicItemSheet.handleEvents(html, actor);
 });
 
 Hooks.on(`renderItemSheet5e`, (app, html, data) => {
