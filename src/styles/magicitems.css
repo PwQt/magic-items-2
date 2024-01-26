@@ -28,88 +28,16 @@
   border-right: 1px solid #c9c7b8;
 }
 
-.dnd5e.sheet.item .spell-level-head,
-.dnd5e.sheet.item .spell-upcast-head,
-.dnd5e.sheet.item .spell-consumption-head,
-.dnd5e.sheet.item .spell-cost-head,
-.dnd5e.sheet.item .spell-dc-head {
-  font-size: 12px;
-  color: #7a7971;
-  margin-right: 4px;
-  text-align: center;
-  border-right: 1px solid #c9c7b8;
-}
-
-.dnd5e.sheet.item :is(.spell-upcast-head, .item-detail.spell-upcast) {
-  flex: 0 0 80px;
-}
-
-.dnd5e.sheet.item
-  :is(
-    .spell-level-head,
-    .spell-level,
-    .spell-consumption-head,
-    .spell-consumption,
-    .spell-cost-head,
-    .spell-cost
-  ).item-detail {
-  flex: 0 0 50px;
-}
-
-.dnd5e.sheet.item :is(.spell-dc-head, .spell-dc).item-detail {
-  flex: 0 0 64px;
-}
-
-.dnd5e.sheet.item :is(.spell-controls-head, .spell-controls).item-detail {
-  flex: 0 0 20px;
-}
-
-.dnd5e.sheet.item :is(.table-usage-head, .table-usage, .table-consumption-head, .table-consumption).item-detail {
-  flex: 0 0 80px;
-  font-size: 12px;
-  color: #7a7971;
-  margin-right: 4px;
-  text-align: center;
-  border-right: 1px solid #c9c7b8;
-}
-
-.dnd5e.sheet.item :is(.feat-effect-head, .feat-effect, .feat-consumption-head, .feat-consumption).item-details {
-  flex: 0 0 80px;
-  font-size: 12px;
-  color: #7a7971;
-  margin-right: 4px;
-  text-align: center;
-  border-right: 1px solid #c9c7b8;
-}
-
-.dnd5e.sheet.item .magic-item-list .item .item-name .item-image {
-  flex: 0 0 30px;
-  background-size: 30px;
-  margin-right: 5px;
-}
-
-/* .dnd5e.sheet.item .magic-item-list .item-controls a {
-  flex: 0 0 22px;
-  font-size: 10px;
-  text-align: center;
-  color: #666;
-  margin-right: 5px;
-} */
-
-/* .dnd5e.sheet.item .magic-item-list .item .spell-upcast {
-  flex: 0 0 80px;
-} */
-
-/* .dnd5e.sheet.item .magic-item-list .item .spell-dc:disabled {
+.dnd5e.sheet.item .magic-item-list .item .spell-dc:disabled {
   color: #9a9a9a;
   border-color: #dad9d9;
-} */
+}
 
-/* .dnd5e.sheet.item .magic-item-list .item .feat-effect,
+.dnd5e.sheet.item .magic-item-list .item .feat-effect,
 .dnd5e.sheet.item .magic-item-list .item .feat-consumption {
   flex: 0 0 80px;
   margin-right: 4px;
-} */
+}
 
 .dnd5e.sheet.item .magic-items-content input[type="text"],
 .dnd5e.sheet.item .magic-items-content select {
