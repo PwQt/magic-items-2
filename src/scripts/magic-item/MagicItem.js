@@ -3,6 +3,7 @@ import { MagicItemFeat } from "../magic-item-entry/MagicItemFeat.js";
 import { MagicItemSpell } from "../magic-item-entry/MagicItemSpell.js";
 import { MagicItemTable } from "../magic-item-entry/MagicItemTable.js";
 import { MagicItemHelpers } from "../magic-item-helpers.js";
+import { NumberUtils } from "../utils/number.js";
 
 export class MagicItem {
   constructor(flags) {
@@ -11,7 +12,7 @@ export class MagicItem {
     this.enabled = data.enabled;
     this.equipped = data.equipped;
     this.attuned = data.attuned;
-    this.charges = parseInt(data.charges);
+    this.charges = NumberUtils.parseIntOrGetDefault(data.charges, 0);
     this.chargeType = data.chargeType;
     this.rechargeable = data.rechargeable;
     this.recharge = data.recharge;

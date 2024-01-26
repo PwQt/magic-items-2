@@ -21,7 +21,6 @@
 
 .dnd5e.sheet.item .spell-slots,
 .dnd5e.sheet.item .spell-comps {
-  flex: 0 0 60px;
   font-size: 12px;
   text-align: center;
   color: #7a7971;
@@ -31,12 +30,6 @@
 .dnd5e.sheet.item .magic-item-list .item .spell-dc:disabled {
   color: #9a9a9a;
   border-color: #dad9d9;
-}
-
-.dnd5e.sheet.item .magic-item-list .item .feat-effect,
-.dnd5e.sheet.item .magic-item-list .item .feat-consumption {
-  flex: 0 0 80px;
-  margin-right: 4px;
 }
 
 .dnd5e.sheet.item .magic-items-content input[type="text"],
@@ -64,9 +57,9 @@
   justify-content: center;
 }
 
-/* .sheet.item .magic-items-content .item-detail select {
+.sheet.item .magic-items-content .item-detail select {
   width: 100%;
-} */
+}
 
 .dnd5e.sheet.actor .magic-items-head {
   margin-top: 10px;
