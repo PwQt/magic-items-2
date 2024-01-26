@@ -151,7 +151,10 @@ Hooks.on("tidy5e-sheet.renderActorSheet", (app, element, data) => {
     });
 
   // Wire events for custom tidy content
-  // TODO
+  // 1. item rolls
+  // 2. show item on name click
+  // 3. Handle item uses change
+  // 4. Handle individual item uses/max change
 });
 
 Hooks.on(`renderItemSheet5e`, (app, html, data) => {
