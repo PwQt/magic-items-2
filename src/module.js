@@ -70,6 +70,8 @@ Hooks.once("createToken", (token) => {
 let tidyApi;
 Hooks.once("tidy5e-sheet.ready", (api) => {
   tidyApi = api;
+
+  // Register Tidy Item Sheet Tab
   const magicItemsTab = new api.models.HandlebarsTab({
     title: "Magic Item",
     tabId: "magic-items",
@@ -100,7 +102,8 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
   });
   api.registerItemTab(magicItemsTab);
 
-  api.registerCharacterContent(
+  // Register character and NPC spell tab custom content
+  api.registerActorContent(
     new api.models.HandlebarsContent({
       path: `modules/${CONSTANTS.MODULE_ID}/templates/magic-item-spell-sheet.html`,
       injectParams: {
@@ -109,7 +112,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
       },
       enabled(data) {
         const actor = MagicItemActor.get(data.actor.id);
-        return actor?.hasItemsSpells();
+        return ["character", "npc"].includes(data.actor.type) && actor?.hasItemsSpells();
       },
       getData(data) {
         return MagicItemActor.get(data.actor.id);
@@ -117,16 +120,22 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
     })
   );
 
-  api.registerCharacterContent(
+  // Register character and NPC feature tab custom content
+  const npcAbilitiesTabContainerSelector = `[data-tidy-sheet-part="${api.constants.SHEET_PARTS.NPC_ABILITIES_CONTAINER}"]`;
+  const characterFeaturesContainerSelector = `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_FEATURES}"] [data-tidy-sheet-part="${api.constants.SHEET_PARTS.NPC_ABILITIES_CONTAINER}"]`;
+  const magicItemFeatureTargetSelector = [npcAbilitiesTabContainerSelector, characterFeaturesContainerSelector].join(
+    ", "
+  );
+  api.registerActorContent(
     new api.models.HandlebarsContent({
       path: `modules/${CONSTANTS.MODULE_ID}/templates/magic-item-feat-sheet.html`,
       injectParams: {
         position: "beforeend",
-        selector: `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_FEATURES}"] .scroll-container`,
+        selector: magicItemFeatureTargetSelector,
       },
       enabled(data) {
         const actor = MagicItemActor.get(data.actor.id);
-        return actor?.hasItemsFeats();
+        return ["character", "npc"].includes(data.actor.type) && actor?.hasItemsFeats();
       },
       getData(data) {
         return MagicItemActor.get(data.actor.id);
@@ -135,6 +144,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
   );
 });
 
+// Wire Tidy events and register iterated, data-dependent content
 Hooks.on("tidy5e-sheet.renderActorSheet", (app, element, data) => {
   // Place wand for visible magic items
   const actor = MagicItemActor.get(data.actor.id);
