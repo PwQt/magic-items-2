@@ -91,21 +91,21 @@
     </div>
 
     {{#if spells.length}}
-      <ol class="items-list">
+      <ol class="magic-item-list items-list">
         <li class="items-header flexrow">
           <h3 class="item-name flexrow">{{localize "MAGICITEMS.SheetSpell"}}</h3>
-          <div class="item-detail">{{localize "MAGICITEMS.SheetLevel"}}</div>
-          <div class="item-detail">{{localize "MAGICITEMS.SheetConsumption"}}</div>
-          <div class="item-detail">{{localize "MAGICITEMS.SheetUpcast"}}</div>
-          <div class="item-detail">{{localize "MAGICITEMS.SheetCost"}}</div>
-          <div class="item-detail">Save DC</div>
-          <div class="item-controls">&nbsp;</div>
+          <div class="item-detail spell-level-head">{{localize "MAGICITEMS.SheetLevel"}}</div>
+          <div class="item-detail spell-consumption-head">{{localize "MAGICITEMS.SheetConsumption"}}</div>
+          <div class="item-detail spell-upcast-head">{{localize "MAGICITEMS.SheetUpcast"}}</div>
+          <div class="item-detail spell-cost-head">{{localize "MAGICITEMS.SheetCost"}}</div>
+          <div class="item-detail spell-dc-head">Save DC</div>
+          <div class="item-controls spell-controls-head">&nbsp;</div>
         </li>
         <ol class="item-list">
           {{#each spells as |item i|}}
-            <li class="item context-enabled flexrow" data-item-id="{{item.id}}">
+            <li class="item flexrow" data-item-id="{{item.id}}">
               <div class="item-name flexrow">
-                <div class="item-image" style="background-image: url({{item.img}})">{{{@root/rollIcon}}}</div>
+                <div class="item-image" style="background-image: url({{item.img}})"><i class="fa fa-dice-d20"></i></div>
                 <h4><a data-spell-idx="{{i}}">{{item.displayName}}</a></h4>
                 <input type="hidden" name="flags.magicitems.spells.{{i}}.uuid" value="{{item.uuid}}" />
                 <input type="hidden" name="flags.magicitems.spells.{{i}}.id" value="{{item.id}}" />
@@ -114,7 +114,7 @@
                 <input type="hidden" name="flags.magicitems.spells.{{i}}.img" value="{{item.img}}" />
                 <input type="hidden" name="flags.magicitems.spells.{{i}}.baseLevel" value="{{item.baseLevel}}" />
               </div>
-              <div class="item-detail">
+              <div class="item-detail spell-level">
                 <select class="spell-level" name="flags.magicitems.spells.{{i}}.level">
                   {{#select item.level}}
                     {{#each item.levels as |name key|}}
@@ -123,7 +123,7 @@
                   {{/select}}
                 </select>
               </div>
-              <div class="item-detail">
+              <div class="item-detail spell-consumption">
                 <input
                   class="spell-consumption"
                   type="text"
@@ -140,7 +140,7 @@
                   {{/select}}
                 </select>
               </div>
-              <div class="item-detail">
+              <div class="item-detail spell-cost">
                 <input
                   class="spell-cost"
                   type="text"
@@ -148,7 +148,7 @@
                   value="{{item.upcastCost}}"
                 />
               </div>
-              <div class="item-detail flexrow">
+              <div class="item-detail flexrow spell-dc">
                 <input
                   class="spell-flat-dc"
                   type="checkbox"
@@ -175,16 +175,16 @@
     {{/if}}
 
     {{#if feats.length}}
-      <ol class="items-list">
+      <ol class="items-list magic-item-list">
         <li class="items-header flexrow">
           <h3 class="item-name flexrow">{{localize "MAGICITEMS.SheetFeat"}}</h3>
-          <div class="item-detail">{{localize "MAGICITEMS.SheetEffect"}}</div>
-          <div class="item-detail">{{localize "MAGICITEMS.SheetConsumption"}}</div>
-          <div class="item-controls">&nbsp;</div>
+          <div class="item-detail feat-effect-head">{{localize "MAGICITEMS.SheetEffect"}}</div>
+          <div class="item-detail feat-consumption-head">{{localize "MAGICITEMS.SheetConsumption"}}</div>
+          <div class="item-controls spell-controls-head">&nbsp;</div>
         </li>
         <ol class="item-list">
           {{#each feats as |item i|}}
-            <li class="item context-enabled flexrow" data-item-id="{{item.id}}">
+            <li class="item flexrow" data-item-id="{{item.id}}">
               <div class="item-name flexrow">
                 <div class="item-image" style="background-image: url({{item.img}})"></div>
                 <h4><a data-feat-idx="{{i}}">{{item.displayName}}</a></h4>
@@ -194,7 +194,7 @@
                 <input type="hidden" name="flags.magicitems.feats.{{i}}.pack" value="{{item.pack}}" />
                 <input type="hidden" name="flags.magicitems.feats.{{i}}.img" value="{{item.img}}" />
               </div>
-              <div class="item-detail">
+              <div class="item-detail feat-effect">
                 <select class="feat-effect" name="flags.magicitems.feats.{{i}}.effect">
                   {{#select item.effect}}
                     {{#each item.effects as |name key|}}
@@ -203,7 +203,7 @@
                   {{/select}}
                 </select>
               </div>
-              <div class="item-detail">
+              <div class="item-detail feat-consumption">
                 <input
                   class="feat-consumption"
                   type="text"
@@ -223,16 +223,16 @@
     {{/if}}
 
     {{#if tables.length}}
-      <ol class="items-list">
+      <ol class="items-list magic-item-list">
         <li class="items-header flexrow">
           <h3 class="item-name flexrow">{{localize "MAGICITEMS.SheetTable"}}</h3>
-          <div class="item-detail">{{localize "MAGICITEMS.SheetUsage"}}</div>
-          <div class="item-detail">{{localize "MAGICITEMS.SheetConsumption"}}</div>
-          <div class="item-controls">&nbsp;</div>
+          <div class="item-detail table-usage-head">{{localize "MAGICITEMS.SheetUsage"}}</div>
+          <div class="item-detail table-consumption-head">{{localize "MAGICITEMS.SheetConsumption"}}</div>
+          <div class="item-controls spell-controls-head">&nbsp;</div>
         </li>
         <ol class="item-list">
           {{#each tables as |item i|}}
-            <li class="item context-enabled flexrow" data-item-id="{{item.id}}">
+            <li class="item flexrow" data-item-id="{{item.id}}">
               <div class="item-name flexrow">
                 <div class="item-image" style="background-image: url({{item.img}})">{{{@root/rollIcon}}}</div>
                 <h4><a data-table-idx="{{i}}">{{item.displayName}}</a></h4>
@@ -242,7 +242,7 @@
                 <input type="hidden" name="flags.magicitems.tables.{{i}}.pack" value="{{item.pack}}" />
                 <input type="hidden" name="flags.magicitems.tables.{{i}}.img" value="{{item.img}}" />
               </div>
-              <div class="item-detail">
+              <div class="item-detail table-usage">
                 <select class="table-usage" name="flags.magicitems.tables.{{i}}.usage">
                   {{#select item.usage}}
                     {{#each item.usages as |name key|}}
@@ -251,7 +251,7 @@
                   {{/select}}
                 </select>
               </div>
-              <div class="item-detail">
+              <div class="item-detail table-consumption">
                 <input
                   class="table-consumption"
                   type="text"
