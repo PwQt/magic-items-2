@@ -110,10 +110,9 @@ export class MagicItemTab {
     if (this.activate && !this.isActive()) {
       app._tabs[0].activate("magicitems");
       app.setPosition();
-      this.activate = false;
-    } else {
-      this.activate = false;
     }
+
+    this.activate = false;
   }
 
   isActive() {
