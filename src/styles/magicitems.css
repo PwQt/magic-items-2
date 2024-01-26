@@ -104,10 +104,6 @@
   margin-right: 5px;
 }
 
-.dnd5e.sheet.actor .inventory-list .item .magic-item-image:hover {
-  background-image: url(/icons/svg/d20-black.svg) !important;
-}
-
 .dnd5e.sheet.item .magic-items-content select.magic-item-charges-type {
   flex: 0.5;
 }
@@ -134,10 +130,6 @@
 .dnd5e.sheet.item .magic-items-content input.magic-item-recharge:disabled {
   color: #9a9a9a;
   border-color: #dad9d9;
-}
-
-.dnd5e.sheet .items-list .item .item-name .item-image .fa-dice-d20 {
-  display: none;
 }
 
 .tidy5e.sheet.actor .magic-items-head {
