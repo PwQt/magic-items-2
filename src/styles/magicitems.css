@@ -175,6 +175,36 @@
   justify-content: center;
 }
 
+.tidy5e.sheet.item .magic-items-content .spell-flat-and-dc,
+.tidy5e.sheet.item .magic-items-content .spell-dc-head {
+  flex: 0 0 60px;
+}
+
+/* This style intentionally overrides Tidy specificity to patch in the correct look. */
+.tidy5e.sheet.item
+  .sheet-body
+  .tab.magic-items
+  .magic-items-content
+  .magic-item-list
+  .spell-level-head.spell-level-head,
+.tidy5e.sheet.item .sheet-body .tab.magic-items .magic-items-content .magic-item-list .spell-level.spell-level {
+  flex: 0 0 70px;
+}
+
+.tidy5e.sheet.item .magic-items-content .items-header {
+  background: var(--t5e-faint-color);
+  box-shadow: 0 0 5px inset var(--t5e-light-color);
+  border-bottom: 1px solid var(--t5e-light-color);
+}
+
+.tidy5e.sheet.item .magic-items-content h3.item-name {
+  margin: 0 -5px 0 0;
+  padding-left: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  border: none;
+}
+
 /* New Tidy Styles */
 [data-sheet-module="tidy5e-sheet"][data-document-name="Actor"] .spell-rechargeable {
   flex: 0 0 11.25rem;
