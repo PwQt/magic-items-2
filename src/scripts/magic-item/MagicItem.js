@@ -317,26 +317,13 @@ export class MagicItem {
     return this.items.filter((item) => item.id === itemId)[0];
   }
 
-  async renderSheet(spellId) {
-    let spellFounded = this.findByUuid(spellId);
-    if (!byUuid) {
-      spellFounded = this.findById(spellId);
+  async renderSheet(itemId) {
+    let item = this.findByUuid(itemId);
+    if (!item) {
+      item = this.findById(itemId);
     }
 
-    // let uuid = null;
-    // if (spellFounded.uuid) {
-    //   uuid = spellFounded.uuid;
-    // } else {
-    //   uuid = MagiItemHelpers.retrieveUuid({
-    //     documentName: spellFounded.name,
-    //     documentId: spellFounded.id,
-    //     documentCollectionType: "Item",
-    //     documentPack: spellFounded.pack,
-    //   });
-    // }
-    // const itemTmp = await fromUuid(uuid);
-    // itemTmp.sheet.render(true);
-    await spellFounded.renderSheet();
+    await item.renderSheet();
   }
 
   cleanup() {

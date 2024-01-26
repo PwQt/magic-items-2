@@ -155,8 +155,6 @@ export class MagicItemSheet {
     }
     const itemTmp = await fromUuid(uuid);
     itemTmp.sheet.render(true);
-    // TODO TO REMOVE ??? OR UPDATE SOMEHOW ?
-    await this.actor.renderSheet(magicItemId, itemId);
   }
 
   /**
