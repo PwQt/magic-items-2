@@ -1,13 +1,14 @@
 import { AbstractMagicItemEntry } from "./AbstractMagicItemEntry";
+import { NumberUtils } from "../utils/number";
 
 export class MagicItemSpell extends AbstractMagicItemEntry {
   constructor(data) {
     super(data);
-    this.baseLevel = parseInt(this.baseLevel);
-    this.level = parseInt(this.level);
-    this.consumption = parseInt(this.consumption);
-    this.upcast = this.upcast ? parseInt(this.upcast) : this.level;
-    this.upcastCost = this.upcastCost ? parseInt(this.upcastCost) : 1;
+    this.baseLevel = NumberUtils.parseIntOrGetDefault(this.baseLevel, 0);
+    this.level = NumberUtils.parseIntOrGetDefault(this.level, 0);
+    this.consumption = NumberUtils.parseIntOrGetDefault(this.consumption, 0);
+    this.upcast = this.upcast ? NumberUtils.parseIntOrGetDefault(this.upcast, 0) : this.level;
+    this.upcastCost = this.upcastCost ? NumberUtils.parseIntOrGetDefault(this.upcastCost, 0) : 1;
     this.dc = this.flatDc && this.dc ? this.dc : "";
   }
 

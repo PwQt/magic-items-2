@@ -1,37 +1,33 @@
-import { MAGICITEMS } from "./config.js";
 import CONSTANTS from "./constants/constants.js";
-import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { MagicItem } from "./magic-item/MagicItem.js";
 
 const magicItemTabs = [];
 
 export class MagicItemTab {
   static bind(app, html, item) {
-    let acceptedTypes = ["weapon", "equipment", "consumable", "tool", "backpack", "feat"];
-    if (acceptedTypes.includes(item.document.type)) {
+    if (MagicItemTab.isAcceptedItemType(item.document)) {
       let tab = magicItemTabs[app.id];
       if (!tab) {
         tab = new MagicItemTab(app);
         magicItemTabs[app.id] = tab;
       }
-      tab.init(html, item);
+      tab.init(html, item, app);
     }
   }
 
   constructor(app) {
-    this.app = app;
-    this.item = app.item;
-
-    this.hack(this.app);
-
+    this.hack(app);
     this.activate = false;
   }
 
-  init(html, data) {
+  init(html, data, app) {
+    this.item = app.item;
+    this.html = html;
+    this.editable = data.editable;
+
     if (html[0].localName !== "div") {
       html = $(html[0].parentElement.parentElement);
     }
-
     let tabs = html.find(`form nav.sheet-navigation.tabs`);
     if (tabs.find("a[data-tab=magicitems]").length > 0) {
       return; // already initialized, duplication bug!
@@ -43,35 +39,39 @@ export class MagicItemTab {
       $('<div class="tab magic-items" data-group="primary" data-tab="magicitems"></div>')
     );
 
-    this.html = html;
-    this.editable = data.editable;
-
     if (this.editable) {
       const dragDrop = new DragDrop({
         dropSelector: ".tab.magic-items",
         permissions: {
-          dragstart: this._canDragStart.bind(this.app),
-          drop: this._canDragDrop.bind(this.app),
+          dragstart: this._canDragStart.bind(app),
+          drop: this._canDragDrop.bind(app),
         },
         callbacks: {
-          dragstart: this.app._onDragStart.bind(this.app),
-          dragover: this.app._onDragOver.bind(this.app),
-          drop: this._onDrop.bind(this),
+          dragstart: app._onDragStart.bind(app),
+          dragover: app._onDragOver.bind(app),
+          drop: (event) => {
+            this.activate = true;
+            MagicItemTab.onDrop({
+              event: event,
+              item: this.item,
+              magicItem: this.magicItem,
+            });
+          },
         },
       });
 
-      this.app._dragDrop.push(dragDrop);
-      dragDrop.bind(this.app.form);
+      app._dragDrop.push(dragDrop);
+      dragDrop.bind(app.form);
     }
 
-    this.magicItem = new MagicItem(this.item.flags.magicitems);
+    this.magicItem = new MagicItem(app.item.flags.magicitems);
 
-    this.render();
+    this.render(app);
   }
 
   hack(app) {
     let tab = this;
-    app.setPosition = function(position = {}) {
+    app.setPosition = function (position = {}) {
       position.height = tab.isActive() && !position.height ? "auto" : position.height;
       let that = this;
       for (let i = 0; i < 100; i++) {
@@ -84,10 +84,8 @@ export class MagicItemTab {
     };
   }
 
-  async render() {
-    this.magicItem.sort();
-
-    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.html`, this.magicItem);
+  async render(app) {
+    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.hbs`, this.magicItem);
     let el = this.html.find(`.magic-items-content`);
     if (el.length) {
       el.replaceWith(template);
@@ -95,213 +93,26 @@ export class MagicItemTab {
       this.html.find(".tab.magic-items").append(template);
     }
 
-    let magicItemEnabled = this.html.find(".magic-item-enabled");
-    if (this.magicItem.enabled) {
-      magicItemEnabled.show();
-    } else {
-      magicItemEnabled.hide();
-    }
-
-    let magicItemDestroyType = this.html.find('select[name="flags.magicitems.destroyType"]');
-    if (this.magicItem.chargeType === "c1") {
-      magicItemDestroyType.show();
-    } else {
-      magicItemDestroyType.hide();
-    }
-
-    let magicItemDestroyCheck = this.html.find('select[name="flags.magicitems.destroyCheck"]');
-    let magicItemFlavorText = this.html.find(".magic-item-destroy-flavor-text");
-    if (this.magicItem.destroy) {
-      magicItemDestroyCheck.prop("disabled", false);
-      magicItemDestroyType.prop("disabled", false);
-      magicItemFlavorText.show();
-    } else {
-      magicItemDestroyCheck.prop("disabled", true);
-      magicItemDestroyType.prop("disabled", true);
-      magicItemFlavorText.hide();
-    }
-
-    let magicItemRecharge = this.html.find(".form-group.magic-item-recharge");
-    if (this.magicItem.rechargeable) {
-      magicItemRecharge.show();
-    } else {
-      magicItemRecharge.hide();
-    }
-
-    let rechargeField = this.html.find('input[name="flags.magicitems.recharge"]');
-    if (this.magicItem.rechargeType === MAGICITEMS.FORMULA_FULL) {
-      rechargeField.prop("disabled", true);
-    } else {
-      rechargeField.prop("disabled", false);
-    }
-
     if (this.editable) {
-      this.handleEvents();
+      this.activateTabManagementListeners();
+      MagicItemTab.activateTabContentsListeners({
+        html: this.html,
+        item: this.item,
+        magicItem: this.magicItem,
+        onItemUpdatingCallback: () => {
+          this.activate = true;
+        },
+      });
     } else {
-      this.html.find("input").prop("disabled", true);
-      this.html.find("select").prop("disabled", true);
+      MagicItemTab.disableMagicItemTabInputs(this.html);
     }
-
-    this.app.setPosition();
 
     if (this.activate && !this.isActive()) {
-      this.app._tabs[0].activate("magicitems");
-      this.activate = false;
-    }
-  }
-
-  handleEvents() {
-    this.html.find('.magic-items-content input[type="text"]').change((evt) => {
-      this.activate = true;
-      this.render();
-    });
-    this.html.find(".magic-items-content select").change((evt) => {
-      this.activate = true;
-      this.render();
-    });
-
-    this.html.find('input[name="flags.magicitems.enabled"]').click((evt) => {
-      this.magicItem.toggleEnabled(evt.target.checked);
-      this.render();
-    });
-    this.html.find('input[name="flags.magicitems.equipped"]').click((evt) => {
-      this.magicItem.equipped = evt.target.checked;
-      this.render();
-    });
-    this.html.find('input[name="flags.magicitems.attuned"]').click((evt) => {
-      this.magicItem.attuned = evt.target.checked;
-      this.render();
-    });
-    this.html.find('input[name="flags.magicitems.charges"]').change((evt) => {
-      this.magicItem.charges = MagicItemHelpers.numeric(evt.target.value, this.magicItem.charges);
-      this.render();
-    });
-    this.html.find('select[name="flags.magicitems.chargeType"]').change((evt) => {
-      this.magicItem.chargeType = evt.target.value;
-      this.magicItem.updateDestroyTarget();
-      this.render();
-    });
-    this.html.find('input[name="flags.magicitems.rechargeable"]').change((evt) => {
-      this.magicItem.toggleRechargeable(evt.target.checked);
-      this.render();
-    });
-    this.html.find('input[name="flags.magicitems.recharge"]').change((evt) => {
-      this.magicItem.recharge = evt.target.value;
-      this.render();
-    });
-    this.html.find('select[name="flags.magicitems.rechargeType"]').change((evt) => {
-      this.magicItem.rechargeType = evt.target.value;
-      this.render();
-    });
-    this.html.find('select[name="flags.magicitems.rechargeUnit"]').change((evt) => {
-      this.magicItem.rechargeUnit = evt.target.value;
-      this.render();
-    });
-    this.html.find('input[name="flags.magicitems.destroy"]').change((evt) => {
-      this.magicItem.destroy = evt.target.checked;
-      this.render();
-    });
-    this.html.find('select[name="flags.magicitems.destroyCheck"]').change((evt) => {
-      this.magicItem.destroyCheck = evt.target.value;
-      this.render();
-    });
-    this.html.find('select[name="flags.magicitems.destroyType"]').change((evt) => {
-      this.magicItem.destroyType = evt.target.value;
-      this.render();
-    });
-    this.html.find('input[name="flags.magicitems.destroyFlavorText"]').change((evt) => {
-      this.magicItem.destroyFlavorText = evt.target.value;
-      this.render();
-    });
-    this.html.find('input[name="flags.magicitems.sorting"]').change((evt) => {
-      this.magicItem.sorting = evt.target.value;
-      this.magicItem.sort();
-      this.render();
-    });
-    this.html.find(".item-delete.item-spell").click((evt) => {
-      this.magicItem.removeSpell(evt.target.getAttribute("data-spell-idx"));
-      this.render();
-    });
-    this.html.find(".item-delete.item-feat").click((evt) => {
-      this.magicItem.removeFeat(evt.target.getAttribute("data-feat-idx"));
-      this.render();
-    });
-    this.html.find(".item-delete.item-table").click((evt) => {
-      this.magicItem.removeTable(evt.target.getAttribute("data-table-idx"));
-      this.render();
-    });
-    this.magicItem.spells.forEach((spell, idx) => {
-      this.html.find(`select[name="flags.magicitems.spells.${idx}.level"]`).change((evt) => {
-        spell.level = parseInt(evt.target.value);
-        this.render();
-      });
-      this.html.find(`input[name="flags.magicitems.spells.${idx}.consumption"]`).change((evt) => {
-        spell.consumption = MagicItemHelpers.numeric(evt.target.value, spell.consumption);
-        this.render();
-      });
-      this.html.find(`select[name="flags.magicitems.spells.${idx}.upcast"]`).change((evt) => {
-        spell.upcast = parseInt(evt.target.value);
-        this.render();
-      });
-      this.html.find(`input[name="flags.magicitems.spells.${idx}.upcastCost"]`).change((evt) => {
-        spell.upcastCost = MagicItemHelpers.numeric(evt.target.value, spell.cost);
-        this.render();
-      });
-      this.html.find(`input[name="flags.magicitems.spells.${idx}.flatDc"]`).click((evt) => {
-        spell.flatDc = evt.target.checked;
-        this.render();
-      });
-      this.html.find(`input[name="flags.magicitems.spells.${idx}.dc"]`).change((evt) => {
-        spell.dc = evt.target.value;
-        this.render();
-      });
-      this.html.find(`a[data-spell-idx="${idx}"]`).click((evt) => {
-        spell.renderSheet();
-      });
-    });
-    this.magicItem.feats.forEach((feat, idx) => {
-      this.html.find(`select[name="flags.magicitems.feats.${idx}.effect"]`).change((evt) => {
-        feat.effect = evt.target.value;
-        this.render();
-      });
-      this.html.find(`input[name="flags.magicitems.feats.${idx}.consumption"]`).change((evt) => {
-        feat.consumption = MagicItemHelpers.numeric(evt.target.value, feat.consumption);
-        this.render();
-      });
-      this.html.find(`a[data-feat-idx="${idx}"]`).click((evt) => {
-        feat.renderSheet();
-      });
-    });
-    this.magicItem.tables.forEach((table, idx) => {
-      this.html.find(`input[name="flags.magicitems.tables.${idx}.consumption"]`).change((evt) => {
-        table.consumption = MagicItemHelpers.numeric(evt.target.value, table.consumption);
-      });
-      this.html.find(`a[data-table-idx="${idx}"]`).click((evt) => {
-        table.renderSheet();
-      });
-    });
-  }
-
-  async _onDrop(evt) {
-    evt.preventDefault();
-
-    let data;
-    try {
-      data = JSON.parse(evt.dataTransfer.getData("text/plain"));
-      if (!this.magicItem.support(data.type)) {
-        return;
-      }
-    } catch (err) {
-      return false;
+      app._tabs[0].activate("magicitems");
+      app.setPosition();
     }
 
-    const entity = await fromUuid(data.uuid);
-    const pack = entity.pack ? entity.pack : "world";
-
-    if (entity && this.magicItem.compatible(entity)) {
-      this.magicItem.addEntity(entity, pack);
-      this.render();
-    }
+    this.activate = false;
   }
 
   isActive() {
@@ -314,5 +125,125 @@ export class MagicItemTab {
 
   _canDragStart() {
     return true;
+  }
+
+  activateTabManagementListeners() {
+    this.html.find(".magic-items-content").on("change", ":input", (evt) => {
+      this.activate = true;
+    });
+  }
+
+  /**
+   * Disable all relevant inputs in the magic items tab.
+   */
+  static disableMagicItemTabInputs(html) {
+    html.find(".magic-items-content input").prop("disabled", true);
+    html.find(".magic-items-content select").prop("disabled", true);
+  }
+
+  /**
+   * Handles drop event for compatible magic item source (for example, a spell).
+   *
+   * @param {object} params Parameters needed to handle item drops to the magic item tab.
+   * @param {DragEvent} params.event The drop event.
+   * @param {Item5e} params.item The target item.
+   * @param {MagicItem} params.magicItem The relevant magic item associated with the target item.
+   * @returns
+   */
+  static async onDrop({ event, item, magicItem }) {
+    event.preventDefault();
+
+    let data;
+    try {
+      data = JSON.parse(event.dataTransfer.getData("text/plain"));
+      if (!magicItem.support(data.type)) {
+        return;
+      }
+    } catch (err) {
+      return false;
+    }
+
+    const entity = await fromUuid(data.uuid);
+    const pack = entity.pack ? entity.pack : "world";
+
+    if (entity && magicItem.compatible(entity)) {
+      magicItem.addEntity(entity, pack);
+      item.update({
+        flags: {
+          magicitems: magicItem.serializeData(),
+        },
+      });
+    }
+  }
+
+  /**
+   * Activates listeners related to tab contents.
+   *
+   * @param {object}    params The parameters for wiring up tab content event handling.
+   * @param {jQuery}    params.html The sheet HTML jQuery element
+   * @param {Item5e}    params.item The item which is to be changed.
+   * @param {MagicItem} params.magicItem A Magic Item instance
+   * @param {Function}  params.onItemUpdatingCallback A callback for handling when item updates are about to be applied. This is useful for current tab management.
+   */
+  static activateTabContentsListeners({
+    html,
+    item,
+    magicItem,
+    onItemUpdatingCallback: onMagicItemUpdatingCallback = null,
+  }) {
+    html.find(".item-delete.item-spell").click((evt) => {
+      magicItem.removeSpell(evt.target.getAttribute("data-spell-idx"));
+      onMagicItemUpdatingCallback?.();
+      item.update({
+        flags: {
+          magicitems: magicItem.serializeData(),
+        },
+      });
+    });
+    html.find(".item-delete.item-feat").click((evt) => {
+      magicItem.removeFeat(evt.target.getAttribute("data-feat-idx"));
+      onMagicItemUpdatingCallback?.();
+      item.update({
+        flags: {
+          magicitems: magicItem.serializeData(),
+        },
+      });
+    });
+    html.find(".item-delete.item-table").click((evt) => {
+      magicItem.removeTable(evt.target.getAttribute("data-table-idx"));
+      onMagicItemUpdatingCallback?.();
+      item.update({
+        flags: {
+          magicitems: magicItem.serializeData(),
+        },
+      });
+    });
+    magicItem.spells.forEach((spell, idx) => {
+      html.find(`a[data-spell-idx="${idx}"]`).click((evt) => {
+        spell.renderSheet();
+      });
+    });
+    magicItem.feats.forEach((feat, idx) => {
+      html.find(`a[data-feat-idx="${idx}"]`).click((evt) => {
+        feat.renderSheet();
+      });
+    });
+    magicItem.tables.forEach((table, idx) => {
+      html.find(`a[data-table-idx="${idx}"]`).click((evt) => {
+        table.renderSheet();
+      });
+    });
+  }
+
+  static get acceptedItemTypes() {
+    return ["weapon", "equipment", "consumable", "tool", "backpack", "feat"];
+  }
+
+  static isAcceptedItemType(document) {
+    return MagicItemTab.acceptedItemTypes.includes(document?.type);
+  }
+
+  static isAllowedToShow() {
+    return game.user.isGM || !game.settings.get(CONSTANTS.MODULE_ID, "hideFromPlayers");
   }
 }

@@ -58,7 +58,9 @@ export class OwnedMagicItem extends MagicItem {
       active = active && this.item.system.equipped;
     }
     if (this.attuned) {
-      let isAttuned = this.item.system.attunement ? this.item.system.attunement === 2 : this.item.system.attuned;
+      let isAttuned =
+        this.item.system.attunement === 2 ||
+        this.item.system.attuned === true; /* this.item.system.attuned is a legacy property; can be undefined */
       active = active && isAttuned;
     }
     return active;

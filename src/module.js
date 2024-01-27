@@ -1,8 +1,10 @@
 import API from "./scripts/API/api.js";
 import CONSTANTS from "./scripts/constants/constants.js";
+import Logger from "./scripts/lib/Logger.js";
 import { MagicItemActor } from "./scripts/magicitemactor.js";
 import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
+import { MagicItem } from "./scripts/magic-item/MagicItem.js";
 
 //CONFIG.debug.hooks = true;
 
@@ -65,18 +67,130 @@ Hooks.once("createToken", (token) => {
   }
 });
 
+let tidyApi;
+Hooks.once("tidy5e-sheet.ready", (api) => {
+  tidyApi = api;
+
+  // Register Tidy Item Sheet Tab
+  const magicItemsTab = new api.models.HandlebarsTab({
+    title: "Magic Item",
+    tabId: "magic-items",
+    path: "/modules/magic-items-2/templates/magic-item-tab.hbs",
+    enabled: (data) => {
+      return MagicItemTab.isAcceptedItemType(data.item) && MagicItemTab.isAllowedToShow();
+    },
+    getData(data) {
+      return new MagicItem(data.item.flags.magicitems);
+    },
+    onRender(params) {
+      const html = $(params.element);
+
+      if (params.data.editable) {
+        const magicItem = new MagicItem(params.data.item.flags.magicitems);
+        MagicItemTab.activateTabContentsListeners({
+          html: html,
+          item: params.data.item,
+          magicItem: magicItem,
+        });
+        params.element.querySelector(`.magic-items-content`).addEventListener("drop", (event) => {
+          MagicItemTab.onDrop({ event, item: params.data.item, magicItem: magicItem });
+        });
+      } else {
+        MagicItemTab.disableMagicItemTabInputs(html);
+      }
+    },
+  });
+  api.registerItemTab(magicItemsTab);
+
+  // Register character and NPC spell tab custom content
+  api.registerActorContent(
+    new api.models.HandlebarsContent({
+      path: `modules/${CONSTANTS.MODULE_ID}/templates/magic-item-spell-sheet.html`,
+      injectParams: {
+        position: "afterbegin",
+        selector: `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_SPELLBOOK}"] .scroll-container`,
+      },
+      enabled(data) {
+        const actor = MagicItemActor.get(data.actor.id);
+        // Required for Tidy to have accurate item data
+        actor.buildItems();
+        return ["character", "npc"].includes(data.actor.type) && actor?.hasItemsSpells();
+      },
+      getData(data) {
+        return MagicItemActor.get(data.actor.id);
+      },
+    })
+  );
+
+  // Register character and NPC feature tab custom content
+  const npcAbilitiesTabContainerSelector = `[data-tidy-sheet-part="${api.constants.SHEET_PARTS.NPC_ABILITIES_CONTAINER}"]`;
+  const characterFeaturesContainerSelector = `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_FEATURES}"] [data-tidy-sheet-part="${api.constants.SHEET_PARTS.ITEMS_CONTAINER}"]`;
+  const magicItemFeatureTargetSelector = [npcAbilitiesTabContainerSelector, characterFeaturesContainerSelector].join(
+    ", "
+  );
+  api.registerActorContent(
+    new api.models.HandlebarsContent({
+      path: `modules/${CONSTANTS.MODULE_ID}/templates/magic-item-feat-sheet.html`,
+      injectParams: {
+        position: "afterbegin",
+        selector: magicItemFeatureTargetSelector,
+      },
+      enabled(data) {
+        const actor = MagicItemActor.get(data.actor.id);
+        // Required for Tidy to have accurate item data
+        actor.buildItems();
+        return ["character", "npc"].includes(data.actor.type) && actor?.hasItemsFeats();
+      },
+      getData(data) {
+        return MagicItemActor.get(data.actor.id);
+      },
+    })
+  );
+});
+
+// Wire Tidy events and register iterated, data-dependent content
+Hooks.on("tidy5e-sheet.renderActorSheet", (app, element, data) => {
+  // Place wand for visible magic items
+  const actor = MagicItemActor.get(data.actor.id);
+  const html = $(element);
+  actor?.items
+    .filter((item) => item.visible)
+    .forEach((item) => {
+      let itemEl = html.find(
+        `[data-tidy-sheet-part="${tidyApi.constants.SHEET_PARTS.ITEM_TABLE_ROW}"][data-item-id="${item.id}"]`
+      );
+      let itemNameContainer = itemEl.find(`[data-tidy-sheet-part=${tidyApi.constants.SHEET_PARTS.ITEM_NAME}]`);
+      let iconHtml = tidyApi.useHandlebarsRendering(CONSTANTS.HTML.MAGIC_ITEM_ICON);
+      itemNameContainer.append(iconHtml);
+    });
+
+  // Wire events for custom tidy actor sheet content
+  MagicItemSheet.handleEvents(html, actor);
+});
+
 Hooks.on(`renderItemSheet5e`, (app, html, data) => {
-  if (!game.user.isGM && game.settings.get(CONSTANTS.MODULE_ID, "hideFromPlayers")) {
+  if (tidyApi?.isTidy5eItemSheet(app)) {
     return;
   }
+
+  if (!MagicItemTab.isAllowedToShow()) {
+    return;
+  }
+
   MagicItemTab.bind(app, html, data);
 });
 
 Hooks.on(`renderActorSheet5eCharacter`, (app, html, data) => {
+  if (tidyApi?.isTidy5eCharacterSheet(app)) {
+    return;
+  }
   MagicItemSheet.bind(app, html, data);
 });
 
 Hooks.on(`renderActorSheet5eNPC`, (app, html, data) => {
+  if (tidyApi?.isTidy5eNpcSheet(app)) {
+    return;
+  }
   MagicItemSheet.bind(app, html, data);
 });
 
