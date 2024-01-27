@@ -3,6 +3,7 @@ import { MagicItemFeat } from "../magic-item-entry/MagicItemFeat.js";
 import { MagicItemSpell } from "../magic-item-entry/MagicItemSpell.js";
 import { MagicItemTable } from "../magic-item-entry/MagicItemTable.js";
 import { MagicItemHelpers } from "../magic-item-helpers.js";
+import { NumberUtils } from "../utils/number.js";
 
 export class MagicItem {
   constructor(flags) {
@@ -11,7 +12,7 @@ export class MagicItem {
     this.enabled = data.enabled;
     this.equipped = data.equipped;
     this.attuned = data.attuned;
-    this.charges = parseInt(data.charges);
+    this.charges = NumberUtils.parseIntOrGetDefault(data.charges, 0);
     this.chargeType = data.chargeType;
     this.rechargeable = data.rechargeable;
     this.recharge = data.recharge;
@@ -23,7 +24,6 @@ export class MagicItem {
     this.destroyFlavorText = data.destroyFlavorText;
     this.sorting = data.sorting;
     this.sortingModes = { l: "MAGICITEMS.SheetSortByLevel", a: "MAGICITEMS.SheetSortAlphabetically" };
-    this.updateDestroyTarget();
 
     this.spells = Object.values(data.spells ? data.spells : {})
       .filter((spell) => spell !== "null")
@@ -44,6 +44,12 @@ export class MagicItem {
     this.savedSpells = this.spells.length;
     this.savedFeats = this.feats.length;
     this.savedTables = this.tables.length;
+
+    this.sort();
+
+    if (!this.enabled) {
+      this.clear();
+    }
   }
 
   sort() {
@@ -55,11 +61,10 @@ export class MagicItem {
     }
   }
 
-  updateDestroyTarget() {
-    this.destroyTarget =
-      this.chargeType === "c1"
-        ? game.i18n.localize("MAGICITEMS.SheetObjectTarget")
-        : game.i18n.localize("MAGICITEMS.SheetSpellTarget");
+  get destroyTarget() {
+    return this.chargeType === "c1"
+      ? game.i18n.localize("MAGICITEMS.SheetObjectTarget")
+      : game.i18n.localize("MAGICITEMS.SheetSpellTarget");
   }
 
   defaultData() {
@@ -313,26 +318,13 @@ export class MagicItem {
     return this.items.filter((item) => item.id === itemId)[0];
   }
 
-  async renderSheet(spellId) {
-    let spellFounded = this.findByUuid(spellId);
-    if (!byUuid) {
-      spellFounded = this.findById(spellId);
+  async renderSheet(itemId) {
+    let item = this.findByUuid(itemId);
+    if (!item) {
+      item = this.findById(itemId);
     }
 
-    // let uuid = null;
-    // if (spellFounded.uuid) {
-    //   uuid = spellFounded.uuid;
-    // } else {
-    //   uuid = MagiItemHelpers.retrieveUuid({
-    //     documentName: spellFounded.name,
-    //     documentId: spellFounded.id,
-    //     documentCollectionType: "Item",
-    //     documentPack: spellFounded.pack,
-    //   });
-    // }
-    // const itemTmp = await fromUuid(uuid);
-    // itemTmp.sheet.render(true);
-    await spellFounded.renderSheet();
+    await item.renderSheet();
   }
 
   cleanup() {

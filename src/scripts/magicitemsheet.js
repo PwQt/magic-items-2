@@ -68,11 +68,11 @@ export class MagicItemSheet {
         let itemEl = this.html.find(`.inventory-list .item-list .item[data-item-id="${item.id}"]`);
         let h4 = itemEl.find("h4");
         if (!h4.find("i.fa-magic").length) {
-          h4.append('<i class="fas fa-magic attuned" style="margin-left: 5px;" title="Magic Item"></i>');
+          h4.append(CONSTANTS.HTML.MAGIC_ITEM_ICON);
         }
       });
 
-    this.handleEvents();
+    MagicItemSheet.handleEvents(this.html, this.actor);
   }
 
   /**
@@ -96,48 +96,54 @@ export class MagicItemSheet {
   /**
    *
    */
-  handleEvents() {
-    this.html.find(".item div.magic-item-image").click((evt) => this.onItemRoll(evt));
-    this.html.find(".item h4.spell-name").click((evt) => this.onItemShow(evt));
-    this.actor.items.forEach((item) => {
-      this.html.find(`input[data-item-id="magicitems.${item.id}.uses"]`).change((evt) => {
+  static handleEvents(html, actor) {
+    html.find(".item div.magic-item-image").click((evt) => MagicItemSheet.onItemRoll(evt, actor));
+    html.find(".item h4.spell-name").click((evt) => MagicItemSheet.onItemShow(evt));
+    MagicItemSheet.handleActorItemUsesChangeEvents(html, actor);
+    MagicItemSheet.handleMagicItemDragStart(html, actor);
+  }
+
+  static handleMagicItemDragStart(html, actor) {
+    html.find(`li.item.magic-item`).each((i, li) => {
+      li.addEventListener("dragstart", (evt) => MagicItemSheet.onDragItemStart(evt, actor));
+    });
+  }
+
+  static handleActorItemUsesChangeEvents(html, actor) {
+    actor.items.forEach((item) => {
+      html.find(`input[data-item-id="magicitems.${item.id}.uses"]`).change((evt) => {
         item.setUses(MagicItemHelpers.numeric(evt.currentTarget.value, item.uses));
         item.update();
       });
       item.ownedEntries.forEach((entry) => {
-        this.html.find(`input[data-item-id="magicitems.${item.id}.${entry.id}.uses"]`).change((evt) => {
+        html.find(`input[data-item-id="magicitems.${item.id}.${entry.id}.uses"]`).change((evt) => {
           entry.uses = MagicItemHelpers.numeric(evt.currentTarget.value, entry.uses);
           item.update();
         });
       });
     });
-    this.html.find(`li.item.magic-item`).each((i, li) => {
-      li.addEventListener("dragstart", this.onDragItemStart.bind(this), false);
-    });
   }
 
   /**
    *
    * @param evt
    */
-  onItemRoll(evt) {
+  static async onItemRoll(evt, actor) {
     evt.preventDefault();
     let dataset = evt.currentTarget.closest(".item").dataset;
     let magicItemId = dataset.magicItemId;
     let itemId = dataset.itemId;
-    this.actor.roll(magicItemId, itemId).then(() => {
-      this.render();
-    });
+    await actor.roll(magicItemId, itemId);
+    // this.render();
   }
 
   /**
    *
    * @param evt
    */
-  async onItemShow(evt) {
+  static async onItemShow(evt) {
     evt.preventDefault();
     let dataset = evt.currentTarget.closest(".item").dataset;
-    let magicItemId = dataset.magicItemId;
     let itemId = dataset.itemId;
     let itemUuid = dataset.itemUuid;
     let itemPack = dataset.itemPack;
@@ -155,19 +161,17 @@ export class MagicItemSheet {
     }
     const itemTmp = await fromUuid(uuid);
     itemTmp.sheet.render(true);
-    // TODO TO REMOVE ??? OR UPDATE SOMEHOW ?
-    await this.actor.renderSheet(magicItemId, itemId);
   }
 
   /**
    *
    * @param evt
    */
-  onDragItemStart(evt) {
+  static onDragItemStart(evt, actor) {
     const li = evt.currentTarget;
     let magicItemId = li.dataset.magicItemId;
     let itemId = li.dataset.itemId;
-    let magicItem = this.actor.magicItem(magicItemId);
+    let magicItem = actor.magicItem(magicItemId);
     let item = magicItem.entryBy(itemId);
 
     const dragData = {
