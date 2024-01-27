@@ -97,7 +97,7 @@ All informations about the api and the sheet integration can be found here [API]
 |Default DnD 5e sheet|:heavy_check_mark:||
 |[Tidy5e Sheet](https://github.com/sdenec/tidy5e-sheet)|:heavy_check_mark:|works on 0.8.41+|
 |[Compact DnDBeyond-like 5e Character Sheet](https://github.com/eastcw/foundryvtt-compactBeyond5eSheet)|:interrobang:|Works, but doesn't show in Actions tab.|
-|[Tidy 5e Sheet Rewrite](https://github.com/kgar/foundry-vtt-tidy-5e-sheets/)|:x:|Planned for 1.5.0 release|
+|[Tidy 5e Sheet Rewrite](https://github.com/kgar/foundry-vtt-tidy-5e-sheets/)|✔️||
 
 # Build
 
