@@ -160,6 +160,7 @@ export class MagicItemSheet {
       });
     }
     const itemTmp = await fromUuid(uuid);
+    itemTmp.ownership.default = CONST.DOCUMENT_PERMISSION_LEVELS.LIMITED;
     itemTmp.sheet.render(true);
   }
 

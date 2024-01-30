@@ -12,14 +12,8 @@ export class AbstractMagicItemEntry {
 
   async renderSheet() {
     this.entity().then((entity) => {
+      entity.ownership.default = CONST.DOCUMENT_PERMISSION_LEVELS.LIMITED;
       const sheet = entity.sheet;
-      /* TODO TO REMOVE ??
-      if (this.pack === "world") {
-        sheet.options.compendium = this.pack;
-      } else {
-        sheet.options.editable = false;
-      }
-      */
       sheet.render(true);
     });
   }
