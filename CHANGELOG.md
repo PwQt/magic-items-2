@@ -1,3 +1,13 @@
+### 1.5.1
+- Permission fix for spells on Character/Magic Item sheet by @PwQt in https://github.com/PwQt/magic-items-2/pull/49
+
+### 1.5.0
+- Tidy Compatibility, Refactors, Bugfixes by @kgar in https://github.com/PwQt/magic-items-2/pull/46
+
+### 1.4.7
+- add some helpers by @p4535992 in https://github.com/PwQt/magic-items-2/pull/42
+- #44 fix to sortByLevel helper by @PwQt in https://github.com/PwQt/magic-items-2/pull/45
+
 ### 1.4.6
 - Bug fix: https://github.com/PwQt/magic-items-2/issues/40, Updates `hack` function to support varying numbers of parent Item Sheet classes by @kgar in https://github.com/PwQt/magic-items-2/pull/41
 
