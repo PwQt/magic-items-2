@@ -1,5 +1,6 @@
 import { MAGICITEMS } from "./config.js";
 import CONSTANTS from "./constants/constants.js";
+import Logger from "./lib/Logger.js";
 import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { MagicItemActor } from "./magicitemactor.js";
 
@@ -55,11 +56,20 @@ export class MagicItemSheet {
    * @returns {Promise<void>}
    */
   async render() {
-    if (this.actor.hasItemsFeats()) {
-      await this.renderTemplate("magic-item-feat-sheet", "magic-items-feats-content", "features");
-    }
-    if (this.actor.hasItemsSpells()) {
-      await this.renderTemplate("magic-item-spell-sheet", "magic-items-spells-content", "spellbook");
+    if (!MagicItemHelpers.isNewDnd5eVersion()) {
+      if (this.actor.hasItemsFeats()) {
+        await this.renderTemplate("magic-item-feat-sheet.html", "magic-items-feats-content", "features", "inventory-list");
+      }
+      if (this.actor.hasItemsSpells()) {
+        await this.renderTemplate("magic-item-spell-sheet.html", "magic-items-spells-content", "spellbook", "inventory-list");
+      }
+    } else {
+      if (this.actor.hasItemsFeats()) {
+        await this.renderTemplate("magic-item-feat-sheet-v2.hbs", "magic-items-feats-content", "features", "features-list");
+      }
+      if (this.actor.hasItemsSpells()) {
+        await this.renderTemplate("magic-item-spell-sheet-v2.hbs", "magic-items-spells-content", "spells", "spells-list");
+      }
     }
 
     this.actor.items
@@ -83,13 +93,13 @@ export class MagicItemSheet {
    * @param tab
    * @returns {Promise<void>}
    */
-  async renderTemplate(name, cls, tab) {
-    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/${name}.html`, this.actor);
+  async renderTemplate(name, cls, tab, listName) {
+    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/${name}`, this.actor);
     let el = this.html.find(`.${cls}`);
     if (el.length) {
       el.replaceWith(template);
     } else {
-      this.html.find(`.${tab} .inventory-list`).append(template);
+      this.html.find(`.${tab} .${listName}`).append(template);
     }
   }
 
