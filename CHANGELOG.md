@@ -1,3 +1,6 @@
+### 1.5.2
+- Mark the module as not compatible with DND5e 3.0
+
 ### 1.5.1
 - Permission fix for spells on Character/Magic Item sheet by @PwQt in https://github.com/PwQt/magic-items-2/pull/49
 
