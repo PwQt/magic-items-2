@@ -56,7 +56,7 @@ export class MagicItemSheet {
    * @returns {Promise<void>}
    */
   async render() {
-    if (!MagicItemHelpers.isNewDnd5eVersion()) {
+    if (!MagicItemHelpers.isNewDnd5eVersion()) { // wrong condition - check which sheet is on instead of which dnd5e version is on
       if (this.actor.hasItemsFeats()) {
         await this.renderTemplate("magic-item-feat-sheet.html", "magic-items-feats-content", "features", "inventory-list");
       }
