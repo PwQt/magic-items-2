@@ -1,5 +1,5 @@
 import { MAGICITEMS } from "../config";
-import { MagiItemHelpers } from "../magic-item-helpers";
+import { MagicItemHelpers } from "../magic-item-helpers";
 import { AbstractMagicItemEntry } from "./AbstractMagicItemEntry";
 
 export class MagicItemFeat extends AbstractMagicItemEntry {
@@ -28,6 +28,6 @@ export class MagicItemFeat extends AbstractMagicItemEntry {
   }
 
   get effects() {
-    return MagiItemHelpers.localized(MAGICITEMS.effects);
+    return MagicItemHelpers.localized(MAGICITEMS.effects);
   }
 }

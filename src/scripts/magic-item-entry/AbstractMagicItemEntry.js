@@ -1,5 +1,5 @@
 import { warn } from "../lib/lib";
-import { MagiItemHelpers } from "../magic-item-helpers";
+import { MagicItemHelpers } from "../magic-item-helpers";
 
 export class AbstractMagicItemEntry {
   constructor(data) {
@@ -7,19 +7,13 @@ export class AbstractMagicItemEntry {
   }
 
   get displayName() {
-    return MagiItemHelpers.getEntityNameCompendiumWithBabele(this.pack, this.name);
+    return MagicItemHelpers.getEntityNameCompendiumWithBabele(this.pack, this.name);
   }
 
   async renderSheet() {
     this.entity().then((entity) => {
+      entity.ownership.default = CONST.DOCUMENT_PERMISSION_LEVELS.LIMITED;
       const sheet = entity.sheet;
-      /* TODO TO REMOVE ??
-      if (this.pack === "world") {
-        sheet.options.compendium = this.pack;
-      } else {
-        sheet.options.editable = false;
-      }
-      */
       sheet.render(true);
     });
   }

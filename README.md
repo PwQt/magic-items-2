@@ -9,11 +9,11 @@ Fork of [Magic Items](https://gitlab.com/riccisi/foundryvtt-magic-items/), since
 
 They work very differently under the hood.
 
-- **[Item with Spells]()**: adds the _actual_ items to the actor but hides them if they should be unavailable, with modifications, and can these make use of the parent item's Limited Uses. Magic Items does not do that.
+- **Item with Spells**: adds the _actual_ items to the actor but hides them if they should be unavailable, with modifications, and can these make use of the parent item's Limited Uses. Magic Items does not do that.
   - The benefit is that you can thus change or tweak the embedded items, which you can't do with Magic Items
   - There is a active developer/monster like Zhell to maintain the module O.O
 
-- **[Magic Items 2](https://github.com/PwQt/magic-items-2)**: adds the _reference_ to the items are just references to where the actual item is stored.
+- **Magic Items 2**: adds the _reference_ to the items are just references to where the actual item is stored.
   - Has more options
   - You can add Feature and Rolltable items to the parent item
   - Using reference instead actual items let you better integrate external modules like [Item Linking](https://github.com/elizeuangelo/fvtt-module-item-linking)
@@ -94,10 +94,11 @@ All informations about the api and the sheet integration can be found here [API]
 ## Compatibility
 | **Name** | **Compatibility** | **Additional information** |
 |----------|:-----------------:|----------------------------|
-|Default DnD 5e sheet|:heavy_check_mark:||
+|Legacy DnD 5e sheet|:heavy_check_mark:||
+|DND5e 3.0 Sheet|:x:|In progress of making compatible|
 |[Tidy5e Sheet](https://github.com/sdenec/tidy5e-sheet)|:heavy_check_mark:|works on 0.8.41+|
 |[Compact DnDBeyond-like 5e Character Sheet](https://github.com/eastcw/foundryvtt-compactBeyond5eSheet)|:interrobang:|Works, but doesn't show in Actions tab.|
-|[Tidy 5e Sheet Rewrite](https://github.com/kgar/foundry-vtt-tidy-5e-sheets/)|:x:|Planned for 1.5.0 release|
+|[Tidy 5e Sheet Rewrite](https://github.com/kgar/foundry-vtt-tidy-5e-sheets/)|✔️||
 
 # Build
 
@@ -159,7 +160,7 @@ npm run-script lint:fix
 
 ## Issues
 
-Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/PwQt/magic-items-2/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
+Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/PwQt/magic-items-2/issues).
 
 ## License
 

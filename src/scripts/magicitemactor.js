@@ -1,6 +1,6 @@
 import { MAGICITEMS } from "./config.js";
 import { warn } from "./lib/lib.js";
-import { MagiItemHelpers } from "./magic-item-helpers.js";
+import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { OwnedMagicItem } from "./magic-item/OwnedMagicItem.js";
 
 /**
@@ -268,25 +268,11 @@ export class MagicItemActor {
    * @param ownedItemId
    */
   async renderSheet(itemId, ownedItemId) {
-    let found = this.items.filter((item) => {
+    let item = this.items.find((item) => {
       return item.id === itemId || item.uuid === itemId;
     });
-    if (found.length) {
-      let item = found[0];
+    if (item) {
       item.renderSheet(ownedItemId);
-      // let uuid = null;
-      // if (item.uuid) {
-      //   uuid = item.uuid;
-      // } else {
-      //   uuid = MagiItemHelpers.retrieveUuid({
-      //     documentName: item.name,
-      //     documentId: item.id,
-      //     documentCollectionType: "Item",
-      //     documentPack: item.pack,
-      //   });
-      // }
-      // const itemTmp = await fromUuid(uuid);
-      // itemTmp.sheet.render(true);
     }
   }
 
