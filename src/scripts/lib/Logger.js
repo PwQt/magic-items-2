@@ -96,7 +96,7 @@ export default class Logger {
   }
 
   static timelog(message) {
-    warn(Date.now(), message);
+    this.warn(Date.now(), message);
   }
 
   static i18n = (key) => {
