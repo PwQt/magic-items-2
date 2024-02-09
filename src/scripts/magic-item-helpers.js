@@ -3,7 +3,11 @@ import { isRealNumber } from "./lib/lib";
 export class MagicItemHelpers {
   static isNewDnd5eVersion() {
     return game.dnd5e.version === "3.0.0";
-  };
+  }
+
+  static isUsingNew5eSheet(sheet) {
+    return sheet?.constructor?.name === "ActorSheet5eCharacter2";
+  }
 
   static numeric = function (value, fallback) {
     // if ($.isNumeric(value)) {

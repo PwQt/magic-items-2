@@ -264,3 +264,40 @@
   border-color: var(--t5e-primary-font-color);
   border-color: var(--t5ek-primary-font-color);
 }
+
+.dnd5e2 .items-section .items-header .spell-slots,
+.dnd5e2 .items-section .item .spell-slots {
+  width: 50px;
+}
+
+.dnd5e2 .editable .items-section .items-header .spell-slots input {
+  color: white;
+  width: 50%;
+}
+
+.dnd5e2 .items-section .items-header .spell-rechargeable,
+.dnd5e2 .items-section .item .spell-rechargeable {
+  width: 150px;
+  display: flex;
+  gap: 0.1875rem;
+  align-self: center;
+  align-items: baseline;
+}
+
+.dnd5e2 .items-section .items-header .spell-level,
+.dnd5e2 .items-section .item .spell-level {
+  width: 40px;
+}
+
+.dnd5e2 .items-section .items-header .spell-consumption,
+.dnd5e2 .items-section .item .spell-consumption {
+  width: 60px;
+}
+
+.dnd5e2 .items-section .items-header .spell-upcast,
+.dnd5e2 .items-section .item .spell-upcast {
+  width: 50px;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+}
