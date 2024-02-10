@@ -56,7 +56,7 @@ export class MagicItemSheet {
    * @returns {Promise<void>}
    */
   async render() {
-    if (!MagicItemHelpers.isNewDnd5eVersion()) { // wrong condition - check which sheet is on instead of which dnd5e version is on
+    if (!this.actor.isUsingNew5eSheet) {
       if (this.actor.hasItemsFeats()) {
         await this.renderTemplate("magic-item-feat-sheet.html", "magic-items-feats-content", "features", "inventory-list");
       }
@@ -69,6 +69,7 @@ export class MagicItemSheet {
       }
       if (this.actor.hasItemsSpells()) {
         await this.renderTemplate("magic-item-spell-sheet-v2.hbs", "magic-items-spells-content", "spells", "spells-list");
+        this.html.find(".item-tooltip").each((idx, el) => this.addToolTips(el));
       }
     }
 
@@ -76,9 +77,9 @@ export class MagicItemSheet {
       .filter((item) => item.visible)
       .forEach((item) => {
         let itemEl = this.html.find(`.inventory-list .item-list .item[data-item-id="${item.id}"]`);
-        let h4 = itemEl.find("h4");
-        if (!h4.find("i.fa-magic").length) {
-          h4.append(CONSTANTS.HTML.MAGIC_ITEM_ICON);
+        let itemName = this.actor.isUsingNew5eSheet ? itemEl.find(".name .subtitle") : itemEl.find("h4");
+        if (!itemName.find("i.fa-magic").length) {
+          itemName.append(CONSTANTS.HTML.MAGIC_ITEM_ICON);
         }
       });
 
@@ -88,13 +89,13 @@ export class MagicItemSheet {
   /**
    * Utility functions, render or replace the template by name in the passed tab.
    *
-   * @param name
+   * @param filename
    * @param cls
    * @param tab
    * @returns {Promise<void>}
    */
-  async renderTemplate(name, cls, tab, listName) {
-    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/${name}`, this.actor);
+  async renderTemplate(filename, cls, tab, listName) {
+    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/${filename}`, this.actor);
     let el = this.html.find(`.${cls}`);
     if (el.length) {
       el.replaceWith(template);
@@ -104,11 +105,32 @@ export class MagicItemSheet {
   }
 
   /**
+   * Adds spell tooltips to magic items on spells tab
+   *
+   * @param {*} element
+   */
+  addToolTips(element) {
+    if ("tooltip" in element.dataset) return;
+    const target = element.closest("[data-item-id], [data-uuid]");
+    const uuid = target.dataset?.itemUuid;
+    if (!uuid) return;
+    element.dataset.tooltip = `
+      <section class="loading" data-uuid="${uuid}"><i class="fas fa-spinner fa-spin-pulse"></i></section>
+    `;
+    element.dataset.tooltipClass = "dnd5e2 dnd5e-tooltip item-tooltip";
+    element.dataset.tooltipDirection ??= "LEFT";
+  }
+
+  /**
    *
    */
   static handleEvents(html, actor) {
-    html.find(".item div.magic-item-image").click((evt) => MagicItemSheet.onItemRoll(evt, actor));
-    html.find(".item h4.spell-name").click((evt) => MagicItemSheet.onItemShow(evt));
+    if (!actor.isUsingNew5eSheet) {
+      html.find(".item div.magic-item-image").click((evt) => MagicItemSheet.onItemRoll(evt, actor));
+      html.find(".item h4.spell-name").click((evt) => MagicItemSheet.onItemShow(evt));
+    } else {
+      html.find(".item.magic-item .item-name").click((evt) => MagicItemSheet.onItemRoll(evt, actor));
+    }
     MagicItemSheet.handleActorItemUsesChangeEvents(html, actor);
     MagicItemSheet.handleMagicItemDragStart(html, actor);
   }

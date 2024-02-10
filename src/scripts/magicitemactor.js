@@ -39,6 +39,7 @@ export class MagicItemActor {
     this.listening = true;
     this.instrument();
     this.buildItems();
+    this.isUsingNew5eSheet = actor?.sheet && MagicItemHelpers.isUsingNew5eSheet(actor.sheet);
   }
 
   /**

@@ -318,6 +318,10 @@ export class MagicItem {
     return this.items.filter((item) => item.id === itemId)[0];
   }
 
+  get sheetEditable() {
+    return $(this.actor.sheet.form).hasClass("editable");
+  }
+
   async renderSheet(itemId) {
     let item = this.findByUuid(itemId);
     if (!item) {
