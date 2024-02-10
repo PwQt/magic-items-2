@@ -111,5 +111,7 @@
 
   "MAGICITEMS.WarnNoActor": "You have no controlled actor, select an actor and retry.",
   "MAGICITEMS.WarnNoMagicItem": "Your controlled Actor does not have an item named ",
-  "MAGICITEMS.WarnNoMagicItemSpell": "Your controlled Actor does not have a spell/feat named "
+  "MAGICITEMS.WarnNoMagicItemSpell": "Your controlled Actor does not have a spell/feat named ",
+
+  "MAGICITEMS.RandomResult": "Random Result"
 }

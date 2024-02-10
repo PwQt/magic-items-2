@@ -112,7 +112,7 @@ export class MagicItem {
 
   serializeEntries(entries, trash) {
     let data = {};
-    entries.forEach((spell, idx) => (data["" + idx] = spell.serializeData()));
+    entries.forEach((entry, idx) => (data["" + idx] = entry.serializeData()));
     trash.forEach((index) => (data["-=" + index] = null));
     return data;
   }
