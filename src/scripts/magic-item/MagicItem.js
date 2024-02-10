@@ -248,9 +248,7 @@ export class MagicItem {
   }
 
   get tableAsSpells() {
-    const tables = this.tablesByUsage(MAGICITEMS.TABLE_USAGE_AS_SPELL);
-    if (tables.length > 0) console.log(tables);
-    return tables;
+    return this.tablesByUsage(MAGICITEMS.TABLE_USAGE_AS_SPELL);
   }
 
   get tableAsFeats() {
