@@ -56,6 +56,8 @@ export class MagicItemSheet {
    * @returns {Promise<void>}
    */
   async render() {
+    Logger.log(`IsUsingNew5eSheet: ${this.actor.isUsingNew5eSheet}`);
+    this.actor.updateItemSheetOnActor();
     if (!this.actor.isUsingNew5eSheet) {
       if (this.actor.hasItemsFeats()) {
         await this.renderTemplate(
