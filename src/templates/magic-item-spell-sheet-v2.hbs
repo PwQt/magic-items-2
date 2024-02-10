@@ -24,7 +24,7 @@
       {{/if}}
       {{#if chargesPerSpell}}
       <div class="item-header spell-slots">
-        Uses
+        {{localize "MAGICITEMS.SpellUses"}}
       </div>
       {{/if}}
       <div class="item-header spell-rechargeable">{{rechargeableLabel}}</div>
@@ -72,13 +72,48 @@
           {{spell.uses}} / {{../charges}}
           {{/if}}
         </div>
-        <div class="item-detail spell-rechargeable">-</div>
+        {{else}}
+        <div class="item-detail spell-slots">-</div>
         {{/if}}
+        <div class="item-detail spell-rechargeable">-</div>
         <div class="item-detail spell-level">{{spell.level}}</div>
         <div class="item-detail spell-consumption">{{spell.consumption}}</div>
         <div class="item-detail spell-upcast">{{spell.canUpcastLabel}}</div>
       </li>
       {{/each}}
+      {{#if hasTableAsSpells}} {{#each tableAsSpells as |table|}}
+      <li class="item magic-item" data-magic-item-id="{{../id}}" data-item-id="{{table.id}}" draggable="true">
+        <div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{spell.displayName}}">
+          <img class="item-image gold-icon magic-item-image" src="{{table.img}}" alt="{{table.name}}">
+          <div class="name name-stacked">
+            <span class="title">{{ table.displayName }}</span>
+            <span class="subtitle">{{localize "MAGICITEMS.RandomResult"}}</span>
+          </div>
+        </div>
+        {{#if ../chargesPerSpell}}
+        <div class="item-detail spell-slots">
+          {{#if ../sheetEditable}}
+          <input
+            data-item-id="magicitems.{{../id}}.{{table.id}}.uses"
+            type="text"
+            value="{{table.uses}}"
+            placeholder="0"
+          />
+          <span class="sep"> / </span>
+          <input type="text" value="{{../charges}}" placeholder="0" />
+          {{else}}
+          {{spell.uses}} / {{../charges}}
+          {{/if}}
+        </div>
+        {{else}}
+        <div class="item-detail spell-slots">-</div>
+        {{/if}}
+        <div class="item-detail spell-rechargeable">-</div>
+        <div class="item-detail spell-level">-</div>
+        <div class="item-detail spell-consumption">{{table.consumption}}</div>
+        <div class="item-detail spell-upcast">-</div>
+      </li>
+      {{/each}} {{/if}}
     </ol>
   </div>
   {{/if}} {{/each}}

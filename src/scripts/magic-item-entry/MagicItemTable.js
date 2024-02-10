@@ -36,6 +36,13 @@ export class MagicItemTable extends AbstractMagicItemEntry {
   }
 
   serializeData() {
-    return {};
+    return {
+      consumption: this.consumption,
+      id: this.id,
+      uuid: this.uuid,
+      img: this.img,
+      name: this.name,
+      pack: this.pack,
+    };
   }
 }

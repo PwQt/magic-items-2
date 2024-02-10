@@ -112,7 +112,7 @@ export class MagicItem {
 
   serializeEntries(entries, trash) {
     let data = {};
-    entries.forEach((spell, idx) => (data["" + idx] = spell.serializeData()));
+    entries.forEach((entry, idx) => (data["" + idx] = entry.serializeData()));
     trash.forEach((index) => (data["-=" + index] = null));
     return data;
   }
@@ -248,7 +248,9 @@ export class MagicItem {
   }
 
   get tableAsSpells() {
-    return this.tablesByUsage(MAGICITEMS.TABLE_USAGE_AS_SPELL);
+    const tables = this.tablesByUsage(MAGICITEMS.TABLE_USAGE_AS_SPELL);
+    if (tables.length > 0) console.log(tables);
+    return tables;
   }
 
   get tableAsFeats() {
