@@ -301,3 +301,11 @@
   padding: 0;
   position: relative;
 }
+
+.dnd5e2 .items-section .items-header .feat-consumption,
+.dnd5e2 .items-section .item .feat-consumption {
+  width: 70px;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+}

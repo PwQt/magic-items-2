@@ -52,23 +52,44 @@ export class MagicItemSheet {
   }
 
   /**
-   *
+   * Render the sheet
    * @returns {Promise<void>}
    */
   async render() {
     if (!this.actor.isUsingNew5eSheet) {
       if (this.actor.hasItemsFeats()) {
-        await this.renderTemplate("magic-item-feat-sheet.html", "magic-items-feats-content", "features", "inventory-list");
+        await this.renderTemplate(
+          "magic-item-feat-sheet.html",
+          "magic-items-feats-content",
+          "features",
+          "inventory-list"
+        );
       }
       if (this.actor.hasItemsSpells()) {
-        await this.renderTemplate("magic-item-spell-sheet.html", "magic-items-spells-content", "spellbook", "inventory-list");
+        await this.renderTemplate(
+          "magic-item-spell-sheet.html",
+          "magic-items-spells-content",
+          "spellbook",
+          "inventory-list"
+        );
       }
     } else {
       if (this.actor.hasItemsFeats()) {
-        await this.renderTemplate("magic-item-feat-sheet-v2.hbs", "magic-items-feats-content", "features", "features-list");
+        await this.renderTemplate(
+          "magic-item-feat-sheet-v2.hbs",
+          "magic-items-feats-content",
+          "features",
+          "features-list"
+        );
+        this.html.find(".item-tooltip").each((idx, el) => this.addToolTips(el));
       }
       if (this.actor.hasItemsSpells()) {
-        await this.renderTemplate("magic-item-spell-sheet-v2.hbs", "magic-items-spells-content", "spells", "spells-list");
+        await this.renderTemplate(
+          "magic-item-spell-sheet-v2.hbs",
+          "magic-items-spells-content",
+          "spells",
+          "spells-list"
+        );
         this.html.find(".item-tooltip").each((idx, el) => this.addToolTips(el));
       }
     }
