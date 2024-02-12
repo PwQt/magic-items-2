@@ -1,4 +1,4 @@
-The api is reachable from the variable `game.modules.get('magic-items').api` or from the socket libary `socketLib` on the variable `game.modules.get('magic-items').socket` if present and active.
+The api is reachable from the variable `game.modules.get('magic-items-2').api` or from the socket libary `socketLib` on the variable `game.modules.get('magic-items-2').socket` if present and active.
 
 ### The documentation can be out of sync with the API code checkout the code if you want to dig up [API](../src/scripts/API/api.js)
 
