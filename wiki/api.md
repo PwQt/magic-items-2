@@ -32,7 +32,7 @@ Method for retrieve the cached actor info by id
 
 ```javascript
 
-game.modules.get('magic-items').api.actor("Actor.zsuisiww")
+game.modules.get('magic-items-2').api.actor("Actor.zsuisiww")
 
 ```
 
@@ -51,7 +51,7 @@ Roll a inner child magic item from a specific parent magic item
 
 ```javascript
 
-game.modules.get('magic-items').api.roll("Amulet of Fire","Burning Hands");
+game.modules.get('magic-items-2').api.roll("Amulet of Fire","Burning Hands");
 
 ```
 
@@ -64,7 +64,7 @@ The following are added to `window.MagicItems` to facilitate custom sheet integr
 To implement Magic Items within a character sheet, do this:
 ```js
 Hooks.on(`renderMyCoolCharacterSheet`, (app, html, data) => {
-  const magicItemsApi = game.modules.get('magic-items')?.api;
+  const magicItemsApi = game.modules.get('magic-items-2')?.api;
   if (magicItemsApi && magicItemsApi.bindCharacterSheet) {
     magicItemsApi.bindCharacterSheet(app, html, data);
   }
@@ -75,7 +75,7 @@ To implement Magic Items within an item sheet, do this:
 
 ```js
 Hooks.on(`renderMyCoolItemSheet`, (app, html, data) => {
-  const magicItemsApi = game.modules.get('magic-items')?.api;
+  const magicItemsApi = game.modules.get('magic-items-2')?.api;
   if (magicItemsApi && magicItemsApi.bindItemSheet) {
     magicItemsApi.bindItemSheet(app, html, data);
   }
