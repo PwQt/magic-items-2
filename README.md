@@ -94,9 +94,8 @@ All informations about the api and the sheet integration can be found here [API]
 ## Compatibility
 | **Name** | **Compatibility** | **Additional information** |
 |----------|:-----------------:|----------------------------|
-|Legacy DnD 5e sheet|:heavy_check_mark:||
-|DND5e 3.0 Sheet|:x:|In progress of making compatible|
-|[Tidy5e Sheet](https://github.com/sdenec/tidy5e-sheet)|:heavy_check_mark:|works on 0.8.41+|
+|Legacy DnD 5e sheet|✔️||
+|DND5e 3.0 Sheet|✔️|released in 1.6.0|
 |[Compact DnDBeyond-like 5e Character Sheet](https://github.com/eastcw/foundryvtt-compactBeyond5eSheet)|:interrobang:|Works, but doesn't show in Actions tab.|
 |[Tidy 5e Sheet Rewrite](https://github.com/kgar/foundry-vtt-tidy-5e-sheets/)|✔️||
 
