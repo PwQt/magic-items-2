@@ -39,6 +39,7 @@ export class MagicItemActor {
     this.listening = true;
     this.instrument();
     this.buildItems();
+    this.isUsingNew5eSheet = this.actor?.sheet && MagicItemHelpers.isUsingNew5eSheet(this.actor.sheet);
   }
 
   /**
@@ -64,6 +65,13 @@ export class MagicItemActor {
     this.actor.getOwnedItem = this.getOwnedItem(this.actor.getOwnedItem, this);
     this.actor.shortRest = this.shortRest(this.actor.shortRest, this);
     this.actor.longRest = this.longRest(this.actor.longRest, this);
+  }
+
+  /**
+   * Updates the property isUsingNew5eSheet with correct values.
+   */
+  updateItemSheetOnActor() {
+    this.isUsingNew5eSheet = this.actor?.sheet && MagicItemHelpers.isUsingNew5eSheet(this.actor.sheet);
   }
 
   /**

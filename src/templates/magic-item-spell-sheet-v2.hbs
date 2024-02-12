@@ -1,0 +1,121 @@
+{{#if hasVisibleItems}}
+<div class="magic-items-spells-content">
+  <div class="inventory-filters spellbook-filters magic-items-head">
+    <label>
+      <h3>
+        {{localize "MAGICITEMS.SettingTabNames"}} - {{localize "MAGICITEMS.SheetTot"}}: {{magicItemsCount}}, {{localize "MAGICITEMS.SheetActives"}}:
+        {{magicItemsActiveCount}}
+      </h3>
+    </label>
+  </div>
+  {{#each items as |item i|}} {{#if (and visible active hasSpells)}}
+  <div class="items-section card" data-type="spell">
+    <div class="items-header header">
+      <h3 class="item-name spell-header" draggable="true">{{name}}</h3>
+      {{#if chargesOnWholeItem}}
+      <div class="item-header spell-slots">
+        {{#if sheetEditable}}
+        <input data-item-id="magicitems.{{id}}.uses" type="text" value="{{uses}}" placeholder="0" />
+        <span class="sep"> / {{charges}}</span>
+        {{else}}
+        {{uses}} / {{charges}}
+        {{/if}}
+      </div>
+      {{/if}}
+      {{#if chargesPerSpell}}
+      <div class="item-header spell-slots">
+        {{localize "MAGICITEMS.SheetUses"}}
+      </div>
+      {{/if}}
+      <div class="item-header spell-rechargeable">{{rechargeableLabel}}</div>
+      <div class="item-header spell-level">{{localize "MAGICITEMS.SheetLevel"}}</div>
+      <div class="item-header spell-consumption">{{localize "MAGICITEMS.SheetConsumption"}}</div>
+      <div class="item-header spell-upcast">{{localize "MAGICITEMS.SheetCanUpcast"}}</div>
+    </div>
+    <ol class="item-list unlist">
+      {{#each spells as |spell|}}
+      <li class="item magic-item"
+        data-item-id="{{spell.id}}"
+        data-magic-item-id="{{../id}}"
+        data-item-uuid="{{spell.uuid}}"
+        data-entry-id="{{../id}}"
+        draggable="true"
+      >
+        <div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{spell.displayName}}">
+          <img class="item-image gold-icon magic-item-image" src="{{spell.img}}" alt="{{spell.name}}">
+          <div class="name name-stacked">
+            <span class="title">{{ spell.displayName }}</span>
+            <span class="subtitle">{{ spell.labels.components.vsm }}</span>
+          </div>
+          <div class="tags">
+            {{#each spell.labels.components.all}}
+            {{#if tag}}
+            <span aria-label="{{ label }}">
+              <dnd5e-icon src="{{ icon }}"></dnd5e-icon>
+            </span>
+            {{/if}}
+            {{/each}}
+          </div>
+        </div>
+        {{#if ../chargesPerSpell}}
+        <div class="item-detail spell-slots">
+          {{#if ../sheetEditable}}
+          <input
+            data-item-id="magicitems.{{../id}}.{{spell.id}}.uses"
+            type="text"
+            value="{{spell.uses}}"
+            placeholder="0"
+          />
+          <span class="sep"> / </span>
+          <input type="text" value="{{../charges}}" placeholder="0" />
+          {{else}}
+          {{spell.uses}} / {{../charges}}
+          {{/if}}
+        </div>
+        {{else}}
+        <div class="item-detail spell-slots">-</div>
+        {{/if}}
+        <div class="item-detail spell-rechargeable">-</div>
+        <div class="item-detail spell-level">{{spell.level}}</div>
+        <div class="item-detail spell-consumption">{{spell.consumption}}</div>
+        <div class="item-detail spell-upcast">{{spell.canUpcastLabel}}</div>
+      </li>
+      {{/each}}
+      {{#if hasTableAsSpells}} {{#each tableAsSpells as |table|}}
+      <li class="item magic-item" data-magic-item-id="{{../id}}" data-item-id="{{table.id}}" draggable="true">
+        <div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{spell.displayName}}">
+          <img class="item-image gold-icon magic-item-image" src="{{table.img}}" alt="{{table.name}}">
+          <div class="name name-stacked">
+            <span class="title">{{ table.displayName }}</span>
+            <span class="subtitle">{{localize "MAGICITEMS.RandomResult"}}</span>
+          </div>
+        </div>
+        {{#if ../chargesPerSpell}}
+        <div class="item-detail spell-slots">
+          {{#if ../sheetEditable}}
+          <input
+            data-item-id="magicitems.{{../id}}.{{table.id}}.uses"
+            type="text"
+            value="{{table.uses}}"
+            placeholder="0"
+          />
+          <span class="sep"> / </span>
+          <input type="text" value="{{../charges}}" placeholder="0" />
+          {{else}}
+          {{spell.uses}} / {{../charges}}
+          {{/if}}
+        </div>
+        {{else}}
+        <div class="item-detail spell-slots">-</div>
+        {{/if}}
+        <div class="item-detail spell-rechargeable">-</div>
+        <div class="item-detail spell-level">-</div>
+        <div class="item-detail spell-consumption">{{table.consumption}}</div>
+        <div class="item-detail spell-upcast">-</div>
+      </li>
+      {{/each}} {{/if}}
+    </ol>
+  </div>
+  {{/if}} {{/each}}
+</div>
+{{/if}}

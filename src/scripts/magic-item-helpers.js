@@ -1,6 +1,10 @@
 import { isRealNumber } from "./lib/lib";
 
 export class MagicItemHelpers {
+  static isUsingNew5eSheet(sheet) {
+    return sheet?.constructor?.name === "ActorSheet5eCharacter2";
+  }
+
   static numeric = function (value, fallback) {
     // if ($.isNumeric(value)) {
     //   return parseInt(value);

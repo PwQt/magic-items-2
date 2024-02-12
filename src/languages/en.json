@@ -1,4 +1,5 @@
 {
+  "MAGICITEMS.SettingTabNames": "Magic Items",
   "MAGICITEMS.SettingIdentifiedOnly": "Only identified",
   "MAGICITEMS.SettingIdentifiedOnlyHint": "Show Magic powers only for identified items",
   "MAGICITEMS.SettingHideFromPlayers": "Hide Settings Tab From Players",
@@ -10,6 +11,7 @@
 
   "MAGICITEMS.SheetTot": "tot",
   "MAGICITEMS.SheetActives": "actives",
+  "MAGICITEMS.SheetUses": "Uses",
 
   "MAGICITEMS.RechargeUnitDaily": "Daily",
   "MAGICITEMS.RechargeUnitDawn": "At Dawn",
@@ -109,5 +111,7 @@
 
   "MAGICITEMS.WarnNoActor": "You have no controlled actor, select an actor and retry.",
   "MAGICITEMS.WarnNoMagicItem": "Your controlled Actor does not have an item named ",
-  "MAGICITEMS.WarnNoMagicItemSpell": "Your controlled Actor does not have a spell/feat named "
+  "MAGICITEMS.WarnNoMagicItemSpell": "Your controlled Actor does not have a spell/feat named ",
+
+  "MAGICITEMS.RandomResult": "Random Result"
 }
