@@ -18,6 +18,14 @@ They work very differently under the hood.
   - Has more options
   - You can add Feature and Rolltable items to the parent item
 
+## Translation
+
+You can now publicly help with translation on Weblate.
+
+<a href="https://hosted.weblate.org/engage/magic-items-2/">
+<img src="https://hosted.weblate.org/widget/magic-items-2/287x66-grey.png" alt="Translation status" />
+</a>
+
 
 ## Installation
 
