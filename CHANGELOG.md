@@ -1,3 +1,6 @@
+### 1.6.0
+- D&D 3.0 compatibility
+
 ### 1.5.2
 - Mark the module as not compatible with DND5e 3.0
 
