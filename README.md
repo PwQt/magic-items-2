@@ -7,6 +7,9 @@ Fork of [Magic Items](https://gitlab.com/riccisi/foundryvtt-magic-items/), since
 
 If you have an issue that requires quick contact, I've created a [Discord](https://discord.gg/V6J6XDv4da) community.
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J6UHCX0)
+
+
 ## Difference between [Magic Items 2](https://github.com/PwQt/magic-items-2) and [Item with Spells](https://github.com/krbz999/foundryvtt-items-with-spells-5e)
 
 They work very differently under the hood.
