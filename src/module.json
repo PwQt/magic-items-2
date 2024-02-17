@@ -12,7 +12,8 @@
     {
       "name": "PwQt",
       "url": "https://github.com/PwQt/magic-items-2",
-      "discord": "PwQt#7620"
+      "discord": "PwQt#7620",
+      "ko-fi": "pewukut"
     },
     {
       "name": "p4535992",
@@ -63,6 +64,11 @@
       "lang": "cs",
       "name": "Česky",
       "path": "languages/cs.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "languages/pl.json"
     }
   ],
   "packs": [
