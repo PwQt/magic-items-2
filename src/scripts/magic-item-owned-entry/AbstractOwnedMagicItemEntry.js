@@ -103,7 +103,7 @@ export class AbstractOwnedMagicItemEntry {
     const title = "Apply active effect";
     let x = new Dialog({
       title: title,
-      content: `${message}`,
+      content: `${message}<br><br>`,
       buttons: {
         use: {
           label: "yes",

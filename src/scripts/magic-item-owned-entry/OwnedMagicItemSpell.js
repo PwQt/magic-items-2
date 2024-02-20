@@ -44,16 +44,29 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
       consumption = parseInt(spellFormData.get("consumption"));
     }
 
-    let applyActiveEffect = async (effect) => {
-      Logger.logObject("apply active effect here");
-      let token = canvas.tokens.controlled;
-      Logger.logObject(this.effect);
-      // const effectData = mergeObject(effect.toObject(), {
-      //   disabled: false,
-      //   transfer: false,
-      //   origin: effect.uuid
-      // });
-      effect.apply(token.actor);
+    let applyActiveEffects = async (effects) => {
+      let token = canvas.tokens.controlled[0];
+      if (!token) {
+        ui.notification.warn("No token selected");
+        return;
+      }
+      let actor = token.actor;
+
+      effects.toObject().forEach((effect) => {
+        const existingEffect = actor?.effects.find((e) => e.origin === effect.uuid);
+        if (existingEffect) {
+          return existingEffect.update({ disabled: !existingEffect.disabled });
+        }
+        effect = mergeObject(effect, {
+          disabled: false,
+          transfer: false,
+          origin: effect.uuid,
+        });
+        let ae = ActiveEffect.implementation.create(effect, { parent: actor });
+        if (!ae) {
+          ui.notification.warn("An error occured while adding active effect - please check console");
+        }
+      });
     };
 
     let proceed = async () => {
@@ -94,10 +107,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
       }
       if (this.ownedItem.effects?.size > 0) {
         this.activeEffectMessage(() => {
-          Logger.debug(`Effects exist!`);
-          for (let effect in this.ownedItem.effects) {
-            applyActiveEffect(effect);
-          }
+          applyActiveEffects(this.ownedItem.effects);
         });
       }
     };
