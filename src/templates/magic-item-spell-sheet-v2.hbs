@@ -9,7 +9,7 @@
     </label>
   </div>
   {{#each items as |item i|}} {{#if (and visible active hasSpells)}}
-  <div class="items-section card" data-type="spell">
+  <div class="items-section card" data-type="spell" {{dnd5e-dataset dataset}}>
     <div class="items-header header">
       <h3 class="item-name spell-header" draggable="true">{{name}}</h3>
       {{#if chargesOnWholeItem}}
@@ -32,7 +32,7 @@
       <div class="item-header spell-consumption">{{localize "MAGICITEMS.SheetConsumption"}}</div>
       <div class="item-header spell-upcast">{{localize "MAGICITEMS.SheetCanUpcast"}}</div>
     </div>
-    <ol class="item-list unlist">
+    <ol class="item-list unlist" >
       {{#each spells as |spell|}}
       <li class="item magic-item"
         data-item-id="{{spell.id}}"

@@ -98,6 +98,27 @@ export class AbstractOwnedMagicItemEntry {
     d.render(true);
   }
 
+  activeEffectMessage(callback) {
+    const message = "Do you want to apply active effect to the selected token?";
+    const title = "Apply active effect";
+    let x = new Dialog({
+      title: title,
+      content: `${message}`,
+      buttons: {
+        use: {
+          label: "yes",
+          callback: () => callback(),
+        },
+        close: {
+          label: "no",
+          callback: () => x.close(),
+        },
+      },
+      default: "use",
+    });
+    x.render(true);
+  }
+
   computeSaveDC(item) {
     const data = this.magicItem.actor.system;
     data.attributes.spelldc = data.attributes.spellcasting ? data.abilities[data.attributes.spellcasting].dc : 10;
