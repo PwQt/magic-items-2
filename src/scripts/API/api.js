@@ -10,12 +10,12 @@ import { MagicItemSheet } from "../magicitemsheet.js";
 const API = {
   /**
    * Method for create and register a new MagicItemActor.
-   * @param {string/Actor/UUID} id The actor id to use for retrieve the Actor
+   * @param {string/Actor/UUID} actor The actor to use for retrieve the Actor
    * @returns {Actor}
    */
   actor: async function (actor) {
     const actorTmp = await RetrieveHelpers.getActorAsync(actor);
-    return MagicItemActor.get(actorTmp);
+    return MagicItemActor.get(actorTmp.id);
   },
 
   /**
