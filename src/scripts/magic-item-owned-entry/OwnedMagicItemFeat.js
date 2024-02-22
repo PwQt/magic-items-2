@@ -11,6 +11,12 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
         "system.uses": null,
       });
 
+      data = mergeObject(data, {
+        "flags.core": {
+          sourceId: this.item.uuid,
+        },
+      });
+
       const cls = CONFIG.Item.documentClass;
       this.ownedItem = new cls(data, { parent: this.magicItem.actor });
       this.ownedItem.prepareFinalAttributes();
@@ -34,24 +40,29 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
           };
 
     let proceed = async () => {
-      let chatData = await this.ownedItem.use(
+      let feat = this.ownedItem;
+      if (feat.effects?.size > 0) {
+        feat = feat.clone({ effects: {} }, { keepId: true });
+        feat.prepareFinalAttributes();
+      }
+      let chatData = await feat.use(
         {},
         {
-          createMessage: false,
+          createMessage: true,
           configureDialog: false,
+          flags: {
+            "dnd5e.itemData": this.ownedItem.toJSON(),
+          },
         }
       );
       if (chatData) {
-        // Fix https://github.com/PwQt/magic-items-2/issues/22
-        if (!game.modules.get("ready-set-roll-5e")?.active) {
-          ChatMessage.create(
-            mergeObject(chatData, {
-              "flags.dnd5e.itemData": this.ownedItem.toJSON(),
-            })
-          );
-        }
         onUsage();
         this.magicItem.update();
+      }
+      if (this.ownedItem.effects?.size > 0) {
+        this.activeEffectMessage(() => {
+          this.applyActiveEffects(this.ownedItem);
+        });
       }
     };
 

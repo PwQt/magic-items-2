@@ -25,7 +25,8 @@ const API = {
    * @returns {void} Return no response
    */
   roll: function (magicItemName, innerChildMagicItemName) {
-    const speaker = ChatMessage.getSpeaker();
+    const ChatMessage5e = CONFIG.ChatMessage.documentClass;
+    const speaker = ChatMessage5e.getSpeaker();
     let actor;
     if (speaker.token) {
       actor = game.actors.tokens[speaker.token];

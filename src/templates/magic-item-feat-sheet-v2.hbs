@@ -9,7 +9,7 @@
 		</label>
 	</div>
 	{{#each items as |item i|}} {{#if (and visible active hasFeats)}}
-	<div class="items-section card" data-type="spell">
+	<div class="items-section card" data-type="spell" {{dnd5e-dataset dataset}}>
 		<div class="items-header header">
 			<h3 class="item-name spell-header" draggable="true">{{name}}</h3>
 			{{#if chargesOnWholeItem}}
