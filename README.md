@@ -180,4 +180,4 @@ This package is under an [MIT license](LICENSE) and the [Foundry Virtual Tableto
 
 This is a fork of Magic Items module created by Simone found at [this address](https://gitlab.com/riccisi/foundryvtt-magic-items/).
 
-Magic Items is a module for Foundry VTT by Simone and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+Babele is a module for Foundry VTT by Simone and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
