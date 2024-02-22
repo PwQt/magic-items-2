@@ -1,3 +1,15 @@
+### 1.6.2
+- Brazilian Portuguese Translation by @Kharmans in https://github.com/PwQt/magic-items-2/pull/68
+- 63 bug effect not applying on a token from magic item spell by @PwQt in https://github.com/PwQt/magic-items-2/pull/69
+
+### 1.6.1.1
+- Actor API hotfix
+- localization fixes
+
+### 1.6.1
+- Incorrect Tidy5e actor loading fix by @voodoofrog
+- Started work on Polish localization of the module
+
 ### 1.6.0
 - D&D 3.0 compatibility
 
