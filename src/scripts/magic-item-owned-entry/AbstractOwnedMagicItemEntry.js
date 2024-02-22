@@ -1,3 +1,5 @@
+import Logger from "../lib/Logger";
+
 export class AbstractOwnedMagicItemEntry {
   constructor(magicItem, item) {
     this.magicItem = magicItem;
@@ -98,6 +100,29 @@ export class AbstractOwnedMagicItemEntry {
     d.render(true);
   }
 
+  activeEffectMessage(callback) {
+    const message = game.i18n.localize("MAGICITEMS.ToggleActiveEffectDialogMessage");
+    const title = game.i18n.localize("MAGICITEMS.ToggleActiveEffectDialogTitle");
+    let x = new Dialog({
+      title: title,
+      content: `${message}<br><br>`,
+      buttons: {
+        use: {
+          icon: '<i class="fas fa-check"></i>',
+          label: game.i18n.localize("MAGICITEMS.ToggleActiveEffectDialogYes"),
+          callback: () => callback(),
+        },
+        close: {
+          icon: '<i class="fas fa-times"></i>',
+          label: game.i18n.localize("MAGICITEMS.ToggleActiveEffectDialogNo"),
+          callback: () => x.close(),
+        },
+      },
+      default: "use",
+    });
+    x.render(true);
+  }
+
   computeSaveDC(item) {
     const data = this.magicItem.actor.system;
     data.attributes.spelldc = data.attributes.spellcasting ? data.abilities[data.attributes.spellcasting].dc : 10;
@@ -109,5 +134,36 @@ export class AbstractOwnedMagicItemEntry {
       const ability = CONFIG.DND5E.abilities[save.ability];
       item.labels.save = game.i18n.format("DND5E.SaveDC", { dc: save.dc || "", ability });
     }
+  }
+
+  async applyActiveEffects(item) {
+    canvas.tokens.controlled?.forEach((token) => {
+      if (!token) {
+        ui.notification.warn("No token selected");
+        return;
+      }
+      let actor = token.actor;
+
+      item?.effects.toObject()?.forEach((effect) => {
+        if (!game.user.isGM && !actor?.isOwner) {
+          return;
+        }
+        const existingEffect = actor?.effects?.find((e) => e.origin === item.uuid);
+        if (existingEffect) {
+          existingEffect.update({ disabled: !existingEffect.disabled });
+          return;
+        }
+        effect = mergeObject(effect, {
+          disabled: false,
+          transfer: false,
+          origin: item.uuid,
+        });
+        const aeCLS = CONFIG.ActiveEffect.documentClass;
+        const ae = aeCLS.create(effect, { parent: actor });
+        if (!ae) {
+          ui.notification.warn(game.i18n.localize("MAGICITEMS.ToggleActiveEffectError"));
+        }
+      });
+    });
   }
 }
