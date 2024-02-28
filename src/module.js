@@ -111,10 +111,13 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
         selector: `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_SPELLBOOK}"] .scroll-container`,
       },
       enabled(data) {
-        const actor = MagicItemActor.get(data.actor.id);
+        const magicItemActor = MagicItemActor.get(data.actor.id);
+        if (!magicItemActor) {
+          return false;
+        }
         // Required for Tidy to have accurate item data
-        actor.buildItems();
-        return ["character", "npc"].includes(data.actor.type) && actor?.hasItemsSpells();
+        magicItemActor.buildItems();
+        return ["character", "npc"].includes(data.actor.type) && magicItemActor.hasItemsSpells();
       },
       getData(data) {
         return MagicItemActor.get(data.actor.id);
@@ -136,10 +139,13 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
         selector: magicItemFeatureTargetSelector,
       },
       enabled(data) {
-        const actor = MagicItemActor.get(data.actor.id);
+        const magicItemActor = MagicItemActor.get(data.actor.id);
+        if (!magicItemActor) {
+          return false;
+        }
         // Required for Tidy to have accurate item data
-        actor.buildItems();
-        return ["character", "npc"].includes(data.actor.type) && actor?.hasItemsFeats();
+        magicItemActor.buildItems();
+        return ["character", "npc"].includes(data.actor.type) && magicItemActor.hasItemsFeats();
       },
       getData(data) {
         return MagicItemActor.get(data.actor.id);
@@ -151,9 +157,13 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
 // Wire Tidy events and register iterated, data-dependent content
 Hooks.on("tidy5e-sheet.renderActorSheet", (app, element, data) => {
   // Place wand for visible magic items
-  const actor = MagicItemActor.get(data.actor.id);
+  const magicItemActor = MagicItemActor.get(data.actor.id);
   const html = $(element);
-  actor?.items
+  if (!magicItemActor) {
+    return;
+  }
+
+  magicItemActor.items
     .filter((item) => item.visible)
     .forEach((item) => {
       let itemEl = html.find(
@@ -165,7 +175,7 @@ Hooks.on("tidy5e-sheet.renderActorSheet", (app, element, data) => {
     });
 
   // Wire events for custom tidy actor sheet content
-  MagicItemSheet.handleEvents(html, actor);
+  MagicItemSheet.handleEvents(html, magicItemActor);
 });
 
 Hooks.on(`renderItemSheet5e`, (app, html, data) => {
