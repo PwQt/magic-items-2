@@ -97,5 +97,10 @@
     "MAGICITEMS.SheetUses": "Usos",
     "MAGICITEMS.MagicItemDestroyCheckSuccess": "¡Éxito!",
     "MAGICITEMS.MagicItemDestroyCheckFailure": "¡Fallo!",
-    "MAGICITEMS.RandomResult": "Resultado aleatorio"
+    "MAGICITEMS.RandomResult": "Resultado aleatorio",
+    "MAGICITEMS.ToggleActiveEffectError": "Se ha producido un error al añadir el efecto activo - por favor, compruebe la consola.",
+    "MAGICITEMS.ToggleActiveEffectDialogMessage": "¿Quieres cambiar un efecto activo al (los) token(s) seleccionado(s)?",
+    "MAGICITEMS.ToggleActiveEffectDialogTitle": "Conmutar un efecto activo",
+    "MAGICITEMS.ToggleActiveEffectDialogYes": "Sí",
+    "MAGICITEMS.ToggleActiveEffectDialogNo": "No"
 }
