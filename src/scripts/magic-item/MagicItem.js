@@ -6,8 +6,8 @@ import { MagicItemHelpers } from "../magic-item-helpers.js";
 import { NumberUtils } from "../utils/number.js";
 
 export class MagicItem {
-  constructor(flags) {
-    const data = mergeObject(this.defaultData(), flags || {}, { inplace: false });
+  constructor(flagsData) {
+    const data = mergeObject(this.defaultData(), flagsData || {}, { inplace: false });
 
     this.enabled = data.enabled;
     this.equipped = data.equipped;

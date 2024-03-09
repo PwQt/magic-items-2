@@ -9,7 +9,8 @@ import { MagicItem } from "./MagicItem";
 
 export class OwnedMagicItem extends MagicItem {
   constructor(item, actor, magicItemActor) {
-    super(item.flags.magicitems);
+    const flagsData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+    super(flagsData);
     this.uuid = item.uuid;
     this.id = item.id;
     this.item = item;
@@ -17,7 +18,7 @@ export class OwnedMagicItem extends MagicItem {
     this.name = item.name;
     this.img = item.img;
     this.pack = item.pack;
-    this.uses = parseInt("uses" in item.flags.magicitems ? item.flags.magicitems.uses : this.charges);
+    this.uses = parseInt("uses" in flagsData ? flagsData.uses : this.charges);
 
     this.rechargeableLabel = this.rechargeable
       ? `(${game.i18n.localize("MAGICITEMS.SheetRecharge")}: ${this.rechargeText} ${
@@ -233,7 +234,7 @@ export class OwnedMagicItem extends MagicItem {
     this.item
       .update({
         flags: {
-          magicitems: this.serializeData(),
+          [CONSTANTS.MODULE_ID]: this.serializeData(),
         },
       })
       .then(() => {

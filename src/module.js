@@ -89,13 +89,15 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
       return MagicItemTab.isAcceptedItemType(data.item) && MagicItemTab.isAllowedToShow();
     },
     getData(data) {
-      return new MagicItem(data.item.flags.magicitems);
+      const flagsData = foundry.utils.getProperty(data.item, `flags.${CONSTANTS.MODULE_ID}`);
+      return new MagicItem(flagsData);
     },
     onRender(params) {
       const html = $(params.element);
 
       if (params.data.editable) {
-        const magicItem = new MagicItem(params.data.item.flags.magicitems);
+        const flagsData = foundry.utils.getProperty(params.data.item, `flags.${CONSTANTS.MODULE_ID}`);
+        const magicItem = new MagicItem(flagsData);
         MagicItemTab.activateTabContentsListeners({
           html: html,
           item: params.data.item,
@@ -241,6 +243,13 @@ Hooks.on(`createItem`, (item) => {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
+      // Set up defaults flags
+      const defaultData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`);
+      if (!defaultData) {
+        const currentData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+        delete currentData[CONSTANTS.FLAGS.DEFAULT];
+        item.setFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.DEFAULT, currentData);
+      }
       miActor.buildItems();
     }
   }

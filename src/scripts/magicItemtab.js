@@ -63,8 +63,8 @@ export class MagicItemTab {
       app._dragDrop.push(dragDrop);
       dragDrop.bind(app.form);
     }
-
-    this.magicItem = new MagicItem(app.item.flags.magicitems);
+    const flagsData = foundry.utils.getProperty(app.item, `flags.${CONSTANTS.MODULE_ID}`);
+    this.magicItem = new MagicItem(flagsData);
 
     this.render(app);
   }
@@ -170,7 +170,7 @@ export class MagicItemTab {
       magicItem.addEntity(entity, pack);
       item.update({
         flags: {
-          magicitems: magicItem.serializeData(),
+          [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
         },
       });
     }
@@ -196,7 +196,7 @@ export class MagicItemTab {
       onMagicItemUpdatingCallback?.();
       item.update({
         flags: {
-          magicitems: magicItem.serializeData(),
+          [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
         },
       });
     });
@@ -205,7 +205,7 @@ export class MagicItemTab {
       onMagicItemUpdatingCallback?.();
       item.update({
         flags: {
-          magicitems: magicItem.serializeData(),
+          [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
         },
       });
     });
@@ -214,7 +214,7 @@ export class MagicItemTab {
       onMagicItemUpdatingCallback?.();
       item.update({
         flags: {
-          magicitems: magicItem.serializeData(),
+          [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
         },
       });
     });

@@ -1,4 +1,5 @@
 import { MAGICITEMS } from "./config.js";
+import CONSTANTS from "./constants/constants.js";
 import Logger from "./lib/Logger.js";
 import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { OwnedMagicItem } from "./magic-item/OwnedMagicItem.js";
@@ -132,7 +133,10 @@ export class MagicItemActor {
    */
   buildItems() {
     this.items = this.actor.items
-      .filter((item) => typeof item.flags.magicitems !== "undefined" && item.flags.magicitems.enabled)
+      .filter((item) => {
+        const flagsData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+        return typeof flagsData !== "undefined" && flagsData.enabled;
+      })
       .map((item) => new OwnedMagicItem(item, this.actor, this));
     this.fireChange();
   }
@@ -298,6 +302,21 @@ export class MagicItemActor {
     });
     this.items.splice(idx, 1);
     this.destroyed.push(item);
-    this.actor.deleteEmbeddedDocuments("Item", [item.id]);
+
+    const currentQuantity = foundry.utils.getProperty(item, CONSTANTS.QUANTITY_PROPERTY_PATH) || 1;
+    if (currentQuantity > 1) {
+      const defaultData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`);
+      const currentData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+      const updateItem = {
+        _id: item.id,
+        [CONSTANTS.QUANTITY_PROPERTY_PATH]: currentQuantity - 1,
+        flags: {
+          [CONSTANTS.MODULE_ID]: defaultData || currentData || {},
+        },
+      };
+      this.actor.updateEmbeddedDocuments("Item", [updateItem]);
+    } else {
+      this.actor.deleteEmbeddedDocuments("Item", [item.id]);
+    }
   }
 }

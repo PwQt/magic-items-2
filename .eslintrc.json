@@ -283,7 +283,9 @@
     "game": true,
     "Handlebars": true,
     "Babele": true,
-    "Macro": true
+    "Macro": true,
+    "foundry": true,
+    "CONFIG": true
   }
 }
 
