@@ -75,7 +75,7 @@
     {
       "name": "magicitems",
       "label": "Magic Items",
-      "path": "packs/magic-items.db",
+      "path": "packs/magicitems.db",
       "type": "Item",
       "system": "dnd5e",
       "ownership": {
@@ -89,7 +89,7 @@
     {
       "name": "magicitem-feats",
       "label": "Magic Items: Item Feats",
-      "path": "packs/magic-items-item-feats.db",
+      "path": "packs/magicitem-feats.db",
       "type": "Item",
       "system": "dnd5e",
       "ownership": {
@@ -103,7 +103,7 @@
     {
       "name": "magicitem-tables",
       "label": "Magic Items: Item Tables",
-      "path": "packs/magic-items-item-tables.db",
+      "path": "packs/magicitem-tables.db",
       "type": "RollTable",
       "system": "dnd5e",
       "ownership": {
