@@ -25,7 +25,7 @@ export class AbstractMagicItemEntry {
         if (entity) {
           resolve(entity);
         } else {
-          warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + itemName, true);
+          warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + this.name, true);
           reject();
         }
       } else {
