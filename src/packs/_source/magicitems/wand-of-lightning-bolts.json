@@ -77,7 +77,7 @@
     }
   },
   "flags": {
-    "magicitems": {
+    "magic-items-2": {
       "enabled": true,
       "equipped": true,
       "attuned": true,
