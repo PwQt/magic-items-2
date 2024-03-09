@@ -1,5 +1,6 @@
 import { MAGICITEMS } from "../config";
 import CONSTANTS from "../constants/constants";
+import Logger from "../lib/Logger";
 import { warn } from "../lib/lib";
 import { MagicItemHelpers } from "../magic-item-helpers";
 import { OwnedMagicItemFeat } from "../magic-item-owned-entry/OwnedMagicItemFeat";
@@ -89,7 +90,7 @@ export class OwnedMagicItem extends MagicItem {
   rollByName(itemName) {
     let found = this.ownedEntries.filter((entry) => entry.name === itemName);
     if (!found.length) {
-      warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + itemName, true);
+      Logger.warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + itemName, true);
       return;
     }
     found[0].roll();

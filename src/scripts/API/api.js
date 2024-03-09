@@ -1,3 +1,4 @@
+import Logger from "../lib/Logger.js";
 import { warn } from "../lib/lib.js";
 import { RetrieveHelpers } from "../lib/retrieve-helpers.js";
 import { MagicItemTab } from "../magicItemtab.js";
@@ -36,7 +37,7 @@ const API = {
     }
     const magicItemActor = actor ? MagicItemActor.get(actor.id) : null;
     if (!magicItemActor) {
-      warn(game.i18n.localize("MAGICITEMS.WarnNoActor"), true);
+      Logger.warn(game.i18n.localize("MAGICITEMS.WarnNoActor"), true);
       return;
     }
     magicItemActor.rollByName(magicItemName, innerChildMagicItemName);

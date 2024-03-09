@@ -47,7 +47,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
     let applyActiveEffects = async (item) => {
       canvas.tokens.controlled?.forEach((token) => {
         if (!token) {
-          ui.notification.warn("No token selected");
+          Logger.warn("No token selected", true);
           return;
         }
         let actor = token.actor;
@@ -63,7 +63,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
           });
           let ae = ActiveEffect.implementation.create(effect, { parent: actor });
           if (!ae) {
-            ui.notification.warn("An error occured while adding active effect - please check console");
+            Logger.warn("An error occured while adding active effect - please check console", true);
           }
         });
       });

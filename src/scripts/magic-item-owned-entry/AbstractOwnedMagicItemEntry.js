@@ -139,7 +139,7 @@ export class AbstractOwnedMagicItemEntry {
   async applyActiveEffects(item) {
     canvas.tokens.controlled?.forEach((token) => {
       if (!token) {
-        ui.notification.warn("No token selected");
+        Logger.warn("No token selected", true);
         return;
       }
       let actor = token.actor;
@@ -161,7 +161,7 @@ export class AbstractOwnedMagicItemEntry {
         const aeCLS = CONFIG.ActiveEffect.documentClass;
         const ae = aeCLS.create(effect, { parent: actor });
         if (!ae) {
-          ui.notification.warn(game.i18n.localize("MAGICITEMS.ToggleActiveEffectError"));
+          Logger.warn(game.i18n.localize("MAGICITEMS.ToggleActiveEffectError"), true);
         }
       });
     });

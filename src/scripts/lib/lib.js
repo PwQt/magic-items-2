@@ -2,50 +2,6 @@ import CONSTANTS from "../constants/constants.js";
 import Logger from "./Logger.js";
 import { RetrieveHelpers } from "./retrieve-helpers.js";
 
-// ================================
-// Logger utility
-// ================================
-
-export function debug(msg, ...args) {
-  return Logger.debug(msg, args);
-}
-
-export function log(message, ...args) {
-  return Logger.log(message, args);
-}
-
-export function notify(message, ...args) {
-  return Logger.notify(message, args);
-}
-
-export function info(info, notify = false, ...args) {
-  return Logger.info(info, notify, args);
-}
-
-export function warn(warning, notify = false, ...args) {
-  return Logger.warn(warning, notify, args);
-}
-
-export function error(error, notify = true, ...args) {
-  return Logger.error(error, notify, args);
-}
-
-export function timelog(message) {
-  return Logger.timelog(message);
-}
-
-export const i18n = (key) => {
-  return Logger.i18n(key);
-};
-
-export const i18nFormat = (key, data = {}) => {
-  return Logger.i18nFormat(key, data);
-};
-
-export function dialogWarning(message, icon = "fas fa-exclamation-triangle") {
-  return Logger.dialogWarning(message, icon);
-}
-
 // =========================================================================================
 
 export function isEmptyObject(obj) {
@@ -76,7 +32,7 @@ export async function runMacro(macroReference, ...macroData) {
 export async function runMacroOnExplicitActor(explicitActor, macroReference, ...macroData) {
   let macroFounded = await RetrieveHelpers.getMacroAsync(macroReference, false, true);
   if (!macroFounded) {
-    throw error(`Could not find macro with reference "${macroReference}"`, true);
+    throw Logger.error(`Could not find macro with reference "${macroReference}"`, true);
   }
   // Credit to Otigon, Zhell, Gazkhan and MrVauxs for the code in this section
   /*
@@ -85,18 +41,18 @@ export async function runMacroOnExplicitActor(explicitActor, macroReference, ...
       let packArray = macroId.split(".");
       let compendium = game.packs.get(`${packArray[1]}.${packArray[2]}`);
       if (!compendium) {
-        throw error(`Compendium ${packArray[1]}.${packArray[2]} was not found`, true);
+        throw Logger.error(`Compendium ${packArray[1]}.${packArray[2]} was not found`, true);
       }
       let findMacro = (await compendium.getDocuments()).find(m => m.name === packArray[3] || m.id === packArray[3])
       if (!findMacro) {
-        throw error(`The "${packArray[3]}" macro was not found in Compendium ${packArray[1]}.${packArray[2]}`, true);
+        throw Logger.error(`The "${packArray[3]}" macro was not found in Compendium ${packArray[1]}.${packArray[2]}`, true);
       }
       macro = new Macro(findMacro?.toObject());
       macro.ownership.default = CONST.DOCUMENT_PERMISSION_LEVELS.OWNER;
     } else {
       macro = game.macros.getName(macroId);
       if (!macro) {
-        throw error(`Could not find macro with name "${macroId}"`, true);
+        throw Logger.error(`Could not find macro with name "${macroId}"`, true);
       }
     }
     */
@@ -126,7 +82,7 @@ export async function runMacroOnExplicitActor(explicitActor, macroReference, ...
       const character = game.user.character;
       const event = getEvent();
 
-      debug("runMacro | ", { macro, speaker, actor, token, character, event, args });
+      Logger.debug("runMacro | ", { macro, speaker, actor, token, character, event, args });
 
       //build script execution
       let body = ``;
@@ -139,13 +95,13 @@ export async function runMacroOnExplicitActor(explicitActor, macroReference, ...
       }
       const fn = Function("speaker", "actor", "token", "character", "event", "args", body);
 
-      debug("runMacro | ", { body, fn });
+      Logger.debug("runMacro | ", { body, fn });
 
       //attempt script execution
       try {
         fn.call(macro, speaker, actor, token, character, event, args);
       } catch (err) {
-        error(`error macro Execution`, true, err);
+        Logger.error(`error macro Execution`, true, err);
       }
 
       function getEvent() {
@@ -159,10 +115,10 @@ export async function runMacroOnExplicitActor(explicitActor, macroReference, ...
         return undefined;
       }
     } else {
-      warn(`Something is wrong a macro can be only a 'char' or a 'script'`, true);
+      Logger.warn(`Something is wrong a macro can be only a 'char' or a 'script'`, true);
     }
   } catch (err) {
-    throw error(`Error when executing macro ${macroReference}!`, true, macroDataArr, err);
+    throw Logger.error(`Error when executing macro ${macroReference}!`, true, macroDataArr, err);
   }
 
   return result;
