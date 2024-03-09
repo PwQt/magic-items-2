@@ -280,7 +280,10 @@
   ],
   "globals": {
     "Hooks": true,
-    "game": true
+    "game": true,
+    "Handlebars": true,
+    "Babele": true,
+    "Macro": true
   }
 }
 

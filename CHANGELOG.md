@@ -1,5 +1,7 @@
-### 1.6.
+### 1.6.3.2
 
+- Bug fix: https://github.com/PwQt/magic-items-2/issues/79
+- Bug fix: https://github.com/PwQt/magic-items-2/issues/78
 - Recovery magic items packs from version 1.6.2 ?
 
 ### 1.6.2

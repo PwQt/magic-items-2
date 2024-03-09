@@ -6,7 +6,7 @@ import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
 import { MagicItem } from "./scripts/magic-item/MagicItem.js";
 
-//CONFIG.debug.hooks = true;
+// CONFIG.debug.hooks = true;
 
 Handlebars.registerHelper("enabled", function (value, options) {
   return Boolean(value) ? "" : "disabled";

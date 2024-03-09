@@ -1,5 +1,4 @@
 import Logger from "../lib/Logger";
-import { warn } from "../lib/lib";
 import { MagicItemHelpers } from "../magic-item-helpers";
 
 export class AbstractMagicItemEntry {

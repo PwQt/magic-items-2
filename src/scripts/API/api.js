@@ -1,5 +1,4 @@
 import Logger from "../lib/Logger.js";
-import { warn } from "../lib/lib.js";
 import { RetrieveHelpers } from "../lib/retrieve-helpers.js";
 import { MagicItemTab } from "../magicItemtab.js";
 import { MagicItemActor } from "../magicitemactor.js";
