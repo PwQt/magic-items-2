@@ -115,6 +115,14 @@
       "flags": {}
     }
   ],
+  "packFolders": [
+    {
+      "name": "Magic Items",
+      "color": "#010048",
+      "sorting": "a",
+      "packs": ["magicitems","magicitem-feats","magicitem-tables"]
+    }
+  ],
   "esmodules": ["module.js"],
   "styles": ["styles/magicitems.css"],
   "manifestPlusVersion": "1.2.0",
