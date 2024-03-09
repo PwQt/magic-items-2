@@ -1,0 +1,124 @@
+{
+  "name": "Medallion of Thoughts",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "equipment",
+  "data": {
+    "description": {
+      "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>The medallion has 3 charges. While wearing it, you can use an action and expend 1 charge to cast the @Compendium[dnd5e.spells.ppWAAEul0QHtm4er]{Detect Thoughts}&nbsp;spell (save DC 13) from it. The medallion regains 1d3 expended charges daily at dawn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 181",
+    "quantity": 1,
+    "weight": 0.01,
+    "price": 3000,
+    "attuned": false,
+    "equipped": false,
+    "rarity": "Uncommon",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 0,
+      "units": ""
+    },
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": 30,
+      "long": 0,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 3,
+      "max": 3,
+      "per": "charges"
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "wis",
+      "dc": 13,
+      "scaling": "flat"
+    },
+    "armor": {
+      "value": 0,
+      "type": "trinket",
+      "dex": 0
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "speed": {
+      "value": null,
+      "conditions": ""
+    },
+    "strength": 0,
+    "stealth": false,
+    "proficient": false,
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {
+    "magicitems": {
+      "enabled": true,
+      "equipped": true,
+      "attuned": true,
+      "charges": "3",
+      "chargeType": "c1",
+      "destroy": false,
+      "destroyFlavorText": "reaches 0 charges: it crumbles into ashes and is destroyed.",
+      "rechargeable": true,
+      "recharge": "1d3",
+      "rechargeType": "t2",
+      "rechargeUnit": "r2",
+      "sorting": "l",
+      "spells": {
+        "0": {
+          "id": "ppWAAEul0QHtm4er",
+          "name": "Detect Thoughts",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/light/explosion-star-teal-purple.webp",
+          "baseLevel": "2",
+          "level": "2",
+          "consumption": "1",
+          "upcast": "2",
+          "upcastCost": "1",
+          "flatDc": true,
+          "dc": "13"
+        }
+      }
+    }
+  },
+  "img": "icons/equipment/neck/pendant-bronze-gem-blue.webp",
+  "effects": [],
+  "_id": "gPfCf4F3pmV6NcJK",
+  "_key": "!items!gPfCf4F3pmV6NcJK"
+}

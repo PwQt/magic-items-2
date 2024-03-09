@@ -1,0 +1,119 @@
+{
+  "name": "Wand of Magic Missiles",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "consumable",
+  "data": {
+    "description": {
+      "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">This wand has 7 charges. While holding it, you can use an action to expend 1 or more of its charges to cast the @Compendium[dnd5e.spells.41JIhpDyM9Anm7cs]{Magic Missile} spell from it. For 1 charge, you cast the 1st-level version of the spell. You can increase the spell slot level by one for each additional charge you expend.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">The wand regains 1d6 + 1 expended charges daily at dawn. If you expend the wand's last charge, roll a d20. On a 1, the wand crumbles into ashes and is destroyed.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 211",
+    "quantity": 1,
+    "weight": 1,
+    "price": 8000,
+    "attuned": false,
+    "equipped": false,
+    "rarity": "Uncommon",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": 120,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 7,
+      "max": 7,
+      "per": "charges",
+      "autoDestroy": false,
+      "autoUse": true
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "util",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "3d4",
+          "force"
+        ],
+        [
+          "3",
+          "force"
+        ]
+      ],
+      "versatile": "1d4 +1"
+    },
+    "formula": "1d6 +1",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "consumableType": "wand",
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {
+    "magicitems": {
+      "enabled": true,
+      "equipped": true,
+      "attuned": false,
+      "charges": "7",
+      "chargeType": "c1",
+      "destroy": true,
+      "destroyFlavorText": "reaches 0 charges: it crumbles into ashes and is destroyed.",
+      "rechargeable": true,
+      "recharge": "1d6 + 1",
+      "rechargeType": "t2",
+      "rechargeUnit": "r2",
+      "sorting": "l",
+      "spells": {
+        "0": {
+          "id": "41JIhpDyM9Anm7cs",
+          "name": "Magic Missile",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/fire/projectile-meteor-salvo-light-pink.webp",
+          "baseLevel": "1",
+          "level": "1",
+          "consumption": "1",
+          "upcast": "7",
+          "upcastCost": "1",
+          "flatDc": false
+        }
+      },
+      "destroyCheck": "d2",
+      "destroyType": "dt1"
+    }
+  },
+  "img": "icons/weapons/staves/staff-ornate-engraved-blue.webp",
+  "effects": [],
+  "_id": "asPjZFIyF9ekIWhI",
+  "_key": "!items!asPjZFIyF9ekIWhI"
+}

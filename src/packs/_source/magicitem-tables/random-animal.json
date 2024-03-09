@@ -1,0 +1,65 @@
+{
+  "name": "Random Animal",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "flags": {},
+  "img": "icons/environment/creatures/frog-spotted-green.webp",
+  "description": "An animal appears in the unoccupied space nearest the target. The animal isn't under your control and acts as it normally would.",
+  "results": [
+    {
+      "_id": "JBkAKieDNE17xSOw",
+      "flags": {},
+      "type": 2,
+      "text": "Rhinoceros",
+      "img": "icons/svg/mystery-man.svg",
+      "collection": "dnd5e.monsters",
+      "resultId": "SBCe2BSa6opTS5M4",
+      "weight": 1,
+      "range": [
+        1,
+        25
+      ],
+      "drawn": false,
+      "_key": "!tables.results!qYQFIhYtCDmOYlWc.JBkAKieDNE17xSOw"
+    },
+    {
+      "_id": "brSu0FsBqDTAMBgN",
+      "flags": {},
+      "type": 2,
+      "text": "Elephant",
+      "img": "icons/svg/mystery-man.svg",
+      "collection": "dnd5e.monsters",
+      "resultId": "jLPhaBnMtAbB5dp1",
+      "weight": 1,
+      "range": [
+        26,
+        50
+      ],
+      "drawn": false,
+      "_key": "!tables.results!qYQFIhYtCDmOYlWc.brSu0FsBqDTAMBgN"
+    },
+    {
+      "_id": "QAxlIOMiBqchyLg7",
+      "flags": {},
+      "type": 2,
+      "text": "Rat",
+      "img": "systems/dnd5e/tokens/beast/Rat.png",
+      "collection": "dnd5e.monsters",
+      "resultId": "pozQUPTnLZW8epox",
+      "weight": 1,
+      "range": [
+        51,
+        100
+      ],
+      "drawn": false,
+      "_key": "!tables.results!qYQFIhYtCDmOYlWc.QAxlIOMiBqchyLg7"
+    }
+  ],
+  "formula": "1d100",
+  "replacement": true,
+  "displayRoll": true,
+  "_id": "qYQFIhYtCDmOYlWc",
+  "_key": "!tables!qYQFIhYtCDmOYlWc"
+}

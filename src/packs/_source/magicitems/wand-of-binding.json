@@ -1,0 +1,124 @@
+{
+  "name": "Wand of Binding",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "consumable",
+  "data": {
+    "description": {
+      "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em style=\"box-sizing: border-box; user-select: text;\">(Requires attunement by a spellcaster)</em></p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">This wand has 7 charges for the following properties. It regains 1d6 + 1 expended charges daily at dawn. If you expend the wand's last charge, roll a d20. On a 1, the wand crumbles into ashes and is destroyed.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><strong style=\"box-sizing: border-box; user-select: text;\">Spells</strong>. While holding the wand, you can use an action to expend some of its charges to cast one of the following spells (save DC 17): @Compendium[dnd5e.spells.l9Ju5KE7bbn3WpTm]{Hold Monster} (5 charges) or @Compendium[dnd5e.spells.3Lo9boi7P2ro6QV4]{Hold Person}&nbsp;(2 charges).</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><strong style=\"box-sizing: border-box; user-select: text;\">Assisted Escape</strong>. While holding the wand, you can use your reaction to expend 1 charge and gain advantage on a saving throw you make to avoid being paralyzed or restrained, or you can expend 1 charge and gain advantage on any check you make to escape a grapple.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 209",
+    "quantity": 1,
+    "weight": 1,
+    "price": 10000,
+    "attuned": false,
+    "equipped": false,
+    "rarity": "Rare",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": 7,
+      "max": 7,
+      "per": "charges",
+      "autoDestroy": false,
+      "autoUse": true
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "1d6 +1",
+    "save": {
+      "ability": "wis",
+      "dc": 17,
+      "scaling": "flat"
+    },
+    "consumableType": "wand",
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {
+    "magicitems": {
+      "enabled": true,
+      "equipped": true,
+      "attuned": true,
+      "charges": "7",
+      "chargeType": "c1",
+      "destroy": true,
+      "destroyCheck": "d2",
+      "destroyType": "dt1",
+      "destroyFlavorText": "reaches 0 charges: it crumbles into ashes and is destroyed.",
+      "rechargeable": true,
+      "recharge": "1d6 + 1",
+      "rechargeType": "t2",
+      "rechargeUnit": "r2",
+      "sorting": "l",
+      "spells": {
+        "0": {
+          "id": "3Lo9boi7P2ro6QV4",
+          "name": "Hold Person",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/control/debuff-chains-ropes-purple.webp",
+          "baseLevel": "2",
+          "level": "2",
+          "consumption": "2",
+          "upcast": "2",
+          "upcastCost": "1",
+          "flatDc": true,
+          "dc": "17"
+        },
+        "1": {
+          "id": "l9Ju5KE7bbn3WpTm",
+          "name": "Hold Monster",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/control/debuff-chains-ropes-red.webp",
+          "baseLevel": "5",
+          "level": "5",
+          "consumption": "5",
+          "upcast": "5",
+          "upcastCost": "1",
+          "flatDc": true,
+          "dc": "17"
+        }
+      }
+    }
+  },
+  "img": "icons/weapons/staves/staff-ornate-engraved-blue.webp",
+  "effects": [],
+  "_id": "nU5ToL7WxCTgiASY",
+  "_key": "!items!nU5ToL7WxCTgiASY"
+}

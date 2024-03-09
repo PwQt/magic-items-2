@@ -1,0 +1,137 @@
+{
+  "_id": "hWHtehdckla2iZ6D",
+  "name": "Helm of Telepathy",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "equipment",
+  "data": {
+    "description": {
+      "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>While wearing this helm, you can use an action to cast the @Compendium[dnd5e.spells.ppWAAEul0QHtm4er]{Detect Thoughts} spell (save DC 13) from it. As long as you maintain concentration on the spell, you can use a bonus action to send a telepathic message to a creature you are focused on. It can reply using a bonus action to do so while your focus on it continues.<br>While focusing on a creature with Detect Thoughts, you can use an action to cast the @Compendium[dnd5e.spells.zMAWdyc8UVb37BK4]{Suggestion} spell (save DC 13) from the helm on that creature. Once used, the Suggestion&nbsp;property can't be used again until the next dawn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 174",
+    "quantity": 1,
+    "weight": 2,
+    "price": 12000,
+    "attuned": false,
+    "equipped": false,
+    "rarity": "Uncommon",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 0,
+      "units": ""
+    },
+    "target": {
+      "value": 0,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": 30,
+      "long": 0,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 1,
+      "max": 1,
+      "per": "day"
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "wis",
+      "dc": 13,
+      "scaling": "flat"
+    },
+    "armor": {
+      "value": 0,
+      "type": "clothing",
+      "dex": 0
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "speed": {
+      "value": null,
+      "conditions": ""
+    },
+    "strength": 0,
+    "stealth": false,
+    "proficient": false,
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {
+    "magicitems": {
+      "enabled": true,
+      "equipped": true,
+      "attuned": true,
+      "charges": "1",
+      "chargeType": "c1",
+      "destroy": false,
+      "destroyFlavorText": "reaches 0 charges: it crumbles into ashes and is destroyed.",
+      "rechargeable": true,
+      "recharge": "1",
+      "rechargeType": "t1",
+      "rechargeUnit": "r2",
+      "sorting": "l",
+      "spells": {
+        "0": {
+          "id": "ppWAAEul0QHtm4er",
+          "name": "Detect Thoughts",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/light/explosion-star-teal-purple.webp",
+          "baseLevel": "2",
+          "level": "2",
+          "consumption": "0",
+          "upcast": "2",
+          "upcastCost": "1",
+          "flatDc": true,
+          "dc": "13"
+        },
+        "1": {
+          "id": "zMAWdyc8UVb37BK4",
+          "name": "Suggestion",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/air/air-burst-spiral-pink.webp",
+          "baseLevel": "2",
+          "level": "2",
+          "consumption": "1",
+          "upcast": "2",
+          "upcastCost": "1",
+          "flatDc": true,
+          "dc": "13"
+        }
+      }
+    }
+  },
+  "img": "icons/magic/control/control-influence-rally-purple.webp",
+  "effects": [],
+  "_key": "!items!hWHtehdckla2iZ6D"
+}

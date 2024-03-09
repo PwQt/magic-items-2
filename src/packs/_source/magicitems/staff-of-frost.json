@@ -1,0 +1,170 @@
+{
+  "name": "Staff of Frost",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "weapon",
+  "data": {
+    "description": {
+      "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em style=\"box-sizing: border-box; user-select: text;\">(Requires attunement by a druid, sorcerer, warlock, or wizard)</em></p>\n<p>You have resistance to cold damage while you hold this staff.</p>\n<p>The staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC: @Compendium[dnd5e.spells.RpKjTlYASrfqUPVA]{Cone of Cold} (5 charges), @Compendium[dnd5e.spells.IBJmWjzbQGu7M4UX]{Fog Cloud} (1 charge), @Compendium[dnd5e.spells.WN2LWEljYU6QqnRH]{Ice Storm} (4 charges), or @Compendium[dnd5e.spells.fzZnVKLmBMo2f5up]{Wall of Ice} (4 charges).</p>\n<p>The staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff turns to water and is destroyed.</p>\n<p><em style=\"color: #191813; font-size: 13px;\">Foundry note: the Other Formula button has been configured to roll the staff's recharge rate at dawn if required.</em></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 201",
+    "quantity": 1,
+    "weight": 4,
+    "price": 26000,
+    "attuned": false,
+    "equipped": false,
+    "rarity": "Very rare",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": 10,
+      "max": 10,
+      "per": "charges"
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "1d6 +4",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "armor": {
+      "value": 10
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "weaponType": "simpleM",
+    "properties": {
+      "amm": false,
+      "hvy": false,
+      "fin": false,
+      "fir": false,
+      "foc": false,
+      "lgt": false,
+      "lod": false,
+      "rch": false,
+      "rel": false,
+      "ret": false,
+      "spc": false,
+      "thr": false,
+      "two": false,
+      "ver": false
+    },
+    "proficient": false,
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {
+    "magicitems": {
+      "enabled": true,
+      "equipped": true,
+      "attuned": true,
+      "charges": "10",
+      "chargeType": "c1",
+      "destroy": true,
+      "destroyCheck": "d2",
+      "destroyType": "dt1",
+      "destroyFlavorText": "reaches 0 charges: the staff turns to water and is destroyed.",
+      "rechargeable": true,
+      "recharge": "1d6 + 4",
+      "rechargeType": "t2",
+      "rechargeUnit": "r2",
+      "sorting": "l",
+      "spells": {
+        "0": {
+          "id": "IBJmWjzbQGu7M4UX",
+          "name": "Fog Cloud",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/air/fog-gas-smoke-dense-gray.webp",
+          "baseLevel": "1",
+          "level": "1",
+          "consumption": "1",
+          "upcast": "1",
+          "upcastCost": "1",
+          "flatDc": false
+        },
+        "1": {
+          "id": "WN2LWEljYU6QqnRH",
+          "name": "Ice Storm",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/water/projectiles-ice-faceted-shard-salvo-blue.webp",
+          "baseLevel": "4",
+          "level": "4",
+          "consumption": "4",
+          "upcast": "4",
+          "upcastCost": "1",
+          "flatDc": false
+        },
+        "2": {
+          "id": "RpKjTlYASrfqUPVA",
+          "name": "Cone of Cold",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/water/projectiles-ice-faceted-shard-salvo-blue.webp",
+          "baseLevel": "5",
+          "level": "5",
+          "consumption": "5",
+          "upcast": "5",
+          "upcastCost": "1",
+          "flatDc": false
+        },
+        "3": {
+          "id": "fzZnVKLmBMo2f5up",
+          "name": "Wall of Ice",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/light/beam-rays-blue-large.webp",
+          "baseLevel": "6",
+          "level": "6",
+          "consumption": "4",
+          "upcast": "6",
+          "upcastCost": "1",
+          "flatDc": false
+        }
+      }
+    }
+  },
+  "img": "icons/weapons/staves/staff-ornate-engraved-blue.webp",
+  "effects": [],
+  "_id": "E7E7QrTtykvBpIUK",
+  "_key": "!items!E7E7QrTtykvBpIUK"
+}

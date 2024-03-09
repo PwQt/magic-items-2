@@ -1,0 +1,163 @@
+{
+  "name": "Staff of Charming",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "weapon",
+  "data": {
+    "description": {
+      "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em style=\"box-sizing: border-box; user-select: text;\">(Requires attunement by a bard, cleric, druid, sorcerer, warlock, or wizard)</em></p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">While holding this staff, you can use an action to expend 1 of its 10 charges to cast&nbsp;<a class=\"entity-link\" style=\"box-sizing: border-box; user-select: text;\" draggable=\"true\" data-pack=\"dnd5e.spells\" data-id=\"eS7XnnApoxRxYXPs\">&nbsp;Charm Person</a>,&nbsp;<a class=\"entity-link\" style=\"box-sizing: border-box; user-select: text;\" draggable=\"true\" data-pack=\"dnd5e.spells\" data-id=\"arzCrMRgcNiQuh43\">&nbsp;Command</a>, or <a class=\"entity-link\" style=\"box-sizing: border-box; user-select: text;\" draggable=\"true\" data-pack=\"dnd5e.spells\" data-id=\"4dSvfvTy2ZIJ3K4k\">Comprehend Languages</a>&nbsp;from it using your spell save DC. The staff can also be used as a magic quarterstaff.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">If you are holding the staff and fail a saving throw against an enchantment spell that targets only you, you can turn your failed save into a successful one. You can't use this property of the staff again until the next dawn. If you succeed on a save against an enchantment spell that targets only you, with or without the staff's intervention, you can use your reaction to expend 1 charge from the staff and turn the spell back on its caster as if you had cast the spell.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">The staff regains 1d8 + 2 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff becomes a nonmagical quarterstaff.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em>Foundry note: the Other Formula button has been configured to roll the staff's recharge rate at dawn if required.</em></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 201",
+    "quantity": 1,
+    "weight": 4,
+    "price": 12000,
+    "attuned": false,
+    "equipped": false,
+    "rarity": "Rare",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": ""
+    },
+    "target": {
+      "value": null,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": 5,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 10,
+      "max": 10,
+      "per": "charges"
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [
+        [
+          "1d6 + @mod",
+          "bludgeoning"
+        ]
+      ],
+      "versatile": "1d8 + @mod"
+    },
+    "formula": "1d8 +2",
+    "save": {
+      "ability": "wis",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "armor": {
+      "value": 10
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "weaponType": "simpleM",
+    "properties": {
+      "amm": false,
+      "hvy": false,
+      "fin": false,
+      "fir": false,
+      "foc": false,
+      "lgt": false,
+      "lod": false,
+      "rch": false,
+      "rel": false,
+      "ret": false,
+      "spc": false,
+      "thr": false,
+      "two": false,
+      "ver": true
+    },
+    "proficient": false,
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {
+    "magicitems": {
+      "enabled": true,
+      "equipped": true,
+      "attuned": true,
+      "charges": "10",
+      "chargeType": "c1",
+      "destroy": true,
+      "destroyCheck": "d2",
+      "destroyType": "dt2",
+      "destroyFlavorText": "reaches 0 charges: the staff becomes a nonmagical quarterstaff.",
+      "rechargeable": true,
+      "recharge": "1d8 + 2",
+      "rechargeType": "t2",
+      "rechargeUnit": "r2",
+      "sorting": "l",
+      "spells": {
+        "0": {
+          "id": "eS7XnnApoxRxYXPs",
+          "name": "Charm Person",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/fire/explosion-fireball-medium-purple-pink.webp",
+          "baseLevel": "1",
+          "level": "1",
+          "consumption": "1",
+          "upcast": "1",
+          "upcastCost": "1",
+          "flatDc": false
+        },
+        "1": {
+          "id": "arzCrMRgcNiQuh43",
+          "name": "Command",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/fire/explosion-fireball-small-purple.webp",
+          "baseLevel": "1",
+          "level": "1",
+          "consumption": "1",
+          "upcast": "1",
+          "upcastCost": "1",
+          "flatDc": false
+        },
+        "2": {
+          "id": "4dSvfvTy2ZIJ3K4k",
+          "name": "Comprehend Languages",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/symbols/runes-triangle-orange-purple.webp",
+          "baseLevel": "1",
+          "level": "1",
+          "consumption": "1",
+          "upcast": "1",
+          "upcastCost": "1",
+          "flatDc": false
+        }
+      }
+    }
+  },
+  "img": "icons/weapons/staves/staff-simple-green.webp",
+  "effects": [],
+  "_id": "owvd2M56AE11eSdY",
+  "_key": "!items!owvd2M56AE11eSdY"
+}
