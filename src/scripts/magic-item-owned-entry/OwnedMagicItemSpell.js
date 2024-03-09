@@ -89,7 +89,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
           flags: {
             "dnd5e.itemData": this.ownedItem.toJSON(),
           },
-        }
+        },
       );
       if (chatData) {
         this.consume(consumption);

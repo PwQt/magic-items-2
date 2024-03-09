@@ -28,7 +28,7 @@ export class MagicItemTable extends AbstractMagicItemEntry {
           ChatMessage.create(
             mergeObject(chatData, {
               "flags.dnd5e.itemData": item,
-            })
+            }),
           );
         }
       }

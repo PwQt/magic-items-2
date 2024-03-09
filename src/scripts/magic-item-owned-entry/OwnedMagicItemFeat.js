@@ -32,7 +32,7 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
               user: game.user._id,
               speaker: ChatMessage.getSpeaker({ actor: this.magicItem.actor }),
               content: this.magicItem.formatMessage(
-                `<b>${this.name}</b>: ${game.i18n.localize("MAGICITEMS.SheetConsumptionDestroyMessage")}`
+                `<b>${this.name}</b>: ${game.i18n.localize("MAGICITEMS.SheetConsumptionDestroyMessage")}`,
               ),
             });
 
@@ -53,7 +53,7 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
           flags: {
             "dnd5e.itemData": this.ownedItem.toJSON(),
           },
-        }
+        },
       );
       if (chatData) {
         onUsage();

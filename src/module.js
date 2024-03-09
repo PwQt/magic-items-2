@@ -122,14 +122,14 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
       getData(data) {
         return MagicItemActor.get(data.actor.id);
       },
-    })
+    }),
   );
 
   // Register character and NPC feature tab custom content
   const npcAbilitiesTabContainerSelector = `[data-tidy-sheet-part="${api.constants.SHEET_PARTS.NPC_ABILITIES_CONTAINER}"]`;
   const characterFeaturesContainerSelector = `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_FEATURES}"] [data-tidy-sheet-part="${api.constants.SHEET_PARTS.ITEMS_CONTAINER}"]`;
   const magicItemFeatureTargetSelector = [npcAbilitiesTabContainerSelector, characterFeaturesContainerSelector].join(
-    ", "
+    ", ",
   );
   api.registerActorContent(
     new api.models.HandlebarsContent({
@@ -150,7 +150,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
       getData(data) {
         return MagicItemActor.get(data.actor.id);
       },
-    })
+    }),
   );
 });
 
@@ -167,7 +167,7 @@ Hooks.on("tidy5e-sheet.renderActorSheet", (app, element, data) => {
     .filter((item) => item.visible)
     .forEach((item) => {
       let itemEl = html.find(
-        `[data-tidy-sheet-part="${tidyApi.constants.SHEET_PARTS.ITEM_TABLE_ROW}"][data-item-id="${item.id}"]`
+        `[data-tidy-sheet-part="${tidyApi.constants.SHEET_PARTS.ITEM_TABLE_ROW}"][data-item-id="${item.id}"]`,
       );
       let itemNameContainer = itemEl.find(`[data-tidy-sheet-part=${tidyApi.constants.SHEET_PARTS.ITEM_NAME}]`);
       let iconHtml = tidyApi.useHandlebarsRendering(CONSTANTS.HTML.MAGIC_ITEM_ICON);
@@ -219,7 +219,7 @@ Hooks.on("hotbarDrop", async (bar, data, slot) => {
         command: command,
         flags: { "dnd5e.itemMacro": true },
       },
-      { displaySheet: false }
+      { displaySheet: false },
     );
   }
   game.user.assignHotbarMacro(macro, slot);

@@ -36,7 +36,7 @@ export class MagicItemTab {
     tabs.append($('<a class="item" data-tab="magicitems">Magic Item</a>'));
 
     $(html.find(`.sheet-body`)).append(
-      $('<div class="tab magic-items" data-group="primary" data-tab="magicitems"></div>')
+      $('<div class="tab magic-items" data-group="primary" data-tab="magicitems"></div>'),
     );
 
     if (this.editable) {

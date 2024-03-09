@@ -62,7 +62,7 @@ export class MagicItemSheet {
           "magic-item-feat-sheet.html",
           "magic-items-feats-content",
           "features",
-          "inventory-list"
+          "inventory-list",
         );
       }
       if (this.actor.hasItemsSpells()) {
@@ -70,7 +70,7 @@ export class MagicItemSheet {
           "magic-item-spell-sheet.html",
           "magic-items-spells-content",
           "spellbook",
-          "inventory-list"
+          "inventory-list",
         );
       }
     } else {
@@ -79,7 +79,7 @@ export class MagicItemSheet {
           "magic-item-feat-sheet-v2.hbs",
           "magic-items-feats-content",
           "features",
-          "features-list"
+          "features-list",
         );
         this.html.find(".item-tooltip").each((idx, el) => this.addToolTips(el));
       }
@@ -88,7 +88,7 @@ export class MagicItemSheet {
           "magic-item-spell-sheet-v2.hbs",
           "magic-items-spells-content",
           "spells",
-          "spells-list"
+          "spells-list",
         );
         this.html.find(".item-tooltip").each((idx, el) => this.addToolTips(el));
       }
