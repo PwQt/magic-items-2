@@ -31,6 +31,15 @@ Hooks.once("init", () => {
     config: true,
   });
 
+  game.settings.register(CONSTANTS.MODULE_ID, "debug", {
+    name: "MAGICITEMS.SettingDebug",
+    hint: "MAGICITEMS.SettingDebugHint",
+    scope: "client",
+    type: Boolean,
+    default: false,
+    config: true,
+  });
+
   if (typeof Babele !== "undefined") {
     Babele.get().register({
       module: CONSTANTS.MODULE_ID,
