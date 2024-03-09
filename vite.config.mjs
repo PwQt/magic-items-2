@@ -153,7 +153,7 @@ export default () => {
             dest: normalizePath(path.resolve(__dirname, `./dist/${s_MODULE_ID}/styles`)),
           },
           {
-            src: normalizePath(path.resolve(__dirname, './src/packs')) + '/[!.]*',
+            src: normalizePath(path.resolve(__dirname, './src/packs')) + '/[!.^(_source)]*',
             dest: normalizePath(path.resolve(__dirname, `./dist/${s_MODULE_ID}/packs`)),
           },
           {

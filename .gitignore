@@ -104,20 +104,6 @@ out
 # TernJS port file
 .tern-port
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
-
-# Local History for Visual Studio Code
-.history/
-
-# Built Visual Studio Code Extensions
-*.vsix
-
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
@@ -134,3 +120,5 @@ foundry.js
 /package
 /.vite-cache
 /package-lock.json
+/package-lock.json
+/wiki/backups/FoundryVTT-ItemPiles_2024-03-03

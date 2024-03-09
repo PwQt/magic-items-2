@@ -1,3 +1,7 @@
+### 1.6.
+
+- Recovery magic items packs from version 1.6.2 ?
+
 ### 1.6.2
 - Brazilian Portuguese Translation by @Kharmans in https://github.com/PwQt/magic-items-2/pull/68
 - 63 bug effect not applying on a token from magic item spell by @PwQt in https://github.com/PwQt/magic-items-2/pull/69
