@@ -3,6 +3,8 @@
 - Bug fix: https://github.com/PwQt/magic-items-2/issues/79
 - Bug fix: https://github.com/PwQt/magic-items-2/issues/78
 - Recovery magic items packs from version 1.6.2 ?
+- Rename all references for flags from `maicitems` to `magic-items-2`
+- Create api function for trasnfer all flags from old to new scope `game.modules.get("magic-items-2").api.fixFlagsScopeDataOnAllActors` for fix all actor in the world
 
 ### 1.6.2
 - Brazilian Portuguese Translation by @Kharmans in https://github.com/PwQt/magic-items-2/pull/68

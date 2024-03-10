@@ -5,6 +5,7 @@ import { MagicItemActor } from "./scripts/magicitemactor.js";
 import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
 import { MagicItem } from "./scripts/magic-item/MagicItem.js";
+import { isEmptyObject } from "./scripts/lib/lib.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -57,6 +58,10 @@ Hooks.once("setup", async () => {
 });
 
 Hooks.once("ready", () => {
+  Handlebars.registerHelper(`${CONSTANTS.MODULE_ID}-isEmpty`, (value, options) => {
+    return isEmptyObject(value) || value === "" ? options.fn(this) : options.inverse(this);
+  });
+
   Array.from(game.actors)
     .filter((actor) => actor.permission >= 1)
     .forEach((actor) => {

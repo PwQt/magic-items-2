@@ -132,9 +132,10 @@ export class MagicItemSheet {
    */
   addToolTips(element) {
     if ("tooltip" in element.dataset) return;
-    const target = element.closest("[data-item-id], [data-uuid]");
+    const target = element.closest("[data-item-id], [data-uuid]"); // TODO why data-uuid ?
     const uuid = target.dataset?.itemUuid;
     if (!uuid) return;
+    // TODO why data-uuid ?
     element.dataset.tooltip = `
       <section class="loading" data-uuid="${uuid}"><i class="fas fa-spinner fa-spin-pulse"></i></section>
     `;
@@ -164,12 +165,12 @@ export class MagicItemSheet {
 
   static handleActorItemUsesChangeEvents(html, actor) {
     actor.items.forEach((item) => {
-      html.find(`input[data-item-id="magic-items-2.${item.id}.uses"]`).change((evt) => {
+      html.find(`input[data-item-uses="magic-items-2.${item.id}.uses"]`).change((evt) => {
         item.setUses(MagicItemHelpers.numeric(evt.currentTarget.value, item.uses));
         item.update();
       });
       item.ownedEntries.forEach((entry) => {
-        html.find(`input[data-item-id="magic-items-2.${item.id}.${entry.id}.uses"]`).change((evt) => {
+        html.find(`input[data-item-uses="magic-items-2.${item.id}.${entry.id}.uses"]`).change((evt) => {
           entry.uses = MagicItemHelpers.numeric(evt.currentTarget.value, entry.uses);
           item.update();
         });

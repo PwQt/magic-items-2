@@ -30,9 +30,18 @@ export class AbstractMagicItemEntry {
         }
       } else {
         const pack = game.packs.find((p) => p.collection === this.pack);
-        pack.getDocument(this.id).then((entity) => {
-          resolve(entity);
-        });
+        if (!pack) {
+          Logger.warn(`Cannot retrieve pack for if ${this.pack}`, true);
+        } else {
+          pack.getDocument(this.id)?.then((entity) => {
+            if (entity) {
+              resolve(entity);
+            } else {
+              Logger.warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + this.name, true);
+              reject();
+            }
+          });
+        }
       }
     });
   }

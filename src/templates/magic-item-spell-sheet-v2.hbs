@@ -15,7 +15,7 @@
       {{#if chargesOnWholeItem}}
       <div class="item-header spell-slots">
         {{#if sheetEditable}}
-        <input data-item-id="magic-items-2.{{id}}.uses" type="text" value="{{uses}}" placeholder="0" />
+        <input data-item-uses="magic-items-2.{{id}}.uses" type="text" value="{{uses}}" placeholder="0" />
         <span class="sep"> / {{charges}}</span>
         {{else}}
         {{uses}} / {{charges}}
@@ -61,7 +61,7 @@
         <div class="item-detail spell-slots">
           {{#if ../sheetEditable}}
           <input
-            data-item-id="magic-items-2.{{../id}}.{{spell.id}}.uses"
+            data-item-uses="magic-items-2.{{../id}}.{{spell.id}}.uses"
             type="text"
             value="{{spell.uses}}"
             placeholder="0"
@@ -94,7 +94,7 @@
         <div class="item-detail spell-slots">
           {{#if ../sheetEditable}}
           <input
-            data-item-id="magic-items-2.{{../id}}.{{table.id}}.uses"
+            data-item-uses="magic-items-2.{{../id}}.{{table.id}}.uses"
             type="text"
             value="{{table.uses}}"
             placeholder="0"

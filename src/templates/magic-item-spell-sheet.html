@@ -14,7 +14,7 @@
       <h3 class="item-name flexrow">{{name}}</h3>
       {{#if chargesOnWholeItem}}
       <div class="spell-slots">
-        <input data-item-id="magic-items-2.{{id}}.uses" type="text" value="{{uses}}" placeholder="0" />
+        <input data-item-uses="magic-items-2.{{id}}.uses" type="text" value="{{uses}}" placeholder="0" />
         <span class="sep"> / </span>
         <input type="text" value="{{charges}}" placeholder="0" />
       </div>
@@ -40,7 +40,7 @@
         {{#if ../chargesPerSpell}}
         <div class="spell-slots">
           <input
-            data-item-id="magic-items-2.{{../id}}.{{spell.id}}.uses"
+            data-item-uses="magic-items-2.{{../id}}.{{spell.id}}.uses"
             type="text"
             value="{{spell.uses}}"
             placeholder="0"
@@ -63,7 +63,7 @@
         {{#if ../chargesPerSpell}}
         <div class="spell-slots">
           <input
-            data-item-id="magic-items-2.{{../id}}.{{table.id}}.uses"
+            data-item-uses="magic-items-2.{{../id}}.{{table.id}}.uses"
             type="text"
             value="{{table.uses}}"
             placeholder="0"
