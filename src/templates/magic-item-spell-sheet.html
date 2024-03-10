@@ -55,7 +55,11 @@
         <div class="spell-upcast">{{spell.canUpcastLabel}}</div>
       </li>
       {{/each}} {{#if hasTableAsSpells}} {{#each tableAsSpells as |table|}}
-      <li class="item flexrow magic-item" data-magic-item-id="{{../id}}" data-item-id="{{table.id}}" draggable="true">
+      <li class="item flexrow magic-item" 
+        data-item-id="{{table.id}}" 
+        data-item-uuid="{{table.uuid}}"
+        data-magic-item-id="{{../id}}" 
+        draggable="true">
         <div class="item-name flexrow rollable">
           <div class="item-image magic-item-image" style="background-image: url({{table.img}})"></div>
           <h4 class="spell-name">{{table.displayName}}</h4>

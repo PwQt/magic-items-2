@@ -36,8 +36,8 @@
       {{#each spells as |spell|}}
       <li class="item magic-item"
         data-item-id="{{spell.id}}"
-        data-magic-item-id="{{../id}}"
         data-item-uuid="{{spell.uuid}}"
+        data-magic-item-id="{{../id}}"
         data-entry-id="{{../id}}"
         draggable="true"
       >
@@ -82,7 +82,11 @@
       </li>
       {{/each}}
       {{#if hasTableAsSpells}} {{#each tableAsSpells as |table|}}
-      <li class="item magic-item" data-magic-item-id="{{../id}}" data-item-id="{{table.id}}" draggable="true">
+      <li class="item magic-item" 
+        data-magic-item-id="{{../id}}" 
+          data-item-id="{{table.id}}"
+          data-item-uuid="{{table.uuid}}"
+          draggable="true">
         <div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{spell.displayName}}">
           <img class="item-image gold-icon magic-item-image" src="{{table.img}}" alt="{{table.name}}">
           <div class="name name-stacked">

@@ -103,7 +103,10 @@
         </li>
         <ol class="item-list">
           {{#each spells as |item i|}}
-            <li class="item flexrow" data-item-id="{{item.id}}" {{#magic-items-2-isEmpty item.uuid}} style="background: lightcoral;"{{/magic-items-2-isEmpty}}>
+            <li class="item flexrow" 
+              data-item-id="{{item.id}}"
+              data-item-uuid="{{item.uuid}}"
+              {{#if item.removed}} style="background: lightcoral;"{{/if}}>
               <div class="item-name flexrow">
                 <div class="item-image" style="background-image: url({{item.img}})"><i class="fa fa-dice-d20"></i></div>
                 <h4><a data-spell-idx="{{i}}">{{item.displayName}}</a></h4>
@@ -184,7 +187,10 @@
         </li>
         <ol class="item-list">
           {{#each feats as |item i|}}
-            <li class="item flexrow" data-item-id="{{item.id}}">
+            <li class="item flexrow" 
+              data-item-id="{{item.id}}"
+              data-item-uuid="{{item.uuid}}"
+              {{#if item.removed}} style="background: lightcoral;"{{/if}}>
               <div class="item-name flexrow">
                 <div class="item-image" style="background-image: url({{item.img}})"></div>
                 <h4><a data-feat-idx="{{i}}">{{item.displayName}}</a></h4>
@@ -232,7 +238,10 @@
         </li>
         <ol class="item-list">
           {{#each tables as |item i|}}
-            <li class="item flexrow" data-item-id="{{item.id}}">
+            <li class="item flexrow" 
+              data-item-id="{{item.id}}"
+              data-item-uuid="{{item.id}}"
+              {{#if item.removed}} style="background: lightcoral;"{{/if}}>
               <div class="item-name flexrow">
                 <div class="item-image" style="background-image: url({{item.img}})">{{{@root/rollIcon}}}</div>
                 <h4><a data-table-idx="{{i}}">{{item.displayName}}</a></h4>

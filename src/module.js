@@ -58,9 +58,9 @@ Hooks.once("setup", async () => {
 });
 
 Hooks.once("ready", () => {
-  Handlebars.registerHelper(`${CONSTANTS.MODULE_ID}-isEmpty`, (value, options) => {
-    return isEmptyObject(value) || value === "" ? options.fn(this) : options.inverse(this);
-  });
+  // Handlebars.registerHelper(`${CONSTANTS.MODULE_ID}-isEmpty`, (value, options) => {
+  //   return isEmptyObject(value) || value === "" ? options.fn(this) : options.inverse(this);
+  // });
 
   Array.from(game.actors)
     .filter((actor) => actor.permission >= 1)

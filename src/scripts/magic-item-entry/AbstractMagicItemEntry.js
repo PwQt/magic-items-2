@@ -1,9 +1,30 @@
+import CONSTANTS from "../constants/constants";
 import Logger from "../lib/Logger";
+import { RetrieveHelpers } from "../lib/retrieve-helpers";
 import { MagicItemHelpers } from "../magic-item-helpers";
 
 export class AbstractMagicItemEntry {
   constructor(data) {
     mergeObject(this, data);
+    // Patch retrocompatbility
+    if (this.pack?.startsWith("magicitems")) {
+      this.pack = this.pack.replace("magicitems.", `${CONSTANTS.MODULE_ID}.`);
+    }
+    // Generate Uuid runtime
+    if (!this.uuid) {
+      try {
+        this.uuid = RetrieveHelpers.retrieveUuid({
+          documentName: this.name,
+          documentId: this.id,
+          documentCollectionType: this.collectionType,
+          documentPack: this.pack,
+        });
+      } catch (e) {
+        Logger.error("Cannot retrieve uuid", false, e);
+        this.uuid = "";
+      }
+    }
+    this.removed = !RetrieveHelpers.stringIsUuid(this.uuid);
   }
 
   get displayName() {
