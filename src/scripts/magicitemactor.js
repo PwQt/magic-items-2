@@ -297,21 +297,16 @@ export class MagicItemActor {
    * @param item
    */
   destroyItem(item) {
-    let idx = 0;
-    this.items.forEach((owned, i) => {
-      if (owned.id === item.id) {
-        idx = i;
-      }
-    });
-    this.items.splice(idx, 1);
-    this.destroyed.push(item);
-
-    const currentQuantity = foundry.utils.getProperty(item, CONSTANTS.QUANTITY_PROPERTY_PATH) || 1;
+    const magicItemParent = item.item;
+    const currentQuantity = foundry.utils.getProperty(magicItemParent, CONSTANTS.QUANTITY_PROPERTY_PATH) || 1;
     if (currentQuantity > 1) {
-      const defaultData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`);
-      const currentData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+      const defaultData = foundry.utils.getProperty(
+        magicItemParent,
+        `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`,
+      );
+      const currentData = foundry.utils.getProperty(magicItemParent, `flags.${CONSTANTS.MODULE_ID}`);
       const updateItem = {
-        _id: item.id,
+        _id: magicItemParent.id,
         [CONSTANTS.QUANTITY_PROPERTY_PATH]: currentQuantity - 1,
         flags: {
           [CONSTANTS.MODULE_ID]: defaultData || currentData || {},
@@ -319,7 +314,16 @@ export class MagicItemActor {
       };
       this.actor.updateEmbeddedDocuments("Item", [updateItem]);
     } else {
-      this.actor.deleteEmbeddedDocuments("Item", [item.id]);
+      let idx = 0;
+      this.items.forEach((owned, i) => {
+        if (owned.id === item.id) {
+          idx = i;
+        }
+      });
+      this.items.splice(idx, 1);
+      this.destroyed.push(item);
+
+      this.actor.deleteEmbeddedDocuments("Item", [magicItemParent.id]);
     }
   }
 }

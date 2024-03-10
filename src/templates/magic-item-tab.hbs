@@ -2,6 +2,7 @@
   <div class="form-group">
     <label>{{localize "MAGICITEMS.SheetEnabled"}}</label>
     <input type="checkbox" name="flags.magic-items-2.enabled" {{checked enabled}} />
+    <input type="hidden" name="flags.magic-items-2.default" value="{{default}}" />
   </div>
   <div class="magic-item-enabled {{ifThen enabled '' 'hidden'}}">
     <div class="form-group">

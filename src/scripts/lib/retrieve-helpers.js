@@ -8,8 +8,9 @@ export class RetrieveHelpers {
    * @param {string} [options.documentId]
    * @param {("User"|"Folder"|"Actor"|"Item"|"Scene"|"Combat"|"JournalEntry"|"Macro"|"Playlist"|"RollTable"|"Cards"|"ChatMessage"|"Setting"|"FogExploration")} [options.collection]
    * @param {string} [options.documentPack]
+   * @param {boolean} [options.ignoreError=false]
    */
-  static retrieveUuid({ documentName, documentId, documentCollectionType, documentPack }) {
+  static retrieveUuid({ documentName, documentId, documentCollectionType, documentPack, ignoreError = false }) {
     let uuid = null;
     if (documentCollectionType || pack === "world") {
       const collection = game.collections.get(documentCollectionType);
@@ -38,7 +39,7 @@ export class RetrieveHelpers {
       }
     }
     if (documentPack) {
-      const pack = RetrieveHelpers.getCompendiumCollectionSync(documentPack);
+      const pack = RetrieveHelpers.getCompendiumCollectionSync(documentPack, ignoreError);
       if (!pack) {
         // DO NOTHING
         Logger.warn(`Cannot retrieve pack for ${documentPack}`);

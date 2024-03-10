@@ -18,6 +18,7 @@ export class AbstractMagicItemEntry {
           documentId: this.id,
           documentCollectionType: this.collectionType,
           documentPack: this.pack,
+          ignoreError: true,
         });
       } catch (e) {
         Logger.error("Cannot retrieve uuid", false, e);

@@ -252,9 +252,6 @@ Hooks.on(`createItem`, async (item) => {
       // Set up defaults flags
       const defaultData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`);
       if (!defaultData) {
-        // const currentData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
-        // delete currentData[CONSTANTS.FLAGS.DEFAULT];
-        // item.setFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.DEFAULT, currentData);
         await API.fixFlagsScopeDataOnItem(item);
       }
       miActor.buildItems();
