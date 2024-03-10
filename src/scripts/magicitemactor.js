@@ -305,16 +305,18 @@ export class MagicItemActor {
         magicItemParent,
         `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`,
       );
-      const defaultItem = await RetrieveHelpers.getItemAsync(defaultReference);
-      const defaultDataFlags = foundry.utils.getProperty(defaultItem, `flags.${CONSTANTS.MODULE_ID}`);
-      defaultDataFlags.default = defaultItem.uuid;
-      const updateItem = {
-        _id: magicItemParent.id,
-        [CONSTANTS.QUANTITY_PROPERTY_PATH]: currentQuantity - 1,
-        flags: {
-          [CONSTANTS.MODULE_ID]: defaultDataFlags || {},
-        },
-      };
+      if (defaultReference) {
+        const defaultItem = await RetrieveHelpers.getItemAsync(defaultReference);
+        const defaultDataFlags = foundry.utils.getProperty(defaultItem, `flags.${CONSTANTS.MODULE_ID}`);
+        defaultDataFlags.default = defaultItem.uuid;
+        const updateItem = {
+          _id: magicItemParent.id,
+          [CONSTANTS.QUANTITY_PROPERTY_PATH]: currentQuantity - 1,
+          flags: {
+            [CONSTANTS.MODULE_ID]: defaultDataFlags || {},
+          },
+        };
+      }
       await this.actor.updateEmbeddedDocuments("Item", [updateItem]);
     } else {
       let idx = 0;

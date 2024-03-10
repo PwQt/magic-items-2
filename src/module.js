@@ -55,11 +55,8 @@ Hooks.once("setup", async () => {
   // Set API
   game.modules.get(CONSTANTS.MODULE_ID).api = API;
   window.MagicItems = game.modules.get(CONSTANTS.MODULE_ID).api;
-  await API.fixFlagsScopeDataOnAllActors();
-  // libWrapper.register(CONSTANTS.MODULE_ID, "CONFIG.Item.documentClass.createDocuments", createDocuments, "MIXED");
-  // libWrapper.register(CONSTANTS.MODULE_ID, "CONFIG.Actor.documentClass.createDocuments", createDocuments, "WRAPPER");
-  // libWrapper.register(CONSTANTS.MODULE_ID, "CONFIG.Item.documentClass._onCreateDocuments", _onCreateDocuments, "MIXED");
-  // libWrapper.register(CONSTANTS.MODULE_ID, "CONFIG.Actor.documentClass.fromCompendium", fromCompendium, "MIXED");
+  // To dangerous to autmatode
+  // await API.fixFlagsScopeDataOnAllActors();
 });
 
 Hooks.once("ready", () => {
@@ -286,7 +283,9 @@ Hooks.on("preCreateItem", async (item, data, options, userId) => {
     return;
   }
   // Set up defaults flags
-  const defaultReference = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`);
+  const defaultReference =
+    foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`) ||
+    foundry.utils.getProperty(item, `flags.core.sourceId`);
   // const defaultItem = await RetrieveHelpers.getItemAsync(defaultReference);
   // const defaultDataFlags = foundry.utils.getProperty(defaultItem , `flags.${CONSTANTS.MODULE_ID}`);
   // defaultDataFlags.default = defaultItem.uuid;
@@ -314,36 +313,3 @@ Hooks.on("preDeleteItem", async (item, options, userId) => {
     return;
   }
 });
-
-// export async function createDocuments(wrapped, ...args) {
-//   const [data, context = { parent: {}, pack: {}, options: {} }] = args;
-//   Logger.debug("createDocuments", data, context);
-//   const { parent, pack, options } = context;
-//   const actorEntity = parent;
-//   if (!actorEntity) {
-//     return;
-//   }
-//   return wrapped(...args);
-// }
-
-// export async function _onCreateDocuments(wrapped, ...args) {
-//   const [data, context = { parent: {}, pack: {}, options: {} }] = args;
-//   Logger.debug("_onCreateDocuments", data, context);
-//   const { parent, pack, options } = context;
-//   const actorEntity = parent;
-//   if (!actorEntity) {
-//     return;
-//   }
-//   return wrapped(...args);
-// }
-
-// export async function fromCompendium(wrapped, ...args) {
-//   const [document, options] = args;
-//   Logger.debug("_onCreateDocuments", document, options);
-//   // const { parent, pack, options } = context;
-//   const actorEntity = parent;
-//   if (!actorEntity) {
-//     return;
-//   }
-//   return wrapped(...args);
-// }
