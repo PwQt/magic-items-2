@@ -83,8 +83,8 @@ const API = {
 
   async fixFlagsScopeDataOnItem(mi) {
     const miFlag = getProperty(mi, `flags.magicitems`);
-    const miFlag2 = getProperty(mi, `flags.${CONSTANTS.MODULE_ID}`);
-    if (!isEmptyObject(miFlag) && isEmptyObject(miFlag2)) {
+    const miFlagNewScope = getProperty(mi, `flags.${CONSTANTS.MODULE_ID}`);
+    if (!isEmptyObject(miFlag) && isEmptyObject(miFlagNewScope)) {
       Logger.info(`Update flagsScope item ${mi.name}...`);
       if (miFlag.spells?.length > 0) {
         Object.entries(miFlag.spells).forEach(([key, value]) => {

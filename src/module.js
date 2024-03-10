@@ -6,6 +6,7 @@ import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
 import { MagicItem } from "./scripts/magic-item/MagicItem.js";
 import { isEmptyObject } from "./scripts/lib/lib.js";
+import { RetrieveHelpers } from "./scripts/lib/retrieve-helpers.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -55,6 +56,10 @@ Hooks.once("setup", async () => {
   game.modules.get(CONSTANTS.MODULE_ID).api = API;
   window.MagicItems = game.modules.get(CONSTANTS.MODULE_ID).api;
   await API.fixFlagsScopeDataOnAllActors();
+  // libWrapper.register(CONSTANTS.MODULE_ID, "CONFIG.Item.documentClass.createDocuments", createDocuments, "MIXED");
+  // libWrapper.register(CONSTANTS.MODULE_ID, "CONFIG.Actor.documentClass.createDocuments", createDocuments, "WRAPPER");
+  // libWrapper.register(CONSTANTS.MODULE_ID, "CONFIG.Item.documentClass._onCreateDocuments", _onCreateDocuments, "MIXED");
+  // libWrapper.register(CONSTANTS.MODULE_ID, "CONFIG.Actor.documentClass.fromCompendium", fromCompendium, "MIXED");
 });
 
 Hooks.once("ready", () => {
@@ -244,22 +249,18 @@ Hooks.on("hotbarDrop", async (bar, data, slot) => {
   return false;
 });
 
-Hooks.on(`createItem`, async (item) => {
+Hooks.on("createItem", async (item, options, userId) => {
   if (item.actor) {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
-      // Set up defaults flags
-      const defaultData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`);
-      if (!defaultData) {
-        await API.fixFlagsScopeDataOnItem(item);
-      }
+      await API.fixFlagsScopeDataOnItem(item);
       miActor.buildItems();
     }
   }
 });
 
-Hooks.on(`updateItem`, (item) => {
+Hooks.on("updateItem", (item, change, options, userId) => {
   if (item.actor) {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
@@ -269,7 +270,7 @@ Hooks.on(`updateItem`, (item) => {
   }
 });
 
-Hooks.on(`deleteItem`, (item) => {
+Hooks.on("deleteItem", (item, options, userId) => {
   if (item.actor) {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
@@ -278,3 +279,71 @@ Hooks.on(`deleteItem`, (item) => {
     }
   }
 });
+
+Hooks.on("preCreateItem", async (item, data, options, userId) => {
+  const actorEntity = item.actor;
+  if (!actorEntity) {
+    return;
+  }
+  // Set up defaults flags
+  const defaultReference = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`);
+  // const defaultItem = await RetrieveHelpers.getItemAsync(defaultReference);
+  // const defaultDataFlags = foundry.utils.getProperty(defaultItem , `flags.${CONSTANTS.MODULE_ID}`);
+  // defaultDataFlags.default = defaultItem.uuid;
+  if (!defaultReference) {
+    await item.update({
+      flags: {
+        [CONSTANTS.MODULE_ID]: {
+          [CONSTANTS.FLAGS.DEFAULT]: defaultReference,
+        },
+      },
+    });
+  }
+});
+
+Hooks.on("preUpdateItem", async (item, changes, options, userId) => {
+  const actorEntity = item.actor;
+  if (!actorEntity) {
+    return;
+  }
+});
+
+Hooks.on("preDeleteItem", async (item, options, userId) => {
+  const actorEntity = item.actor;
+  if (!actorEntity) {
+    return;
+  }
+});
+
+// export async function createDocuments(wrapped, ...args) {
+//   const [data, context = { parent: {}, pack: {}, options: {} }] = args;
+//   Logger.debug("createDocuments", data, context);
+//   const { parent, pack, options } = context;
+//   const actorEntity = parent;
+//   if (!actorEntity) {
+//     return;
+//   }
+//   return wrapped(...args);
+// }
+
+// export async function _onCreateDocuments(wrapped, ...args) {
+//   const [data, context = { parent: {}, pack: {}, options: {} }] = args;
+//   Logger.debug("_onCreateDocuments", data, context);
+//   const { parent, pack, options } = context;
+//   const actorEntity = parent;
+//   if (!actorEntity) {
+//     return;
+//   }
+//   return wrapped(...args);
+// }
+
+// export async function fromCompendium(wrapped, ...args) {
+//   const [document, options] = args;
+//   Logger.debug("_onCreateDocuments", document, options);
+//   // const { parent, pack, options } = context;
+//   const actorEntity = parent;
+//   if (!actorEntity) {
+//     return;
+//   }
+//   return wrapped(...args);
+// }

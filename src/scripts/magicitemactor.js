@@ -1,6 +1,7 @@
 import { MAGICITEMS } from "./config.js";
 import CONSTANTS from "./constants/constants.js";
 import Logger from "./lib/Logger.js";
+import { RetrieveHelpers } from "./lib/retrieve-helpers.js";
 import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { OwnedMagicItem } from "./magic-item/OwnedMagicItem.js";
 
@@ -296,23 +297,25 @@ export class MagicItemActor {
    *
    * @param item
    */
-  destroyItem(item) {
+  async destroyItem(item) {
     const magicItemParent = item.item;
     const currentQuantity = foundry.utils.getProperty(magicItemParent, CONSTANTS.QUANTITY_PROPERTY_PATH) || 1;
     if (currentQuantity > 1) {
-      const defaultData = foundry.utils.getProperty(
+      const defaultReference = foundry.utils.getProperty(
         magicItemParent,
         `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`,
       );
-      const currentData = foundry.utils.getProperty(magicItemParent, `flags.${CONSTANTS.MODULE_ID}`);
+      const defaultItem = await RetrieveHelpers.getItemAsync(defaultReference);
+      const defaultDataFlags = foundry.utils.getProperty(defaultItem, `flags.${CONSTANTS.MODULE_ID}`);
+      defaultDataFlags.default = defaultItem.uuid;
       const updateItem = {
         _id: magicItemParent.id,
         [CONSTANTS.QUANTITY_PROPERTY_PATH]: currentQuantity - 1,
         flags: {
-          [CONSTANTS.MODULE_ID]: defaultData || currentData || {},
+          [CONSTANTS.MODULE_ID]: defaultDataFlags || {},
         },
       };
-      this.actor.updateEmbeddedDocuments("Item", [updateItem]);
+      await this.actor.updateEmbeddedDocuments("Item", [updateItem]);
     } else {
       let idx = 0;
       this.items.forEach((owned, i) => {
@@ -323,7 +326,7 @@ export class MagicItemActor {
       this.items.splice(idx, 1);
       this.destroyed.push(item);
 
-      this.actor.deleteEmbeddedDocuments("Item", [magicItemParent.id]);
+      await this.actor.deleteEmbeddedDocuments("Item", [magicItemParent.id]);
     }
   }
 }
