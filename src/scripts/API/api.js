@@ -1,5 +1,6 @@
 import CONSTANTS from "../constants/constants.js";
 import Logger from "../lib/Logger.js";
+import { isEmptyObject } from "../lib/lib.js";
 import { RetrieveHelpers } from "../lib/retrieve-helpers.js";
 import { MagicItemTab } from "../magicItemtab.js";
 import { MagicItemActor } from "../magicitemactor.js";
@@ -63,28 +64,41 @@ const API = {
     MagicItemSheet.bind(app, html, data);
   },
 
-  async fixFlagsScopeData() {
+  async fixFlagsScopeDataOnAllActors() {
     if (game.user.isGM) {
       for (const a of game.actors) {
         Logger.info(`Update flagsScope on actor ${a.name}...`);
         const magicitems = a.items.filter((i) => !!i.flags?.magicitems);
-        for (const mi of magicitems) {
-          Logger.info(`Update flagsScope actor ${a.name} for item ${mi.name}...`);
-          const miFlag = mi.flags.magicitems;
-          Object.entries(miFlag.spells).forEach(([key, value]) => {
-            if (!value.uuid && value.id) {
-              value.uuid = `Item.${value.id}`;
-            }
-          });
-          await mi.update({
-            flags: {
-              [CONSTANTS.MODULE_ID]: miFlag,
-            },
-          });
-          Logger.info(`Updated flagsScope actor ${a.name} for item ${mi.name}`);
+        if (magicitems?.length > 0) {
+          for (const mi of magicitems) {
+            Logger.info(`Update flagsScope on actor ${a.name} for item ${mi.name}...`);
+            await this.fixFlagsScopeDataOnItem(mi);
+            Logger.info(`Updated flagsScope on actor ${a.name} for item ${mi.name}`);
+          }
+          Logger.info(`Updated flagsScope on actor ${a.name}`);
         }
-        Logger.info(`Updated flagsScope on actor ${a.name}`);
       }
+    }
+  },
+
+  async fixFlagsScopeDataOnItem(mi) {
+    const miFlag = getProperty(mi, `flags.magicitems`);
+    const miFlag2 = getProperty(mi, `flags.${CONSTANTS.MODULE_ID}`);
+    if (!isEmptyObject(miFlag) && isEmptyObject(miFlag2)) {
+      Logger.info(`Update flagsScope item ${mi.name}...`);
+      if (miFlag.spells?.length > 0) {
+        Object.entries(miFlag.spells).forEach(([key, value]) => {
+          if (!value.uuid && value.id) {
+            value.uuid = `Item.${value.id}`;
+          }
+        });
+      }
+      await mi.update({
+        flags: {
+          [CONSTANTS.MODULE_ID]: miFlag,
+        },
+      });
+      Logger.info(`Updated flagsScope item ${mi.name}`);
     }
   },
 };

@@ -8,8 +8,7 @@ import { OwnedMagicItemTable } from "../magic-item-owned-entry/OwnedMagicItemTab
 import { MagicItem } from "./MagicItem";
 
 export class OwnedMagicItem extends MagicItem {
-  constructor(item, actor, magicItemActor) {
-    const flagsData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+  constructor(item, actor, magicItemActor, flagsData) {
     super(flagsData);
     this.uuid = item.uuid;
     this.id = item.id;

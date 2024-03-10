@@ -49,10 +49,11 @@ Hooks.once("init", () => {
   }
 });
 
-Hooks.once("setup", () => {
+Hooks.once("setup", async () => {
   // Set API
   game.modules.get(CONSTANTS.MODULE_ID).api = API;
   window.MagicItems = game.modules.get(CONSTANTS.MODULE_ID).api;
+  await API.fixFlagsScopeDataOnAllActors();
 });
 
 Hooks.once("ready", () => {
@@ -83,7 +84,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
   // Register Tidy Item Sheet Tab
   const magicItemsTab = new api.models.HandlebarsTab({
     title: "Magic Item",
-    tabId: "magic-items",
+    tabId: "magic-items-2",
     path: "/modules/magic-items-2/templates/magic-item-tab.hbs",
     enabled: (data) => {
       return MagicItemTab.isAcceptedItemType(data.item) && MagicItemTab.isAllowedToShow();
@@ -103,7 +104,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
           item: params.data.item,
           magicItem: magicItem,
         });
-        params.element.querySelector(`.magic-items-content`).addEventListener("drop", (event) => {
+        params.element.querySelector(`.magic-items-2-content`).addEventListener("drop", (event) => {
           MagicItemTab.onDrop({ event, item: params.data.item, magicItem: magicItem });
         });
       } else {
@@ -238,7 +239,7 @@ Hooks.on("hotbarDrop", async (bar, data, slot) => {
   return false;
 });
 
-Hooks.on(`createItem`, (item) => {
+Hooks.on(`createItem`, async (item) => {
   if (item.actor) {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
@@ -246,9 +247,10 @@ Hooks.on(`createItem`, (item) => {
       // Set up defaults flags
       const defaultData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`);
       if (!defaultData) {
-        const currentData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
-        delete currentData[CONSTANTS.FLAGS.DEFAULT];
-        item.setFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.DEFAULT, currentData);
+        // const currentData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+        // delete currentData[CONSTANTS.FLAGS.DEFAULT];
+        // item.setFlag(CONSTANTS.MODULE_ID, CONSTANTS.FLAGS.DEFAULT, currentData);
+        await API.fixFlagsScopeDataOnItem(item);
       }
       miActor.buildItems();
     }

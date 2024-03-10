@@ -137,7 +137,10 @@ export class MagicItemActor {
         const flagsData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
         return typeof flagsData !== "undefined" && flagsData.enabled;
       })
-      .map((item) => new OwnedMagicItem(item, this.actor, this));
+      .map((item) => {
+        const flagsData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+        return new OwnedMagicItem(item, this.actor, this, flagsData);
+      });
     this.fireChange();
   }
 
