@@ -231,7 +231,7 @@
         "0": {
           "id": "nrV4PEgY98SCB7KC",
           "name": "Retributive Strike",
-          "pack": "magicitems.magicitem-feats",
+          "pack": "magic-items-2.magicitem-feats",
           "img": "icons/magic/fire/explosion-fireball-large-purple-orange.webp",
           "consumption": "0",
           "effect": "e2"

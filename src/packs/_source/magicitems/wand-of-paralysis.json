@@ -91,7 +91,7 @@
         "0": {
           "id": "NNqYJ9J4MPJtLgFW",
           "name": "Paralysis",
-          "pack": "magicitems.magicitem-feats",
+          "pack": "magic-items-2.magicitem-feats",
           "img": "icons/magic/water/water-iceberg-bubbles.webp",
           "consumption": "1",
           "effect": "e1"

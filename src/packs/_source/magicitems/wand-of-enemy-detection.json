@@ -91,7 +91,7 @@
         "0": {
           "id": "UcWBTBiKlEMthYSh",
           "name": "Enemy Detection",
-          "pack": "magicitems.magicitem-feats",
+          "pack": "magic-items-2.magicitem-feats",
           "img": "icons/tools/scribal/magnifying-glass.webp",
           "consumption": "1",
           "effect": "e1"

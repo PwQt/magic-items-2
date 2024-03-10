@@ -91,7 +91,7 @@
         "0": {
           "id": "5AolWCkenYgnjg4O",
           "name": "Wand of Wonder Effects",
-          "pack": "magicitems.magicitem-tables",
+          "pack": "magic-items-2.magicitem-tables",
           "img": "icons/weapons/staves/staff-skull-brown.webp",
           "usage": "u1",
           "consumption": "1"

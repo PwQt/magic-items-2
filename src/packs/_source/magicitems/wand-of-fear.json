@@ -106,7 +106,7 @@
         "0": {
           "id": "7khqOxRGYGa8sZ3D",
           "name": "Cone of Fear",
-          "pack": "magicitems.magicitem-feats",
+          "pack": "magic-items-2.magicitem-feats",
           "img": "icons/magic/control/fear-fright-shadow-monster-red.webp",
           "consumption": "2",
           "effect": "e1"
