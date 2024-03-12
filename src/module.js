@@ -55,15 +55,9 @@ Hooks.once("setup", async () => {
   // Set API
   game.modules.get(CONSTANTS.MODULE_ID).api = API;
   window.MagicItems = game.modules.get(CONSTANTS.MODULE_ID).api;
-  // To dangerous to autmatode
-  // await API.fixFlagsScopeDataOnAllActors();
 });
 
 Hooks.once("ready", () => {
-  // Handlebars.registerHelper(`${CONSTANTS.MODULE_ID}-isEmpty`, (value, options) => {
-  //   return isEmptyObject(value) || value === "" ? options.fn(this) : options.inverse(this);
-  // });
-
   Array.from(game.actors)
     .filter((actor) => actor.permission >= 1)
     .forEach((actor) => {

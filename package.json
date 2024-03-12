@@ -1,8 +1,8 @@
 {
-	"name": "better-rolltables",
-	"title": "Better Roll Tables",
-	"description": "Adding functionality to roll tables, especially to roll treasure and magic items",
-	"version": "2.0.33",
+	"name": "magic-items-2",
+	"title": "Magic Items 2",
+	"description": "Module that adds the ability to create magical items with spells or feats that belong to the item itself, such as staffs or magic wands, which will be automatically inherited from the character who owns the item.",
+	"version": "1.3.4",
 	"main": "module.js",
 	"license": "SEE LICENSE IN LICENSE",
 	"private": true,

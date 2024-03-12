@@ -118,7 +118,7 @@
   "packFolders": [
     {
       "name": "Magic Items",
-      "color": "#010048",
+      "color": "#8900bf",
       "sorting": "a",
       "packs": ["magicitems", "magicitem-feats", "magicitem-tables"]
     }

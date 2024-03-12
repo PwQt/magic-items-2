@@ -1,6 +1,5 @@
 import { AbstractMagicItemEntry } from "./AbstractMagicItemEntry";
 import { NumberUtils } from "../utils/number";
-import { RetrieveHelpers } from "../lib/retrieve-helpers";
 
 export class MagicItemSpell extends AbstractMagicItemEntry {
   constructor(data) {
