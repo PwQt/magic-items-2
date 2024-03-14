@@ -3,15 +3,11 @@
 - Fix to packs
 - Drop support for pre-3.0 version of D&D module
 
-### 1.6.3.2
+### 1.6.3.1
+- Translations update (Spanish)
 
-- Exported alla the packs in json formats to better maintenance
-- Bug fix: https://github.com/PwQt/magic-items-2/issues/79
-- Bug fix: https://github.com/PwQt/magic-items-2/issues/78
-- Recovery magic items packs from version 1.6.2 ?
-- Rename all references for flags from `maicitems` to `magic-items-2`
-- Create api function for trasnfer all flags from old to new scope `game.modules.get("magic-items-2").api.fixFlagsScopeDataOnAllActors` for fix all actor in the world
-- Add css color on spells/tables/feats with a broken uuid
+### 1.6.3
+- [#71] Tidy Wire-up Console Errors Fix by @kgar
 
 ### 1.6.2
 
