@@ -2,7 +2,7 @@
   "id": "magic-items-2",
   "title": "Magic Items 2",
   "description": "Module that adds the ability to create magical items with spells or feats that belong to the item itself, such as staffs or magic wands, which will be automatically inherited from the character who owns the item.",
-  "version": "1.5.2",
+  "version": "1.6.3.2",
   "compatibility": {
     "minimum": 11,
     "verified": 11,
@@ -75,7 +75,7 @@
     {
       "name": "magicitems",
       "label": "Magic Items",
-      "path": "packs/magic-items.db",
+      "path": "packs/magicitems",
       "type": "Item",
       "system": "dnd5e",
       "ownership": {
@@ -89,7 +89,7 @@
     {
       "name": "magicitem-feats",
       "label": "Magic Items: Item Feats",
-      "path": "packs/magic-items-item-feats.db",
+      "path": "packs/magicitem-feats",
       "type": "Item",
       "system": "dnd5e",
       "ownership": {
@@ -103,7 +103,7 @@
     {
       "name": "magicitem-tables",
       "label": "Magic Items: Item Tables",
-      "path": "packs/magic-items-item-tables.db",
+      "path": "packs/magicitem-tables",
       "type": "RollTable",
       "system": "dnd5e",
       "ownership": {
@@ -113,6 +113,14 @@
       },
       "module": "magic-items-2",
       "flags": {}
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Magic Items",
+      "color": "#8900bf",
+      "sorting": "a",
+      "packs": ["magicitems", "magicitem-feats", "magicitem-tables"]
     }
   ],
   "esmodules": ["module.js"],

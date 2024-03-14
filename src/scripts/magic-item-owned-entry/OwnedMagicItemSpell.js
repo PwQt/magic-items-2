@@ -47,7 +47,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
     let applyActiveEffects = async (item) => {
       canvas.tokens.controlled?.forEach((token) => {
         if (!token) {
-          ui.notification.warn("No token selected");
+          Logger.warn("No token selected", true);
           return;
         }
         let actor = token.actor;
@@ -63,7 +63,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
           });
           let ae = ActiveEffect.implementation.create(effect, { parent: actor });
           if (!ae) {
-            ui.notification.warn("An error occured while adding active effect - please check console");
+            Logger.warn("An error occured while adding active effect - please check console", true);
           }
         });
       });
@@ -89,17 +89,17 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
           flags: {
             "dnd5e.itemData": this.ownedItem.toJSON(),
           },
-        }
+        },
       );
       if (chatData) {
         this.consume(consumption);
         this.magicItem.update();
       }
-      if (this.ownedItem.effects?.size > 0) {
-        this.activeEffectMessage(() => {
-          this.applyActiveEffects(this.ownedItem);
-        });
-      }
+      // if (this.ownedItem.effects?.size > 0) {
+      //   this.activeEffectMessage(() => {
+      //     this.applyActiveEffects(this.ownedItem);
+      //   });
+      // }
     };
 
     if (this.hasCharges(consumption)) {

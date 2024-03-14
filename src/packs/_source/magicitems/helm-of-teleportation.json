@@ -1,0 +1,123 @@
+{
+  "name": "Helm of Teleportation",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "equipment",
+  "data": {
+    "description": {
+      "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>This helm has 3 charges. While wearing it, you can use an action and expend 1 charge to cast the @Compendium[dnd5e.spells.L4J89JXqbKs6puEV]{Teleport}&nbsp;spell from it. The helm regains 1d3 expended charges daily at dawn.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 174",
+    "quantity": 1,
+    "weight": 2,
+    "price": 64000,
+    "attuned": false,
+    "equipped": false,
+    "rarity": "Rare",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": null,
+      "units": "inst"
+    },
+    "target": {
+      "value": 0,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": 10,
+      "long": 0,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 3,
+      "max": 3,
+      "per": "charges"
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "util",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "armor": {
+      "value": 0,
+      "type": "light",
+      "dex": null
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "speed": {
+      "value": null,
+      "conditions": ""
+    },
+    "strength": null,
+    "stealth": false,
+    "proficient": false,
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {
+    "magic-items-2": {
+      "enabled": true,
+      "equipped": true,
+      "attuned": true,
+      "charges": "3",
+      "chargeType": "c1",
+      "destroy": false,
+      "destroyFlavorText": "reaches 0 charges: it crumbles into ashes and is destroyed.",
+      "rechargeable": true,
+      "recharge": "1d3",
+      "rechargeType": "t2",
+      "rechargeUnit": "r2",
+      "sorting": "l",
+      "spells": {
+        "0": {
+          "id": "L4J89JXqbKs6puEV",
+          "name": "Teleport",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/symbols/runes-star-pentagon-magenta.webp",
+          "baseLevel": "7",
+          "level": "7",
+          "consumption": "1",
+          "upcast": "7",
+          "upcastCost": "1",
+          "flatDc": false
+        }
+      }
+    }
+  },
+  "img": "icons/equipment/head/helm-barbute-horned-copper.webp",
+  "effects": [],
+  "_id": "1V4OZVa5ADkuluPi",
+  "_key": "!items!1V4OZVa5ADkuluPi"
+}

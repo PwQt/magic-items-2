@@ -1,0 +1,123 @@
+{
+  "name": "Ring of Telekinesis",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "equipment",
+  "data": {
+    "description": {
+      "value": "<p><em>(Requires attunement)</em></p>\n<p>While wearing this ring, you can cast the @Compendium[dnd5e.spells.HQfd7jJyULIoGxrZ]{Telekinesis}&nbsp;spell at will, but you can target only objects that aren't being worn or carried.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 193",
+    "quantity": 1,
+    "weight": 0,
+    "price": 80000,
+    "attuned": false,
+    "equipped": false,
+    "rarity": "Very rare",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": "Target object cannot be currently worn or carried."
+    },
+    "duration": {
+      "value": 10,
+      "units": "minute"
+    },
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "object"
+    },
+    "range": {
+      "value": 60,
+      "long": 0,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 0,
+      "max": 0,
+      "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "util",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "armor": {
+      "value": 0,
+      "type": "trinket",
+      "dex": 0
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "speed": {
+      "value": null,
+      "conditions": ""
+    },
+    "strength": 0,
+    "stealth": false,
+    "proficient": false,
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {
+    "magic-items-2": {
+      "enabled": true,
+      "equipped": true,
+      "attuned": true,
+      "charges": "0",
+      "chargeType": "c1",
+      "destroy": false,
+      "destroyFlavorText": "reaches 0 charges: it crumbles into ashes and is destroyed.",
+      "rechargeable": false,
+      "recharge": "0",
+      "rechargeType": "t1",
+      "rechargeUnit": "r1",
+      "sorting": "l",
+      "spells": {
+        "0": {
+          "id": "HQfd7jJyULIoGxrZ",
+          "name": "Telekinesis",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/control/debuff-energy-hold-levitate-yellow.webp",
+          "baseLevel": "5",
+          "level": "5",
+          "consumption": "0",
+          "upcast": "5",
+          "upcastCost": "1",
+          "flatDc": false
+        }
+      }
+    }
+  },
+  "img": "icons/equipment/finger/ring-inlay-red.webp",
+  "effects": [],
+  "_id": "LiguLEoQHYD2flnQ",
+  "_key": "!items!LiguLEoQHYD2flnQ"
+}

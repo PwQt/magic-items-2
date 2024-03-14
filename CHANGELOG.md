@@ -1,4 +1,15 @@
+### 1.6.3.2
+
+- Exported alla the packs in json formats to better maintenance
+- Bug fix: https://github.com/PwQt/magic-items-2/issues/79
+- Bug fix: https://github.com/PwQt/magic-items-2/issues/78
+- Recovery magic items packs from version 1.6.2 ?
+- Rename all references for flags from `maicitems` to `magic-items-2`
+- Create api function for trasnfer all flags from old to new scope `game.modules.get("magic-items-2").api.fixFlagsScopeDataOnAllActors` for fix all actor in the world
+- Add css color on spells/tables/feats with a broken uuid
+
 ### 1.6.2
+
 - Brazilian Portuguese Translation by @Kharmans in https://github.com/PwQt/magic-items-2/pull/68
 - 63 bug effect not applying on a token from magic item spell by @PwQt in https://github.com/PwQt/magic-items-2/pull/69
 

@@ -1,4 +1,6 @@
-import { warn } from "../lib/lib.js";
+import CONSTANTS from "../constants/constants.js";
+import Logger from "../lib/Logger.js";
+import { isEmptyObject } from "../lib/lib.js";
 import { RetrieveHelpers } from "../lib/retrieve-helpers.js";
 import { MagicItemTab } from "../magicItemtab.js";
 import { MagicItemActor } from "../magicitemactor.js";
@@ -36,7 +38,7 @@ const API = {
     }
     const magicItemActor = actor ? MagicItemActor.get(actor.id) : null;
     if (!magicItemActor) {
-      warn(game.i18n.localize("MAGICITEMS.WarnNoActor"), true);
+      Logger.warn(game.i18n.localize("MAGICITEMS.WarnNoActor"), true);
       return;
     }
     magicItemActor.rollByName(magicItemName, innerChildMagicItemName);
@@ -60,6 +62,44 @@ const API = {
    */
   bindCharacterSheet: function (app, html, data) {
     MagicItemSheet.bind(app, html, data);
+  },
+
+  async fixFlagsScopeDataOnAllActors() {
+    if (game.user.isGM) {
+      for (const a of game.actors) {
+        Logger.info(`Update flagsScope on actor ${a.name}...`);
+        const magicitems = a.items.filter((i) => !!i.flags?.magicitems);
+        if (magicitems?.length > 0) {
+          for (const mi of magicitems) {
+            Logger.info(`Update flagsScope on actor ${a.name} for item ${mi.name}...`);
+            await this.fixFlagsScopeDataOnItem(mi);
+            Logger.info(`Updated flagsScope on actor ${a.name} for item ${mi.name}`);
+          }
+          Logger.info(`Updated flagsScope on actor ${a.name}`);
+        }
+      }
+    }
+  },
+
+  async fixFlagsScopeDataOnItem(mi) {
+    const miFlag = getProperty(mi, `flags.magicitems`);
+    const miFlagNewScope = getProperty(mi, `flags.${CONSTANTS.MODULE_ID}`);
+    if (!isEmptyObject(miFlag) && isEmptyObject(miFlagNewScope)) {
+      Logger.info(`Update flagsScope item ${mi.name}...`);
+      if (miFlag.spells?.length > 0) {
+        Object.entries(miFlag.spells).forEach(([key, value]) => {
+          if (!value.uuid && value.id) {
+            value.uuid = `Item.${value.id}`;
+          }
+        });
+      }
+      await mi.update({
+        flags: {
+          [CONSTANTS.MODULE_ID]: miFlag,
+        },
+      });
+      Logger.info(`Updated flagsScope item ${mi.name}`);
+    }
   },
 };
 

@@ -1,9 +1,31 @@
-import { warn } from "../lib/lib";
+import CONSTANTS from "../constants/constants";
+import Logger from "../lib/Logger";
+import { RetrieveHelpers } from "../lib/retrieve-helpers";
 import { MagicItemHelpers } from "../magic-item-helpers";
 
 export class AbstractMagicItemEntry {
   constructor(data) {
     mergeObject(this, data);
+    // Patch retrocompatbility
+    if (this.pack?.startsWith("magicitems")) {
+      this.pack = this.pack.replace("magicitems.", `${CONSTANTS.MODULE_ID}.`);
+    }
+    // Generate Uuid runtime
+    if (!this.uuid) {
+      try {
+        this.uuid = RetrieveHelpers.retrieveUuid({
+          documentName: this.name,
+          documentId: this.id,
+          documentCollectionType: this.collectionType,
+          documentPack: this.pack,
+          ignoreError: true,
+        });
+      } catch (e) {
+        Logger.error("Cannot retrieve uuid", false, e);
+        this.uuid = "";
+      }
+    }
+    this.removed = !RetrieveHelpers.stringIsUuid(this.uuid);
   }
 
   get displayName() {
@@ -25,14 +47,23 @@ export class AbstractMagicItemEntry {
         if (entity) {
           resolve(entity);
         } else {
-          warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + itemName, true);
+          Logger.warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + this.name, true);
           reject();
         }
       } else {
         const pack = game.packs.find((p) => p.collection === this.pack);
-        pack.getDocument(this.id).then((entity) => {
-          resolve(entity);
-        });
+        if (!pack) {
+          Logger.warn(`Cannot retrieve pack for if ${this.pack}`, true);
+        } else {
+          pack.getDocument(this.id)?.then((entity) => {
+            if (entity) {
+              resolve(entity);
+            } else {
+              Logger.warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + this.name, true);
+              reject();
+            }
+          });
+        }
       }
     });
   }

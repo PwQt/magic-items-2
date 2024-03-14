@@ -6,8 +6,8 @@ import { MagicItemHelpers } from "../magic-item-helpers.js";
 import { NumberUtils } from "../utils/number.js";
 
 export class MagicItem {
-  constructor(flags) {
-    const data = mergeObject(this.defaultData(), flags || {}, { inplace: false });
+  constructor(flagsData) {
+    const data = mergeObject(this.defaultData(), flagsData || {}, { inplace: false });
 
     this.enabled = data.enabled;
     this.equipped = data.equipped;
@@ -27,15 +27,24 @@ export class MagicItem {
 
     this.spells = Object.values(data.spells ? data.spells : {})
       .filter((spell) => spell !== "null")
-      .map((spell) => new MagicItemSpell(spell));
+      .map((spell) => {
+        spell.collectionType = "Item";
+        return new MagicItemSpell(spell);
+      });
 
     this.feats = Object.values(data.feats ? data.feats : {})
       .filter((feat) => feat !== "null")
-      .map((feat) => new MagicItemFeat(feat));
+      .map((feat) => {
+        feat.collectionType = "Item";
+        return new MagicItemFeat(feat);
+      });
 
     this.tables = Object.values(data.tables ? data.tables : {})
       .filter((table) => table !== "null")
-      .map((table) => new MagicItemTable(table));
+      .map((table) => {
+        table.collectionType = "RollTable";
+        return new MagicItemTable(table);
+      });
 
     this.spellsGarbage = [];
     this.featsGarbage = [];
@@ -186,6 +195,7 @@ export class MagicItem {
   }
 
   addSpell(data) {
+    data.collectionType = "Item";
     this.spells.push(new MagicItemSpell(data));
     this.cleanup();
   }
@@ -204,6 +214,7 @@ export class MagicItem {
   }
 
   addFeat(data) {
+    data.collectionType = "Item";
     this.feats.push(new MagicItemFeat(data));
     this.cleanup();
   }
@@ -222,6 +233,7 @@ export class MagicItem {
   }
 
   addTable(data) {
+    data.collectionType = "RollTable";
     this.tables.push(new MagicItemTable(data));
     this.cleanup();
   }

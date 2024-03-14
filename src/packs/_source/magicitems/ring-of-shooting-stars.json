@@ -1,0 +1,157 @@
+{
+  "name": "Ring of Shooting Stars",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "equipment",
+  "data": {
+    "description": {
+      "value": "<p><em>(Requires attunement outdoors at night)</em></p>\n<p>While wearing this ring in dim light or darkness, you can cast @Compendium[dnd5e.spells.CAxSzHWizrafT033]{Dancing Lights} and @Compendium[dnd5e.spells.Bnn9Nzajixvow9xi]{Light} from the ring at will. Casting either spell from the ring requires an action.</p>\n<p>The ring has 6 charges for the following other properties. The ring regains 1d6 expended charges daily at dawn.</p>\n<p><strong>Faerie Fire</strong>. You can expend 1 charge as an action to cast @Compendium[dnd5e.spells.nqBDWkVOfcGZt4YU]{Faerie Fire} from the ring.</p>\n<p><strong>Ball Lightning</strong>. You can expend 2 charges as an action to create one to four 3-foot-diameter spheres of lightning. The more spheres you create, the less powerful each sphere is individually.</p>\n<p>Each sphere appears in an unoccupied space you can see within 120 feet of you. The spheres last as long as you concentrate (as if concentrating on a spell), up to 1 minute. Each sphere sheds dim light in a 30-foot radius.</p>\n<p>As a bonus action, you can move each sphere up to 30 feet, but no farther than 120 feet away from you. When a creature other than you comes within 5 feet of a sphere, the sphere discharges lightning at that creature and disappears. That creature must make a DC 15 Dexterity saving throw. On a failed save, the creature takes lightning damage based on the number of spheres you created.</p>\n<table style=\"width: 181px;\" border=\"1\">\n<tbody>\n<tr>\n<td style=\"width: 59.1319px;\"><strong>Spheres</strong></td>\n<td style=\"width: 113.576px;\"><strong>Lightning Damage</strong></td>\n</tr>\n<tr>\n<td style=\"width: 59.1319px;\">4</td>\n<td style=\"width: 113.576px;\">2d4</td>\n</tr>\n<tr>\n<td style=\"width: 59.1319px;\">3</td>\n<td style=\"width: 113.576px;\">2d6</td>\n</tr>\n<tr>\n<td style=\"width: 59.1319px;\">2</td>\n<td style=\"width: 113.576px;\">5d4</td>\n</tr>\n<tr>\n<td style=\"width: 59.1319px;\">1</td>\n<td style=\"width: 113.576px;\">4d12</td>\n</tr>\n</tbody>\n</table>\n<p><strong>Shooting Stars</strong>.&nbsp;You can expend 1 to 3 charges as an action. For every charge you expend, you launch a glowing mote of light from the ring at a point you can see within 60 feet of you. Each creature within a 15-foot cube originating from that point is showered in sparks and must make a DC 15 Dexterity saving throw, taking 5d4 fire damage on a failed save, or half as much damage on a successful one.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 192",
+    "quantity": 1,
+    "weight": 0,
+    "price": 14000,
+    "attuned": false,
+    "equipped": false,
+    "rarity": "Very rare",
+    "identified": false,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 0,
+      "units": ""
+    },
+    "target": {
+      "value": 0,
+      "width": null,
+      "units": "",
+      "type": ""
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": 6,
+      "max": 6,
+      "per": "charges"
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "dex",
+      "dc": 15,
+      "scaling": "flat"
+    },
+    "armor": {
+      "value": 0,
+      "type": "trinket",
+      "dex": 0
+    },
+    "hp": {
+      "value": 0,
+      "max": 0,
+      "dt": null,
+      "conditions": ""
+    },
+    "speed": {
+      "value": null,
+      "conditions": ""
+    },
+    "strength": 0,
+    "stealth": false,
+    "proficient": false,
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {
+    "magic-items-2": {
+      "enabled": true,
+      "equipped": true,
+      "attuned": true,
+      "charges": "6",
+      "chargeType": "c1",
+      "destroy": false,
+      "destroyFlavorText": "reaches 0 charges: it crumbles into ashes and is destroyed.",
+      "rechargeable": true,
+      "recharge": "1d6",
+      "rechargeType": "t2",
+      "rechargeUnit": "r2",
+      "sorting": "l",
+      "spells": {
+        "0": {
+          "id": "CAxSzHWizrafT033",
+          "name": "Dancing Lights",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/fire/projectile-meteor-salvo-strong-blue.webp",
+          "baseLevel": "0",
+          "level": "0",
+          "consumption": "0",
+          "upcast": "0",
+          "upcastCost": "1",
+          "flatDc": false
+        },
+        "1": {
+          "id": "Bnn9Nzajixvow9xi",
+          "name": "Light",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/light/explosion-star-small-blue-yellow.webp",
+          "baseLevel": "0",
+          "level": "0",
+          "consumption": "0",
+          "upcast": "0",
+          "upcastCost": "1",
+          "flatDc": false
+        },
+        "2": {
+          "id": "nqBDWkVOfcGZt4YU",
+          "name": "Faerie Fire",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/fire/projectile-meteor-salvo-strong-teal.webp",
+          "baseLevel": "1",
+          "level": "1",
+          "consumption": "1",
+          "upcast": "1",
+          "upcastCost": "1",
+          "flatDc": false
+        }
+      },
+      "feats": {
+        "0": {
+          "id": "CGBGCevjRO22mf7V",
+          "name": "Ball Lightning",
+          "pack": "magic-items-2.magicitem-feats",
+          "img": "icons/magic/light/explosion-star-large-blue-yellow.webp",
+          "consumption": "2",
+          "effect": "e1"
+        }
+      }
+    }
+  },
+  "img": "icons/equipment/finger/ring-cabochon-gold-orange.webp",
+  "effects": [],
+  "_id": "FpqTziQMfiBhNUtv",
+  "_key": "!items!FpqTziQMfiBhNUtv"
+}

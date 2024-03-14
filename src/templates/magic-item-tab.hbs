@@ -1,21 +1,22 @@
-<div class="magic-items-content">
+<div class="magic-items-2-content">
   <div class="form-group">
     <label>{{localize "MAGICITEMS.SheetEnabled"}}</label>
-    <input type="checkbox" name="flags.magicitems.enabled" {{checked enabled}} />
+    <input type="checkbox" name="flags.magic-items-2.enabled" {{checked enabled}} />
+    <input type="hidden" name="flags.magic-items-2.default" value="{{default}}" />
   </div>
   <div class="magic-item-enabled {{ifThen enabled '' 'hidden'}}">
     <div class="form-group">
       <label>{{localize "MAGICITEMS.SheetActivation"}}</label>
       {{localize "MAGICITEMS.SheetActivationEquipped"}}
-      <input type="checkbox" name="flags.magicitems.equipped" {{checked equipped}} style="margin-right: 5px;" />
+      <input type="checkbox" name="flags.magic-items-2.equipped" {{checked equipped}} style="margin-right: 5px;" />
       {{localize "MAGICITEMS.SheetActivationAttuned"}}
-      <input type="checkbox" name="flags.magicitems.attuned" {{checked attuned}} />
+      <input type="checkbox" name="flags.magic-items-2.attuned" {{checked attuned}} />
     </div>
     <div class="form-group">
       <label>{{localize "MAGICITEMS.SheetCharges"}}</label>
       <div class="form-fields" style="flex: 1">
-        <input class="magic-item-charges" type="text" name="flags.magicitems.charges" value="{{charges}}" />
-        <select name="flags.magicitems.chargeType" class="magic-item-charges-type">
+        <input class="magic-item-charges" type="text" name="flags.magic-items-2.charges" value="{{charges}}" />
+        <select name="flags.magic-items-2.chargeType" class="magic-item-charges-type">
           {{#select chargeType}}
             {{#each chargeTypes as |name key|}}
               <option value="{{key}}">{{name}}</option>
@@ -28,8 +29,8 @@
       <label>{{localize "MAGICITEMS.SheetDestroyPre"}}
         {{destroyTarget}}
         {{localize "MAGICITEMS.SheetDestroyPost"}}</label>
-      <input type="checkbox" name="flags.magicitems.destroy" {{checked destroy}} style="margin: 3px 10px;" />
-      <select name="flags.magicitems.destroyCheck" class="magic-item-destroy-check" {{disabled (eq destroy false)}}>
+      <input type="checkbox" name="flags.magic-items-2.destroy" {{checked destroy}} style="margin: 3px 10px;" />
+      <select name="flags.magic-items-2.destroyCheck" class="magic-item-destroy-check" {{disabled (eq destroy false)}}>
         {{#select destroyCheck}}
           {{#each destroyChecks as |name key|}}
             <option value="{{key}}">{{name}}</option>
@@ -37,7 +38,7 @@
         {{/select}}
       </select>
       <select
-        name="flags.magicitems.destroyType"
+        name="flags.magic-items-2.destroyType"
         class="magic-item-destroy-type {{ifThen (eq chargeType 'c1') '' 'hidden'}}"
         {{disabled (eq destroy false)}}
       >
@@ -50,31 +51,31 @@
     </div>
     <div class="form-group stacked magic-item-destroy-flavor-text {{ifThen destroy '' 'hidden'}}">
       <label>{{localize "MAGICITEMS.SheetDestroyFlavorText"}}</label>
-      <input type="text" name="flags.magicitems.destroyFlavorText" value="{{destroyFlavorText}}" />
+      <input type="text" name="flags.magic-items-2.destroyFlavorText" value="{{destroyFlavorText}}" />
     </div>
 
     <div class="form-group">
       <label>{{localize "MAGICITEMS.SheetRechargeable"}}</label>
-      <input type="checkbox" name="flags.magicitems.rechargeable" {{checked rechargeable}} />
+      <input type="checkbox" name="flags.magic-items-2.rechargeable" {{checked rechargeable}} />
     </div>
     <div class="form-group magic-item-recharge {{ifThen rechargeable '' 'hidden'}}">
       <label>{{localize "MAGICITEMS.SheetRecharge"}}</label>
       <div class="form-fields">
         <input
           type="text"
-          name="flags.magicitems.recharge"
+          name="flags.magic-items-2.recharge"
           value="{{recharge}}"
           class="magic-item-recharge"
           {{disabled (eq rechargeType "t3")}}
         />
-        <select name="flags.magicitems.rechargeType">
+        <select name="flags.magic-items-2.rechargeType">
           {{#select rechargeType}}
             {{#each rechargeTypes as |name key|}}
               <option value="{{key}}">{{name}}</option>
             {{/each}}
           {{/select}}
         </select>
-        <select name="flags.magicitems.rechargeUnit">
+        <select name="flags.magic-items-2.rechargeUnit">
           {{#select rechargeUnit}}
             {{#each rechargeUnits as |name key|}}
               <option value="{{key}}">{{name}}</option>
@@ -86,7 +87,7 @@
     <div class="form-group magic-item-sort">
       <label>{{localize "MAGICITEMS.SheetSortingMode"}}</label>
       <div class="form-fields" style="justify-content: flex-end">
-        {{radioBoxes "flags.magicitems.sorting" sortingModes checked=sorting localize=true}}
+        {{radioBoxes "flags.magic-items-2.sorting" sortingModes checked=sorting localize=true}}
       </div>
     </div>
 
@@ -103,19 +104,22 @@
         </li>
         <ol class="item-list">
           {{#each spells as |item i|}}
-            <li class="item flexrow" data-item-id="{{item.id}}">
+            <li class="item flexrow" 
+              data-item-id="{{item.id}}"
+              data-item-uuid="{{item.uuid}}"
+              {{#if item.removed}} style="background: lightcoral;"{{/if}}>
               <div class="item-name flexrow">
                 <div class="item-image" style="background-image: url({{item.img}})"><i class="fa fa-dice-d20"></i></div>
                 <h4><a data-spell-idx="{{i}}">{{item.displayName}}</a></h4>
-                <input type="hidden" name="flags.magicitems.spells.{{i}}.uuid" value="{{item.uuid}}" />
-                <input type="hidden" name="flags.magicitems.spells.{{i}}.id" value="{{item.id}}" />
-                <input type="hidden" name="flags.magicitems.spells.{{i}}.name" value="{{item.name}}" />
-                <input type="hidden" name="flags.magicitems.spells.{{i}}.pack" value="{{item.pack}}" />
-                <input type="hidden" name="flags.magicitems.spells.{{i}}.img" value="{{item.img}}" />
-                <input type="hidden" name="flags.magicitems.spells.{{i}}.baseLevel" value="{{item.baseLevel}}" />
+                <input type="hidden" name="flags.magic-items-2.spells.{{i}}.uuid" value="{{item.uuid}}" />
+                <input type="hidden" name="flags.magic-items-2.spells.{{i}}.id" value="{{item.id}}" />
+                <input type="hidden" name="flags.magic-items-2.spells.{{i}}.name" value="{{item.name}}" />
+                <input type="hidden" name="flags.magic-items-2.spells.{{i}}.pack" value="{{item.pack}}" />
+                <input type="hidden" name="flags.magic-items-2.spells.{{i}}.img" value="{{item.img}}" />
+                <input type="hidden" name="flags.magic-items-2.spells.{{i}}.baseLevel" value="{{item.baseLevel}}" />
               </div>
               <div class="item-detail spell-level">
-                <select class="spell-level" name="flags.magicitems.spells.{{i}}.level">
+                <select class="spell-level" name="flags.magic-items-2.spells.{{i}}.level">
                   {{#select item.level}}
                     {{#each item.levels as |name key|}}
                       <option value="{{key}}">{{name}}</option>
@@ -127,12 +131,12 @@
                 <input
                   class="spell-consumption"
                   type="text"
-                  name="flags.magicitems.spells.{{i}}.consumption"
+                  name="flags.magic-items-2.spells.{{i}}.consumption"
                   value="{{item.consumption}}"
                 />
               </div>
               <div class="item-detail spell-upcast">
-                <select class="spell-upcast" name="flags.magicitems.spells.{{i}}.upcast">
+                <select class="spell-upcast" name="flags.magic-items-2.spells.{{i}}.upcast">
                   {{#select item.upcast}}
                     {{#each item.upcasts as |name key|}}
                       <option value="{{key}}">{{name}}</option>
@@ -144,7 +148,7 @@
                 <input
                   class="spell-cost"
                   type="text"
-                  name="flags.magicitems.spells.{{i}}.upcastCost"
+                  name="flags.magic-items-2.spells.{{i}}.upcastCost"
                   value="{{item.upcastCost}}"
                 />
               </div>
@@ -152,13 +156,13 @@
                 <input
                   class="spell-flat-dc"
                   type="checkbox"
-                  name="flags.magicitems.spells.{{i}}.flatDc"
+                  name="flags.magic-items-2.spells.{{i}}.flatDc"
                   {{checked item.flatDc}}
                 />
                 <input
                   class="spell-dc"
                   type="text"
-                  name="flags.magicitems.spells.{{i}}.dc"
+                  name="flags.magic-items-2.spells.{{i}}.dc"
                   value="{{item.dc}}"
                   {{enabled item.flatDc}}
                 />
@@ -184,18 +188,21 @@
         </li>
         <ol class="item-list">
           {{#each feats as |item i|}}
-            <li class="item flexrow" data-item-id="{{item.id}}">
+            <li class="item flexrow" 
+              data-item-id="{{item.id}}"
+              data-item-uuid="{{item.uuid}}"
+              {{#if item.removed}} style="background: lightcoral;"{{/if}}>
               <div class="item-name flexrow">
                 <div class="item-image" style="background-image: url({{item.img}})"></div>
                 <h4><a data-feat-idx="{{i}}">{{item.displayName}}</a></h4>
-                <input type="hidden" name="flags.magicitems.feats.{{i}}.uuid" value="{{item.uuid}}" />
-                <input type="hidden" name="flags.magicitems.feats.{{i}}.id" value="{{item.id}}" />
-                <input type="hidden" name="flags.magicitems.feats.{{i}}.name" value="{{item.name}}" />
-                <input type="hidden" name="flags.magicitems.feats.{{i}}.pack" value="{{item.pack}}" />
-                <input type="hidden" name="flags.magicitems.feats.{{i}}.img" value="{{item.img}}" />
+                <input type="hidden" name="flags.magic-items-2.feats.{{i}}.uuid" value="{{item.uuid}}" />
+                <input type="hidden" name="flags.magic-items-2.feats.{{i}}.id" value="{{item.id}}" />
+                <input type="hidden" name="flags.magic-items-2.feats.{{i}}.name" value="{{item.name}}" />
+                <input type="hidden" name="flags.magic-items-2.feats.{{i}}.pack" value="{{item.pack}}" />
+                <input type="hidden" name="flags.magic-items-2.feats.{{i}}.img" value="{{item.img}}" />
               </div>
               <div class="item-detail feat-effect">
-                <select class="feat-effect" name="flags.magicitems.feats.{{i}}.effect">
+                <select class="feat-effect" name="flags.magic-items-2.feats.{{i}}.effect">
                   {{#select item.effect}}
                     {{#each item.effects as |name key|}}
                       <option value="{{key}}">{{name}}</option>
@@ -207,7 +214,7 @@
                 <input
                   class="feat-consumption"
                   type="text"
-                  name="flags.magicitems.feats.{{i}}.consumption"
+                  name="flags.magic-items-2.feats.{{i}}.consumption"
                   value="{{item.consumption}}"
                 />
               </div>
@@ -232,18 +239,21 @@
         </li>
         <ol class="item-list">
           {{#each tables as |item i|}}
-            <li class="item flexrow" data-item-id="{{item.id}}">
+            <li class="item flexrow" 
+              data-item-id="{{item.id}}"
+              data-item-uuid="{{item.id}}"
+              {{#if item.removed}} style="background: lightcoral;"{{/if}}>
               <div class="item-name flexrow">
                 <div class="item-image" style="background-image: url({{item.img}})">{{{@root/rollIcon}}}</div>
                 <h4><a data-table-idx="{{i}}">{{item.displayName}}</a></h4>
-                <input type="hidden" name="flags.magicitems.tables.{{i}}.uuid" value="{{item.uuid}}" />
-                <input type="hidden" name="flags.magicitems.tables.{{i}}.id" value="{{item.id}}" />
-                <input type="hidden" name="flags.magicitems.tables.{{i}}.name" value="{{item.name}}" />
-                <input type="hidden" name="flags.magicitems.tables.{{i}}.pack" value="{{item.pack}}" />
-                <input type="hidden" name="flags.magicitems.tables.{{i}}.img" value="{{item.img}}" />
+                <input type="hidden" name="flags.magic-items-2.tables.{{i}}.uuid" value="{{item.uuid}}" />
+                <input type="hidden" name="flags.magic-items-2.tables.{{i}}.id" value="{{item.id}}" />
+                <input type="hidden" name="flags.magic-items-2.tables.{{i}}.name" value="{{item.name}}" />
+                <input type="hidden" name="flags.magic-items-2.tables.{{i}}.pack" value="{{item.pack}}" />
+                <input type="hidden" name="flags.magic-items-2.tables.{{i}}.img" value="{{item.img}}" />
               </div>
               <div class="item-detail table-usage">
-                <select class="table-usage" name="flags.magicitems.tables.{{i}}.usage">
+                <select class="table-usage" name="flags.magic-items-2.tables.{{i}}.usage">
                   {{#select item.usage}}
                     {{#each item.usages as |name key|}}
                       <option value="{{key}}">{{name}}</option>
@@ -255,7 +265,7 @@
                 <input
                   class="table-consumption"
                   type="text"
-                  name="flags.magicitems.tables.{{i}}.consumption"
+                  name="flags.magic-items-2.tables.{{i}}.consumption"
                   value="{{item.consumption}}"
                 />
               </div>

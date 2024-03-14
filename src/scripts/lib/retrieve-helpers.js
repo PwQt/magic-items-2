@@ -1,4 +1,4 @@
-import Logger from "./Logger";
+import Logger from "./Logger.js";
 
 export class RetrieveHelpers {
   /**
@@ -8,13 +8,15 @@ export class RetrieveHelpers {
    * @param {string} [options.documentId]
    * @param {("User"|"Folder"|"Actor"|"Item"|"Scene"|"Combat"|"JournalEntry"|"Macro"|"Playlist"|"RollTable"|"Cards"|"ChatMessage"|"Setting"|"FogExploration")} [options.collection]
    * @param {string} [options.documentPack]
+   * @param {boolean} [options.ignoreError=false]
    */
-  static retrieveUuid({ documentName, documentId, documentCollectionType, documentPack }) {
+  static retrieveUuid({ documentName, documentId, documentCollectionType, documentPack, ignoreError = false }) {
     let uuid = null;
     if (documentCollectionType || pack === "world") {
       const collection = game.collections.get(documentCollectionType);
       if (!collection) {
         // DO NOTHING
+        Logger.warn(`Cannot retrieve collection for ${collection}`);
       } else {
         // Get the original document, if the name still matches - take no action
         const original = documentId ? collection.get(documentId) : null;
@@ -37,26 +39,30 @@ export class RetrieveHelpers {
       }
     }
     if (documentPack) {
-      const pack = documentPack;
-
-      // Get the original entry, if the name still matches - take no action
-      const original = documentId ? pack.index.get(documentId) : null;
-      if (original) {
-        if (documentName) {
-          if (original.name !== documentName) {
-            // DO NOTHING
+      const pack = RetrieveHelpers.getCompendiumCollectionSync(documentPack, ignoreError);
+      if (!pack) {
+        // DO NOTHING
+        Logger.warn(`Cannot retrieve pack for ${documentPack}`);
+      } else {
+        // Get the original entry, if the name still matches - take no action
+        const original = documentId ? pack.index.get(documentId) : null;
+        if (original) {
+          if (documentName) {
+            if (original.name !== documentName) {
+              // DO NOTHING
+            } else {
+              return original.uuid;
+            }
           } else {
             return original.uuid;
           }
-        } else {
-          return original.uuid;
         }
-      }
 
-      // Otherwise, find the document by ID or name (ID preferred)
-      const doc = pack.index.find((i) => i._id === documentId || i.name === documentName) || null;
-      if (doc) {
-        return doc.uuid;
+        // Otherwise, find the document by ID or name (ID preferred)
+        const doc = pack.index.find((i) => i._id === documentId || i.name === documentName) || null;
+        if (doc) {
+          return doc.uuid;
+        }
       }
     }
     return uuid;
@@ -70,7 +76,12 @@ export class RetrieveHelpers {
   }
 
   static stringIsUuid(inId) {
-    return typeof inId === "string" && (inId.match(/\./g) || []).length && !inId.endsWith(".");
+    const valid = typeof inId === "string" && (inId.match(/\./g) || []).length && !inId.endsWith(".");
+    if (valid) {
+      return !!fromUuidSync(inId);
+    } else {
+      return false;
+    }
   }
 
   static getUuid(target) {
@@ -100,12 +111,14 @@ export class RetrieveHelpers {
     if (targetTmp instanceof CompendiumCollection) {
       return targetTmp;
     }
-    // if (RetrieveHelpers.stringIsUuid(targetTmp)) {
-    //   targetTmp = fromUuid(targetTmp);
-    // } else {
-    targetTmp = game.packs.get(targetTmp);
-    if (!targetTmp && !ignoreName) {
-      targetTmp = game.packs.getName(targetTmp);
+    if (RetrieveHelpers.stringIsUuid(targetTmp)) {
+      targetTmp = fromUuidSync(targetTmp);
+    } else {
+      if (game.packs.get(targetTmp)) {
+        targetTmp = game.packs.get(targetTmp);
+      } else if (!ignoreName && game.packs.getName(targetTmp)) {
+        targetTmp = game.packs.getName(targetTmp);
+      }
     }
     // }
     if (!targetTmp) {
@@ -117,14 +130,14 @@ export class RetrieveHelpers {
       }
     }
     // Type checking
-    // if (!(targetTmp instanceof CompendiumCollection)) {
-    //   if (ignoreError) {
-    //     Logger.warn(`Invalid CompendiumCollection`, true, targetTmp);
-    //     return;
-    //   } else {
-    //     throw Logger.error(`Invalid CompendiumCollection`, true, targetTmp);
-    //   }
-    // }
+    if (!(targetTmp instanceof CompendiumCollection)) {
+      if (ignoreError) {
+        Logger.warn(`Invalid CompendiumCollection`, false, targetTmp);
+        return;
+      } else {
+        throw Logger.error(`Invalid CompendiumCollection`, true, targetTmp);
+      }
+    }
     return targetTmp;
   }
 
@@ -150,8 +163,9 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = await fromUuid(targetTmp);
     } else {
-      targetTmp = game.packs.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.packs.get(targetTmp)) {
+        targetTmp = game.packs.get(targetTmp);
+      } else if (!ignoreName && game.packs.getName(targetTmp)) {
         targetTmp = game.packs.getName(targetTmp);
       }
     }
@@ -166,7 +180,7 @@ export class RetrieveHelpers {
     // Type checking
     if (!(targetTmp instanceof CompendiumCollection)) {
       if (ignoreError) {
-        Logger.warn(`Invalid CompendiumCollection`, true, targetTmp);
+        Logger.warn(`Invalid CompendiumCollection`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`Invalid CompendiumCollection`, true, targetTmp);
@@ -197,8 +211,9 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = fromUuidSync(targetTmp);
     } else {
-      targetTmp = game.users.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.users.get(targetTmp)) {
+        targetTmp = game.users.get(targetTmp);
+      } else if (!ignoreName && game.users.getName(targetTmp)) {
         targetTmp = game.users.getName(targetTmp);
       }
     }
@@ -207,13 +222,13 @@ export class RetrieveHelpers {
         Logger.warn(`User is not found`, false, targetTmp);
         return;
       } else {
-        throw error(`User is not found`, true, targetTmp);
+        throw Logger.error(`User is not found`, true, targetTmp);
       }
     }
     // Type checking
     // if (!(targetTmp instanceof User)) {
     //   if (ignoreError) {
-    //     Logger.warn(`Invalid User`, true, targetTmp);
+    //     Logger.warn(`Invalid User`, false, targetTmp);
     //     return;
     //   } else {
     //     throw Logger.error(`Invalid User`, true, targetTmp);
@@ -244,8 +259,9 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = fromUuidSync(targetTmp);
     } else {
-      targetTmp = game.actors.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.actors.get(targetTmp)) {
+        targetTmp = game.actors.get(targetTmp);
+      } else if (!ignoreName && game.actors.getName(targetTmp)) {
         targetTmp = game.actors.getName(targetTmp);
       }
     }
@@ -260,7 +276,7 @@ export class RetrieveHelpers {
     // Type checking
     // if (!(targetTmp instanceof Actor)) {
     //   if (ignoreError) {
-    //     Logger.warn(`Invalid Actor`, true, targetTmp);
+    //     Logger.warn(`Invalid Actor`, false, targetTmp);
     //     return;
     //   } else {
     //     throw Logger.error(`Invalid Actor`, true, targetTmp);
@@ -291,8 +307,9 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = await fromUuid(targetTmp);
     } else {
-      targetTmp = game.actors.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.actors.get(targetTmp)) {
+        targetTmp = game.actors.get(targetTmp);
+      } else if (!ignoreName && game.actors.getName(targetTmp)) {
         targetTmp = game.actors.getName(targetTmp);
       }
     }
@@ -307,7 +324,7 @@ export class RetrieveHelpers {
     // Type checking
     if (!(targetTmp instanceof Actor)) {
       if (ignoreError) {
-        Logger.warn(`Invalid Actor`, true, targetTmp);
+        Logger.warn(`Invalid Actor`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`Invalid Actor`, true, targetTmp);
@@ -338,8 +355,9 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = fromUuidSync(targetTmp);
     } else {
-      targetTmp = game.journal.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.journal.get(targetTmp)) {
+        targetTmp = game.journal.get(targetTmp);
+      } else if (!ignoreName && game.journal.getName(targetTmp)) {
         targetTmp = game.journal.getName(targetTmp);
       }
     }
@@ -354,7 +372,7 @@ export class RetrieveHelpers {
     // Type checking
     // if (!(targetTmp instanceof Journal)) {
     //   if (ignoreError) {
-    //     Logger.warn(`Invalid Journal`, true, targetTmp);
+    //     Logger.warn(`Invalid Journal`, false, targetTmp);
     //     return;
     //   } else {
     //     throw Logger.error(`Invalid Journal`, true, targetTmp);
@@ -385,8 +403,9 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = await fromUuid(targetTmp);
     } else {
-      targetTmp = game.journal.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.journal.get(targetTmp)) {
+        targetTmp = game.journal.get(targetTmp);
+      } else if (!ignoreName && game.journal.getName(targetTmp)) {
         targetTmp = game.journal.getName(targetTmp);
       }
     }
@@ -401,7 +420,7 @@ export class RetrieveHelpers {
     // Type checking
     if (!(targetTmp instanceof Journal)) {
       if (ignoreError) {
-        Logger.warn(`Invalid Journal`, true, targetTmp);
+        Logger.warn(`Invalid Journal`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`Invalid Journal`, true, targetTmp);
@@ -432,14 +451,15 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = fromUuidSync(targetTmp);
     } else {
-      targetTmp = game.macros.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.macros.get(targetTmp)) {
+        targetTmp = game.macros.get(targetTmp);
+      } else if (!ignoreName && game.macros.getName(targetTmp)) {
         targetTmp = game.macros.getName(targetTmp);
       }
     }
     if (!targetTmp) {
       if (ignoreError) {
-        Logger.warn(`Macro is not found`, true, targetTmp);
+        Logger.warn(`Macro is not found`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`Macro is not found`, true, targetTmp);
@@ -448,7 +468,7 @@ export class RetrieveHelpers {
     // Type checking
     // if (!(targetTmp instanceof Macro)) {
     //   if (ignoreError) {
-    //     Logger.warn(`Invalid Macro`, true, targetTmp);
+    //     Logger.warn(`Invalid Macro`, false, targetTmp);
     //     return;
     //   } else {
     //     throw Logger.error(`Invalid Macro`, true, targetTmp);
@@ -479,14 +499,15 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = await fromUuid(targetTmp);
     } else {
-      targetTmp = game.macros.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.macros.get(targetTmp)) {
+        targetTmp = game.macros.get(targetTmp);
+      } else if (!ignoreName && game.macros.getName(targetTmp)) {
         targetTmp = game.macros.getName(targetTmp);
       }
     }
     if (!targetTmp) {
       if (ignoreError) {
-        Logger.warn(`Macro is not found`, true, targetTmp);
+        Logger.warn(`Macro is not found`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`Macro is not found`, true, targetTmp);
@@ -495,7 +516,7 @@ export class RetrieveHelpers {
     // Type checking
     if (!(targetTmp instanceof Macro)) {
       if (ignoreError) {
-        Logger.warn(`Invalid Macro`, true, targetTmp);
+        Logger.warn(`Invalid Macro`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`Invalid Macro`, true, targetTmp);
@@ -526,14 +547,15 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = fromUuidSync(targetTmp);
     } else {
-      targetTmp = game.scenes.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.scenes.get(targetTmp)) {
+        targetTmp = game.scenes.get(targetTmp);
+      } else if (!ignoreName && game.scenes.getName(targetTmp)) {
         targetTmp = game.scenes.getName(targetTmp);
       }
     }
     if (!targetTmp) {
       if (ignoreError) {
-        Logger.warn(`Scene is not found`, true, targetTmp);
+        Logger.warn(`Scene is not found`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`Scene is not found`, true, targetTmp);
@@ -542,7 +564,7 @@ export class RetrieveHelpers {
     // Type checking
     // if (!(targetTmp instanceof Scene)) {
     //   if (ignoreError) {
-    //     Logger.warn(`Invalid Scene`, true, targetTmp);
+    //     Logger.warn(`Invalid Scene`, false, targetTmp);
     //     return;
     //   } else {
     //     throw Logger.error(`Invalid Scene`, true, targetTmp);
@@ -573,14 +595,15 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = await fromUuid(targetTmp);
     } else {
-      targetTmp = game.scenes.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.scenes.get(targetTmp)) {
+        targetTmp = game.scenes.get(targetTmp);
+      } else if (!ignoreName && game.scenes.getName(targetTmp)) {
         targetTmp = game.scenes.getName(targetTmp);
       }
     }
     if (!targetTmp) {
       if (ignoreError) {
-        Logger.warn(`Scene is not found`, true, targetTmp);
+        Logger.warn(`Scene is not found`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`Scene is not found`, true, targetTmp);
@@ -589,7 +612,7 @@ export class RetrieveHelpers {
     // Type checking
     if (!(targetTmp instanceof Scene)) {
       if (ignoreError) {
-        Logger.warn(`Invalid Scene`, true, targetTmp);
+        Logger.warn(`Invalid Scene`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`Invalid Scene`, true, targetTmp);
@@ -620,8 +643,9 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = fromUuidSync(targetTmp);
     } else {
-      targetTmp = game.items.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.items.get(targetTmp)) {
+        targetTmp = game.items.get(targetTmp);
+      } else if (!ignoreName && game.items.getName(targetTmp)) {
         targetTmp = game.items.getName(targetTmp);
       }
     }
@@ -636,7 +660,7 @@ export class RetrieveHelpers {
     // Type checking
     // if (!(targetTmp instanceof Item)) {
     //   if (ignoreError) {
-    //     Logger.warn(`Invalid Item`, true, targetTmp);
+    //     Logger.warn(`Invalid Item`, false, targetTmp);
     //     return;
     //   } else {
     //     throw Logger.error(`Invalid Item`, true, targetTmp);
@@ -667,8 +691,9 @@ export class RetrieveHelpers {
     if (RetrieveHelpers.stringIsUuid(targetTmp)) {
       targetTmp = await fromUuid(targetTmp);
     } else {
-      targetTmp = game.items.get(targetTmp);
-      if (!targetTmp && !ignoreName) {
+      if (game.items.get(targetTmp)) {
+        targetTmp = game.items.get(targetTmp);
+      } else if (!ignoreName && game.items.getName(targetTmp)) {
         targetTmp = game.items.getName(targetTmp);
       }
     }
@@ -683,7 +708,7 @@ export class RetrieveHelpers {
     // Type checking
     if (!(targetTmp instanceof Item)) {
       if (ignoreError) {
-        Logger.warn(`Invalid Item`, true, targetTmp);
+        Logger.warn(`Invalid Item`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`Invalid Item`, true, targetTmp);
@@ -725,7 +750,7 @@ export class RetrieveHelpers {
     }
     if (!targetTmp) {
       if (ignoreError) {
-        Logger.warn(`PlaylistSound is not found`, true, targetTmp);
+        Logger.warn(`PlaylistSound is not found`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`PlaylistSound is not found`, true, targetTmp);
@@ -734,7 +759,7 @@ export class RetrieveHelpers {
     // Type checking
     // if (!(targetTmp instanceof PlaylistSound)) {
     //   if (ignoreError) {
-    //     Logger.warn(`Invalid PlaylistSound`, true, targetTmp);
+    //     Logger.warn(`Invalid PlaylistSound`, false, targetTmp);
     //     return;
     //   } else {
     //     throw Logger.error(`Invalid PlaylistSound`, true, targetTmp);
@@ -776,7 +801,7 @@ export class RetrieveHelpers {
     }
     if (!targetTmp) {
       if (ignoreError) {
-        Logger.warn(`PlaylistSound is not found`, true, targetTmp);
+        Logger.warn(`PlaylistSound is not found`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`PlaylistSound is not found`, true, targetTmp);
@@ -785,12 +810,184 @@ export class RetrieveHelpers {
     // Type checking
     if (!(targetTmp instanceof PlaylistSound)) {
       if (ignoreError) {
-        Logger.warn(`Invalid PlaylistSound`, true, targetTmp);
+        Logger.warn(`Invalid PlaylistSound`, false, targetTmp);
         return;
       } else {
         throw Logger.error(`Invalid PlaylistSound`, true, targetTmp);
       }
     }
     return targetTmp.path;
+  }
+
+  static getTokenSync(target, ignoreError = false, ignoreName = true) {
+    let targetTmp = target;
+    if (!targetTmp) {
+      throw Logger.error(`Token is undefined`, true, targetTmp);
+    }
+    if (targetTmp instanceof Token) {
+      return targetTmp;
+    }
+    if (targetTmp instanceof TokenDocument) {
+      targetTmp = targetTmp?.object ?? targetTmp;
+      return targetTmp;
+    }
+    if (targetTmp instanceof Actor) {
+      if (targetTmp.token) {
+        targetTmp = canvas.tokens.get(targetTmp.token);
+      } else {
+        targetTmp = targetTmp.prototypeToken;
+      }
+      if (!targetTmp) {
+        if (ignoreError) {
+          Logger.warn(`Token is not found`, false, targetTmp);
+          return;
+        } else {
+          throw Logger.error(`Token is not found`, true, targetTmp);
+        }
+      }
+      return targetTmp;
+    }
+    // This is just a patch for compatibility with others modules
+    if (targetTmp.document) {
+      targetTmp = targetTmp.document;
+    }
+    if (targetTmp.uuid) {
+      targetTmp = targetTmp.uuid;
+    }
+    if (targetTmp instanceof Token) {
+      return targetTmp;
+    }
+    if (RetrieveHelpers.stringIsUuid(targetTmp)) {
+      targetTmp = fromUuidSync(targetTmp);
+    } else {
+      targetTmp = canvas.tokens?.placeables.find((t) => {
+        return t.id === target;
+      });
+      if (!ignoreName) {
+        targetTmp = canvas.tokens?.placeables.find((t) => {
+          return t.name === target;
+        });
+      }
+    }
+    if (!targetTmp) {
+      if (ignoreError) {
+        Logger.warn(`Token is not found`, false, targetTmp);
+        return;
+      } else {
+        throw Logger.error(`Token is not found`, true, targetTmp);
+      }
+    }
+    targetTmp = targetTmp?.token ?? targetTmp;
+    if (targetTmp instanceof TokenDocument) {
+      targetTmp = targetTmp?.object ?? targetTmp;
+    }
+    // Type checking
+    // if (!(targetTmp instanceof Token)) {
+    //   if (ignoreError) {
+    //     Logger.warn(`Invalid Token`, false, targetTmp);
+    //     return;
+    //   } else {
+    //     throw Logger.error(`Invalid Token`, true, targetTmp);
+    //   }
+    // }
+    return targetTmp;
+  }
+
+  static getRollTableSync(target, ignoreError = false, ignoreName = true) {
+    let targetTmp = target;
+    if (!targetTmp) {
+      throw Logger.error(`RollTable is undefined`, true, targetTmp);
+    }
+    if (targetTmp instanceof RollTable) {
+      return targetTmp;
+    }
+    // This is just a patch for compatibility with others modules
+    if (targetTmp.document) {
+      targetTmp = targetTmp.document;
+    }
+    if (targetTmp.uuid) {
+      targetTmp = targetTmp.uuid;
+    }
+
+    if (targetTmp instanceof RollTable) {
+      return targetTmp;
+    }
+    if (RetrieveHelpers.stringIsUuid(targetTmp)) {
+      targetTmp = fromUuidSync(targetTmp);
+    } else {
+      if (game.tables.get(targetTmp)) {
+        targetTmp = game.tables.get(targetTmp);
+      } else if (!ignoreName && game.tables.getName(targetTmp)) {
+        targetTmp = game.tables.getName(targetTmp);
+      }
+    }
+
+    if (!targetTmp) {
+      if (ignoreError) {
+        Logger.warn(`RollTable is not found`, false, targetTmp);
+        return;
+      } else {
+        throw Logger.error(`RollTable is not found`, true, targetTmp);
+      }
+    }
+    // Type checking
+    // if (!(targetTmp instanceof RollTable)) {
+    //   if (ignoreError) {
+    //     Logger.warn(`Invalid RollTable`, false, targetTmp);
+    //     return;
+    //   } else {
+    //     throw Logger.error(`Invalid RollTable`, true, targetTmp);
+    //   }
+    // }
+    return targetTmp;
+  }
+
+  static async getRollTableAsync(target, ignoreError = false, ignoreName = true) {
+    let targetTmp = target;
+    if (!targetTmp) {
+      throw Logger.error(`RollTable is undefined`, true, targetTmp);
+    }
+    if (targetTmp instanceof RollTable) {
+      return targetTmp;
+    }
+    // This is just a patch for compatibility with others modules
+    if (targetTmp.document) {
+      targetTmp = targetTmp.document;
+    }
+    if (targetTmp.uuid) {
+      targetTmp = targetTmp.uuid;
+    }
+
+    if (targetTmp instanceof RollTable) {
+      return targetTmp;
+    }
+    if (RetrieveHelpers.stringIsUuid(targetTmp)) {
+      targetTmp = await fromUuid(targetTmp);
+    } else {
+      if (game.tables.get(targetTmp)) {
+        targetTmp = game.tables.get(targetTmp);
+      } else if (!ignoreName && game.tables.getName(targetTmp)) {
+        targetTmp = game.tables.getName(targetTmp);
+      }
+    }
+
+    if (!targetTmp) {
+      if (ignoreError) {
+        Logger.warn(`RollTable is not found`, false, targetTmp);
+        return;
+      } else {
+        throw Logger.error(`RollTable is not found`, true, targetTmp);
+      }
+    }
+    // Type checking
+    if (!(targetTmp instanceof RollTable)) {
+      if (ignoreError) {
+        Logger.warn(`Invalid RollTable`, false, targetTmp);
+        return;
+      } else {
+        throw Logger.error(`Invalid RollTable`, true, targetTmp);
+      }
+    }
+    return targetTmp;
   }
 }

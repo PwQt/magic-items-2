@@ -1,6 +1,6 @@
 {{#if hasVisibleItems}}
-<div class="magic-items-spells-content">
-  <div class="inventory-filters spellbook-filters magic-items-head">
+<div class="magic-items-2-spells-content">
+  <div class="inventory-filters spellbook-filters magic-items-2-head">
     <label>
       <h3>
         Magic Items - {{localize "MAGICITEMS.SheetTot"}}: {{magicItemsCount}}, {{localize "MAGICITEMS.SheetActives"}}:
@@ -14,7 +14,7 @@
       <h3 class="item-name flexrow">{{name}}</h3>
       {{#if chargesOnWholeItem}}
       <div class="spell-slots">
-        <input data-item-id="magicitems.{{id}}.uses" type="text" value="{{uses}}" placeholder="0" />
+        <input data-item-uses="magic-items-2.{{id}}.uses" type="text" value="{{uses}}" placeholder="0" />
         <span class="sep"> / </span>
         <input type="text" value="{{charges}}" placeholder="0" />
       </div>
@@ -40,7 +40,7 @@
         {{#if ../chargesPerSpell}}
         <div class="spell-slots">
           <input
-            data-item-id="magicitems.{{../id}}.{{spell.id}}.uses"
+            data-item-uses="magic-items-2.{{../id}}.{{spell.id}}.uses"
             type="text"
             value="{{spell.uses}}"
             placeholder="0"
@@ -55,7 +55,11 @@
         <div class="spell-upcast">{{spell.canUpcastLabel}}</div>
       </li>
       {{/each}} {{#if hasTableAsSpells}} {{#each tableAsSpells as |table|}}
-      <li class="item flexrow magic-item" data-magic-item-id="{{../id}}" data-item-id="{{table.id}}" draggable="true">
+      <li class="item flexrow magic-item" 
+        data-item-id="{{table.id}}" 
+        data-item-uuid="{{table.uuid}}"
+        data-magic-item-id="{{../id}}" 
+        draggable="true">
         <div class="item-name flexrow rollable">
           <div class="item-image magic-item-image" style="background-image: url({{table.img}})"></div>
           <h4 class="spell-name">{{table.displayName}}</h4>
@@ -63,7 +67,7 @@
         {{#if ../chargesPerSpell}}
         <div class="spell-slots">
           <input
-            data-item-id="magicitems.{{../id}}.{{table.id}}.uses"
+            data-item-uses="magic-items-2.{{../id}}.{{table.id}}.uses"
             type="text"
             value="{{table.uses}}"
             placeholder="0"

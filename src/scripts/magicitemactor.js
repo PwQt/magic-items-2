@@ -1,5 +1,7 @@
 import { MAGICITEMS } from "./config.js";
-import { warn } from "./lib/lib.js";
+import CONSTANTS from "./constants/constants.js";
+import Logger from "./lib/Logger.js";
+import { RetrieveHelpers } from "./lib/retrieve-helpers.js";
 import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { OwnedMagicItem } from "./magic-item/OwnedMagicItem.js";
 
@@ -132,8 +134,14 @@ export class MagicItemActor {
    */
   buildItems() {
     this.items = this.actor.items
-      .filter((item) => typeof item.flags.magicitems !== "undefined" && item.flags.magicitems.enabled)
-      .map((item) => new OwnedMagicItem(item, this.actor, this));
+      .filter((item) => {
+        const flagsData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+        return typeof flagsData !== "undefined" && flagsData.enabled;
+      })
+      .map((item) => {
+        const flagsData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+        return new OwnedMagicItem(item, this.actor, this, flagsData);
+      });
     this.fireChange();
   }
 
@@ -249,7 +257,7 @@ export class MagicItemActor {
   rollByName(magicItemName, itemName) {
     let found = this.items.filter((item) => item.name === magicItemName);
     if (!found.length) {
-      warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItem") + itemName, true);
+      Logger.warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItem") + itemName, true);
       return;
     }
     let item = found[0];
@@ -289,15 +297,38 @@ export class MagicItemActor {
    *
    * @param item
    */
-  destroyItem(item) {
-    let idx = 0;
-    this.items.forEach((owned, i) => {
-      if (owned.id === item.id) {
-        idx = i;
+  async destroyItem(item) {
+    const magicItemParent = item.item;
+    const currentQuantity = foundry.utils.getProperty(magicItemParent, CONSTANTS.QUANTITY_PROPERTY_PATH) || 1;
+    if (currentQuantity > 1) {
+      const defaultReference = foundry.utils.getProperty(
+        magicItemParent,
+        `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`,
+      );
+      if (defaultReference) {
+        const defaultItem = await RetrieveHelpers.getItemAsync(defaultReference);
+        const defaultDataFlags = foundry.utils.getProperty(defaultItem, `flags.${CONSTANTS.MODULE_ID}`);
+        defaultDataFlags.default = defaultItem.uuid;
+        const updateItem = {
+          _id: magicItemParent.id,
+          [CONSTANTS.QUANTITY_PROPERTY_PATH]: currentQuantity - 1,
+          flags: {
+            [CONSTANTS.MODULE_ID]: defaultDataFlags || {},
+          },
+        };
       }
-    });
-    this.items.splice(idx, 1);
-    this.destroyed.push(item);
-    this.actor.deleteEmbeddedDocuments("Item", [item.id]);
+      await this.actor.updateEmbeddedDocuments("Item", [updateItem]);
+    } else {
+      let idx = 0;
+      this.items.forEach((owned, i) => {
+        if (owned.id === item.id) {
+          idx = i;
+        }
+      });
+      this.items.splice(idx, 1);
+      this.destroyed.push(item);
+
+      await this.actor.deleteEmbeddedDocuments("Item", [magicItemParent.id]);
+    }
   }
 }

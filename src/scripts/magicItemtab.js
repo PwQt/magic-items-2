@@ -29,19 +29,19 @@ export class MagicItemTab {
       html = $(html[0].parentElement.parentElement);
     }
     let tabs = html.find(`form nav.sheet-navigation.tabs`);
-    if (tabs.find("a[data-tab=magicitems]").length > 0) {
+    if (tabs.find(`a[data-tab=${CONSTANTS.MODULE_ID}]`).length > 0) {
       return; // already initialized, duplication bug!
     }
 
-    tabs.append($('<a class="item" data-tab="magicitems">Magic Item</a>'));
+    tabs.append($(`<a class="item" data-tab="${CONSTANTS.MODULE_ID}">Magic Item</a>`));
 
     $(html.find(`.sheet-body`)).append(
-      $('<div class="tab magic-items" data-group="primary" data-tab="magicitems"></div>')
+      $(`<div class="tab magic-items-2" data-group="primary" data-tab="${CONSTANTS.MODULE_ID}"></div>`),
     );
 
     if (this.editable) {
       const dragDrop = new DragDrop({
-        dropSelector: ".tab.magic-items",
+        dropSelector: ".tab.magic-items-2",
         permissions: {
           dragstart: this._canDragStart.bind(app),
           drop: this._canDragDrop.bind(app),
@@ -63,8 +63,8 @@ export class MagicItemTab {
       app._dragDrop.push(dragDrop);
       dragDrop.bind(app.form);
     }
-
-    this.magicItem = new MagicItem(app.item.flags.magicitems);
+    const flagsData = foundry.utils.getProperty(app.item, `flags.${CONSTANTS.MODULE_ID}`);
+    this.magicItem = new MagicItem(flagsData);
 
     this.render(app);
   }
@@ -86,11 +86,11 @@ export class MagicItemTab {
 
   async render(app) {
     let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.hbs`, this.magicItem);
-    let el = this.html.find(`.magic-items-content`);
+    let el = this.html.find(`.magic-items-2-content`);
     if (el.length) {
       el.replaceWith(template);
     } else {
-      this.html.find(".tab.magic-items").append(template);
+      this.html.find(".tab.magic-items-2").append(template);
     }
 
     if (this.editable) {
@@ -108,7 +108,7 @@ export class MagicItemTab {
     }
 
     if (this.activate && !this.isActive()) {
-      app._tabs[0].activate("magicitems");
+      app._tabs[0].activate(`${CONSTANTS.MODULE_ID}`);
       app.setPosition();
     }
 
@@ -116,7 +116,7 @@ export class MagicItemTab {
   }
 
   isActive() {
-    return $(this.html).find('a.item[data-tab="magicitems"]').hasClass("active");
+    return $(this.html).find(`a.item[data-tab="${CONSTANTS.MODULE_ID}"]`).hasClass("active");
   }
 
   _canDragDrop() {
@@ -128,7 +128,7 @@ export class MagicItemTab {
   }
 
   activateTabManagementListeners() {
-    this.html.find(".magic-items-content").on("change", ":input", (evt) => {
+    this.html.find(".magic-items-2-content").on("change", ":input", (evt) => {
       this.activate = true;
     });
   }
@@ -137,8 +137,8 @@ export class MagicItemTab {
    * Disable all relevant inputs in the magic items tab.
    */
   static disableMagicItemTabInputs(html) {
-    html.find(".magic-items-content input").prop("disabled", true);
-    html.find(".magic-items-content select").prop("disabled", true);
+    html.find(".magic-items-2-content input").prop("disabled", true);
+    html.find(".magic-items-2-content select").prop("disabled", true);
   }
 
   /**
@@ -170,7 +170,7 @@ export class MagicItemTab {
       magicItem.addEntity(entity, pack);
       item.update({
         flags: {
-          magicitems: magicItem.serializeData(),
+          [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
         },
       });
     }
@@ -196,7 +196,7 @@ export class MagicItemTab {
       onMagicItemUpdatingCallback?.();
       item.update({
         flags: {
-          magicitems: magicItem.serializeData(),
+          [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
         },
       });
     });
@@ -205,7 +205,7 @@ export class MagicItemTab {
       onMagicItemUpdatingCallback?.();
       item.update({
         flags: {
-          magicitems: magicItem.serializeData(),
+          [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
         },
       });
     });
@@ -214,7 +214,7 @@ export class MagicItemTab {
       onMagicItemUpdatingCallback?.();
       item.update({
         flags: {
-          magicitems: magicItem.serializeData(),
+          [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
         },
       });
     });

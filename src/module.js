@@ -6,7 +6,7 @@ import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
 import { MagicItem } from "./scripts/magic-item/MagicItem.js";
 
-//CONFIG.debug.hooks = true;
+// CONFIG.debug.hooks = true;
 
 Handlebars.registerHelper("enabled", function (value, options) {
   return Boolean(value) ? "" : "disabled";
@@ -31,6 +31,15 @@ Hooks.once("init", () => {
     config: true,
   });
 
+  game.settings.register(CONSTANTS.MODULE_ID, "debug", {
+    name: "MAGICITEMS.SettingDebug",
+    hint: "MAGICITEMS.SettingDebugHint",
+    scope: "client",
+    type: Boolean,
+    default: false,
+    config: true,
+  });
+
   if (typeof Babele !== "undefined") {
     Babele.get().register({
       module: CONSTANTS.MODULE_ID,
@@ -40,7 +49,7 @@ Hooks.once("init", () => {
   }
 });
 
-Hooks.once("setup", () => {
+Hooks.once("setup", async () => {
   // Set API
   game.modules.get(CONSTANTS.MODULE_ID).api = API;
   window.MagicItems = game.modules.get(CONSTANTS.MODULE_ID).api;
@@ -74,25 +83,27 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
   // Register Tidy Item Sheet Tab
   const magicItemsTab = new api.models.HandlebarsTab({
     title: "Magic Item",
-    tabId: "magic-items",
+    tabId: "magic-items-2",
     path: "/modules/magic-items-2/templates/magic-item-tab.hbs",
     enabled: (data) => {
       return MagicItemTab.isAcceptedItemType(data.item) && MagicItemTab.isAllowedToShow();
     },
     getData(data) {
-      return new MagicItem(data.item.flags.magicitems);
+      const flagsData = foundry.utils.getProperty(data.item, `flags.${CONSTANTS.MODULE_ID}`);
+      return new MagicItem(flagsData);
     },
     onRender(params) {
       const html = $(params.element);
 
       if (params.data.editable) {
-        const magicItem = new MagicItem(params.data.item.flags.magicitems);
+        const flagsData = foundry.utils.getProperty(params.data.item, `flags.${CONSTANTS.MODULE_ID}`);
+        const magicItem = new MagicItem(flagsData);
         MagicItemTab.activateTabContentsListeners({
           html: html,
           item: params.data.item,
           magicItem: magicItem,
         });
-        params.element.querySelector(`.magic-items-content`).addEventListener("drop", (event) => {
+        params.element.querySelector(`.magic-items-2-content`).addEventListener("drop", (event) => {
           MagicItemTab.onDrop({ event, item: params.data.item, magicItem: magicItem });
         });
       } else {
@@ -122,14 +133,14 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
       getData(data) {
         return MagicItemActor.get(data.actor.id);
       },
-    })
+    }),
   );
 
   // Register character and NPC feature tab custom content
   const npcAbilitiesTabContainerSelector = `[data-tidy-sheet-part="${api.constants.SHEET_PARTS.NPC_ABILITIES_CONTAINER}"]`;
   const characterFeaturesContainerSelector = `[data-tab-contents-for="${api.constants.TAB_ID_CHARACTER_FEATURES}"] [data-tidy-sheet-part="${api.constants.SHEET_PARTS.ITEMS_CONTAINER}"]`;
   const magicItemFeatureTargetSelector = [npcAbilitiesTabContainerSelector, characterFeaturesContainerSelector].join(
-    ", "
+    ", ",
   );
   api.registerActorContent(
     new api.models.HandlebarsContent({
@@ -150,7 +161,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
       getData(data) {
         return MagicItemActor.get(data.actor.id);
       },
-    })
+    }),
   );
 });
 
@@ -167,7 +178,7 @@ Hooks.on("tidy5e-sheet.renderActorSheet", (app, element, data) => {
     .filter((item) => item.visible)
     .forEach((item) => {
       let itemEl = html.find(
-        `[data-tidy-sheet-part="${tidyApi.constants.SHEET_PARTS.ITEM_TABLE_ROW}"][data-item-id="${item.id}"]`
+        `[data-tidy-sheet-part="${tidyApi.constants.SHEET_PARTS.ITEM_TABLE_ROW}"][data-item-id="${item.id}"]`,
       );
       let itemNameContainer = itemEl.find(`[data-tidy-sheet-part=${tidyApi.constants.SHEET_PARTS.ITEM_NAME}]`);
       let iconHtml = tidyApi.useHandlebarsRendering(CONSTANTS.HTML.MAGIC_ITEM_ICON);
@@ -219,7 +230,7 @@ Hooks.on("hotbarDrop", async (bar, data, slot) => {
         command: command,
         flags: { "dnd5e.itemMacro": true },
       },
-      { displaySheet: false }
+      { displaySheet: false },
     );
   }
   game.user.assignHotbarMacro(macro, slot);
@@ -227,17 +238,18 @@ Hooks.on("hotbarDrop", async (bar, data, slot) => {
   return false;
 });
 
-Hooks.on(`createItem`, (item) => {
+Hooks.on("createItem", async (item, options, userId) => {
   if (item.actor) {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
+      await API.fixFlagsScopeDataOnItem(item);
       miActor.buildItems();
     }
   }
 });
 
-Hooks.on(`updateItem`, (item) => {
+Hooks.on("updateItem", (item, change, options, userId) => {
   if (item.actor) {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
@@ -247,12 +259,49 @@ Hooks.on(`updateItem`, (item) => {
   }
 });
 
-Hooks.on(`deleteItem`, (item) => {
+Hooks.on("deleteItem", (item, options, userId) => {
   if (item.actor) {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
       miActor.buildItems();
     }
+  }
+});
+
+Hooks.on("preCreateItem", async (item, data, options, userId) => {
+  const actorEntity = item.actor;
+  if (!actorEntity) {
+    return;
+  }
+  // Set up defaults flags
+  const defaultReference =
+    foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`) ||
+    foundry.utils.getProperty(item, `flags.core.sourceId`);
+  // const defaultItem = await RetrieveHelpers.getItemAsync(defaultReference);
+  // const defaultDataFlags = foundry.utils.getProperty(defaultItem , `flags.${CONSTANTS.MODULE_ID}`);
+  // defaultDataFlags.default = defaultItem.uuid;
+  if (!defaultReference) {
+    await item.update({
+      flags: {
+        [CONSTANTS.MODULE_ID]: {
+          [CONSTANTS.FLAGS.DEFAULT]: defaultReference,
+        },
+      },
+    });
+  }
+});
+
+Hooks.on("preUpdateItem", async (item, changes, options, userId) => {
+  const actorEntity = item.actor;
+  if (!actorEntity) {
+    return;
+  }
+});
+
+Hooks.on("preDeleteItem", async (item, options, userId) => {
+  const actorEntity = item.actor;
+  if (!actorEntity) {
+    return;
   }
 });

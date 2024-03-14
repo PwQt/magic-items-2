@@ -1,0 +1,74 @@
+{
+  "_id": "7khqOxRGYGa8sZ3D",
+  "name": "Cone of Fear",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "feat",
+  "data": {
+    "description": {
+      "value": "<p><span style=\"color: #191813; font-size: 13px;\">While holding the wand, you can use an action to expend 2 charges, causing the wand's tip to emit a 60-foot cone of amber light. Each creature in the cone must succeed on a DC 15 Wisdom saving throw or become frightened of you for 1 minute. While it is frightened in this way, a creature must spend its turns trying to move as far away from you as it can, and it can't willingly move to a space within 30 feet of you. It also can't take reactions. For its action, it can use only the Dash action or try to escape from an effect that prevents it from moving. If it has nowhere it can move, the creature can use the Dodge action. At the end of each of its turns, a creature can repeat the saving throw, ending the effect on itself on a success.</span></p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "",
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "minute"
+    },
+    "target": {
+      "value": 60,
+      "width": null,
+      "units": "ft",
+      "type": "cone"
+    },
+    "range": {
+      "value": null,
+      "long": null,
+      "units": ""
+    },
+    "uses": {
+      "value": 0,
+      "max": 0,
+      "per": ""
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "wis",
+      "dc": 15,
+      "scaling": "flat"
+    },
+    "requirements": "",
+    "recharge": {
+      "value": null,
+      "charged": false
+    },
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {},
+  "img": "icons/magic/control/fear-fright-shadow-monster-red.webp",
+  "effects": [],
+  "_key": "!items!7khqOxRGYGa8sZ3D"
+}

@@ -4,6 +4,8 @@
   "MAGICITEMS.SettingIdentifiedOnlyHint": "Show Magic powers only for identified items",
   "MAGICITEMS.SettingHideFromPlayers": "Hide Settings Tab From Players",
   "MAGICITEMS.SettingHideFromPlayersHint": "Hide the magic items settings tab for players",
+  "MAGICITEMS.SettingDebug": "Enable debugging",
+  "MAGICITEMS.SettingDebugHint": "Prints debug messages to the console",
 
   "MAGICITEMS.SheetActivation": "Activation Options",
   "MAGICITEMS.SheetActivationEquipped": "Equipped",

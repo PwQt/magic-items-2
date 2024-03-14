@@ -1,10 +1,32 @@
 import Logger from "../lib/Logger";
+import { RetrieveHelpers } from "../lib/retrieve-helpers";
 
 export class AbstractOwnedMagicItemEntry {
   constructor(magicItem, item) {
     this.magicItem = magicItem;
     this.item = item;
     this.uses = parseInt("uses" in this.item ? this.item.uses : this.magicItem.charges);
+
+    // Patch retrocompatbility
+    if (this.item.pack?.startsWith("magicitems")) {
+      this.item.pack = this.item.pack.replace("magicitems.", `${CONSTANTS.MODULE_ID}.`);
+    }
+    // Generate Uuid runtime
+    if (!this.item.uuid) {
+      try {
+        this.item.uuid = RetrieveHelpers.retrieveUuid({
+          documentName: this.item.name,
+          documentId: this.item.id,
+          documentCollectionType: this.item.collectionType,
+          documentPack: this.item.pack,
+          ignoreError: true,
+        });
+      } catch (e) {
+        Logger.error("Cannot retrieve uuid", false, e);
+        this.item.uuid = "";
+      }
+    }
+    this.item.removed = !RetrieveHelpers.stringIsUuid(this.item.uuid);
   }
 
   get uuid() {
@@ -139,7 +161,7 @@ export class AbstractOwnedMagicItemEntry {
   async applyActiveEffects(item) {
     canvas.tokens.controlled?.forEach((token) => {
       if (!token) {
-        ui.notification.warn("No token selected");
+        Logger.warn("No token selected", true);
         return;
       }
       let actor = token.actor;
@@ -161,7 +183,7 @@ export class AbstractOwnedMagicItemEntry {
         const aeCLS = CONFIG.ActiveEffect.documentClass;
         const ae = aeCLS.create(effect, { parent: actor });
         if (!ae) {
-          ui.notification.warn(game.i18n.localize("MAGICITEMS.ToggleActiveEffectError"));
+          Logger.warn(game.i18n.localize("MAGICITEMS.ToggleActiveEffectError"), true);
         }
       });
     });

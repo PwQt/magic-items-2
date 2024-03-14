@@ -1,0 +1,111 @@
+{
+  "name": "Wand of Polymorph",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "consumable",
+  "data": {
+    "description": {
+      "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em>(Requires attunement by a spellcaster)</em></p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">This wand has 7 charges. While holding it, you can use an action to expend 1 of its charges to cast the @Compendium[dnd5e.spells.04nMsTWkIFvkbXlY]{Polymorph} spell (save DC 15) from it.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">The wand regains 1d6 + 1 expended charges daily at dawn. If you expend the wand's last charge, roll a d20. On a 1, the wand crumbles into ashes and is destroyed.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 211",
+    "quantity": 1,
+    "weight": 1,
+    "price": 32000,
+    "attuned": false,
+    "equipped": false,
+    "rarity": "Very rare",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 1,
+      "units": "hour"
+    },
+    "target": {
+      "value": 1,
+      "width": null,
+      "units": "",
+      "type": "creature"
+    },
+    "range": {
+      "value": 60,
+      "long": null,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 7,
+      "max": 7,
+      "per": "charges",
+      "autoDestroy": false,
+      "autoUse": true
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": "",
+    "actionType": "save",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": "1d4 +1"
+    },
+    "formula": "1d6 +1",
+    "save": {
+      "ability": "wis",
+      "dc": 15,
+      "scaling": "flat"
+    },
+    "consumableType": "wand",
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {
+    "magic-items-2": {
+      "enabled": true,
+      "equipped": true,
+      "attuned": true,
+      "charges": "7",
+      "chargeType": "c1",
+      "destroy": true,
+      "destroyCheck": "d2",
+      "destroyType": "dt1",
+      "destroyFlavorText": "reaches 0 charges: it crumbles into ashes and is destroyed.",
+      "rechargeable": true,
+      "recharge": "1d6 + 1",
+      "rechargeType": "t2",
+      "rechargeUnit": "r2",
+      "sorting": "l",
+      "spells": {
+        "0": {
+          "id": "04nMsTWkIFvkbXlY",
+          "name": "Polymorph",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/control/energy-stream-link-large-teal.webp",
+          "baseLevel": "4",
+          "level": "4",
+          "consumption": "1",
+          "upcast": "4",
+          "upcastCost": "1",
+          "flatDc": true,
+          "dc": "15"
+        }
+      }
+    }
+  },
+  "img": "icons/weapons/staves/staff-engraved-red.webp",
+  "effects": [],
+  "_id": "B0JsvTjagPbMBO9K",
+  "_key": "!items!B0JsvTjagPbMBO9K"
+}

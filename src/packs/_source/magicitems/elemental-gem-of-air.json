@@ -1,0 +1,110 @@
+{
+  "name": "Elemental Gem of Air",
+  "permission": {
+    "default": 0,
+    "e1GJldqKX2xtXEGs": 3
+  },
+  "type": "consumable",
+  "data": {
+    "description": {
+      "value": "<p><em>Wondrous item</em></p>\n<p>This blue sapphire contains a mote of elemental energy. When you use an action to break the gem, an&nbsp;<span style=\"background-color: rgba(0, 0, 0, 0.05);\">@Compendium[dnd5e.monsters.banHjKDMCegbUwYE]{Air Elemental}</span>is summoned as if you had cast the @Compendium[dnd5e.spells.1LkZvINag7KqBmDR]{Conjure Elemental} spell, and the gem's magic is lost.</p>",
+      "chat": "",
+      "unidentified": ""
+    },
+    "source": "DMG pg. 167",
+    "quantity": 1,
+    "weight": 0,
+    "price": 960,
+    "attuned": false,
+    "equipped": false,
+    "rarity": "Uncommon",
+    "identified": true,
+    "activation": {
+      "type": "action",
+      "cost": 1,
+      "condition": ""
+    },
+    "duration": {
+      "value": 0,
+      "units": ""
+    },
+    "target": {
+      "value": 10,
+      "width": null,
+      "units": "ft",
+      "type": "square"
+    },
+    "range": {
+      "value": 90,
+      "long": 0,
+      "units": "ft"
+    },
+    "uses": {
+      "value": 1,
+      "max": 1,
+      "per": "charges",
+      "autoDestroy": true,
+      "autoUse": true
+    },
+    "consume": {
+      "type": "",
+      "target": "",
+      "amount": null
+    },
+    "ability": null,
+    "actionType": "",
+    "attackBonus": 0,
+    "chatFlavor": "",
+    "critical": null,
+    "damage": {
+      "parts": [],
+      "versatile": ""
+    },
+    "formula": "",
+    "save": {
+      "ability": "",
+      "dc": null,
+      "scaling": "spell"
+    },
+    "consumableType": "trinket",
+    "attributes": {
+      "spelldc": 10
+    }
+  },
+  "flags": {
+    "magic-items-2": {
+      "enabled": true,
+      "equipped": false,
+      "attuned": false,
+      "charges": "1",
+      "chargeType": "c1",
+      "destroy": true,
+      "destroyCheck": "d1",
+      "destroyType": "dt1",
+      "destroyFlavorText": "You break the gem, an  Air Elementalis summoned and the gem's magic is lost.",
+      "rechargeable": true,
+      "recharge": "0",
+      "rechargeType": "t1",
+      "rechargeUnit": "r1",
+      "sorting": "l",
+      "spells": {
+        "0": {
+          "id": "1LkZvINag7KqBmDR",
+          "name": "Conjure Elemental",
+          "pack": "dnd5e.spells",
+          "img": "icons/magic/symbols/runes-star-pentagon-orange.webp",
+          "baseLevel": "5",
+          "level": "5",
+          "consumption": "1",
+          "upcast": "5",
+          "upcastCost": "1",
+          "flatDc": false
+        }
+      }
+    }
+  },
+  "img": "icons/commodities/gems/gem-rough-rose-teal.webp",
+  "effects": [],
+  "_id": "e3WD7AoKNQhKGB4x",
+  "_key": "!items!e3WD7AoKNQhKGB4x"
+}
