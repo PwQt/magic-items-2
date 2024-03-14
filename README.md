@@ -5,7 +5,7 @@ magic wands, which will be automatically inherited from the character who owns t
 
 Fork of [Magic Items](https://gitlab.com/riccisi/foundryvtt-magic-items/), since it seems like the original author's inactive.
 
-If you have an issue that requires quick contact, I've created a [Discord](https://discord.gg/V6J6XDv4da) community.
+If you have an issue that requires quick contact, I've created a [Discord](https://discord.gg/58s7xnNC4j) community.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J6UHCX0)
 
