@@ -1,3 +1,7 @@
+### 1.7.0
+- [BREAKING CHANGES] Many bug fixing and some not retrocompatibility changes by @p4535992 in #82
+- Fix to packs
+
 ### 1.6.3.2
 
 - Exported alla the packs in json formats to better maintenance
