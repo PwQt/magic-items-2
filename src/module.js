@@ -5,8 +5,6 @@ import { MagicItemActor } from "./scripts/magicitemactor.js";
 import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
 import { MagicItem } from "./scripts/magic-item/MagicItem.js";
-import { isEmptyObject } from "./scripts/lib/lib.js";
-import { RetrieveHelpers } from "./scripts/lib/retrieve-helpers.js";
 
 // CONFIG.debug.hooks = true;
 

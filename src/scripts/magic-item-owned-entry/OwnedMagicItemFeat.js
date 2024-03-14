@@ -59,11 +59,11 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
         onUsage();
         this.magicItem.update();
       }
-      if (this.ownedItem.effects?.size > 0) {
-        this.activeEffectMessage(() => {
-          this.applyActiveEffects(this.ownedItem);
-        });
-      }
+      // if (this.ownedItem.effects?.size > 0) {
+      //   this.activeEffectMessage(() => {
+      //     this.applyActiveEffects(this.ownedItem);
+      //   });
+      // }
     };
 
     if (this.item.effect === "e2" || this.hasCharges(consumption)) {
