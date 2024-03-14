@@ -9,18 +9,6 @@ If you have an issue that requires quick contact, I've created a [Discord](https
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J6UHCX0)
 
-
-## Difference between [Magic Items 2](https://github.com/PwQt/magic-items-2) and [Item with Spells](https://github.com/krbz999/foundryvtt-items-with-spells-5e)
-
-They work very differently under the hood.
-
-- **Item with Spells**: adds the _actual_ items to the actor but hides them if they should be unavailable, with modifications, and can these make use of the parent item's Limited Uses. Magic Items does not do that.
-  - The benefit is that you can thus change or tweak the embedded items, which you can't do with Magic Items
-
-- **Magic Items 2**: adds the _reference_ to the items are just references to where the actual item is stored.
-  - Has more options
-  - You can add Feature and Rolltable items to the parent item
-
 ## Translation
 
 You can now publicly help with translation on Weblate.
