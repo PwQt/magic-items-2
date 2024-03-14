@@ -1,6 +1,7 @@
 ### 1.7.0
 - [BREAKING CHANGES] Many bug fixing and some not retrocompatibility changes by @p4535992 in #82
 - Fix to packs
+- Drop support for pre-3.0 version of D&D module
 
 ### 1.6.3.2
 
