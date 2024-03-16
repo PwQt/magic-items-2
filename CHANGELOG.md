@@ -1,3 +1,7 @@
+### 1.7.1
+- Do not show the _custom_ Apply Effect box whenever DFreds Convenient Effects automatization is enabled in Midi-Qol settings - #84 
+- Polish and Spanish translation updates
+
 ### 1.7.0
 - [BREAKING CHANGES] Many bug fixing and some not retrocompatibility changes by @p4535992 in #82
 - Fix to packs
