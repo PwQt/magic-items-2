@@ -5,6 +5,14 @@ export class MagicItemHelpers {
     return sheet?.constructor?.name === "ActorSheet5eCharacter2";
   }
 
+  static isApplyConvenientEffectsMidiQolWorkflowOn() {
+    return (
+      game.modules.get("midi-qol")?.active &&
+      game.modules.get("dfreds-convenient-effects")?.active &&
+      game.settings.get("midi-qol", "ConfigSettings")?.autoCEEffects !== "none"
+    );
+  }
+
   static numeric = function (value, fallback) {
     // if ($.isNumeric(value)) {
     //   return parseInt(value);

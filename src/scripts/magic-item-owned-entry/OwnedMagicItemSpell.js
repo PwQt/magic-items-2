@@ -95,11 +95,11 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         this.consume(consumption);
         this.magicItem.update();
       }
-      // if (this.ownedItem.effects?.size > 0) {
-      //   this.activeEffectMessage(() => {
-      //     this.applyActiveEffects(this.ownedItem);
-      //   });
-      // }
+      if (this.ownedItem.effects?.size > 0 && !MagicItemHelpers.isApplyConvenientEffectsMidiQolWorkflowOn()) {
+        this.activeEffectMessage(() => {
+          this.applyActiveEffects(this.ownedItem);
+        });
+      }
     };
 
     if (this.hasCharges(consumption)) {
