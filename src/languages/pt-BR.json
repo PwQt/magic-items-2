@@ -4,6 +4,8 @@
   "MAGICITEMS.SettingIdentifiedOnlyHint": "Exibe poderes mágicos apenas para itens identificados",
   "MAGICITEMS.SettingHideFromPlayers": "Esconder Configurações dos Jogadores",
   "MAGICITEMS.SettingHideFromPlayersHint": "Esconde a aba de configurações do Magic Items dos jogadores",
+  "MAGICITEMS.SettingDebug": "Habilitar Debugging",
+  "MAGICITEMS.SettingDebugHint": "Exibe mensagens de debug no console",
 
   "MAGICITEMS.SheetActivation": "Opções de Ativação",
   "MAGICITEMS.SheetActivationEquipped": "Equipado",
@@ -114,4 +116,10 @@
   "MAGICITEMS.WarnNoMagicItemSpell": "Seu Ator controlado não possui uma Magia/Aprimoramento chamado(a) ",
 
   "MAGICITEMS.RandomResult": "Resultado Aleatório"
+
+  "MAGICITEMS.ToggleActiveEffectDialogMessage": "Você quer aplicar um efeito ativo no(s) token(s) selecionado(s)?",
+  "MAGICITEMS.ToggleActiveEffectDialogTitle": "Aplicar um Efeito Ativo",
+  "MAGICITEMS.ToggleActiveEffectDialogYes": "Sim",
+  "MAGICITEMS.ToggleActiveEffectDialogNo": "Não",
+  "MAGICITEMS.ToggleActiveEffectError": "Ocorreu um erro ao adicionar um efeito ativo. Por favor, verifique o console."
 }
