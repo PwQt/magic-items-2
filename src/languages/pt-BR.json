@@ -115,7 +115,7 @@
   "MAGICITEMS.WarnNoMagicItem": "Seu Ator controlado não possui um item chamado ",
   "MAGICITEMS.WarnNoMagicItemSpell": "Seu Ator controlado não possui uma Magia/Aprimoramento chamado(a) ",
 
-  "MAGICITEMS.RandomResult": "Resultado Aleatório"
+  "MAGICITEMS.RandomResult": "Resultado Aleatório",
 
   "MAGICITEMS.ToggleActiveEffectDialogMessage": "Você quer aplicar um efeito ativo no(s) token(s) selecionado(s)?",
   "MAGICITEMS.ToggleActiveEffectDialogTitle": "Aplicar um Efeito Ativo",
