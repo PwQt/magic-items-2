@@ -64,44 +64,6 @@ const API = {
     MagicItemSheet.bind(app, html, data);
   },
 
-  async fixFlagsScopeDataOnAllActors() {
-    if (game.user.isGM) {
-      for (const a of game.actors) {
-        Logger.info(`Update flagsScope on actor ${a.name}...`);
-        const magicitems = a.items.filter((i) => !!i.flags?.magicitems);
-        if (magicitems?.length > 0) {
-          for (const mi of magicitems) {
-            Logger.info(`Update flagsScope on actor ${a.name} for item ${mi.name}...`);
-            await this.fixFlagsScopeDataOnItem(mi);
-            Logger.info(`Updated flagsScope on actor ${a.name} for item ${mi.name}`);
-          }
-          Logger.info(`Updated flagsScope on actor ${a.name}`);
-        }
-      }
-    }
-  },
-
-  async fixFlagsScopeDataOnItem(mi) {
-    const miFlag = getProperty(mi, `flags.magicitems`);
-    const miFlagNewScope = getProperty(mi, `flags.${CONSTANTS.MODULE_ID}`);
-    if (!isEmptyObject(miFlag) && isEmptyObject(miFlagNewScope)) {
-      Logger.info(`Update flagsScope item ${mi.name}...`);
-      if (miFlag.spells?.length > 0) {
-        Object.entries(miFlag.spells).forEach(([key, value]) => {
-          if (!value.uuid && value.id) {
-            value.uuid = `Item.${value.id}`;
-          }
-        });
-      }
-      await mi.update({
-        flags: {
-          [CONSTANTS.MODULE_ID]: miFlag,
-        },
-      });
-      Logger.info(`Updated flagsScope item ${mi.name}`);
-    }
-  },
-
   async revertBackToMagicItems() {
     if (game.user.isGM) {
       for (const a of game.actors) {
@@ -120,7 +82,7 @@ const API = {
   },
 
   async revertBackToMagicItemsItem(mi) {
-    const miFlag = getProperty(mi, `flags[magic-items-2]`);
+    const miFlag = getProperty(mi, `flags.magic-items-2`);
     const miFlagNewScope = getProperty(mi, `flags.${CONSTANTS.MODULE_ID}`);
     if (!isEmptyObject(miFlag) && isEmptyObject(miFlagNewScope)) {
       Logger.info(`Update flagsScope item ${mi.name}...`);
