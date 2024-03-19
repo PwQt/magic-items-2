@@ -22,6 +22,8 @@ You can now publicly help with translation on Weblate.
 
 ## Installation
 
+You can download the module from [Foundry package listing](https://foundryvtt.com/packages/magicitems).
+
 It's always easiest to install modules from the in game add-on browser.
 
 To install this module manually:
