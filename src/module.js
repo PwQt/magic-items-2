@@ -39,6 +39,15 @@ Hooks.once("init", () => {
     config: true,
   });
 
+  game.settings.register(CONSTANTS.MODULE_ID, "counter", {
+    name: "counter",
+    hint: "",
+    scope: "client",
+    type: Boolean,
+    default: false,
+    config: false,
+  });
+
   if (typeof Babele !== "undefined") {
     Babele.get().register({
       module: CONSTANTS.MODULE_ID,
@@ -60,6 +69,29 @@ Hooks.once("ready", () => {
     .forEach((actor) => {
       MagicItemActor.bind(actor);
     });
+  if (game.settings.get(CONSTANTS.MODULE_ID, "counter") === false && game.user.isGM) {
+    let x = new Dialog({
+      title: "Magic Items Migration",
+      content:
+        "The module Magic Items 2 is being moved in the place of the old one - Magic Items.<br><br>Magic Items 2 module id will no longer be updated, so please check the Foundry module listing or github page for Magic Items version 4.0.<br><br>",
+      buttons: {
+        use: {
+          icon: '<i class="fas fa-check"></i>',
+          label: "I have read this message, please don't show it again.",
+          callback: () => {
+            game.settings.set(CONSTANTS.MODULE_ID, "counter", true);
+          },
+        },
+        close: {
+          icon: '<i class="fas fa-times"></i>',
+          label: "Ignore this message for now",
+          callback: () => x.close(),
+        },
+      },
+      default: "use",
+    });
+    x.render(true);
+  }
 });
 
 Hooks.once("createActor", (actor) => {
