@@ -15,8 +15,8 @@ If you have an issue that requires quick contact, I've created a [Discord](https
 
 You can now publicly help with translation on Weblate.
 
-<a href="https://hosted.weblate.org/engage/magic-items-2/">
-<img src="https://hosted.weblate.org/widget/magic-items-2/287x66-grey.png" alt="Translation status" />
+<a href="https://hosted.weblate.org/engage/magic-items/">
+<img src="https://hosted.weblate.org/widget/magic-items/287x66-grey.png" alt="Translation status" />
 </a>
 
 
