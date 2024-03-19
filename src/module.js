@@ -1,6 +1,5 @@
 import API from "./scripts/API/api.js";
 import CONSTANTS from "./scripts/constants/constants.js";
-import Logger from "./scripts/lib/Logger.js";
 import { MagicItemActor } from "./scripts/magicitemactor.js";
 import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
