@@ -1,3 +1,14 @@
+### Magic Items 4.0
+- Migration to "magicitems" module-id
+
+---
+### 1.7.3 - ℹ️ - Last "Magic Items 2" version pre-migration to other module-id
+- Message about migrations
+
+### 1.7.2 
+- Update pt-BR.json by @Kharmans in https://github.com/PwQt/magic-items-2/pull/87
+- Null exception for 1.7.1 bugfix
+  
 ### 1.7.1
 - Do not show the _custom_ Apply Effect box whenever DFreds Convenient Effects automatization is enabled in Midi-Qol settings - #84 
 - Polish and Spanish translation updates
