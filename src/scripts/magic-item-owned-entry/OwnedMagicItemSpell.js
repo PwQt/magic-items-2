@@ -1,6 +1,7 @@
 import Logger from "../lib/Logger";
 import { MagicItemUpcastDialog } from "../magicitemupcastdialog";
 import { AbstractOwnedMagicItemEntry } from "./AbstractOwnedMagicItemEntry";
+import { MagicItemHelpers } from "../magic-item-helpers";
 
 export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
   async roll() {

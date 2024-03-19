@@ -1,4 +1,5 @@
 import { AbstractOwnedMagicItemEntry } from "./AbstractOwnedMagicItemEntry";
+import { MagicItemHelpers } from "../magic-item-helpers";
 
 export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
   async roll() {
