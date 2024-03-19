@@ -242,7 +242,7 @@ Hooks.on("createItem", async (item, options, userId) => {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
-      await API.fixFlagsScopeDataOnItem(item);
+      await API.revertBackToMagicItems(item);
       miActor.buildItems();
     }
   }
