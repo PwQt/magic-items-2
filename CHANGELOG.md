@@ -73,3 +73,38 @@
 - Update configurations files for a better management of the code
 - Some minor bug fixes
 - Separated the various custom magic item implementations classes into separate javascript files to make it more readable to other developers following the standard patterns used by other developers in large projects...
+
+### 1.3.3
+- Allow all to dragdrop into the magic-item-tab #24 by @PwQt in #26
+
+### 1.3.2
+- Arbons summoning compatibility by @PwQt in #15
+- Add check if chatData exists on item rolls by @PwQt in #16 (thanks tposney for creating the issue)
+- revert back the mandatory use of only Foundry v11
+
+### 1.3.1
+- github worker permission fixes
+
+### 1.3.0
+- Code base modifications
+
+### 1.2.2
+- Items showing twice in chat fix
+- Spells disappear from list fix
+
+### 1.2.1
+- module.json updates
+
+### 1.2.0
+- modification to soon-to-be-deprecated Item5e#roll method
+
+### 1.1.0
+- in-foundry module configuration fixes, so that they are defined for "Magic Items 2" tab instead of "undefined"
+- verified compability with v11
+
+### 1.0.0 Forking the code of original Magic Items with additional fixes:
+- update module.json to not use deprecated 'entity',
+- merge request 33 - minor fix to add item to hotbar
+- 5eTidy sheet integration based on merge request 25
+- merge request 34 - icons in compendium fix
+
