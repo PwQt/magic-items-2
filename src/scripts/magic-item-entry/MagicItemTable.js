@@ -26,7 +26,7 @@ export class MagicItemTable extends AbstractMagicItemEntry {
         if (entity) {
           let item = (await actor.createEmbeddedDocuments("Item", [entity]))[0];
           const chatData = await item.use({}, { createMessage: false });
-          // Fix https://github.com/PwQt/magic-items-2/issues/22
+
           if (!game.modules.get("ready-set-roll-5e")?.active) {
             ChatMessage.create(
               mergeObject(chatData, {

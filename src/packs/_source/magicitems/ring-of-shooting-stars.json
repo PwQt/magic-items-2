@@ -87,7 +87,7 @@
     }
   },
   "flags": {
-    "magic-items-2": {
+    "magicitems": {
       "enabled": true,
       "equipped": true,
       "attuned": true,
@@ -142,7 +142,7 @@
         "0": {
           "id": "CGBGCevjRO22mf7V",
           "name": "Ball Lightning",
-          "pack": "magic-items-2.magicitem-feats",
+          "pack": "magicitems.magicitem-feats",
           "img": "icons/magic/light/explosion-star-large-blue-yellow.webp",
           "consumption": "2",
           "effect": "e1"

@@ -60,7 +60,7 @@ export class MagicItemSheet {
       if (this.actor.hasItemsFeats()) {
         await this.renderTemplate(
           "magic-item-feat-sheet.html",
-          "magic-items-2-feats-content",
+          "magicitems-feats-content",
           "features",
           "inventory-list",
         );
@@ -68,7 +68,7 @@ export class MagicItemSheet {
       if (this.actor.hasItemsSpells()) {
         await this.renderTemplate(
           "magic-item-spell-sheet.html",
-          "magic-items-2-spells-content",
+          "magicitems-spells-content",
           "spellbook",
           "inventory-list",
         );
@@ -77,7 +77,7 @@ export class MagicItemSheet {
       if (this.actor.hasItemsFeats()) {
         await this.renderTemplate(
           "magic-item-feat-sheet-v2.hbs",
-          "magic-items-2-feats-content",
+          "magicitems-feats-content",
           "features",
           "features-list",
         );
@@ -86,7 +86,7 @@ export class MagicItemSheet {
       if (this.actor.hasItemsSpells()) {
         await this.renderTemplate(
           "magic-item-spell-sheet-v2.hbs",
-          "magic-items-2-spells-content",
+          "magicitems-spells-content",
           "spells",
           "spells-list",
         );
@@ -165,12 +165,12 @@ export class MagicItemSheet {
 
   static handleActorItemUsesChangeEvents(html, actor) {
     actor.items.forEach((item) => {
-      html.find(`input[data-item-uses="magic-items-2.${item.id}.uses"]`).change((evt) => {
+      html.find(`input[data-item-uses="magicitems.${item.id}.uses"]`).change((evt) => {
         item.setUses(MagicItemHelpers.numeric(evt.currentTarget.value, item.uses));
         item.update();
       });
       item.ownedEntries.forEach((entry) => {
-        html.find(`input[data-item-uses="magic-items-2.${item.id}.${entry.id}.uses"]`).change((evt) => {
+        html.find(`input[data-item-uses="magicitems.${item.id}.${entry.id}.uses"]`).change((evt) => {
           entry.uses = MagicItemHelpers.numeric(evt.currentTarget.value, entry.uses);
           item.update();
         });

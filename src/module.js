@@ -82,8 +82,8 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
   // Register Tidy Item Sheet Tab
   const magicItemsTab = new api.models.HandlebarsTab({
     title: "Magic Item",
-    tabId: "magic-items-2",
-    path: "/modules/magic-items-2/templates/magic-item-tab.hbs",
+    tabId: "magicitems",
+    path: "/modules/magicitems/templates/magic-item-tab.hbs",
     enabled: (data) => {
       return MagicItemTab.isAcceptedItemType(data.item) && MagicItemTab.isAllowedToShow();
     },
@@ -102,7 +102,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
           item: params.data.item,
           magicItem: magicItem,
         });
-        params.element.querySelector(`.magic-items-2-content`).addEventListener("drop", (event) => {
+        params.element.querySelector(`.magicitems-content`).addEventListener("drop", (event) => {
           MagicItemTab.onDrop({ event, item: params.data.item, magicItem: magicItem });
         });
       } else {

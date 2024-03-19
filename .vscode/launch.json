@@ -12,7 +12,7 @@
             "webRoot": "${workspaceFolder}",
             "pathMappings": [
                 {
-                    "url": "http://localhost:30000/modules/magic-items-2",
+                    "url": "http://localhost:30000/modules/magicitems",
                     "path": "${workspaceFolder}"
                 }
             ]
