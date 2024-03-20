@@ -39,6 +39,15 @@ Hooks.once("init", () => {
     config: true,
   });
 
+  game.settings.register(CONSTANTS.MODULE_ID, "welcomeMessage", {
+    name: "welcomeMessage",
+    hint: "",
+    scope: "client",
+    type: Boolean,
+    default: false,
+    config: false,
+  });
+
   if (typeof Babele !== "undefined") {
     Babele.get().register({
       module: CONSTANTS.MODULE_ID,
@@ -60,6 +69,42 @@ Hooks.once("ready", () => {
     .forEach((actor) => {
       MagicItemActor.bind(actor);
     });
+
+  if (game.user.isGM && !game.settings.get(CONSTANTS.MODULE_ID, "welcomeMessage")) {
+    const message =
+      "Hello everyone!<br><br>This is the first version of Magic Items module that has been transferred from Magic Items 2, therefore it requires a migration of items.<br><br>For manual information about migrations, please consult the latest release changelog.<br><br>Thank you for your continuing support, and I hope you will enjoy this module!<br><br>If you want, please go ahead and check out the discord community created for this module on Foundry Module listing or Github project.";
+    const title = "Magic Items";
+    // eslint-disable-next-line no-undef
+    let d = new Dialog({
+      title: title,
+      content: `${message}<br><br>`,
+      buttons: {
+        use: {
+          icon: '<i class="fas fa-check"></i>',
+          label: "Do the automatic migration.",
+          callback: () => {
+            API.migrateScopeMagicItem();
+            game.settings.set(CONSTANTS.MODULE_ID, "welcomeMessage", true);
+          },
+        },
+        closeAndChangeSetting: {
+          icon: '<i class="fas fa-times"></i>',
+          label: "I will do the migration on my own - do not show this window again.",
+          callback: () => {
+            game.settings.set(CONSTANTS.MODULE_ID, "welcomeMessage", true);
+            d.close();
+          },
+        },
+        close: {
+          icon: '<i class="fas fa-times"></i>',
+          label: game.i18n.localize("MAGICITEMS.SheetDialogClose"),
+          callback: () => d.close(),
+        },
+      },
+      default: "use",
+    });
+    d.render(true);
+  }
 });
 
 Hooks.once("createActor", (actor) => {
@@ -242,7 +287,7 @@ Hooks.on("createItem", async (item, options, userId) => {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
-      await API.revertBackToMagicItems(item);
+      await API.updateFlagScopeMagicItem(item);
       miActor.buildItems();
     }
   }

@@ -64,7 +64,7 @@ const API = {
     MagicItemSheet.bind(app, html, data);
   },
 
-  async revertBackToMagicItems() {
+  async migrateScopeMagicItem() {
     if (game.user.isGM) {
       for (const a of game.actors) {
         Logger.info(`Update flagsScope on actor ${a.name}...`);
@@ -72,7 +72,7 @@ const API = {
         if (magicitems?.length > 0) {
           for (const mi of magicitems) {
             Logger.info(`Update flagsScope on actor ${a.name} for item ${mi.name}...`);
-            await this.revertBackToMagicItemsItem(mi);
+            await this.updateFlagScopeMagicItem(mi);
             Logger.info(`Updated flagsScope on actor ${a.name} for item ${mi.name}`);
           }
           Logger.info(`Updated flagsScope on actor ${a.name}`);
@@ -81,7 +81,7 @@ const API = {
     }
   },
 
-  async revertBackToMagicItemsItem(mi) {
+  async updateFlagScopeMagicItem(mi) {
     const miFlag = getProperty(mi, `flags.magic-items-2`);
     const miFlagNewScope = getProperty(mi, `flags.${CONSTANTS.MODULE_ID}`);
     if (!isEmptyObject(miFlag) && isEmptyObject(miFlagNewScope)) {
