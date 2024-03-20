@@ -93,6 +93,13 @@ const API = {
           }
         });
       }
+      if (miFlag.feats?.length > 0) {
+        Object.entries(miFlag.feats).forEach(([key, value]) => {
+          if (!value.uuid && value.id) {
+            value.uuid = `Item.${value.id}`;
+          }
+        });
+      }
       await mi.update({
         flags: {
           [CONSTANTS.MODULE_ID]: miFlag,
