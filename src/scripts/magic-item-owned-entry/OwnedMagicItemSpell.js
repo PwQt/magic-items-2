@@ -45,31 +45,6 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
       consumption = parseInt(spellFormData.get("consumption"));
     }
 
-    let applyActiveEffects = async (item) => {
-      canvas.tokens.controlled?.forEach((token) => {
-        if (!token) {
-          Logger.warn("No token selected", true);
-          return;
-        }
-        let actor = token.actor;
-        item?.effects.toObject().forEach((effect) => {
-          const existingEffect = actor?.effects.find((e) => e.origin === item.uuid);
-          if (existingEffect) {
-            return existingEffect.update({ disabled: !existingEffect.disabled });
-          }
-          effect = mergeObject(effect, {
-            disabled: false,
-            transfer: false,
-            origin: item.uuid,
-          });
-          let ae = ActiveEffect.implementation.create(effect, { parent: actor });
-          if (!ae) {
-            Logger.warn("An error occured while adding active effect - please check console", true);
-          }
-        });
-      });
-    };
-
     let proceed = async () => {
       let spell = this.ownedItem;
       if (upcastLevel !== spell.system.level) {
@@ -97,8 +72,8 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         this.magicItem.update();
       }
       if (this.ownedItem.effects?.size > 0 && !MagicItemHelpers.isApplyConvenientEffectsMidiQolWorkflowOn()) {
-        this.activeEffectMessage(() => {
-          this.applyActiveEffects(this.ownedItem);
+        this.activeEffectMessage(async () => {
+          await this.applyActiveEffects(this.ownedItem);
         });
       }
     };
