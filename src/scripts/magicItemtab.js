@@ -36,12 +36,12 @@ export class MagicItemTab {
     tabs.append($(`<a class="item" data-tab="${CONSTANTS.MODULE_ID}">Magic Item</a>`));
 
     $(html.find(`.sheet-body`)).append(
-      $(`<div class="tab magic-items-2" data-group="primary" data-tab="${CONSTANTS.MODULE_ID}"></div>`),
+      $(`<div class="tab magicitems" data-group="primary" data-tab="${CONSTANTS.MODULE_ID}"></div>`),
     );
 
     if (this.editable) {
       const dragDrop = new DragDrop({
-        dropSelector: ".tab.magic-items-2",
+        dropSelector: ".tab.magicitems",
         permissions: {
           dragstart: this._canDragStart.bind(app),
           drop: this._canDragDrop.bind(app),
@@ -86,11 +86,11 @@ export class MagicItemTab {
 
   async render(app) {
     let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.hbs`, this.magicItem);
-    let el = this.html.find(`.magic-items-2-content`);
+    let el = this.html.find(`.magicitems-content`);
     if (el.length) {
       el.replaceWith(template);
     } else {
-      this.html.find(".tab.magic-items-2").append(template);
+      this.html.find(".tab.magicitems").append(template);
     }
 
     if (this.editable) {
@@ -128,7 +128,7 @@ export class MagicItemTab {
   }
 
   activateTabManagementListeners() {
-    this.html.find(".magic-items-2-content").on("change", ":input", (evt) => {
+    this.html.find(".magicitems-content").on("change", ":input", (evt) => {
       this.activate = true;
     });
   }
@@ -137,8 +137,8 @@ export class MagicItemTab {
    * Disable all relevant inputs in the magic items tab.
    */
   static disableMagicItemTabInputs(html) {
-    html.find(".magic-items-2-content input").prop("disabled", true);
-    html.find(".magic-items-2-content select").prop("disabled", true);
+    html.find(".magicitems-content input").prop("disabled", true);
+    html.find(".magicitems-content select").prop("disabled", true);
   }
 
   /**

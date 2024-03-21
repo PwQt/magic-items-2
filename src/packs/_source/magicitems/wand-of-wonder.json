@@ -72,7 +72,7 @@
     }
   },
   "flags": {
-    "magic-items-2": {
+    "magicitems": {
       "enabled": true,
       "equipped": true,
       "attuned": true,
@@ -91,7 +91,7 @@
         "0": {
           "id": "5AolWCkenYgnjg4O",
           "name": "Wand of Wonder Effects",
-          "pack": "magic-items-2.magicitem-tables",
+          "pack": "magicitems.magicitem-tables",
           "img": "icons/weapons/staves/staff-skull-brown.webp",
           "usage": "u1",
           "consumption": "1"

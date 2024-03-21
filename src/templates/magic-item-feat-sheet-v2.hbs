@@ -1,6 +1,6 @@
 {{#if hasVisibleItems}}
-<div class="magic-items-2-feats-content">
-	<div class="inventory-filters spellbook-filters magic-items-2-head">
+<div class="magicitems-feats-content">
+	<div class="inventory-filters spellbook-filters magicitems-head">
 		<label>
 			<h3>
 				{{localize "MAGICITEMS.SettingTabNames"}} - {{localize "MAGICITEMS.SheetTot"}}: {{magicItemsCount}}, {{localize "MAGICITEMS.SheetActives"}}:
@@ -15,7 +15,7 @@
 			{{#if chargesOnWholeItem}}
 			<div class="item-header spell-slots">
 				{{#if sheetEditable}}
-				<input data-item-uses="magic-items-2.{{id}}.uses" type="text" value="{{uses}}" placeholder="0" />
+				<input data-item-uses="magicitems.{{id}}.uses" type="text" value="{{uses}}" placeholder="0" />
 				<span class="sep"> / {{charges}}</span>
 				{{else}}
 				{{uses}} / {{charges}}
@@ -44,16 +44,16 @@
 				<div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{feat.displayName}}">
 					<img class="item-image gold-icon magic-item-image" src="{{feat.img}}" alt="{{feat.name}}">
 				  <div class="name name-stacked">
-            <span class="title">{{ feat.displayName }}</span>
-            <span class="subtitle"></span>
+					<span class="title">{{ feat.displayName }}</span>
+					<span class="subtitle"></span>
 				  </div>
 				  <div class="tags"></div>
-        </div>
+        		</div>
 				{{#if ../chargesPerSpell}}
 				<div class="item-detail spell-slots">
 					{{#if ../sheetEditable}}
 					<input
-						data-item-uses="magic-items-2.{{../id}}.{{feat.id}}.uses"
+						data-item-uses="magicitems.{{../id}}.{{feat.id}}.uses"
 						type="text"
 						value="{{feat.uses}}"
 						placeholder="0"
@@ -93,7 +93,7 @@
 				<div class="item-detail spell-slots">
 					{{#if ../sheetEditable}}
 					<input
-						data-item-uses="magic-items-2.{{../id}}.{{table.id}}.uses"
+						data-item-uses="magicitems.{{../id}}.{{table.id}}.uses"
 						type="text"
 						value="{{table.uses}}"
 						placeholder="0"

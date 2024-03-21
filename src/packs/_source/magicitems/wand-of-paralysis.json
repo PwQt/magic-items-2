@@ -72,7 +72,7 @@
     }
   },
   "flags": {
-    "magic-items-2": {
+    "magicitems": {
       "enabled": true,
       "equipped": true,
       "attuned": true,
@@ -91,7 +91,7 @@
         "0": {
           "id": "NNqYJ9J4MPJtLgFW",
           "name": "Paralysis",
-          "pack": "magic-items-2.magicitem-feats",
+          "pack": "magicitems.magicitem-feats",
           "img": "icons/magic/water/water-iceberg-bubbles.webp",
           "consumption": "1",
           "effect": "e1"

@@ -102,7 +102,7 @@
     }
   },
   "flags": {
-    "magic-items-2": {
+    "magicitems": {
       "enabled": true,
       "equipped": true,
       "attuned": true,
@@ -231,7 +231,7 @@
         "0": {
           "id": "nrV4PEgY98SCB7KC",
           "name": "Retributive Strike",
-          "pack": "magic-items-2.magicitem-feats",
+          "pack": "magicitems.magicitem-feats",
           "img": "icons/magic/fire/explosion-fireball-large-purple-orange.webp",
           "consumption": "0",
           "effect": "e2"

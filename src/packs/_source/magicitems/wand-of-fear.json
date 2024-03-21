@@ -72,7 +72,7 @@
     }
   },
   "flags": {
-    "magic-items-2": {
+    "magicitems": {
       "enabled": true,
       "equipped": true,
       "attuned": true,
@@ -106,7 +106,7 @@
         "0": {
           "id": "7khqOxRGYGa8sZ3D",
           "name": "Cone of Fear",
-          "pack": "magic-items-2.magicitem-feats",
+          "pack": "magicitems.magicitem-feats",
           "img": "icons/magic/control/fear-fright-shadow-monster-red.webp",
           "consumption": "2",
           "effect": "e1"

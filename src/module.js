@@ -39,8 +39,8 @@ Hooks.once("init", () => {
     config: true,
   });
 
-  game.settings.register(CONSTANTS.MODULE_ID, "counter", {
-    name: "counter",
+  game.settings.register(CONSTANTS.MODULE_ID, "welcomeMessage", {
+    name: "welcomeMessage",
     hint: "",
     scope: "client",
     type: Boolean,
@@ -69,28 +69,41 @@ Hooks.once("ready", () => {
     .forEach((actor) => {
       MagicItemActor.bind(actor);
     });
-  if (game.settings.get(CONSTANTS.MODULE_ID, "counter") === false && game.user.isGM) {
-    let x = new Dialog({
-      title: "Magic Items Migration",
-      content:
-        "The module Magic Items 2 is being moved in the place of the old one - Magic Items.<br><br>Magic Items 2 module id will no longer be updated, so please check the Foundry module listing or github page for Magic Items version 4.0.<br><br>",
+
+  if (game.user.isGM && !game.settings.get(CONSTANTS.MODULE_ID, "welcomeMessage")) {
+    const message =
+      "Hello everyone!<br><br>This is the first version of Magic Items module that has been transferred from Magic Items 2, therefore it requires a migration of items.<br><br>For manual information about migrations, please consult the latest release changelog.<br><br>Thank you for your continuing support, and I hope you will enjoy this module!<br><br>If you want, please go ahead and check out the discord community created for this module on Foundry Module listing or Github project.";
+    const title = "Magic Items";
+    // eslint-disable-next-line no-undef
+    let d = new Dialog({
+      title: title,
+      content: `${message}<br><br>`,
       buttons: {
         use: {
           icon: '<i class="fas fa-check"></i>',
-          label: "I have read this message, please don't show it again.",
+          label: "Do the automatic migration.",
           callback: () => {
-            game.settings.set(CONSTANTS.MODULE_ID, "counter", true);
+            API.migrateScopeMagicItem();
+            game.settings.set(CONSTANTS.MODULE_ID, "welcomeMessage", true);
+          },
+        },
+        closeAndChangeSetting: {
+          icon: '<i class="fas fa-times"></i>',
+          label: "I will do the migration on my own - do not show this window again.",
+          callback: () => {
+            game.settings.set(CONSTANTS.MODULE_ID, "welcomeMessage", true);
+            d.close();
           },
         },
         close: {
           icon: '<i class="fas fa-times"></i>',
-          label: "Ignore this message for now",
-          callback: () => x.close(),
+          label: game.i18n.localize("MAGICITEMS.SheetDialogClose"),
+          callback: () => d.close(),
         },
       },
       default: "use",
     });
-    x.render(true);
+    d.render(true);
   }
 });
 
@@ -114,8 +127,8 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
   // Register Tidy Item Sheet Tab
   const magicItemsTab = new api.models.HandlebarsTab({
     title: "Magic Item",
-    tabId: "magic-items-2",
-    path: "/modules/magic-items-2/templates/magic-item-tab.hbs",
+    tabId: "magicitems",
+    path: "/modules/magicitems/templates/magic-item-tab.hbs",
     enabled: (data) => {
       return MagicItemTab.isAcceptedItemType(data.item) && MagicItemTab.isAllowedToShow();
     },
@@ -134,7 +147,7 @@ Hooks.once("tidy5e-sheet.ready", (api) => {
           item: params.data.item,
           magicItem: magicItem,
         });
-        params.element.querySelector(`.magic-items-2-content`).addEventListener("drop", (event) => {
+        params.element.querySelector(`.magicitems-content`).addEventListener("drop", (event) => {
           MagicItemTab.onDrop({ event, item: params.data.item, magicItem: magicItem });
         });
       } else {
@@ -274,7 +287,7 @@ Hooks.on("createItem", async (item, options, userId) => {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
-      await API.fixFlagsScopeDataOnItem(item);
+      await API.updateFlagScopeMagicItem(item);
       miActor.buildItems();
     }
   }
