@@ -7,8 +7,8 @@ export class AbstractMagicItemEntry {
   constructor(data) {
     mergeObject(this, data);
     // Patch retrocompatbility
-    if (this.pack?.startsWith("magicitems")) {
-      this.pack = this.pack.replace("magicitems.", `${CONSTANTS.MODULE_ID}.`);
+    if (this.pack?.startsWith("magic-items")) {
+      this.pack = this.pack.replace("magic-items-2.", `${CONSTANTS.MODULE_ID}.`);
     }
     // Generate Uuid runtime
     if (!this.uuid) {
