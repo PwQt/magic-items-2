@@ -8,8 +8,8 @@ export class AbstractOwnedMagicItemEntry {
     this.uses = parseInt("uses" in this.item ? this.item.uses : this.magicItem.charges);
 
     // Patch retrocompatbility
-    if (this.item.pack?.startsWith("magicitems")) {
-      this.item.pack = this.item.pack.replace("magicitems.", `${CONSTANTS.MODULE_ID}.`);
+    if (this.item.pack?.startsWith("magic-items")) {
+      this.item.pack = this.item.pack.replace("magic-items-2.", `${CONSTANTS.MODULE_ID}.`);
     }
     // Generate Uuid runtime
     if (!this.item.uuid) {
