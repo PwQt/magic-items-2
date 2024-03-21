@@ -150,10 +150,6 @@
   text-align: center;
 }
 
-[data-sheet-module="tidy5e-sheet"][data-document-name="Actor"] .magicitems-spells-content {
-    flex: 1;
-}
-
 [data-sheet-module="tidy5e-sheet"][data-document-name="Actor"] .magicitems-spells-content .spell-slots > * {
   flex: 0;
 }
@@ -169,6 +165,10 @@
   :is(.magicitems-spells-content, .magicitems-feats-content)
   .magicitems-head {
   margin: 0 0 0.5rem 0.5rem;
+}
+
+[data-sheet-module="tidy5e-sheet"][data-document-name="Item"] .magicitems-content {
+  flex: 1;
 }
 
 [data-sheet-module="tidy5e-sheet"][data-document-name="Item"] .magicitems-content .item-detail select {
