@@ -129,77 +129,6 @@
   display: none;
 }
 
-/* Original Tidy Styles */
-
-.tidy5e.sheet.actor .magicitems-head {
-  display: none;
-}
-
-.tidy5e.sheet.actor .list-layout .item-list .magic-item {
-  background-color: rgba(255, 255, 0, 0.3) !important;
-  margin: 2px 0 !important;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset !important;
-}
-
-.tidy5e.sheet.actor .magicitems-spells-content,
-.tidy5e.sheet.actor .magicitems-feats-content {
-  padding: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.tidy5e.sheet.actor .item-list .magic-item {
-  background-color: transparent !important;
-  margin: 3px 3px !important;
-}
-
-.tidy5e.sheet.actor .items-list .item.magic-item.equipped,
-.tidy5e.sheet.actor .items-list .item.magic-item.prepared {
-  background: var(--t5e-equipped) !important;
-  box-shadow: 0 0 0 2px var(--prepared-outline) !important;
-  border: 1px solid var(--t5e-magic-accent) !important;
-}
-
-.tidy5e.sheet.actor .list-layout .items-list .item.magic-item.equipped,
-.tidy5e.sheet.actor .list-layout .items-list .item.magic-item.prepared {
-  box-shadow: none !important;
-}
-
-.tidy5e.sheet.item .magicitems-content .item-detail select {
-  width: 100%;
-}
-
-.tidy5e.sheet.item .magicitems-content .item-controls {
-  flex-basis: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-.tidy5e.sheet.item .magicitems-content .spell-flat-and-dc,
-.tidy5e.sheet.item .magicitems-content .spell-dc-head {
-  flex: 0 0 60px;
-}
-
-/* This style intentionally overrides Tidy specificity to patch in the correct look. */
-.tidy5e.sheet.item .sheet-body .tab.magicitems .magicitems-content .magic-item-list .spell-level-head.spell-level-head,
-.tidy5e.sheet.item .sheet-body .tab.magicitems .magicitems-content .magic-item-list .spell-level.spell-level {
-  flex: 0 0 70px;
-}
-
-.tidy5e.sheet.item .magicitems-content .items-header {
-  background: var(--t5e-faint-color);
-  box-shadow: 0 0 5px inset var(--t5e-light-color);
-  border-bottom: 1px solid var(--t5e-light-color);
-}
-
-.tidy5e.sheet.item .magicitems-content h3.item-name {
-  margin: 0 -5px 0 0;
-  padding-left: 5px;
-  font-size: 13px;
-  font-weight: bold;
-  border: none;
-}
-
 /* New Tidy Styles */
 [data-sheet-module="tidy5e-sheet"][data-document-name="Actor"] .spell-rechargeable {
   flex: 0 0 11.25rem;
@@ -219,6 +148,10 @@
 [data-sheet-module="tidy5e-sheet"][data-document-name="Actor"] .spell-upcast {
   flex: 0 0 3.75rem;
   text-align: center;
+}
+
+[data-sheet-module="tidy5e-sheet"][data-document-name="Actor"] .magicitems-spells-content {
+    flex: 1;
 }
 
 [data-sheet-module="tidy5e-sheet"][data-document-name="Actor"] .magicitems-spells-content .spell-slots > * {
