@@ -5,7 +5,7 @@
     "e1GJldqKX2xtXEGs": 3
   },
   "type": "equipment",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>The medallion has 3 charges. While wearing it, you can use an action and expend 1 charge to cast the @Compendium[dnd5e.spells.ppWAAEul0QHtm4er]{Detect Thoughts}&nbsp;spell (save DC 13) from it. The medallion regains 1d3 expended charges daily at dawn.</p>",
       "chat": "",
@@ -36,7 +36,7 @@
     },
     "range": {
       "value": 30,
-      "long": 0,
+      "long": null,
       "units": "ft"
     },
     "uses": {
@@ -79,7 +79,7 @@
       "value": null,
       "conditions": ""
     },
-    "strength": 0,
+    "strength": null,
     "stealth": false,
     "proficient": false,
     "attributes": {

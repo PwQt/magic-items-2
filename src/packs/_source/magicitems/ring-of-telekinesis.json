@@ -5,7 +5,7 @@
     "e1GJldqKX2xtXEGs": 3
   },
   "type": "equipment",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>(Requires attunement)</em></p>\n<p>While wearing this ring, you can cast the @Compendium[dnd5e.spells.HQfd7jJyULIoGxrZ]{Telekinesis}&nbsp;spell at will, but you can target only objects that aren't being worn or carried.</p>",
       "chat": "",
@@ -36,11 +36,11 @@
     },
     "range": {
       "value": 60,
-      "long": 0,
+      "long": null,
       "units": "ft"
     },
     "uses": {
-      "value": 0,
+      "value": null,
       "max": 0,
       "per": ""
     },
@@ -79,7 +79,7 @@
       "value": null,
       "conditions": ""
     },
-    "strength": 0,
+    "strength": null,
     "stealth": false,
     "proficient": false,
     "attributes": {

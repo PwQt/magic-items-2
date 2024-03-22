@@ -5,7 +5,7 @@
     "e1GJldqKX2xtXEGs": 3
   },
   "type": "consumable",
-  "data": {
+  "system": {
     "description": {
       "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">This wand has 3 charges. While holding it, you can expend 1 charge as an action to cast the @Compendium[dnd5e.spells.ghXTfe7sgCbgf1Q8]{Detect Magic}&nbsp;spell from it. The wand regains 1d3 expended charges daily at dawn.</p>",
       "chat": "",
