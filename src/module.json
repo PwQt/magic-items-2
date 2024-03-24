@@ -140,7 +140,8 @@
         "manifest": "https://raw.githubusercontent.com/foundryvtt/dnd5e/master/system.json",
         "compatibility": {
           "minimum": "3.0.0",
-          "verified": "3.0.4"
+          "verified": "3.0.4",
+          "maximum": "3.0.99"
         }
       }
     ],
