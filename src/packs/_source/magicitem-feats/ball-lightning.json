@@ -6,7 +6,7 @@
     "e1GJldqKX2xtXEGs": 3
   },
   "type": "feat",
-  "data": {
+  "system": {
     "description": {
       "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">You can create one to four 3-foot-diameter spheres of lightning. The more spheres you create, the less powerful each sphere is individually.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">Each sphere appears in an unoccupied space you can see within 120 feet of you. The spheres last as long as you concentrate (as if concentrating on a spell), up to 1 minute. Each sphere sheds dim light in a 30-foot radius.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">As a bonus action, you can move each sphere up to 30 feet, but no farther than 120 feet away from you. When a creature other than you comes within 5 feet of a sphere, the sphere discharges lightning at that creature and disappears. That creature must make a DC 15 Dexterity saving throw. On a failed save, the creature takes lightning damage based on the number of spheres you created.</p>\n<table style=\"user-select: text; width: 176px; color: #191813; font-size: 13px; height: 123px;\" border=\"1\">\n<tbody style=\"box-sizing: border-box; user-select: text;\">\n<tr style=\"box-sizing: border-box; user-select: text;\">\n<td style=\"box-sizing: border-box; user-select: text; width: 58px; height: 23px;\"><strong style=\"box-sizing: border-box; user-select: text;\">Spheres</strong></td>\n<td style=\"box-sizing: border-box; user-select: text; width: 117px; height: 23px;\"><strong style=\"box-sizing: border-box; user-select: text;\">Lightning Damage</strong></td>\n</tr>\n<tr style=\"box-sizing: border-box; user-select: text;\">\n<td style=\"box-sizing: border-box; user-select: text; width: 58px; height: 23px;\">4</td>\n<td style=\"box-sizing: border-box; user-select: text; width: 117px; height: 23px;\">[[/r 2d4]]</td>\n</tr>\n<tr style=\"box-sizing: border-box; user-select: text;\">\n<td style=\"box-sizing: border-box; user-select: text; width: 58px; height: 23px;\">3</td>\n<td style=\"box-sizing: border-box; user-select: text; width: 117px; height: 23px;\">[[/r 2d6]]</td>\n</tr>\n<tr style=\"box-sizing: border-box; user-select: text;\">\n<td style=\"box-sizing: border-box; user-select: text; width: 58px; height: 23px;\">2</td>\n<td style=\"box-sizing: border-box; user-select: text; width: 117px; height: 23px;\">[[/r 5d4]]</td>\n</tr>\n<tr style=\"box-sizing: border-box; user-select: text;\">\n<td style=\"box-sizing: border-box; user-select: text; width: 58px; height: 27px;\">1</td>\n<td style=\"box-sizing: border-box; user-select: text; width: 117px; height: 27px;\">[[/r 4d12]]</td>\n</tr>\n</tbody>\n</table>",
       "chat": "",
@@ -34,7 +34,7 @@
       "units": "ft"
     },
     "uses": {
-      "value": 0,
+      "value": null,
       "max": 0,
       "per": ""
     },

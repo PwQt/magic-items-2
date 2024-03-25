@@ -5,7 +5,7 @@
     "e1GJldqKX2xtXEGs": 3
   },
   "type": "consumable",
-  "data": {
+  "system": {
     "description": {
       "value": "<p><em>Wondrous item</em></p>\n<p>This blue sapphire contains a mote of elemental energy. When you use an action to break the gem, an&nbsp;<span style=\"background-color: rgba(0, 0, 0, 0.05);\">@Compendium[dnd5e.monsters.banHjKDMCegbUwYE]{Air Elemental}</span>is summoned as if you had cast the @Compendium[dnd5e.spells.1LkZvINag7KqBmDR]{Conjure Elemental} spell, and the gem's magic is lost.</p>",
       "chat": "",
@@ -36,7 +36,7 @@
     },
     "range": {
       "value": 90,
-      "long": 0,
+      "long": null,
       "units": "ft"
     },
     "uses": {

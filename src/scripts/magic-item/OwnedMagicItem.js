@@ -46,7 +46,7 @@ export class OwnedMagicItem extends MagicItem {
    */
   get visible() {
     let identifiedOnly = game.settings.get(CONSTANTS.MODULE_ID, "identifiedOnly");
-    return !identifiedOnly || this.item.system.identified;
+    return this.item?.type === "feat" || !identifiedOnly || this.item.system.identified;
   }
 
   /**

@@ -61,8 +61,8 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
         this.magicItem.update();
       }
       if (this.ownedItem.effects?.size > 0 && !MagicItemHelpers.isApplyConvenientEffectsMidiQolWorkflowOn()) {
-        this.activeEffectMessage(() => {
-          this.applyActiveEffects(this.ownedItem);
+        this.activeEffectMessage(async () => {
+          await this.applyActiveEffects(this.ownedItem);
         });
       }
     };
