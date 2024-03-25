@@ -1,8 +1,12 @@
 name: Github Releases to Discord
 
 on:
+  workflow_run:
+    workflows: [Release Creation]
+    types: 
+      - completed
   release:
-    types: [published]
+    types: [ published ]
 
 jobs:
   github-releases-to-discord:
