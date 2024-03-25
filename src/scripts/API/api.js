@@ -108,21 +108,24 @@ const API = {
       Logger.info(`Updated flagsScope item ${mi.name}`);
     }
   },
+  
   /**
    * Method to migrate compendiumpack to use another flag
    * @param {string} compendiumName the name of the pack, gotten from the `game.packs` property
    */
   async updateScopePerCompendiumPack(compendiumName) {
-    const previousPackageName = "magic-items-2";
-    if (game.packs.get(`${compendiumName}`) !== undefined) {
-      await game.packs.get(`${compendiumName}`).updateAll((pack) => ({
-        flags: {
-          [CONSTANTS.MODULE_ID]: pack.flags[`${previousPackageName}`],
-        },
-      }));
-      Logger.info(`Updated flagsScope for compendium ${compendiumName}`);
-    } else {
-      Logger.warn(`Pack ${compendiumName} has not been found - no migration applied`);
+    if (game.user.isGM) {
+      const previousPackageName = "magic-items-2";
+      if (game.packs.get(`${compendiumName}`) !== undefined) {
+        await game.packs.get(`${compendiumName}`).updateAll((pack) => ({
+          flags: {
+            [CONSTANTS.MODULE_ID]: pack.flags[`${previousPackageName}`],
+          },
+        }));
+        Logger.info(`Updated flagsScope for compendium ${compendiumName}`);
+      } else {
+        Logger.warn(`Pack ${compendiumName} has not been found - no migration applied`);
+      }
     }
   },
 };
