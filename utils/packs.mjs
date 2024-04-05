@@ -86,12 +86,12 @@ function cleanPackEntry(data, { clearSourceId=true, ownership=0 }={}) {
   if ( clearSourceId ) delete data.flags?.core?.sourceId;
   delete data.flags?.importSource;
   delete data.flags?.exportSource;
-  if ( data._stats?.lastModifiedBy ) data._stats.lastModifiedBy = "packsebuilder0000";
+  if ( data._stats?.lastModifiedBy ) data._stats.lastModifiedBy = "packsbuilder0000";
 
   // Remove empty entries in flags
   if ( !data.flags ) data.flags = {};
   Object.entries(data.flags).forEach(([key, contents]) => {
-    if ( Object.keys(contents).length === 0 ) delete data.flags[key];
+    if (contents && Object.keys(contents).length === 0 ) delete data.flags[key];
   });
 
   if ( data.system?.activation?.cost === 0 ) data.system.activation.cost = null;
