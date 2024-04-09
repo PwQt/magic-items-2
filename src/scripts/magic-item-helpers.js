@@ -5,11 +5,9 @@ export class MagicItemHelpers {
     return sheet?.constructor?.name === "ActorSheet5eCharacter2";
   }
 
-  static isApplyConvenientEffectsMidiQolWorkflowOn() {
+  static isMidiItemEffectWorkflowOn() {
     return (
-      game.modules.get("midi-qol")?.active &&
-      game.modules.get("dfreds-convenient-effects")?.active &&
-      game.settings.get("midi-qol", "ConfigSettings")?.autoCEEffects !== "none"
+      game.modules.get("midi-qol")?.active && game.settings.get("midi-qol", "ConfigSettings")?.autoItemEffects !== "off"
     );
   }
 
