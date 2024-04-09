@@ -166,7 +166,7 @@ export class AbstractOwnedMagicItemEntry {
       }
       let actor = token.actor;
 
-      item?.effects.toObject()?.forEach((effect) => {
+      item?.effects.toObject()?.forEach(async (effect) => {
         if (!game.user.isGM && !actor?.isOwner) {
           return;
         }
@@ -180,8 +180,7 @@ export class AbstractOwnedMagicItemEntry {
           transfer: false,
           origin: item.uuid,
         });
-        const aeCLS = CONFIG.ActiveEffect.documentClass;
-        const ae = aeCLS.create(effect, { parent: actor });
+        const ae = await ActiveEffect.implementation.create(effect, { parent: actor });
         if (!ae) {
           Logger.warn(game.i18n.localize("MAGICITEMS.ToggleActiveEffectError"), true);
         }

@@ -41,10 +41,9 @@ Hooks.once("init", () => {
 
   game.settings.register(CONSTANTS.MODULE_ID, "welcomeMessage", {
     name: "welcomeMessage",
-    hint: "",
-    scope: "client",
+    scope: "world",
     type: Boolean,
-    default: false,
+    default: true,
     config: false,
   });
 
@@ -63,7 +62,7 @@ Hooks.once("setup", async () => {
   window.MagicItems = game.modules.get(CONSTANTS.MODULE_ID).api;
 });
 
-Hooks.once("ready", () => {
+Hooks.once("ready", async () => {
   Array.from(game.actors)
     .filter((actor) => actor.permission >= 1)
     .forEach((actor) => {
