@@ -76,6 +76,7 @@ export class MagicItemSpell extends AbstractMagicItemEntry {
       dc: this.dc,
       uses: this.uses,
       componentsVSM: this.componentsVSM,
+      componentsALL: this.componentsALL,
     };
   }
 
