@@ -10,6 +10,7 @@ export class MagicItemSpell extends AbstractMagicItemEntry {
     this.upcast = this.upcast ? NumberUtils.parseIntOrGetDefault(this.upcast, 0) : this.level;
     this.upcastCost = this.upcastCost ? NumberUtils.parseIntOrGetDefault(this.upcastCost, 0) : 1;
     this.dc = this.flatDc && this.dc ? this.dc : "";
+    this.getData(data);
   }
 
   get levels() {
@@ -74,6 +75,15 @@ export class MagicItemSpell extends AbstractMagicItemEntry {
       flatDc: this.flatDc,
       dc: this.dc,
       uses: this.uses,
+      componentsVSM: this.componentsVSM,
     };
+  }
+
+  /** @override */
+  async getData(data) {
+    const entity = await this.entity();
+    this.componentsVSM = entity?.labels?.components?.vsm;
+    this.componentsALL = entity?.labels?.components?.all;
+    return data;
   }
 }

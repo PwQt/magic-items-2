@@ -8,7 +8,8 @@
 			</h3>
 		</label>
 	</div>
-	{{#each items as |item i|}} {{#if (and visible active hasFeats)}}
+	{{#each items as |item i|}} 
+	{{#if (and visible active hasFeats)}}
 	<div class="items-section card" data-type="spell" {{dnd5e-dataset dataset}}>
 		<div class="items-header header">
 			<h3 class="item-name spell-header" draggable="true">{{name}}</h3>
@@ -22,11 +23,11 @@
 				{{/if}}
 			</div>
 			{{/if}}
-      {{#if chargesPerSpell}}
+      		{{#if chargesPerSpell}}
 			<div class="item-header spell-slots">
 				{{localize "MAGICITEMS.SheetUses"}}
 			</div>
-      {{/if}}
+			{{/if}}
 			<div class="item-header spell-rechargeable">{{rechargeableLabel}}</div>
 			<div class="item-header feat-consumption">{{localize "MAGICITEMS.SheetFeatOnUsage"}}</div>
 		</div>
@@ -43,11 +44,13 @@
 				>
 				<div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{feat.displayName}}">
 					<img class="item-image gold-icon magic-item-image" src="{{feat.img}}" alt="{{feat.name}}">
-				  <div class="name name-stacked">
-					<span class="title">{{ feat.displayName }}</span>
-					<span class="subtitle"></span>
-				  </div>
-				  <div class="tags"></div>
+				  	<div class="name name-stacked">
+						<span class="title">{{ feat.displayName }}</span>
+						<span class="feat-subtitle subtitle">
+							{{ feat.featAction }}
+						</span>
+				  	</div>
+					<div class="tags"></div>
         		</div>
 				{{#if ../chargesPerSpell}}
 				<div class="item-detail spell-slots">
@@ -67,8 +70,8 @@
 				<div class="item-detail spell-rechargeable">-</div>
 				{{/if}}
 				<div class="item-detail feat-consumption">
-          <span class="condensed">{{feat.consumptionLabel}}</span>
-        </div>
+					<span class="condensed">{{feat.consumptionLabel}}</span>
+				</div>
 			</li>
 			{{/each}}
 			<!-- ROLLTABLES INTEGRATION -->
