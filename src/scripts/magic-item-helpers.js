@@ -49,7 +49,7 @@ export class MagicItemHelpers {
   }
 
   static getEntityNameCompendiumWithBabele(packToCheck, nameToCheck) {
-    if (game.modules.get("babele")?.active) {
+    if (game.modules.get("babele")?.active && game.babele?.packs !== undefined) {
       if (packToCheck !== "world" && game.babele?.isTranslated(packToCheck)) {
         return game.babele.translateField("name", packToCheck, { name: nameToCheck });
       } else {
