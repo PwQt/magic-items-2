@@ -6,6 +6,8 @@
   "MAGICITEMS.SettingHideFromPlayersHint": "Hide the magic items settings tab for players",
   "MAGICITEMS.SettingDebug": "Enable debugging",
   "MAGICITEMS.SettingDebugHint": "Prints debug messages to the console",
+  "MAGICITEMS.SettingScaleSpellDamage": "Scale spell damage with levels",
+  "MAGICITEMS.SettingScaleSpellDamageHint": "Some spells (like Acid Splash) have their damage scale with character levels, when this setting is on, the scaling will work",
 
   "MAGICITEMS.SheetActivation": "Activation Options",
   "MAGICITEMS.SheetActivationEquipped": "Equipped",

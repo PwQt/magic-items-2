@@ -1,3 +1,4 @@
+import CONSTANTS from "./constants/constants";
 import { isRealNumber } from "./lib/lib";
 
 export class MagicItemHelpers {
@@ -9,6 +10,10 @@ export class MagicItemHelpers {
     return (
       game.modules.get("midi-qol")?.active && game.settings.get("midi-qol", "ConfigSettings")?.autoItemEffects !== "off"
     );
+  }
+
+  static isLevelScalingSettingOn() {
+    return game.settings.get(CONSTANTS.MODULE_ID, "scaleSpellDamage");
   }
 
   static numeric = function (value, fallback) {

@@ -47,6 +47,15 @@ Hooks.once("init", () => {
     config: false,
   });
 
+  game.settings.register(CONSTANTS.MODULE_ID, "scaleSpellDamage", {
+    name: "MAGICITEMS.SettingScaleSpellDamage",
+    hint: "MAGICITEMS.SettingScaleSpellDamageHint",
+    scope: "world",
+    type: Boolean,
+    default: false,
+    config: true,
+  });
+
   if (typeof Babele !== "undefined") {
     Babele.get().register({
       module: CONSTANTS.MODULE_ID,
