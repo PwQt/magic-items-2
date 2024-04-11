@@ -24,6 +24,12 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         });
       }
 
+      if (!MagicItemHelpers.isLevelScalingSettingOn()) {
+        data = mergeObject(data, {
+          "system.scaling": "none",
+        });
+      }
+
       data = mergeObject(data, {
         "system.preparation": { mode: "magicitems" },
       });
