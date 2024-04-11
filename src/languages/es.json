@@ -104,5 +104,7 @@
     "MAGICITEMS.ToggleActiveEffectDialogYes": "Sí",
     "MAGICITEMS.ToggleActiveEffectDialogNo": "No",
     "MAGICITEMS.SettingDebug": "Habilitar la depuración",
-    "MAGICITEMS.SettingDebugHint": "Mostrar mensajes de depuración en la consola"
+    "MAGICITEMS.SettingDebugHint": "Mostrar mensajes de depuración en la consola",
+    "MAGICITEMS.SettingScaleSpellDamage": "Escalar el daño de los hechizos con los niveles",
+    "MAGICITEMS.SettingScaleSpellDamageHint": "Algunos hechizos (por ejemplo, Spray ácido) escalan el daño con el nivel del personaje cuando esta configuración está habilitada; la escala funcionará"
 }
