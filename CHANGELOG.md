@@ -1,3 +1,11 @@
+### 4.1.3
+#### Features
+* Make Spell Components and Feature Action Type visible in Features list/Spellbook [#88]
+* Add a possibility of not scaling spell damage (like acid splash/firebolt) [#73]
+
+#### Bugfixes
+* Fix babele being accessed when it's packs object wasn't yet initialized [#99]
+
 ### 4.1.2.1
 - Github workflow fixes
 
