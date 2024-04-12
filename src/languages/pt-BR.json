@@ -6,7 +6,8 @@
   "MAGICITEMS.SettingHideFromPlayersHint": "Esconde a aba de configurações do Magic Items dos jogadores",
   "MAGICITEMS.SettingDebug": "Habilitar Debugging",
   "MAGICITEMS.SettingDebugHint": "Exibe mensagens de debug no console",
-
+  "MAGICITEMS.SettingScaleSpellDamage": "Escalar Dano da Magia com Nível",
+  "MAGICITEMS.SettingScaleSpellDamageHint": "Algumas magias (como Borrifo Ácido) têm seu dano escalado com o nível do personagem. Quando esta opção estiver habilitada, a escala irá funcionar.",
   "MAGICITEMS.SheetActivation": "Opções de Ativação",
   "MAGICITEMS.SheetActivationEquipped": "Equipado",
   "MAGICITEMS.SheetActivationAttuned": "Sintonizado",
