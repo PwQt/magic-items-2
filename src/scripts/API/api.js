@@ -130,7 +130,10 @@ const API = {
     }
   },
 
-  async updateItemsComponentsFlags() {
+  /**
+   * Update all actor magicitems item flags
+   */
+  async updateItemsOnAllActorsComponentsFlags() {
     if (game.user.isGM) {
       Logger.info(`Updating components information on all actors`);
       for (const actor of game.actors) {
