@@ -56,6 +56,15 @@ Hooks.once("init", () => {
     config: true,
   });
 
+  game.settings.register(CONSTANTS.MODULE_ID, "showLeftChargesChatMessage", {
+    name: "MAGICITEMS.SettingShowLeftChargesInChat",
+    hint: "MAGICITEMS.SettingShowLeftChargesInChatHint",
+    scope: "world",
+    type: Boolean,
+    default: true,
+    config: true,
+  });
+
   if (typeof Babele !== "undefined") {
     Babele.get().register({
       module: CONSTANTS.MODULE_ID,

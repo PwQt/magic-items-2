@@ -8,6 +8,8 @@
   "MAGICITEMS.SettingDebugHint": "Prints debug messages to the console",
   "MAGICITEMS.SettingScaleSpellDamage": "Scale spell damage with levels",
   "MAGICITEMS.SettingScaleSpellDamageHint": "Some spells (like Acid Splash) have their damage scale with character levels, when this setting is on, the scaling will work",
+  "MAGICITEMS.SettingShowLeftChargesInChat": "Show charges left",
+  "MAGICITEMS.SettingShowLeftChargesInChatHint": "Shows the amount of charges left on item/spell in a chat message",
 
   "MAGICITEMS.SheetActivation": "Activation Options",
   "MAGICITEMS.SheetActivationEquipped": "Equipped",
@@ -123,5 +125,7 @@
   "MAGICITEMS.ToggleActiveEffectDialogTitle": "Toggle an Active Effect",
   "MAGICITEMS.ToggleActiveEffectDialogYes": "Yes",
   "MAGICITEMS.ToggleActiveEffectDialogNo": "No",
-  "MAGICITEMS.ToggleActiveEffectError": "An error occured while adding active effect - please check console."
+  "MAGICITEMS.ToggleActiveEffectError": "An error occured while adding active effect - please check console.",
+
+  "MAGICITEMS.ShowChargesMessage": "The magic item \"{name}\" has {chargesLeft} charges out of {chargesMax} left."
 }
