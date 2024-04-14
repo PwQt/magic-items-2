@@ -8,6 +8,8 @@
   "MAGICITEMS.SettingDebugHint": "Exibe mensagens de debug no console",
   "MAGICITEMS.SettingScaleSpellDamage": "Escalar Dano da Magia com Nível",
   "MAGICITEMS.SettingScaleSpellDamageHint": "Algumas magias (como Borrifo Ácido) têm seu dano escalado com o nível do personagem. Quando esta opção estiver habilitada, a escala irá funcionar.",
+  "MAGICITEMS.SettingShowLeftChargesInChat": "Mostrar Cargas Restantes",
+  "MAGICITEMS.SettingShowLeftChargesInChatHint": "Mostrar a quantidade de cargas restantes do item/magia em uma mensagem no chat.",
   "MAGICITEMS.SheetActivation": "Opções de Ativação",
   "MAGICITEMS.SheetActivationEquipped": "Equipado",
   "MAGICITEMS.SheetActivationAttuned": "Sintonizado",
@@ -122,5 +124,6 @@
   "MAGICITEMS.ToggleActiveEffectDialogTitle": "Aplicar um Efeito Ativo",
   "MAGICITEMS.ToggleActiveEffectDialogYes": "Sim",
   "MAGICITEMS.ToggleActiveEffectDialogNo": "Não",
-  "MAGICITEMS.ToggleActiveEffectError": "Ocorreu um erro ao adicionar um efeito ativo. Por favor, verifique o console."
+  "MAGICITEMS.ToggleActiveEffectError": "Ocorreu um erro ao adicionar um efeito ativo. Por favor, verifique o console.",
+  "MAGICITEMS.ShowChargesMessage": "O item mágico \"{name}\" possui {chargesLeft} cargas restantes, de um total de {chargesMax} cargas."
 }
