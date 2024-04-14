@@ -104,5 +104,7 @@
     "MAGICITEMS.RandomResult": "Losowy wynik",
     "MAGICITEMS.SheetFeatEffect0": "Skonsumuj",
     "MAGICITEMS.SettingDebugHint": "Wyświetla wiadomości debugowania w konsoli",
-    "MAGICITEMS.SettingDebug": "Włącz debugowanie"
+    "MAGICITEMS.SettingDebug": "Włącz debugowanie",
+    "MAGICITEMS.SettingScaleSpellDamage": "Skaluj obrażenia czarów z poziomem",
+    "MAGICITEMS.SettingScaleSpellDamageHint": "Niektóre czary (np. Kwasowy rozprysk) skalują obrażenia wraz z poziomem postaci, kiedy te ustawienie jest włączone - skalowanie będzie działać"
 }
