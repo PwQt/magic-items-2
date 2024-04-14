@@ -289,6 +289,8 @@ export class MagicItem {
         consumption: entity.system.level,
         upcast: entity.system.level,
         upcastCost: 1,
+        componentsVSM: entity?.labels?.components?.vsm,
+        componentsALL: entity?.labels?.components?.all,
       });
       return true;
     }
@@ -301,6 +303,7 @@ export class MagicItem {
         pack: pack,
         effect: "e1",
         consumption: 1,
+        featAction: entity?.labels?.activation,
       });
       return true;
     }

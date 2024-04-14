@@ -1,5 +1,6 @@
 import { AbstractMagicItemEntry } from "./AbstractMagicItemEntry";
 import { NumberUtils } from "../utils/number";
+import Logger from "../lib/Logger";
 
 export class MagicItemSpell extends AbstractMagicItemEntry {
   constructor(data) {
@@ -10,7 +11,8 @@ export class MagicItemSpell extends AbstractMagicItemEntry {
     this.upcast = this.upcast ? NumberUtils.parseIntOrGetDefault(this.upcast, 0) : this.level;
     this.upcastCost = this.upcastCost ? NumberUtils.parseIntOrGetDefault(this.upcastCost, 0) : 1;
     this.dc = this.flatDc && this.dc ? this.dc : "";
-    this.getData(data);
+    this.componentsVSM = this.componentsVSM;
+    this.componentsALL = this.componentsALL;
   }
 
   get levels() {
@@ -78,13 +80,5 @@ export class MagicItemSpell extends AbstractMagicItemEntry {
       componentsVSM: this.componentsVSM,
       componentsALL: this.componentsALL,
     };
-  }
-
-  /** @override */
-  async getData(data) {
-    const entity = await this.entity();
-    this.componentsVSM = entity?.labels?.components?.vsm;
-    this.componentsALL = entity?.labels?.components?.all;
-    return data;
   }
 }

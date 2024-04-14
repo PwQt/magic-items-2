@@ -43,7 +43,7 @@ export class AbstractMagicItemEntry {
   entity() {
     return new Promise((resolve, reject) => {
       if (this.pack === "world") {
-        let entity = this.entityCls().collection.instance.get(this.id);
+        let entity = this.entityCls().collection?.instance?.get(this.id);
         if (entity) {
           resolve(entity);
         } else {
