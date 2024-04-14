@@ -1,3 +1,4 @@
+import CONSTANTS from "../constants/constants";
 import Logger from "../lib/Logger";
 import { RetrieveHelpers } from "../lib/retrieve-helpers";
 
@@ -71,6 +72,25 @@ export class AbstractOwnedMagicItemEntry {
         this.magicItem.destroyItemEntry(this.item);
       }
     }
+    if (
+      game.settings.get(CONSTANTS.MODULE_ID, "showLeftChargesChatMessage") &&
+      (!this.destroyed() || !this.magicItem?.destroyed())
+    ) {
+      const charges = this.magicItem.chargesOnWholeItem ? this.magicItem.uses : this.uses;
+      const maxCharges = parseInt("uses" in this.item ? this.item.uses : this.magicItem.charges);
+      Logger.debug(`Charges: ${charges}, MaxCharges: ${maxCharges}`);
+      if (charges !== 0) {
+        ChatMessage.create({
+          user: game.user_id,
+          speaker: ChatMessage.getSpeaker({ actor: this.magicItem.actor, token: this.magicItem.actor.token }),
+          content: game.i18n.format(game.i18n.localize("MAGICITEMS.ShowChargesMessage"), {
+            name: this.magicItem.name,
+            chargesLeft: charges,
+            chargesMax: maxCharges,
+          }),
+        });
+      }
+    }
   }
 
   destroyed() {
@@ -92,7 +112,7 @@ export class AbstractOwnedMagicItemEntry {
     if (destroyed) {
       ChatMessage.create({
         user: game.user._id,
-        speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+        speaker: ChatMessage.getSpeaker({ actor: this.magicItem.actor }),
         content: this.magicItem.formatMessage(`<b>${this.name}</b> ${this.magicItem.destroyFlavorText}`),
       });
     }
