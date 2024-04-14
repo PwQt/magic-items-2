@@ -1,3 +1,6 @@
+### 4.1.4
+* Bugfix to bug introduced in 4.1.3
+
 ### 4.1.3
 #### Features
 * Make Spell Components and Feature Action Type visible in Features list/Spellbook [#88]
