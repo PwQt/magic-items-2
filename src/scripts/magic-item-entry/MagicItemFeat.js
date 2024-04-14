@@ -8,7 +8,7 @@ export class MagicItemFeat extends AbstractMagicItemEntry {
   constructor(data) {
     super(data);
     this.effect = this.effect ? this.effect : "e1";
-    this.getData(data);
+    this.featAction = this.featAction;
   }
 
   consumptionLabel() {
@@ -33,12 +33,5 @@ export class MagicItemFeat extends AbstractMagicItemEntry {
 
   get effects() {
     return MagicItemHelpers.localized(MAGICITEMS.effects);
-  }
-
-  /** @override */
-  async getData(data) {
-    const entity = await this.entity();
-    this.featAction = entity?.labels?.activation;
-    return data;
   }
 }
