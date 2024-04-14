@@ -133,11 +133,11 @@ const API = {
   /**
    * Update all actor magicitems item flags
    */
-  async updateItemsOnAllActorsComponentsFlags() {
+  async updatMagicItemsOnAllActors() {
     if (game.user.isGM) {
-      Logger.info(`Updating components information on all actors`);
+      Logger.info(`Updating Magic Items information on all actors`);
       for (const actor of game.actors) {
-        Logger.info(`Updating components on actor ${actor.name}`);
+        Logger.info(`Updating Magic Items on actor ${actor.name}`);
         const miFlag = actor.items.filter((i) => !!i.flags[CONSTANTS.MODULE_ID]);
         if (miFlag?.length > 0) {
           for (const item of miFlag) {
@@ -152,7 +152,7 @@ const API = {
    * Method that updates all compendium items with new Magic Item flags.
    * @param {*} compendiumName compendium name fetched from game.packs
    */
-  async updateAllCompendiumItems(compendiumName) {
+  async updateMagicItemsOnAllCompendiumItems(compendiumName) {
     if (game.user.isGM) {
       Logger.info(`Updating all items from compendium '${compendiumName}' with new flags`);
       const compendiumItems = await game.packs.get(compendiumName)?.getDocuments();
