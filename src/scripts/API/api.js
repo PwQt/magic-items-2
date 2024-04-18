@@ -82,8 +82,12 @@ const API = {
       return false;
     }
 
-    let magicD = foundry.utils.getProperty(itemD, `flags.${CONSTANTS.MODULE_ID}`);
-    let attunement = itemD.data.attunement;
+    let spells = foundry.utils.getProperty(itemD, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.SPELLS}`) || [];
+    if (spells.length === 0) {
+      Logger.warn("magicItemAttack | Please put at least one spells on the item.", true);
+      return false;
+    }
+    let attunement = itemD.system.attunement;
     let target = game.user.targets.first(); // await canvas.tokens.get(args[0].hitTargets[0]._id);
     if (target && attunement === 2) {
       new Dialog({
@@ -94,7 +98,7 @@ const API = {
             icon: "<i class='fas fa-bolt'></i>",
             label: "Yes",
             callback: async () => {
-              await this.roll(itemD.name, magicD.spells[0].name);
+              await this.roll(itemD.name, spells[0].name);
             },
           },
         },
@@ -105,7 +109,7 @@ const API = {
   /**
    * Setup Magic item like you normally would by creating a spell called with all the damage details in the spell as detailed on the weapon.
    * @param {Item/string/UUID} item
-   * @returns {void}
+   * @returns {Promise<void>} No Response
    */
   async magicItemAttackFast(item) {
     let itemD = await RetrieveHelpers.getItemAsync(item);
@@ -113,14 +117,18 @@ const API = {
       Logger.warn(`magicItemAttackFast | No item found with this reference '${item}'`, true, item);
       return false;
     }
-    let magicD = foundry.utils.getProperty(itemD, `flags.${CONSTANTS.MODULE_ID}`);
-    await this.roll(itemD.name, magicD.spells[0].name);
+    let spells = foundry.utils.getProperty(itemD, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.SPELLS}`) || [];
+    if (spells.length === 0) {
+      Logger.warn("magicItemAttackFast | Please put at least one spells on the item.", true);
+      return false;
+    }
+    await this.roll(itemD.name, spells[0].name);
   },
 
   /**
-   *
-   * @param {Item/string/UUID} item
-   * @returns {void}
+   * Setup Magic item like you normally would by creating a spell called with all the damage details in the spell as detailed on the weapon.
+   * @param {Item|string|UUID} item
+   * @returns {Promise<void>} No Response
    */
   async magicItemMultipleSpellsTrinket(item) {
     let itemD = await RetrieveHelpers.getItemAsync(item);
@@ -133,7 +141,12 @@ const API = {
       return false;
     }
     let spellList = "";
-    let spell_items = Object.values(itemD.flags.magicitems.spells).sort((a, b) => (a.name < b.name ? -1 : 1));
+    let spells = foundry.utils.getProperty(itemD, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.SPELLS}`) || [];
+    if (spells.length === 0) {
+      Logger.warn("multipleSpellsTrinket | Please put at least one spells on the item.", true);
+      return false;
+    }
+    let spell_items = Object.values(spells).sort((a, b) => (a.name < b.name ? -1 : 1));
     for (let i = 0; i < spell_items.length; i++) {
       let item = spell_items[i];
       spellList += `<option value="${item.name}">${item.name}</option>`;
@@ -164,11 +177,11 @@ const API = {
 
   /**
    * If there are multiple spells on said item, you can use this macro. Just enter the name of the item.
-   * @param {Item/string/UUID} item
-   * @param {boolean} runAsMacro Run as a item macro with the command `game.dnd5e.rollItemMacro(itemName)`
-   * @returns {void}
+   * @param {Item|string|UUID} item
+   * @param {boolean} runAsItemMacro Run as a item macro with the command `game.dnd5e.rollItemMacro(itemName)`
+   * @returns {Promise<void>} No Response
    */
-  async magicItemMultipleSpellsWeapon(item, runAsMacro) {
+  async magicItemMultipleSpellsWeapon(item, runAsItemMacro) {
     let itemD = await RetrieveHelpers.getItemAsync(item);
     if (!itemD) {
       Logger.warn(`multipleSpellsWeapon | No item found with this reference '${item}'`, true, item);
@@ -179,12 +192,13 @@ const API = {
       return false;
     }
     let spellList = "";
-    let spell_items = Object.values(itemD.data.flags.magicitems.spells).sort((a, b) => (a.name < b.name ? -1 : 1));
+    let spells = foundry.utils.getProperty(itemD, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.SPELLS}`) || [];
+    let spell_items = Object.values(spells).sort((a, b) => (a.name < b.name ? -1 : 1));
     for (let i = 0; i < spell_items.length; i++) {
       let item = spell_items[i];
       spellList += `<option value="${item.name}">${item.name}</option>`;
     }
-    if (runAsMacro) {
+    if (!runAsItemMacro) {
       const htmlContent = `<form>
             <p>Pick a spell to cast</p>
             <div class="form-group">
@@ -217,7 +231,7 @@ const API = {
 
   /**
    * Utility method to migrate the scope flag from 'magic-items-2' to 'magicitems'
-   * @returns {void} No Response
+   * @returns {Promise<void>} No Response
    */
   async migrateScopeMagicItem() {
     if (game.user.isGM) {
@@ -238,8 +252,8 @@ const API = {
 
   /**
    * Utility method to migrate the scope flag from 'magic-items-2' to 'magicitems'
-   * @param {object} mi
-   * @returns {void} No Response
+   * @param {object} mi The flags property to check
+   * @returns {Promise<void>} No Response
    */
   async updateFlagScopeMagicItem(mi) {
     const miFlag = getProperty(mi, `flags.magic-items-2`);
@@ -272,7 +286,7 @@ const API = {
   /**
    * Method to migrate compendiumpack to use another flag
    * @param {string} compendiumName the name of the pack, gotten from the `game.packs` property
-   * @returns {void} No Response
+   * @returns {Promise<void>} No Response
    */
   async updateScopePerCompendiumPack(compendiumName) {
     if (game.user.isGM) {
