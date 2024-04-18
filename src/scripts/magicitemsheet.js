@@ -1,7 +1,7 @@
 import { MAGICITEMS } from "./config.js";
 import CONSTANTS from "./constants/constants.js";
-import Logger from "./lib/Logger.js";
 import { MagicItemHelpers } from "./magic-item-helpers.js";
+import { RetrieveHelpers } from "./lib/retrieve-helpers.js";
 import { MagicItemActor } from "./magicitemactor.js";
 
 const magicItemSheets = [];
@@ -206,7 +206,7 @@ export class MagicItemSheet {
     if (itemUuid) {
       uuid = itemUuid;
     } else {
-      uuid = MagicItemHelpers.retrieveUuid({
+      uuid = RetrieveHelpers.retrieveUuid({
         documentName: null,
         documentId: itemId,
         documentCollectionType: "Item",

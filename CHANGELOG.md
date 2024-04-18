@@ -1,3 +1,37 @@
+### 4.1.4
+* Bugfix to bug introduced in 4.1.3
+
+### 4.1.3
+#### Features
+* Make Spell Components and Feature Action Type visible in Features list/Spellbook [#88]
+* Add a possibility of not scaling spell damage (like acid splash/firebolt) [#73]
+
+#### Bugfixes
+* Fix babele being accessed when it's packs object wasn't yet initialized [#99]
+
+### 4.1.2.1
+- Github workflow fixes
+
+### 4.1.2
+* little bug fixing on the vite config and the pack utils
+* Adjust midi-qol effect apply method
+
+### 4.1.1
+- Enable compatibility with D&D5e 3.1+
+
+### 4.1.0
+#### Bugfixes
+* Tidy 5e styling fixes to make drag-drop field extend until the end of the tab. - thx @kgar 
+* Removal of redundant code about activeEffect launch from Spells
+* Migration of internal pack link to `magicitems` instead of `magic-items-2`
+* Pack update to feature the v10 foundry dataset `system` instead of `data`
+* Allow Spells/Feats added to feats to circumvent the "Only Identified" setting
+
+#### Features
+* Auto publish to FoundryVTT Github action
+* New API method to allow compendium migrations from Magic Items 2 to Magic Items - details below
+
+
 ### Magic Items 4.0
 - Migration to "magicitems" module-id
 

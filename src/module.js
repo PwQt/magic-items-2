@@ -41,11 +41,28 @@ Hooks.once("init", () => {
 
   game.settings.register(CONSTANTS.MODULE_ID, "welcomeMessage", {
     name: "welcomeMessage",
-    hint: "",
-    scope: "client",
+    scope: "world",
+    type: Boolean,
+    default: true,
+    config: false,
+  });
+
+  game.settings.register(CONSTANTS.MODULE_ID, "scaleSpellDamage", {
+    name: "MAGICITEMS.SettingScaleSpellDamage",
+    hint: "MAGICITEMS.SettingScaleSpellDamageHint",
+    scope: "world",
     type: Boolean,
     default: false,
-    config: false,
+    config: true,
+  });
+
+  game.settings.register(CONSTANTS.MODULE_ID, "showLeftChargesChatMessage", {
+    name: "MAGICITEMS.SettingShowLeftChargesInChat",
+    hint: "MAGICITEMS.SettingShowLeftChargesInChatHint",
+    scope: "world",
+    type: Boolean,
+    default: true,
+    config: true,
   });
 
   if (typeof Babele !== "undefined") {
@@ -63,7 +80,7 @@ Hooks.once("setup", async () => {
   window.MagicItems = game.modules.get(CONSTANTS.MODULE_ID).api;
 });
 
-Hooks.once("ready", () => {
+Hooks.once("ready", async () => {
   Array.from(game.actors)
     .filter((actor) => actor.permission >= 1)
     .forEach((actor) => {

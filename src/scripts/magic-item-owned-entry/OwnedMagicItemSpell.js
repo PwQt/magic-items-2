@@ -24,6 +24,12 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         });
       }
 
+      if (!MagicItemHelpers.isLevelScalingSettingOn()) {
+        data = mergeObject(data, {
+          "system.scaling": "none",
+        });
+      }
+
       data = mergeObject(data, {
         "system.preparation": { mode: "magicitems" },
       });
@@ -52,7 +58,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         spell.prepareFinalAttributes();
       }
 
-      if (spell.effects?.size > 0) {
+      if (spell.effects?.size > 0 && !MagicItemHelpers.isMidiItemEffectWorkflowOn()) {
         spell = spell.clone({ effects: {} }, { keepId: true });
         spell.prepareFinalAttributes();
       }
@@ -71,7 +77,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         this.consume(consumption);
         this.magicItem.update();
       }
-      if (this.ownedItem.effects?.size > 0 && !MagicItemHelpers.isApplyConvenientEffectsMidiQolWorkflowOn()) {
+      if (this.ownedItem.effects?.size > 0 && !MagicItemHelpers.isMidiItemEffectWorkflowOn()) {
         this.activeEffectMessage(async () => {
           await this.applyActiveEffects(this.ownedItem);
         });

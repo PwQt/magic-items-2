@@ -1,16 +1,20 @@
-import { isRealNumber } from "./lib/lib";
+import CONSTANTS from "./constants/constants";
+import Logger from "./lib/Logger";
+import { isRealNumber, isEmptyObject } from "./lib/lib.js";
 
 export class MagicItemHelpers {
   static isUsingNew5eSheet(sheet) {
     return sheet?.constructor?.name === "ActorSheet5eCharacter2";
   }
 
-  static isApplyConvenientEffectsMidiQolWorkflowOn() {
+  static isMidiItemEffectWorkflowOn() {
     return (
-      game.modules.get("midi-qol")?.active &&
-      game.modules.get("dfreds-convenient-effects")?.active &&
-      game.settings.get("midi-qol", "ConfigSettings")?.autoCEEffects !== "none"
+      game.modules.get("midi-qol")?.active && game.settings.get("midi-qol", "ConfigSettings")?.autoItemEffects !== "off"
     );
+  }
+
+  static isLevelScalingSettingOn() {
+    return game.settings.get(CONSTANTS.MODULE_ID, "scaleSpellDamage");
   }
 
   static numeric = function (value, fallback) {
@@ -51,7 +55,7 @@ export class MagicItemHelpers {
   }
 
   static getEntityNameCompendiumWithBabele(packToCheck, nameToCheck) {
-    if (game.modules.get("babele")?.active) {
+    if (game.modules.get("babele")?.active && game.babele?.packs !== undefined) {
       if (packToCheck !== "world" && game.babele?.isTranslated(packToCheck)) {
         return game.babele.translateField("name", packToCheck, { name: nameToCheck });
       } else {
@@ -76,64 +80,75 @@ export class MagicItemHelpers {
     return a.level === b.level ? MagicItemHelpers.sortByName(a, b) : a.level - b.level;
   }
 
-  /**
-   *
-   * @param {options}
-   * @param {string} [options.documentName]
-   * @param {string} [options.documentId]
-   * @param {("User"|"Folder"|"Actor"|"Item"|"Scene"|"Combat"|"JournalEntry"|"Macro"|"Playlist"|"RollTable"|"Cards"|"ChatMessage"|"Setting"|"FogExploration")} [options.collection]
-   * @param {string} [options.documentPack]
-   */
-  static retrieveUuid({ documentName, documentId, documentCollectionType, documentPack }) {
-    let uuid = null;
-    if (documentCollectionType || pack === "world") {
-      const collection = game.collections.get(documentCollectionType);
-      if (!collection) {
-        // DO NOTHING
+  static async fetchEntity(entity) {
+    if (entity.pack === "world") {
+      const result = await CONFIG["Item"].collection?.instance?.get(entity.id);
+      return result;
+    } else {
+      const pack = game.packs.find((p) => p.collection === entity.pack);
+      if (!pack) {
+        Logger.warn(`Cannot retrieve pack ${entity.pack}`, true);
       } else {
-        // Get the original document, if the name still matches - take no action
-        const original = documentId ? collection.get(documentId) : null;
-        if (original) {
-          if (documentName) {
-            if (original.name !== documentName) {
-              // DO NOTHING
-            } else {
-              return original.uuid;
+        const result = await pack.getDocument(entity.id);
+        return result;
+      }
+    }
+  }
+
+  static async updateMagicItemFlagOnItem(item) {
+    Logger.info(`Updating item ${item.name}`);
+    const itemFlag = getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+    Logger.debug("", itemFlag);
+    let updateItem = false;
+    if (!isEmptyObject(itemFlag)) {
+      if (!isEmptyObject(itemFlag.spells)) {
+        for (const [key, spell] of Object.entries(itemFlag.spells)) {
+          Logger.info(`Updating spell ${spell.name}`);
+          Logger.debug("", spell);
+          const entity = await MagicItemHelpers.fetchEntity(spell);
+          if (entity) {
+            if (!spell.componentsVSM) {
+              Logger.debug(`Entered componentsVSM part ${JSON.stringify(entity?.labels?.components?.vsm)}`);
+              spell.componentsVSM = await entity?.labels?.components?.vsm;
+              Logger.info(`Added componentVSM value to spell ${spell.name}`);
+              updateItem = true;
             }
-          } else {
-            return original.uuid;
+            if (!spell.componentsALL) {
+              Logger.debug(`Entered componentsALL part ${JSON.stringify(entity?.labels?.components?.all)}`);
+              spell.componentsALL = await entity?.labels?.components?.all;
+              Logger.info(`Added componentsALL value to spell ${spell.name}`);
+              updateItem = true;
+            }
           }
-        }
-        // Otherwise, find the document by ID or name (ID preferred)
-        const doc = collection.find((e) => e.id === documentId || e.name === documentName) || null;
-        if (doc) {
-          return doc.uuid;
-        }
-      }
-    }
-    if (documentPack) {
-      const pack = documentPack;
-
-      // Get the original entry, if the name still matches - take no action
-      const original = documentId ? pack.index.get(documentId) : null;
-      if (original) {
-        if (documentName) {
-          if (original.name !== documentName) {
-            // DO NOTHING
-          } else {
-            return original.uuid;
-          }
-        } else {
-          return original.uuid;
         }
       }
 
-      // Otherwise, find the document by ID or name (ID preferred)
-      const doc = pack.index.find((i) => i._id === documentId || i.name === documentName) || null;
-      if (doc) {
-        return doc.uuid;
+      if (!isEmptyObject(itemFlag.feats)) {
+        for (const [key, feat] of Object.entries(itemFlag.feats)) {
+          Logger.info(`Updating feat ${feat.name}`);
+          Logger.debug("", feat);
+          const entity = await MagicItemHelpers.fetchEntity(feat);
+          if (entity) {
+            if (!feat.featAction) {
+              Logger.debug(`Entered featAction part ${JSON.stringify(entity?.labels?.activation)}`);
+              feat.featAction = await entity?.labels?.activation;
+              Logger.info(`Added activation method '${feat.featAction}' for feat: ${feat.name}`);
+              updateItem = true;
+            }
+          }
+        }
+      }
+
+      if (updateItem) {
+        await item.update({
+          flags: {
+            [CONSTANTS.MODULE_ID]: itemFlag,
+          },
+        });
+        Logger.info(`Updated item ${item.name}`);
+      } else {
+        Logger.info(`Update of item ${item.name} skipped - no flags updated`);
       }
     }
-    return uuid;
   }
 }

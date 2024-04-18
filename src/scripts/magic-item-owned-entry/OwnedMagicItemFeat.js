@@ -42,7 +42,7 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
 
     let proceed = async () => {
       let feat = this.ownedItem;
-      if (feat.effects?.size > 0) {
+      if (feat.effects?.size > 0 && !MagicItemHelpers.isMidiItemEffectWorkflowOn()) {
         feat = feat.clone({ effects: {} }, { keepId: true });
         feat.prepareFinalAttributes();
       }
@@ -60,7 +60,7 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
         onUsage();
         this.magicItem.update();
       }
-      if (this.ownedItem.effects?.size > 0 && !MagicItemHelpers.isApplyConvenientEffectsMidiQolWorkflowOn()) {
+      if (this.ownedItem.effects?.size > 0 && !MagicItemHelpers.isMidiItemEffectWorkflowOn()) {
         this.activeEffectMessage(async () => {
           await this.applyActiveEffects(this.ownedItem);
         });

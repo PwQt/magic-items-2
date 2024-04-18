@@ -2,6 +2,7 @@ import CONSTANTS from "../constants/constants.js";
 import Logger from "../lib/Logger.js";
 import { isEmptyObject } from "../lib/lib.js";
 import { RetrieveHelpers } from "../lib/retrieve-helpers.js";
+import { MagicItemHelpers } from "../magic-item-helpers.js";
 import { MagicItemTab } from "../magicItemtab.js";
 import { MagicItemActor } from "../magicitemactor.js";
 import { MagicItemSheet } from "../magicitemsheet.js";
@@ -285,6 +286,45 @@ const API = {
         Logger.info(`Updated flagsScope for compendium ${compendiumName}`);
       } else {
         Logger.warn(`Pack ${compendiumName} has not been found - no migration applied`);
+      }
+    }
+  },
+
+  /**
+   * Update all actor magicitems item flags
+   */
+  async updatMagicItemsOnAllActors() {
+    if (game.user.isGM) {
+      Logger.info(`Updating Magic Items information on all actors`);
+      for (const actor of game.actors) {
+        Logger.info(`Updating Magic Items on actor ${actor.name}`);
+        const miFlag = actor.items.filter((i) => !!i.flags[CONSTANTS.MODULE_ID]);
+        if (miFlag?.length > 0) {
+          for (const item of miFlag) {
+            await MagicItemHelpers.updateMagicItemFlagOnItem(item);
+          }
+        }
+      }
+    }
+  },
+
+  /**
+   * Method that updates all compendium items with new Magic Item flags.
+   * @param {*} compendiumName compendium name fetched from game.packs
+   */
+  async updateMagicItemsOnAllCompendiumItems(compendiumName) {
+    if (game.user.isGM) {
+      Logger.info(`Updating all items from compendium '${compendiumName}' with new flags`);
+      const compendiumItems = await game.packs.get(compendiumName)?.getDocuments();
+      if (!isEmptyObject(compendiumItems)) {
+        const miFlag = compendiumItems.filter((i) => !!i.flags[CONSTANTS.MODULE_ID]);
+        if (miFlag?.length > 0) {
+          for (const item of miFlag) {
+            Logger.debug(`${JSON.stringify(item)}`);
+            Logger.info(`Updating components on item ${item.name}`);
+            await MagicItemHelpers.updateMagicItemFlagOnItem(item);
+          }
+        }
       }
     }
   },
