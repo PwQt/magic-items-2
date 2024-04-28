@@ -7,7 +7,7 @@
     "MAGICITEMS.SheetActivationEquipped": "Equipado",
     "MAGICITEMS.SheetActivationAttuned": "Sintonizado",
     "MAGICITEMS.SheetTot": "total",
-    "MAGICITEMS.SheetActives": "activas",
+    "MAGICITEMS.SheetActives": "activo",
     "MAGICITEMS.RechargeUnitDaily": "A Diario",
     "MAGICITEMS.RechargeUnitDawn": "Al atardecer",
     "MAGICITEMS.RechargeUnitSunset": "Al Amanecer",
@@ -106,5 +106,8 @@
     "MAGICITEMS.SettingDebug": "Habilitar la depuración",
     "MAGICITEMS.SettingDebugHint": "Mostrar mensajes de depuración en la consola",
     "MAGICITEMS.SettingScaleSpellDamage": "Escalar el daño de los hechizos con los niveles",
-    "MAGICITEMS.SettingScaleSpellDamageHint": "Algunos hechizos (por ejemplo, Spray ácido) escalan el daño con el nivel del personaje cuando esta configuración está habilitada; la escala funcionará"
+    "MAGICITEMS.SettingScaleSpellDamageHint": "Algunos hechizos (por ejemplo, Spray ácido) escalan el daño con el nivel del personaje cuando esta configuración está habilitada; la escala funcionará",
+    "MAGICITEMS.SettingShowLeftChargesInChatHint": "Muestra la cantidad de cargas que quedan en el artículo/hechizo en un mensaje de chat",
+    "MAGICITEMS.ShowChargesMessage": "Al objeto mágico \"{name}\" le quedan {chargesLeft} cargas de {chargesMax}.",
+    "MAGICITEMS.SettingShowLeftChargesInChat": "Mostrar cargas restantes"
 }
