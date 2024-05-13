@@ -5,6 +5,7 @@ const CONSTANTS = {
   // PREFIX_FLAG: "magicitems",
   FLAGS: {
     DEFAULT: "default",
+    SPELLS: "spells",
   },
   HTML: {
     MAGIC_ITEM_ICON: '<i class="fas fa-magic" style="margin-left: 5px;" title="Magic Item"></i>',
