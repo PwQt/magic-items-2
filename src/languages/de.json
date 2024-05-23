@@ -106,5 +106,6 @@
     "MAGICITEMS.SettingDebug": "Debug-Optionen aktivieren",
     "MAGICITEMS.SettingDebugHint": "Schreibt Debug-Logs in die Konsole",
     "MAGICITEMS.MagicItemDestroyCheckFailure": "Misserfolg!",
-    "MAGICITEMS.RandomResult": "Zufallsergebnis"
+    "MAGICITEMS.RandomResult": "Zufallsergebnis",
+    "MAGICITEMS.SheetDestroy": "{target} bei 0 Ladungen zerstören"
 }
