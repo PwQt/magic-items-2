@@ -1,3 +1,21 @@
+### 4.1.5.1
+* Missing .json in the russian language pack in module.json file.
+
+### 4.1.5
+#### Bugfixes
+* #138 allow localized cast to item name by @PwQt in https://github.com/PwQt/magic-items-2/pull/141
+* #134 fix to recharging on formula by @PwQt in https://github.com/PwQt/magic-items-2/pull/142
+
+#### New features
+* Display chat message showing how many charges the item has on use ( #5 ) by @PwQt in https://github.com/PwQt/magic-items-2/pull/117
+* Add some api method for anyone find it useful by @p4535992 in https://github.com/PwQt/magic-items-2/pull/125
+
+#### Localization
+* Update pt-BR.json by @Kharmans in https://github.com/PwQt/magic-items-2/pull/118
+* Update German by @davidbmaier 
+* Add Russian language
+
+
 ### 4.1.4
 * Bugfix to bug introduced in 4.1.3
 
