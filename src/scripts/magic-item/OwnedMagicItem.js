@@ -136,25 +136,25 @@ export class OwnedMagicItem extends MagicItem {
     return destroyed;
   }
 
-  onShortRest() {
+  async onShortRest() {
     if (this.rechargeable && this.rechargeUnit === MAGICITEMS.SHORT_REST) {
-      return this.doRecharge();
+      return await this.doRecharge();
     }
   }
 
-  onLongRest() {
+  async onLongRest() {
     if (this.rechargeable && [MAGICITEMS.LONG_REST, MAGICITEMS.SHORT_REST].includes(this.rechargeUnit)) {
-      return this.doRecharge();
+      return await this.doRecharge();
     }
   }
 
-  onNewDay() {
+  async onNewDay() {
     if (this.rechargeable && [MAGICITEMS.DAILY, MAGICITEMS.DAWN, MAGICITEMS.SUNSET].includes(this.rechargeUnit)) {
-      return this.doRecharge();
+      return await this.doRecharge();
     }
   }
 
-  doRecharge() {
+  async doRecharge() {
     let amount = 0,
       updated = 0,
       msg = `<b>Magic Item:</b> ${this.rechargeableLabel}<br>`;
@@ -167,7 +167,7 @@ export class OwnedMagicItem extends MagicItem {
     }
     if (this.rechargeType === MAGICITEMS.FORMULA_RECHARGE) {
       let r = new Roll(this.recharge);
-      r.evaluate({ async: false });
+      await r.evaluate();
       amount = r.total;
       msg += `<b>${prefix}</b>: ${r.result} = ${r.total} ${postfix}`;
     }

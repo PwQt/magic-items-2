@@ -95,7 +95,7 @@ export class MagicItemActor {
   shortRest(original, me) {
     return async function () {
       let result = await original.apply(me.actor, arguments);
-      me.onShortRest(result);
+      await me.onShortRest(result);
       return result;
     };
   }
@@ -109,7 +109,7 @@ export class MagicItemActor {
   longRest(original, me) {
     return async function () {
       let result = await original.apply(me.actor, arguments);
-      me.onLongRest(result);
+      await me.onLongRest(result);
       return result;
     };
   }
@@ -151,10 +151,10 @@ export class MagicItemActor {
    *
    * @param result
    */
-  onShortRest(result) {
+  async onShortRest(result) {
     if (result) {
-      this.items.forEach((item) => {
-        item.onShortRest();
+      this.items.forEach(async (item) => {
+        await item.onShortRest();
         if (result.newDay) item.onNewDay();
       });
       this.fireChange();
@@ -167,10 +167,10 @@ export class MagicItemActor {
    *
    * @param result
    */
-  onLongRest(result) {
+  async onLongRest(result) {
     if (result) {
-      this.items.forEach((item) => {
-        item.onLongRest();
+      this.items.forEach(async (item) => {
+        await item.onLongRest();
         if (result.newDay) item.onNewDay();
       });
       this.fireChange();
