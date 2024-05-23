@@ -69,6 +69,11 @@
       "lang": "pl",
       "name": "Polski",
       "path": "languages/pl.json"
+    },
+    {
+      "lang": "ru",
+      "name": "Pусский",
+      "path": "languages/ru"
     }
   ],
   "packs": [
