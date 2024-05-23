@@ -11,6 +11,14 @@ Handlebars.registerHelper("enabled", function (value, options) {
   return Boolean(value) ? "" : "disabled";
 });
 
+Handlebars.registerHelper("formatString", function (toFormat, variables = {}, localize = true) {
+  return localize ? game.i18n.format(game.i18n.localize(toFormat), variables) : game.i18n.format(toFormat, variables);
+});
+
+Handlebars.registerHelper("object", function ({ object }) {
+  return object;
+});
+
 Hooks.once("init", () => {
   game.settings.register(CONSTANTS.MODULE_ID, "identifiedOnly", {
     name: "MAGICITEMS.SettingIdentifiedOnly",
