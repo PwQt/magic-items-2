@@ -107,5 +107,6 @@
     "MAGICITEMS.SettingScaleSpellDamageHint": "Niektóre czary (np. Kwasowy rozprysk) skalują obrażenia wraz z poziomem postaci, kiedy te ustawienie jest włączone - skalowanie będzie działać",
     "MAGICITEMS.ShowChargesMessage": "Magiczny przedmiot \"{name}\" ma {chargesLeft} ładunków z {chargesMax}.",
     "MAGICITEMS.SettingShowLeftChargesInChat": "Pokaż liczbę ładunków",
-    "MAGICITEMS.SettingShowLeftChargesInChatHint": "Pokazuje liczbę pozostałych ładunków na przedmiocie/czarze w wiadomości na czacie"
+    "MAGICITEMS.SettingShowLeftChargesInChatHint": "Pokazuje liczbę pozostałych ładunków na przedmiocie/czarze w wiadomości na czacie",
+    "MAGICITEMS.SheetDestroy": "Zniszcz {target} przy 0 ładunkach"
 }
