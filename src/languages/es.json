@@ -107,5 +107,6 @@
     "MAGICITEMS.SettingScaleSpellDamageHint": "Algunos hechizos (por ejemplo, Spray ácido) escalan el daño con el nivel del personaje cuando esta configuración está habilitada; la escala funcionará",
     "MAGICITEMS.SettingShowLeftChargesInChatHint": "Muestra la cantidad de cargas que quedan en el artículo/hechizo en un mensaje de chat",
     "MAGICITEMS.ShowChargesMessage": "Al objeto mágico \"{name}\" le quedan {chargesLeft} cargas de {chargesMax}.",
-    "MAGICITEMS.SettingShowLeftChargesInChat": "Mostrar cargas restantes"
+    "MAGICITEMS.SettingShowLeftChargesInChat": "Mostrar cargas restantes",
+    "MAGICITEMS.SheetDestroy": "Destruir {target} con 0 cargas"
 }
