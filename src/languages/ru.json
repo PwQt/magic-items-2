@@ -53,8 +53,6 @@
     "MAGICITEMS.EffectTypeDestroy": "Уничтожить",
     "MAGICITEMS.SheetEnabled": "Это магический предмет?",
     "MAGICITEMS.SheetCharges": "Максимальное количество зарядов",
-    "MAGICITEMS.SheetDestroyPre": "Уничтожить",
-    "MAGICITEMS.SheetDestroyPost": "При 0 зарядов",
     "MAGICITEMS.SheetObjectTarget": "Предмет",
     "MAGICITEMS.SheetSpellTarget": "Заклинание",
     "MAGICITEMS.SheetRechargeable": "Перезаряжаемое",

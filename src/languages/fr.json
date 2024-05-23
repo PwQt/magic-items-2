@@ -27,8 +27,6 @@
     "MAGICITEMS.EffectTypeDestroy": "Détruit",
     "MAGICITEMS.SheetEnabled": "Est-ce un objet magique ?",
     "MAGICITEMS.SheetCharges": "Nombre maximal de charges",
-    "MAGICITEMS.SheetDestroyPre": "Détruit",
-    "MAGICITEMS.SheetDestroyPost": "à 0 charges",
     "MAGICITEMS.SheetObjectTarget": "objet",
     "MAGICITEMS.SheetSpellTarget": "sort",
     "MAGICITEMS.SheetDestroyFlavorText": "Message de destruction",

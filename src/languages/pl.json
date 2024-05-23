@@ -41,8 +41,6 @@
     "MAGICITEMS.RechargeUnitDawn": "O świcie",
     "MAGICITEMS.ChargeTypeWholeItem": "Na przedmiocie",
     "MAGICITEMS.DestroyCheck1D20": "1 na k20",
-    "MAGICITEMS.SheetDestroyPre": "Zniszcz",
-    "MAGICITEMS.SheetDestroyPost": "Przy 0 ładunkach",
     "MAGICITEMS.SheetSpellTarget": "Czar",
     "MAGICITEMS.SheetLevel": "Poziom",
     "MAGICITEMS.SheetUpcast": "Podniesienie",

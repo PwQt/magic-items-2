@@ -27,8 +27,6 @@
     "MAGICITEMS.EffectTypeDestroy": "Destruir",
     "MAGICITEMS.SheetEnabled": "¿Es Objeto Mágico?",
     "MAGICITEMS.SheetCharges": "Nº máx. de Cargas",
-    "MAGICITEMS.SheetDestroyPre": "Destruir",
-    "MAGICITEMS.SheetDestroyPost": "En 0 cargas",
     "MAGICITEMS.SheetObjectTarget": "Objeto",
     "MAGICITEMS.SheetSpellTarget": "Conjuro",
     "MAGICITEMS.SheetDestroyFlavorText": "Texto adicional en chat",
