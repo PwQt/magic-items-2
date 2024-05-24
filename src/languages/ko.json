@@ -27,8 +27,6 @@
     "MAGICITEMS.EffectTypeDestroy": "제거",
     "MAGICITEMS.SheetEnabled": "매직 아이템입니까?",
     "MAGICITEMS.SheetCharges": "최대 차지 수",
-    "MAGICITEMS.SheetDestroyPre": "파괴됨",
-    "MAGICITEMS.SheetDestroyPost": "차지가 0이 될 시",
     "MAGICITEMS.SheetObjectTarget": "아이템",
     "MAGICITEMS.SheetSpellTarget": "주문",
     "MAGICITEMS.SheetDestroyFlavorText": "채팅 메시지 플레이버",

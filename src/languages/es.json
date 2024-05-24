@@ -27,8 +27,6 @@
     "MAGICITEMS.EffectTypeDestroy": "Destruir",
     "MAGICITEMS.SheetEnabled": "¿Es Objeto Mágico?",
     "MAGICITEMS.SheetCharges": "Nº máx. de Cargas",
-    "MAGICITEMS.SheetDestroyPre": "Destruir",
-    "MAGICITEMS.SheetDestroyPost": "En 0 cargas",
     "MAGICITEMS.SheetObjectTarget": "Objeto",
     "MAGICITEMS.SheetSpellTarget": "Conjuro",
     "MAGICITEMS.SheetDestroyFlavorText": "Texto adicional en chat",
@@ -109,5 +107,6 @@
     "MAGICITEMS.SettingScaleSpellDamageHint": "Algunos hechizos (por ejemplo, Spray ácido) escalan el daño con el nivel del personaje cuando esta configuración está habilitada; la escala funcionará",
     "MAGICITEMS.SettingShowLeftChargesInChatHint": "Muestra la cantidad de cargas que quedan en el artículo/hechizo en un mensaje de chat",
     "MAGICITEMS.ShowChargesMessage": "Al objeto mágico \"{name}\" le quedan {chargesLeft} cargas de {chargesMax}.",
-    "MAGICITEMS.SettingShowLeftChargesInChat": "Mostrar cargas restantes"
+    "MAGICITEMS.SettingShowLeftChargesInChat": "Mostrar cargas restantes",
+    "MAGICITEMS.SheetDestroy": "Destruir {target} con 0 cargas"
 }

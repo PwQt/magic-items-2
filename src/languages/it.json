@@ -27,8 +27,6 @@
     "MAGICITEMS.EffectTypeDestroy": "Distruggi",
     "MAGICITEMS.SheetEnabled": "E' un Oggetto Magico?",
     "MAGICITEMS.SheetCharges": "Numero di Cariche Massime",
-    "MAGICITEMS.SheetDestroyPre": "Distruggi",
-    "MAGICITEMS.SheetDestroyPost": "a 0 Cariche",
     "MAGICITEMS.SheetObjectTarget": "Oggetto",
     "MAGICITEMS.SheetSpellTarget": "Incantesimo",
     "MAGICITEMS.SheetDestroyFlavorText": "Messaggio visualizzato in chat",

@@ -27,8 +27,6 @@
     "MAGICITEMS.EffectTypeDestroy": "Zničit",
     "MAGICITEMS.SheetEnabled": "Je Kouzelný Předmět?",
     "MAGICITEMS.SheetCharges": "Maximální Počet Použití",
-    "MAGICITEMS.SheetDestroyPre": "Zničit",
-    "MAGICITEMS.SheetDestroyPost": "Při 0 Použití",
     "MAGICITEMS.SheetObjectTarget": "Předmět",
     "MAGICITEMS.SheetSpellTarget": "Kouzlo",
     "MAGICITEMS.SheetDestroyFlavorText": "Okrasná zpráva v chatu",

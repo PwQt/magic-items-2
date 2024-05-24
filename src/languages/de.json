@@ -27,8 +27,6 @@
     "MAGICITEMS.EffectTypeDestroy": "Zerstören",
     "MAGICITEMS.SheetEnabled": "Magischer Gegenstand?",
     "MAGICITEMS.SheetCharges": "Maximale Anzahl Ladungen",
-    "MAGICITEMS.SheetDestroyPre": "Zerstören",
-    "MAGICITEMS.SheetDestroyPost": "Bei 0 Ladungen",
     "MAGICITEMS.SheetObjectTarget": "Gegenstand",
     "MAGICITEMS.SheetSpellTarget": "Zauber",
     "MAGICITEMS.SheetDestroyFlavorText": "Chatnachricht",
@@ -108,5 +106,7 @@
     "MAGICITEMS.SettingDebug": "Debug-Optionen aktivieren",
     "MAGICITEMS.SettingDebugHint": "Schreibt Debug-Logs in die Konsole",
     "MAGICITEMS.MagicItemDestroyCheckFailure": "Misserfolg!",
-    "MAGICITEMS.RandomResult": "Zufallsergebnis"
+    "MAGICITEMS.RandomResult": "Zufallsergebnis",
+    "MAGICITEMS.SheetDestroy": "{target} bei 0 Ladungen zerstören",
+    "MAGICITEMS.SettingTabNames": "Magic Items"
 }

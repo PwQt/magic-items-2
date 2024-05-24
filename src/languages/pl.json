@@ -41,8 +41,6 @@
     "MAGICITEMS.RechargeUnitDawn": "O świcie",
     "MAGICITEMS.ChargeTypeWholeItem": "Na przedmiocie",
     "MAGICITEMS.DestroyCheck1D20": "1 na k20",
-    "MAGICITEMS.SheetDestroyPre": "Zniszcz",
-    "MAGICITEMS.SheetDestroyPost": "Przy 0 ładunkach",
     "MAGICITEMS.SheetSpellTarget": "Czar",
     "MAGICITEMS.SheetLevel": "Poziom",
     "MAGICITEMS.SheetUpcast": "Podniesienie",
@@ -78,7 +76,7 @@
     "MAGICITEMS.ToggleActiveEffectDialogMessage": "Czy chcesz zastosować Aktywny Efekt na wybrane token(y)?",
     "MAGICITEMS.ToggleActiveEffectDialogTitle": "Przełącz Aktywny Efekt",
     "MAGICITEMS.SheetActivationAttuned": "Zestrojony",
-    "MAGICITEMS.SheetTot": "całk.",
+    "MAGICITEMS.SheetTot": "wszystkich",
     "MAGICITEMS.RechargeTypeFullText": "Odnowiono wszystkie ładunki",
     "MAGICITEMS.SheetCanUpcast": "Rzut na wyższym poziomie",
     "MAGICITEMS.MagicItemDestroyCheck": "rzut na zniszczenie",
@@ -109,5 +107,6 @@
     "MAGICITEMS.SettingScaleSpellDamageHint": "Niektóre czary (np. Kwasowy rozprysk) skalują obrażenia wraz z poziomem postaci, kiedy te ustawienie jest włączone - skalowanie będzie działać",
     "MAGICITEMS.ShowChargesMessage": "Magiczny przedmiot \"{name}\" ma {chargesLeft} ładunków z {chargesMax}.",
     "MAGICITEMS.SettingShowLeftChargesInChat": "Pokaż liczbę ładunków",
-    "MAGICITEMS.SettingShowLeftChargesInChatHint": "Pokazuje liczbę pozostałych ładunków na przedmiocie/czarze w wiadomości na czacie"
+    "MAGICITEMS.SettingShowLeftChargesInChatHint": "Pokazuje liczbę pozostałych ładunków na przedmiocie/czarze w wiadomości na czacie",
+    "MAGICITEMS.SheetDestroy": "Zniszcz {target} przy 0 ładunkach"
 }
