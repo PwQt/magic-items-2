@@ -107,5 +107,6 @@
     "MAGICITEMS.ToggleActiveEffectDialogYes": "Да",
     "MAGICITEMS.ToggleActiveEffectDialogNo": "Нет",
     "MAGICITEMS.ToggleActiveEffectError": "Произошла ошибка при добавлении активного эффекта. Проверьте консоль.",
-    "MAGICITEMS.ShowChargesMessage": "Магический предмет \"{name}\" имеет {chargesLeft} зарядов из {chargesMax}."
+    "MAGICITEMS.ShowChargesMessage": "Магический предмет \"{name}\" имеет {chargesLeft} зарядов из {chargesMax}.",
+    "MAGICITEMS.SheetDestroy": "Уничтожить {target} за 0 зарядов"
 }
