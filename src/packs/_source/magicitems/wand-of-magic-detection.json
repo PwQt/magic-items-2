@@ -96,7 +96,30 @@
           "consumption": "1",
           "upcast": "1",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            },
+            {
+              "abbr": "R",
+              "label": "Ritual",
+              "icon": "systems/dnd5e/icons/svg/items/spell.svg",
+              "tag": true
+            },
+            {
+              "abbr": "C",
+              "label": "Concentration",
+              "icon": "systems/dnd5e/icons/svg/statuses/concentrating.svg",
+              "tag": true
+            }
+          ]
         }
       }
     }

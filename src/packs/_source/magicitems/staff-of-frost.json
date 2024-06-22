@@ -122,7 +122,24 @@
           "consumption": "1",
           "upcast": "1",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            },
+            {
+              "abbr": "C",
+              "label": "Concentration",
+              "icon": "systems/dnd5e/icons/svg/statuses/concentrating.svg",
+              "tag": true
+            }
+          ]
         },
         "1": {
           "id": "WN2LWEljYU6QqnRH",
@@ -134,7 +151,22 @@
           "consumption": "4",
           "upcast": "4",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S, M",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            },
+            {
+              "abbr": "M",
+              "label": "Material"
+            }
+          ]
         },
         "2": {
           "id": "RpKjTlYASrfqUPVA",
@@ -146,7 +178,22 @@
           "consumption": "5",
           "upcast": "5",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S, M",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            },
+            {
+              "abbr": "M",
+              "label": "Material"
+            }
+          ]
         },
         "3": {
           "id": "fzZnVKLmBMo2f5up",
@@ -158,7 +205,28 @@
           "consumption": "4",
           "upcast": "6",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S, M",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            },
+            {
+              "abbr": "M",
+              "label": "Material"
+            },
+            {
+              "abbr": "C",
+              "label": "Concentration",
+              "icon": "systems/dnd5e/icons/svg/statuses/concentrating.svg",
+              "tag": true
+            }
+          ]
         }
       }
     }

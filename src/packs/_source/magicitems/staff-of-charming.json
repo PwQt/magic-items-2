@@ -127,7 +127,18 @@
           "consumption": "1",
           "upcast": "1",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            }
+          ]
         },
         "1": {
           "id": "arzCrMRgcNiQuh43",
@@ -139,7 +150,14 @@
           "consumption": "1",
           "upcast": "1",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            }
+          ]
         },
         "2": {
           "id": "4dSvfvTy2ZIJ3K4k",
@@ -151,7 +169,28 @@
           "consumption": "1",
           "upcast": "1",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S, M",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            },
+            {
+              "abbr": "M",
+              "label": "Material"
+            },
+            {
+              "abbr": "R",
+              "label": "Ritual",
+              "icon": "systems/dnd5e/icons/svg/items/spell.svg",
+              "tag": true
+            }
+          ]
         }
       }
     }

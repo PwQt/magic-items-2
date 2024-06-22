@@ -111,7 +111,14 @@
           "consumption": "1",
           "upcast": "7",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            }
+          ]
         }
       }
     }

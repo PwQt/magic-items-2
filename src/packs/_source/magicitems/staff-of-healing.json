@@ -122,7 +122,18 @@
           "consumption": "1",
           "upcast": "1",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            }
+          ]
         },
         "1": {
           "id": "F0GsG0SJzsIOacwV",
@@ -134,7 +145,18 @@
           "consumption": "2",
           "upcast": "2",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            }
+          ]
         },
         "2": {
           "id": "Pyzmm8R7rVsNAPsd",
@@ -146,7 +168,18 @@
           "consumption": "5",
           "upcast": "5",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            }
+          ]
         }
       }
     }

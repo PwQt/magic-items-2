@@ -122,7 +122,18 @@
           "consumption": "1",
           "upcast": "1",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            }
+          ]
         },
         "1": {
           "id": "ztgcdrWPshKRpFd0",
@@ -134,7 +145,22 @@
           "consumption": "3",
           "upcast": "3",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S, M",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            },
+            {
+              "abbr": "M",
+              "label": "Material"
+            }
+          ]
         },
         "2": {
           "id": "X3DrXgxjwI2dvkD6",
@@ -146,7 +172,28 @@
           "consumption": "4",
           "upcast": "4",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S, M",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            },
+            {
+              "abbr": "M",
+              "label": "Material"
+            },
+            {
+              "abbr": "C",
+              "label": "Concentration",
+              "icon": "systems/dnd5e/icons/svg/statuses/concentrating.svg",
+              "tag": true
+            }
+          ]
         }
       }
     }
