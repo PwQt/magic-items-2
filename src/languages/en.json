@@ -29,6 +29,7 @@
     "MAGICITEMS.RechargeTypeFullText": "Recharged to maximum charges",
     "MAGICITEMS.DestroyCheckAlways": "Always",
     "MAGICITEMS.DestroyCheck1D20": "1 on d20",
+    "MAGICITEMS.DestroyCheckCustomDC": "Custom DC",
     "MAGICITEMS.JusDestroyType": "Just Destroy",
     "MAGICITEMS.LoosePowersType": "Lose Powers",
     "MAGICITEMS.EffectTypeConsume": "Consume",

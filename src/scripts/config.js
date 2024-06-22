@@ -25,6 +25,7 @@ MAGICITEMS.rechargeTypes = {
 MAGICITEMS.destroyChecks = {
   d1: "MAGICITEMS.DestroyCheckAlways",
   d2: "MAGICITEMS.DestroyCheck1D20",
+  d3: "MAGICITEMS.DestroyCheckCustomDC",
 };
 
 MAGICITEMS.destroyTypes = {

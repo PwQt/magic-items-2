@@ -110,6 +110,11 @@
   margin-left: 5px;
 }
 
+.dnd5e.sheet.item .magicitems-content input.magic-item-destroy-dc {
+  flex: 0.4;
+  margin-left: 5px;
+}
+
 .dnd5e.sheet.item .magicitems-content select.magic-item-destroy-check:disabled {
   color: #9a9a9a;
   border-color: #dad9d9;

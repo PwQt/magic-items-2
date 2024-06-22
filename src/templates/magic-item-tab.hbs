@@ -46,7 +46,10 @@
           {{/each}}
         {{/select}}
       </select>
+      <input type="text" name="flags.magicitems.destroyDC" class="magic-item-destroy-dc {{ifThen (eq destroyCheck 'd3') '' 'hidden'}}" 
+            value="{{destroyDC}}" style="margin: 3px 10px;" {{disabled (eq destroy false)}} />
     </div>
+
     <div class="form-group stacked magic-item-destroy-flavor-text {{ifThen destroy '' 'hidden'}}">
       <label>{{localize "MAGICITEMS.SheetDestroyFlavorText"}}</label>
       <input type="text" name="flags.magicitems.destroyFlavorText" value="{{destroyFlavorText}}" />

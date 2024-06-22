@@ -50,6 +50,10 @@ export class AbstractOwnedMagicItemEntry {
     return this.item.uses;
   }
 
+  get destroyDC() {
+    return this.item.destroyDC;
+  }
+
   set uses(uses) {
     this.item.uses = uses;
   }
@@ -63,12 +67,12 @@ export class AbstractOwnedMagicItemEntry {
     return uses - consumption >= 0;
   }
 
-  consume(consumption) {
+  async consume(consumption) {
     if (this.magicItem.chargesOnWholeItem) {
-      this.magicItem.consume(consumption);
+      await this.magicItem.consume(consumption);
     } else {
       this.uses = Math.max(this.uses - consumption, 0);
-      if (this.destroyed()) {
+      if (await this.destroyed()) {
         this.magicItem.destroyItemEntry(this.item);
       }
     }
@@ -93,11 +97,11 @@ export class AbstractOwnedMagicItemEntry {
     }
   }
 
-  destroyed() {
+  async destroyed() {
     let destroyed = this.uses === 0 && this.magicItem.destroy;
     if (destroyed && this.magicItem.destroyCheck === "d2") {
       let r = new Roll("1d20");
-      r.evaluate({ async: false });
+      await r.evaluate();
       destroyed = r.total === 1;
       r.toMessage({
         flavor: `<b>${this.name}</b> ${game.i18n.localize("MAGICITEMS.MagicItemDestroyCheck")}
@@ -107,6 +111,19 @@ export class AbstractOwnedMagicItemEntry {
                 : game.i18n.localize("MAGICITEMS.MagicItemDestroyCheckSuccess")
             }`,
         speaker: ChatMessage.getSpeaker({ actor: this.magicItem.actor, token: this.magicItem.actor.token }),
+      });
+    } else if (destroyed && this.magicItem.destroyCheck === "d3") {
+      let r = new Roll("1d20");
+      await r.evaluate();
+      destroyed = r.total <= this.destroyDC;
+      r.toMessage({
+        flavor: `<b>${this.name}</b> ${game.i18n.localize("MAGICITEMS.MagicItemDestroyCheck")}
+                        - ${
+                          destroyed
+                            ? game.i18n.localize("MAGICITEMS.MagicItemDestroyCheckFailure")
+                            : game.i18n.localize("MAGICITEMS.MagicItemDestroyCheckSuccess")
+                        }`,
+        speaker: ChatMessage.getSpeaker({ actor: this.actor, token: this.actor.token }),
       });
     }
     if (destroyed) {

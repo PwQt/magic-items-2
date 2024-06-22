@@ -22,6 +22,7 @@ export class MagicItem {
     this.destroyCheck = data.destroyCheck;
     this.destroyType = data.destroyType;
     this.destroyFlavorText = data.destroyFlavorText;
+    this.destroyDC = data.destroyDC;
     this.sorting = data.sorting;
     this.sortingModes = { l: "MAGICITEMS.SheetSortByLevel", a: "MAGICITEMS.SheetSortAlphabetically" };
 
@@ -90,6 +91,7 @@ export class MagicItem {
       destroy: false,
       destroyCheck: "d1",
       destroyType: "dt1",
+      destroyDC: 0,
       destroyFlavorText: game.i18n.localize("MAGICITEMS.MagicItemDestroy"),
       sorting: "l",
       spells: {},
@@ -111,6 +113,7 @@ export class MagicItem {
       destroyCheck: this.destroyCheck,
       destroyType: this.destroyType,
       destroyFlavorText: this.destroyFlavorText,
+      destroyDC: this.destroyDC,
       sorting: this.sorting,
       spells: this.serializeEntries(this.spells, this.spellsGarbage),
       feats: this.serializeEntries(this.feats, this.featsGarbage),
