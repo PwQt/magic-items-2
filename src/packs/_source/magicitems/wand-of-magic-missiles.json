@@ -105,7 +105,18 @@
           "consumption": "1",
           "upcast": "7",
           "upcastCost": "1",
-          "flatDc": false
+          "flatDc": false,
+          "componentsVSM": "V, S",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            }
+          ]
         }
       },
       "destroyCheck": "d2",

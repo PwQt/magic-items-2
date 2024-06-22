@@ -99,7 +99,14 @@
           "upcast": "1",
           "upcastCost": "1",
           "flatDc": true,
-          "dc": "15"
+          "dc": "15",
+          "componentsVSM": "V",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            }
+          ]
         }
       },
       "feats": {

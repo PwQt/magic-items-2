@@ -99,7 +99,28 @@
           "upcast": "2",
           "upcastCost": "1",
           "flatDc": true,
-          "dc": "15"
+          "dc": "15",
+          "componentsVSM": "V, S, M",
+          "componentsALL": [
+            {
+              "abbr": "V",
+              "label": "Verbal"
+            },
+            {
+              "abbr": "S",
+              "label": "Somatic"
+            },
+            {
+              "abbr": "M",
+              "label": "Material"
+            },
+            {
+              "abbr": "C",
+              "label": "Concentration",
+              "icon": "systems/dnd5e/icons/svg/statuses/concentrating.svg",
+              "tag": true
+            }
+          ]
         }
       }
     }
