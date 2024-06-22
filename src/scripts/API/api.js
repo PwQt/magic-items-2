@@ -242,6 +242,32 @@ const API = {
     let actorTmp = await API.actor(actor);
     await actorTmp.actor.longRest.apply(actorTmp.actor);
   },
+
+  /**
+   * Method handling a short-rest action for magic items
+   * @param {string/Actor/UUID} actor The actor to use for retrieve the Actor
+   * @param {Boolean} isNewDay Check whether it's a new day
+   */
+  async execActorShortRestUnderHood(actor, isNewDay) {
+    let actorTmp = await API.actor(actor);
+    actorTmp.items.forEach(async (item) => {
+      await item.onShortRest();
+      if (isNewDay) await item.onNewDay();
+    });
+  },
+
+  /**
+   * Method handling a long-rest action for magic items
+   * @param {string/Actor/UUID} actor The actor to use for retrieve the Actor
+   * @param {Boolean} isNewDay Check whether it's a new day
+   */
+  async execActorLongRestUnderHood(actor, isNewDay) {
+    let actorTmp = await API.actor(actor);
+    actorTmp.items.forEach(async (item) => {
+      await item.onLongRest();
+      if (isNewDay) await item.onNewDay();
+    });
+  },
 };
 
 export default API;
