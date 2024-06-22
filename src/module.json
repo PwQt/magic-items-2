@@ -79,7 +79,7 @@
       "lang": "ja",
 			"name": "Japanese",
 			"path": "languages/ja.json"
-		},
+		}
   ],
   "packs": [
     {
