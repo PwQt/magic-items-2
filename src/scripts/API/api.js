@@ -46,26 +46,6 @@ const API = {
   },
 
   /**
-   * Method to bind magic item behavior to the item sheet
-   * @param {*} app
-   * @param {*} html
-   * @param {*} data
-   */
-  bindItemSheet: function (app, html, data) {
-    MagicItemTab.bind(app, html, data);
-  },
-
-  /**
-   * Method to bind magic actor behavior to the item sheet
-   * @param {*} app
-   * @param {*} html
-   * @param {*} data
-   */
-  bindCharacterSheet: function (app, html, data) {
-    MagicItemSheet.bind(app, html, data);
-  },
-
-  /**
    * Setup Magic item like you normally would by creating a spell called with all the damage details in the spell as detailed on the weapon.
    * Also checkes for Item Attunement and gives you a choice if you want to spend a charge or not.
    * @param {Item/string/UUID} item
@@ -225,122 +205,32 @@ const API = {
     }
   },
 
-  // =============================================
-  // Migration Utilities
-  // =============================================
-
   /**
-   * Utility method to migrate the scope flag from 'magic-items-2' to 'magicitems'
-   * @returns {Promise<void>} No Response
+   * Method handling a short-rest action for magic items for an actor.
+   * @param {string/Actor/UUID} actor The actor to use for retrieve the Actor
+   * @param {Boolean} isNewDay Check whether it's a new day
+   * @returns {Promise<void>} No response
    */
-  async migrateScopeMagicItem() {
-    if (game.user.isGM) {
-      for (const a of game.actors) {
-        Logger.info(`Update flagsScope on actor ${a.name}...`);
-        const magicitems = a.items.filter((i) => !!i.flags["magic-items-2"]);
-        if (magicitems?.length > 0) {
-          for (const mi of magicitems) {
-            Logger.info(`Update flagsScope on actor ${a.name} for item ${mi.name}...`);
-            await this.updateFlagScopeMagicItem(mi);
-            Logger.info(`Updated flagsScope on actor ${a.name} for item ${mi.name}`);
-          }
-          Logger.info(`Updated flagsScope on actor ${a.name}`);
-        }
-      }
-    }
+  async execActorShortRest(actor, isNewDay) {
+    let actorTmp = await API.actor(actor);
+    actorTmp.items.forEach(async (item) => {
+      await item.onShortRest();
+      if (isNewDay) await item.onNewDay();
+    });
   },
 
   /**
-   * Utility method to migrate the scope flag from 'magic-items-2' to 'magicitems'
-   * @param {object} mi The flags property to check
-   * @returns {Promise<void>} No Response
+   * Method handling a long-rest action for magic items for an actor.
+   * @param {string/Actor/UUID} actor The actor to use for retrieve the Actor
+   * @param {Boolean} isNewDay Check whether it's a new day
+   * @returns {Promise<void>} No response
    */
-  async updateFlagScopeMagicItem(mi) {
-    const miFlag = getProperty(mi, `flags.magic-items-2`);
-    const miFlagNewScope = getProperty(mi, `flags.${CONSTANTS.MODULE_ID}`);
-    if (!isEmptyObject(miFlag) && isEmptyObject(miFlagNewScope)) {
-      Logger.info(`Update flagsScope item ${mi.name}...`);
-      if (miFlag.spells?.length > 0) {
-        Object.entries(miFlag.spells).forEach(([key, value]) => {
-          if (!value.uuid && value.id) {
-            value.uuid = `Item.${value.id}`;
-          }
-        });
-      }
-      if (miFlag.feats?.length > 0) {
-        Object.entries(miFlag.feats).forEach(([key, value]) => {
-          if (!value.uuid && value.id) {
-            value.uuid = `Item.${value.id}`;
-          }
-        });
-      }
-      await mi.update({
-        flags: {
-          [CONSTANTS.MODULE_ID]: miFlag,
-        },
-      });
-      Logger.info(`Updated flagsScope item ${mi.name}`);
-    }
-  },
-
-  /**
-   * Method to migrate compendiumpack to use another flag
-   * @param {string} compendiumName the name of the pack, gotten from the `game.packs` property
-   * @returns {Promise<void>} No Response
-   */
-  async updateScopePerCompendiumPack(compendiumName) {
-    if (game.user.isGM) {
-      const previousPackageName = "magic-items-2";
-      if (game.packs.get(`${compendiumName}`) !== undefined) {
-        await game.packs.get(`${compendiumName}`).updateAll((pack) => ({
-          flags: {
-            [CONSTANTS.MODULE_ID]: pack.flags[`${previousPackageName}`],
-          },
-        }));
-        Logger.info(`Updated flagsScope for compendium ${compendiumName}`);
-      } else {
-        Logger.warn(`Pack ${compendiumName} has not been found - no migration applied`);
-      }
-    }
-  },
-
-  /**
-   * Update all actor magicitems item flags
-   */
-  async updatMagicItemsOnAllActors() {
-    if (game.user.isGM) {
-      Logger.info(`Updating Magic Items information on all actors`);
-      for (const actor of game.actors) {
-        Logger.info(`Updating Magic Items on actor ${actor.name}`);
-        const miFlag = actor.items.filter((i) => !!i.flags[CONSTANTS.MODULE_ID]);
-        if (miFlag?.length > 0) {
-          for (const item of miFlag) {
-            await MagicItemHelpers.updateMagicItemFlagOnItem(item);
-          }
-        }
-      }
-    }
-  },
-
-  /**
-   * Method that updates all compendium items with new Magic Item flags.
-   * @param {*} compendiumName compendium name fetched from game.packs
-   */
-  async updateMagicItemsOnAllCompendiumItems(compendiumName) {
-    if (game.user.isGM) {
-      Logger.info(`Updating all items from compendium '${compendiumName}' with new flags`);
-      const compendiumItems = await game.packs.get(compendiumName)?.getDocuments();
-      if (!isEmptyObject(compendiumItems)) {
-        const miFlag = compendiumItems.filter((i) => !!i.flags[CONSTANTS.MODULE_ID]);
-        if (miFlag?.length > 0) {
-          for (const item of miFlag) {
-            Logger.debug(`${JSON.stringify(item)}`);
-            Logger.info(`Updating components on item ${item.name}`);
-            await MagicItemHelpers.updateMagicItemFlagOnItem(item);
-          }
-        }
-      }
-    }
+  async execActorLongRest(actor, isNewDay) {
+    let actorTmp = await API.actor(actor);
+    actorTmp.items.forEach(async (item) => {
+      await item.onLongRest();
+      if (isNewDay) await item.onNewDay();
+    });
   },
 };
 

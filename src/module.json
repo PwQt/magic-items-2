@@ -74,7 +74,12 @@
       "lang": "ru",
       "name": "Pусский",
       "path": "languages/ru.json"
-    }
+    },
+    {
+      "lang": "ja",
+			"name": "Japanese",
+			"path": "languages/ja.json"
+		}
   ],
   "packs": [
     {

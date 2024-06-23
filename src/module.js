@@ -1,4 +1,4 @@
-import API from "./scripts/API/api.js";
+import { API, MIGRATION } from "./scripts/API/api.js";
 import CONSTANTS from "./scripts/constants/constants.js";
 import { MagicItemActor } from "./scripts/magicitemactor.js";
 import { MagicItemSheet } from "./scripts/magicitemsheet.js";
@@ -86,6 +86,7 @@ Hooks.once("setup", async () => {
   // Set API
   game.modules.get(CONSTANTS.MODULE_ID).api = API;
   window.MagicItems = game.modules.get(CONSTANTS.MODULE_ID).api;
+  game.modules.get(CONSTANTS.MODULE_ID).migration = MIGRATION;
 });
 
 Hooks.once("ready", async () => {
@@ -108,7 +109,7 @@ Hooks.once("ready", async () => {
           icon: '<i class="fas fa-check"></i>',
           label: "Do the automatic migration.",
           callback: () => {
-            API.migrateScopeMagicItem();
+            MIGRATION.migrateScopeMagicItem();
             game.settings.set(CONSTANTS.MODULE_ID, "welcomeMessage", true);
           },
         },
