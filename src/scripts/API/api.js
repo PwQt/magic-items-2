@@ -228,24 +228,6 @@ const API = {
   /**
    * Method handling a short-rest action for magic items
    * @param {string/Actor/UUID} actor The actor to use for retrieve the Actor
-   */
-  async execActorShortRest(actor) {
-    let actorTmp = await API.actor(actor);
-    await actorTmp.actor.shortRest.apply(actorTmp.actor);
-  },
-
-  /**
-   * Method handling a long-rest action for magic items
-   * @param {string/Actor/UUID} actor The actor to use for retrieve the Actor
-   */
-  async execActorLongRest(actor) {
-    let actorTmp = await API.actor(actor);
-    await actorTmp.actor.longRest.apply(actorTmp.actor);
-  },
-
-  /**
-   * Method handling a short-rest action for magic items
-   * @param {string/Actor/UUID} actor The actor to use for retrieve the Actor
    * @param {Boolean} isNewDay Check whether it's a new day
    */
   async execActorShortRestUnderHood(actor, isNewDay) {
