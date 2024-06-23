@@ -46,26 +46,6 @@ const API = {
   },
 
   /**
-   * Method to bind magic item behavior to the item sheet
-   * @param {*} app
-   * @param {*} html
-   * @param {*} data
-   */
-  bindItemSheet: function (app, html, data) {
-    MagicItemTab.bind(app, html, data);
-  },
-
-  /**
-   * Method to bind magic actor behavior to the item sheet
-   * @param {*} app
-   * @param {*} html
-   * @param {*} data
-   */
-  bindCharacterSheet: function (app, html, data) {
-    MagicItemSheet.bind(app, html, data);
-  },
-
-  /**
    * Setup Magic item like you normally would by creating a spell called with all the damage details in the spell as detailed on the weapon.
    * Also checkes for Item Attunement and gives you a choice if you want to spend a charge or not.
    * @param {Item/string/UUID} item
@@ -226,11 +206,12 @@ const API = {
   },
 
   /**
-   * Method handling a short-rest action for magic items
+   * Method handling a short-rest action for magic items for an actor.
    * @param {string/Actor/UUID} actor The actor to use for retrieve the Actor
    * @param {Boolean} isNewDay Check whether it's a new day
+   * @returns {Promise<void>} No response
    */
-  async execActorShortRestUnderHood(actor, isNewDay) {
+  async execActorShortRest(actor, isNewDay) {
     let actorTmp = await API.actor(actor);
     actorTmp.items.forEach(async (item) => {
       await item.onShortRest();
@@ -239,11 +220,12 @@ const API = {
   },
 
   /**
-   * Method handling a long-rest action for magic items
+   * Method handling a long-rest action for magic items for an actor.
    * @param {string/Actor/UUID} actor The actor to use for retrieve the Actor
    * @param {Boolean} isNewDay Check whether it's a new day
+   * @returns {Promise<void>} No response
    */
-  async execActorLongRestUnderHood(actor, isNewDay) {
+  async execActorLongRest(actor, isNewDay) {
     let actorTmp = await API.actor(actor);
     actorTmp.items.forEach(async (item) => {
       await item.onLongRest();
