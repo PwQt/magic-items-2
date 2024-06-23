@@ -1,4 +1,5 @@
-import { API, MIGRATION } from "./scripts/API/api.js";
+import API from "./scripts/API/api.js";
+import MIGRATION from "./scripts/API/migration.js";
 import CONSTANTS from "./scripts/constants/constants.js";
 import { MagicItemActor } from "./scripts/magicitemactor.js";
 import { MagicItemSheet } from "./scripts/magicitemsheet.js";
@@ -11,12 +12,12 @@ Handlebars.registerHelper("enabled", function (value, options) {
   return Boolean(value) ? "" : "disabled";
 });
 
-Handlebars.registerHelper("formatString", function (toFormat, variables = {}, localize = true) {
-  return localize ? game.i18n.format(game.i18n.localize(toFormat), variables) : game.i18n.format(toFormat, variables);
+Handlebars.registerHelper("formatString", function (toFormat, variables = {}) {
+  return game.i18n.format(toFormat, variables);
 });
 
-Handlebars.registerHelper("object", function ({ object }) {
-  return object;
+Handlebars.registerHelper("object", function ({ hash }) {
+  return hash;
 });
 
 Hooks.once("init", () => {

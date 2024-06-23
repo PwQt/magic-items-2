@@ -116,7 +116,7 @@ export class OwnedMagicItem extends MagicItem {
       let r = new Roll("1d20");
       await r.evaluate();
       destroyed = r.total === 1;
-      r.toMessage({
+      await r.toMessage({
         flavor: `<b>${this.name}</b> ${game.i18n.localize("MAGICITEMS.MagicItemDestroyCheck")}
                         - ${
                           destroyed
@@ -129,7 +129,7 @@ export class OwnedMagicItem extends MagicItem {
       let r = new Roll("1d20");
       await r.evaluate();
       destroyed = r.total <= this.destroyDC;
-      r.toMessage({
+      await r.toMessage({
         flavor: `<b>${this.name}</b> ${game.i18n.localize("MAGICITEMS.MagicItemDestroyCheck")}
                         - ${
                           destroyed

@@ -26,28 +26,30 @@
       </div>
     </div>
     <div class="form-group">
-      <label>{{ formatString "MAGICITEMS.SheetDestroy" (object target=destroyTarget) true }} </label>
-      <input type="checkbox" name="flags.magicitems.destroy" {{checked destroy}} style="margin: 3px 10px;" />
-      <select name="flags.magicitems.destroyCheck" class="magic-item-destroy-check" {{disabled (eq destroy false)}}>
-        {{#select destroyCheck}}
-          {{#each destroyChecks as |name key|}}
-            <option value="{{key}}">{{name}}</option>
-          {{/each}}
-        {{/select}}
-      </select>
-      <select
-        name="flags.magicitems.destroyType"
-        class="magic-item-destroy-type {{ifThen (eq chargeType 'c1') '' 'hidden'}}"
-        {{disabled (eq destroy false)}}
-      >
-        {{#select destroyType}}
-          {{#each destroyTypes as |name key|}}
-            <option value="{{key}}">{{name}}</option>
-          {{/each}}
-        {{/select}}
-      </select>
-      <input type="text" name="flags.magicitems.destroyDC" class="magic-item-destroy-dc {{ifThen (eq destroyCheck 'd3') '' 'hidden'}}" 
-            value="{{destroyDC}}" style="margin: 3px 10px;" {{disabled (eq destroy false)}} />
+      <label>{{ formatString (localize "MAGICITEMS.SheetDestroy") (object target=destroyTarget) }}</label>
+      <div class="form-fields">
+        <input type="checkbox" name="flags.magicitems.destroy" {{checked destroy}} style="margin: 3px 10px;" />
+        <select name="flags.magicitems.destroyCheck" class="magic-item-destroy-check" {{disabled (eq destroy false)}}>
+          {{#select destroyCheck}}
+            {{#each destroyChecks as |name key|}}
+              <option value="{{key}}">{{name}}</option>
+            {{/each}}
+          {{/select}}
+        </select>
+        <select
+          name="flags.magicitems.destroyType"
+          class="magic-item-destroy-type {{ifThen (eq chargeType 'c1') '' 'hidden'}}"
+          {{disabled (eq destroy false)}}
+        >
+          {{#select destroyType}}
+            {{#each destroyTypes as |name key|}}
+              <option value="{{key}}">{{name}}</option>
+            {{/each}}
+          {{/select}}
+        </select>
+        <input type="text" name="flags.magicitems.destroyDC" class="magic-item-destroy-dc {{ifThen (eq destroyCheck 'd3') '' 'hidden'}}" 
+              value="{{destroyDC}}" style="margin: 3px 10px;" {{disabled (eq destroy false)}} />
+      </div>
     </div>
 
     <div class="form-group stacked magic-item-destroy-flavor-text {{ifThen destroy '' 'hidden'}}">

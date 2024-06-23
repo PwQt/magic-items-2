@@ -102,17 +102,15 @@
 }
 
 .dnd5e.sheet.item .magicitems-content select.magic-item-destroy-check {
-  flex: 0.4;
+  flex: 0.5;
 }
 
 .dnd5e.sheet.item .magicitems-content select.magic-item-destroy-type {
-  flex: 0.4;
-  margin-left: 5px;
+  flex: 0.5;
 }
 
 .dnd5e.sheet.item .magicitems-content input.magic-item-destroy-dc {
-  flex: 0.4;
-  margin-left: 5px;
+  flex: 0.5;
 }
 
 .dnd5e.sheet.item .magicitems-content select.magic-item-destroy-check:disabled {
@@ -126,6 +124,11 @@
 }
 
 .dnd5e.sheet.item .magicitems-content input.magic-item-recharge:disabled {
+  color: #9a9a9a;
+  border-color: #dad9d9;
+}
+
+.dnd5e.sheet.item .magicitems-content input.magic-item-destroy-dc:disabled {
   color: #9a9a9a;
   border-color: #dad9d9;
 }
