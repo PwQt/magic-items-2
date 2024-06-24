@@ -80,6 +80,7 @@
       "chargeType": "c1",
       "destroy": false,
       "destroyFlavorText": "reaches 0 charges: it crumbles into ashes and is destroyed.",
+      "destroyDC": "0",
       "rechargeable": false,
       "recharge": "0",
       "rechargeType": "t1",
