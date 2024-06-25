@@ -55,8 +55,8 @@ export class MagicItemActor {
   /**
    * Notify listeners of changes.
    */
-  fireChange() {
-    this.listeners.forEach((listener) => listener());
+  async fireChange() {
+    this.listeners.forEach(async (listener) => listener());
   }
 
   /**
@@ -132,7 +132,7 @@ export class MagicItemActor {
   /**
    * Build the list of magic items based on custom flag data of the item entity.
    */
-  buildItems() {
+  async buildItems() {
     this.items = this.actor.items
       .filter((item) => {
         const flagsData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
@@ -142,7 +142,7 @@ export class MagicItemActor {
         const flagsData = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
         return new OwnedMagicItem(item, this.actor, this, flagsData);
       });
-    this.fireChange();
+    await this.fireChange();
   }
 
   /**

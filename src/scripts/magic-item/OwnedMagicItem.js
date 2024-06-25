@@ -17,6 +17,7 @@ export class OwnedMagicItem extends MagicItem {
     this.name = item.name;
     this.img = item.img;
     this.pack = item.pack;
+    this.isDestroyed = false;
     this.uses = parseInt("uses" in flagsData ? flagsData.uses : this.charges);
 
     this.rechargeableLabel = this.rechargeable
@@ -95,15 +96,16 @@ export class OwnedMagicItem extends MagicItem {
     found[0].roll();
   }
 
-  destroyItem() {
-    this.magicItemActor.destroyItem(this);
+  async destroyItem() {
+    await this.magicItemActor.destroyItem(this);
   }
 
   async consume(consumption) {
     this.uses = Math.max(this.uses - consumption, 0);
     if (await this.destroyed()) {
       if (this.destroyType === "dt1") {
-        this.destroyItem();
+        this.isDestroyed = true;
+        await this.destroyItem();
       } else {
         this.toggleEnabled(false);
       }

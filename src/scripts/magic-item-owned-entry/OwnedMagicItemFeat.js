@@ -28,7 +28,7 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
         ? async () => {
             await this.consume(consumption);
           }
-        : () => {
+        : async () => {
             ChatMessage.create({
               user: game.user._id,
               speaker: ChatMessage.getSpeaker({ actor: this.magicItem.actor }),
@@ -37,7 +37,7 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
               ),
             });
 
-            this.magicItem.destroyItem();
+            await this.magicItem.destroyItem();
           };
 
     let proceed = async () => {
@@ -58,7 +58,9 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
       );
       if (chatData) {
         onUsage();
-        this.magicItem.update();
+        if (!this.magicItem.isDestroyed) {
+          this.magicItem.update();
+        }
       }
       if (this.ownedItem.effects?.size > 0 && !MagicItemHelpers.isMidiItemEffectWorkflowOn()) {
         this.activeEffectMessage(async () => {
