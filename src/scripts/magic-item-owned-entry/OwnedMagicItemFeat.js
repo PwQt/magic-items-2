@@ -58,7 +58,9 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
       );
       if (chatData) {
         onUsage();
-        this.magicItem.update();
+        if (!this.magicItem.isDestroyed) {
+          this.magicItem.update();
+        }
       }
       if (this.ownedItem.effects?.size > 0 && !MagicItemHelpers.isMidiItemEffectWorkflowOn()) {
         this.activeEffectMessage(async () => {

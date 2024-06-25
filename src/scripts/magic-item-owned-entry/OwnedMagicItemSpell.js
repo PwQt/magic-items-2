@@ -75,7 +75,9 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
       );
       if (chatData) {
         await this.consume(consumption);
-        await this.magicItem.update();
+        if (!this.magicItem.isDestroyed) {
+          this.magicItem.update();
+        }
       }
       if (this.ownedItem.effects?.size > 0 && !MagicItemHelpers.isMidiItemEffectWorkflowOn()) {
         this.activeEffectMessage(async () => {
