@@ -315,12 +315,12 @@ Hooks.on("createItem", async (item, options, userId) => {
     const miActor = MagicItemActor.get(actor.id);
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
       await MIGRATION.updateFlagScopeMagicItem(item);
-      miActor.buildItems();
+      await miActor.buildItems();
     }
   }
 });
 
-Hooks.on("updateItem", (item, change, options, userId) => {
+Hooks.on("updateItem", async (item, change, options, userId) => {
   if (item.actor) {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
@@ -330,12 +330,12 @@ Hooks.on("updateItem", (item, change, options, userId) => {
   }
 });
 
-Hooks.on("deleteItem", (item, options, userId) => {
+Hooks.on("deleteItem", async (item, options, userId) => {
   if (item.actor) {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
-      miActor.buildItems();
+      await miActor.buildItems();
     }
   }
 });
@@ -344,22 +344,6 @@ Hooks.on("preCreateItem", async (item, data, options, userId) => {
   const actorEntity = item.actor;
   if (!actorEntity) {
     return;
-  }
-  // Set up defaults flags
-  const defaultReference =
-    foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}.${CONSTANTS.FLAGS.DEFAULT}`) ||
-    foundry.utils.getProperty(item, `flags.core.sourceId`);
-  // const defaultItem = await RetrieveHelpers.getItemAsync(defaultReference);
-  // const defaultDataFlags = foundry.utils.getProperty(defaultItem , `flags.${CONSTANTS.MODULE_ID}`);
-  // defaultDataFlags.default = defaultItem.uuid;
-  if (!defaultReference) {
-    await item.update({
-      flags: {
-        [CONSTANTS.MODULE_ID]: {
-          [CONSTANTS.FLAGS.DEFAULT]: defaultReference,
-        },
-      },
-    });
   }
 });
 
