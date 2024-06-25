@@ -25,8 +25,8 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
 
     let onUsage =
       this.item.effect === "e1"
-        ? () => {
-            this.consume(consumption);
+        ? async () => {
+            await this.consume(consumption);
           }
         : () => {
             ChatMessage.create({

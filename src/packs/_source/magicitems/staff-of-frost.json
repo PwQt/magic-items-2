@@ -106,6 +106,7 @@
       "destroyCheck": "d2",
       "destroyType": "dt1",
       "destroyFlavorText": "reaches 0 charges: the staff turns to water and is destroyed.",
+      "destroyDC": "0",
       "rechargeable": true,
       "recharge": "1d6 + 4",
       "rechargeType": "t2",

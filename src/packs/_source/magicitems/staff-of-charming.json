@@ -111,6 +111,7 @@
       "destroyCheck": "d2",
       "destroyType": "dt2",
       "destroyFlavorText": "reaches 0 charges: the staff becomes a nonmagical quarterstaff.",
+      "destroyDC": "0",
       "rechargeable": true,
       "recharge": "1d8 + 2",
       "rechargeType": "t2",
