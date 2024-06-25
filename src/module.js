@@ -314,7 +314,7 @@ Hooks.on("createItem", async (item, options, userId) => {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
-      await API.updateFlagScopeMagicItem(item);
+      await MIGRATION.updateFlagScopeMagicItem(item);
       miActor.buildItems();
     }
   }
