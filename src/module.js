@@ -74,6 +74,20 @@ Hooks.once("init", () => {
     config: true,
   });
 
+  game.settings.register(CONSTANTS.MODULE_ID, "optionDisplayMainSheetItems", {
+    name: "MAGICITEMS.SettingDisplayMainSheetItem",
+    hint: "MAGICITEMS.SettingDisplayMainSheetItemHint",
+    scope: "client",
+    type: Number,
+    default: CONSTANTS.DISPLAY_OPTIONS.BOTTOM,
+    requiresReload: true,
+    choices: {
+      0: "MAGICITEMS.SettingDisplayMainSheetItemBottom",
+      1: "MAGICITEMS.SettingDisplayMainSheetItemTop",
+    },
+    config: true,
+  });
+
   if (typeof Babele !== "undefined") {
     Babele.get().register({
       module: CONSTANTS.MODULE_ID,
