@@ -11,6 +11,10 @@ If you have an issue that requires quick contact, I've created a [Discord](https
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J6UHCX0)
 
+![GitHub Release](https://img.shields.io/github/v/release/pwqt/magic-items-2)
+![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/pwqt/magic-items-2/latest/total)
+
+
 ## Translation
 
 You can now publicly help with translation on Weblate.
