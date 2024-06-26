@@ -108,5 +108,10 @@
     "MAGICITEMS.SettingShowLeftChargesInChatHint": "Muestra la cantidad de cargas que quedan en el artículo/hechizo en un mensaje de chat",
     "MAGICITEMS.ShowChargesMessage": "Al objeto mágico \"{name}\" le quedan {chargesLeft} cargas de {chargesMax}.",
     "MAGICITEMS.SettingShowLeftChargesInChat": "Mostrar cargas restantes",
-    "MAGICITEMS.SheetDestroy": "Destruir {target} con 0 cargas"
+    "MAGICITEMS.SheetDestroy": "Destruir {target} con 0 cargas",
+    "MAGICITEMS.SettingDisplayMainSheetItem": "Ubicación de visualización del artículo",
+    "MAGICITEMS.SettingDisplayMainSheetItemHint": "Dónde mostrar hechizos/dotes de objetos mágicos en sus respectivas hojas (solo para la hoja predeterminada)",
+    "MAGICITEMS.SettingDisplayMainSheetItemBottom": "Abajo",
+    "MAGICITEMS.DestroyCheckCustomDC": "CC personalizado",
+    "MAGICITEMS.SettingDisplayMainSheetItemTop": "Arriba"
 }
