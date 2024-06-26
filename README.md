@@ -1,6 +1,6 @@
 # FoundryVTT - Magic Items
 ![GitHub Release](https://img.shields.io/github/v/release/pwqt/magic-items-2)
-![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/pwqt/magic-items-2/latest/total)
+![GitHub Downloads (specific asset, latest release)](https://img.shields.io/github/downloads/pwqt/magic-items-2/latest/module.zip)
 
 This module for Foundry VTT and specific for the **DnD5e system**, adds the ability to create magical items with spells or feats that belong to the item itself, such as staffs or 
 magic wands, which will be automatically inherited from the character who owns the item.
