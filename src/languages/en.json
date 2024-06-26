@@ -11,7 +11,7 @@
     "MAGICITEMS.SettingShowLeftChargesInChat": "Show charges left",
     "MAGICITEMS.SettingShowLeftChargesInChatHint": "Shows the amount of charges left on item/spell in a chat message",
     "MAGICITEMS.SettingDisplayMainSheetItem": "Item Display Location",
-    "MAGICITEMS.SettingDisplayMainSheetItemHint": "Where to display Magic Item Spells/Feats on their respective sheets (only for Main Sheet)",
+    "MAGICITEMS.SettingDisplayMainSheetItemHint": "Where to display Magic Item Spells/Feats on their respective sheets (only for Default Sheet)",
     "MAGICITEMS.SettingDisplayMainSheetItemBottom": "Bottom",
     "MAGICITEMS.SettingDisplayMainSheetItemTop": "Top",
     "MAGICITEMS.SheetActivation": "Activation Options",

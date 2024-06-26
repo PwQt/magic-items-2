@@ -109,5 +109,9 @@
     "MAGICITEMS.ShowChargesMessage": "Magiczny przedmiot \"{name}\" ma {chargesLeft} ładunków z {chargesMax}.",
     "MAGICITEMS.SettingShowLeftChargesInChat": "Pokaż liczbę ładunków",
     "MAGICITEMS.SettingShowLeftChargesInChatHint": "Pokazuje liczbę pozostałych ładunków na przedmiocie/czarze w wiadomości na czacie",
-    "MAGICITEMS.SheetDestroy": "Zniszcz {target} przy 0 ładunkach"
+    "MAGICITEMS.SheetDestroy": "Zniszcz {target} przy 0 ładunkach",
+    "MAGICITEMS.SettingDisplayMainSheetItem": "Miejsce wyświetlania elementu",
+    "MAGICITEMS.SettingDisplayMainSheetItemBottom": "Na dole",
+    "MAGICITEMS.SettingDisplayMainSheetItemTop": "Na górze",
+    "MAGICITEMS.SettingDisplayMainSheetItemHint": "Gdzie wyświetlić Czar/Cechę otrzymaną z Magicznego Przedmiotu na karcie (tylko dla Domyślnej Karty)"
 }
