@@ -121,7 +121,13 @@ export class MagicItemSheet {
     if (el.length) {
       el.replaceWith(template);
     } else {
-      this.html.find(`.${tab} .${listName}`).append(template);
+      if (game.settings.get(CONSTANTS.MODULE_ID, "optionDisplayMainSheetItems") === CONSTANTS.DISPLAY_OPTIONS.BOTTOM) {
+        this.html.find(`.${tab} .${listName}`).append(template);
+      } else if (
+        game.settings.get(CONSTANTS.MODULE_ID, "optionDisplayMainSheetItems") === CONSTANTS.DISPLAY_OPTIONS.TOP
+      ) {
+        this.html.find(`.${tab} .${listName}`).prepend(template);
+      }
     }
   }
 
