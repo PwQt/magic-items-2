@@ -1,6 +1,7 @@
 # FoundryVTT - Magic Items
 ![](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dflat%26url%3Dhttps%3A%2F%2Fgithub.com%2FPwQt%2Fmagic-items-2%2Freleases%2Flatest%2Fdownload%2Fmodule.json)
 ![](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fsystem%3FnameType%3Dfoundry%26showVersion%3D1%26style%3Dflat%26url%3Dhttps%3A%2F%2Fgithub.com%2FPwQt%2Fmagic-items-2%2Freleases%2Flatest%2Fdownload%2Fmodule.json)
+![](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fmagicitems&colorB=blueviolet)
 
 ![GitHub Release](https://img.shields.io/github/v/release/pwqt/magic-items-2)
 ![GitHub Downloads (specific asset, latest release)](https://img.shields.io/github/downloads/pwqt/magic-items-2/latest/module.zip)
