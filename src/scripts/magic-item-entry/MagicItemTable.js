@@ -29,7 +29,7 @@ export class MagicItemTable extends AbstractMagicItemEntry {
 
           if (!game.modules.get("ready-set-roll-5e")?.active) {
             ChatMessage.create(
-              mergeObject(chatData, {
+              foundry.utils.mergeObject(chatData, {
                 "flags.dnd5e.itemData": item,
               }),
             );

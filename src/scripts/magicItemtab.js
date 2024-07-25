@@ -168,7 +168,7 @@ export class MagicItemTab {
 
     if (entity && magicItem.compatible(entity)) {
       magicItem.addEntity(entity, pack);
-      item.update({
+      await item.update({
         flags: {
           [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
         },

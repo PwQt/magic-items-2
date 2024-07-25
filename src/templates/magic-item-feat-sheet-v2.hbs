@@ -40,37 +40,38 @@
 				data-item-id="{{feat.id}}"
 				data-item-uuid="{{feat.uuid}}"
 				data-entry-id="{{../id}}"
-				draggable="true"
-				>
-				<div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{feat.displayName}}">
-					<img class="item-image gold-icon magic-item-image" src="{{feat.img}}" alt="{{feat.name}}">
-				  	<div class="name name-stacked">
-						<span class="title">{{ feat.displayName }}</span>
-						<span class="feat-subtitle subtitle">
-							{{ feat.featAction }}
-						</span>
-				  	</div>
-					<div class="tags"></div>
-        		</div>
-				{{#if ../chargesPerSpell}}
-				<div class="item-detail spell-slots">
-					{{#if ../sheetEditable}}
-					<input
-						data-item-uses="magicitems.{{../id}}.{{feat.id}}.uses"
-						type="text"
-						value="{{feat.uses}}"
-						placeholder="0"
-						/>
-					<span class="sep"> / </span>
-					<input type="text" value="{{../charges}}" placeholder="0" />
-					{{else}}
-					{{feat.uses}} / {{../charges}}
+				draggable="true">
+				<div class="item-row">
+					<div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{feat.displayName}}">
+						<img class="item-image gold-icon magic-item-image" src="{{feat.img}}" alt="{{feat.name}}">
+						<div class="name name-stacked">
+							<span class="title">{{ feat.displayName }}</span>
+							<span class="feat-subtitle subtitle">
+								{{ feat.featAction }}
+							</span>
+						</div>
+						<div class="tags"></div>
+					</div>
+					{{#if ../chargesPerSpell}}
+					<div class="item-detail spell-slots">
+						{{#if ../sheetEditable}}
+						<input
+							data-item-uses="magicitems.{{../id}}.{{feat.id}}.uses"
+							type="text"
+							value="{{feat.uses}}"
+							placeholder="0"
+							/>
+						<span class="sep"> / </span>
+						<input type="text" value="{{../charges}}" placeholder="0" />
+						{{else}}
+						{{feat.uses}} / {{../charges}}
+						{{/if}}
+					</div>
+					<div class="item-detail spell-rechargeable">-</div>
 					{{/if}}
-				</div>
-				<div class="item-detail spell-rechargeable">-</div>
-				{{/if}}
-				<div class="item-detail feat-consumption">
-					<span class="condensed">{{feat.consumptionLabel}}</span>
+					<div class="item-detail feat-consumption">
+						<span class="condensed">{{feat.consumptionLabel}}</span>
+					</div>
 				</div>
 			</li>
 			{{/each}}
@@ -82,36 +83,37 @@
 				data-item-id="{{table.id}}"
 				data-item-uuid="{{table.uuid}}"
 				data-entry-id="{{../id}}"
-				draggable="true"
-				>
-        <div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{table.displayName}}">
-					<img class="item-image gold-icon magic-item-image" src="{{table.img}}" alt="{{table.name}}">
-				  <div class="name name-stacked">
-            <span class="title">{{ table.displayName }}</span>
-            <span class="subtitle"></span>
-				  </div>
-				  <div class="tags"></div>
-        </div>
-        {{#if ../chargesPerSpell}}
-				<div class="item-detail spell-slots">
-					{{#if ../sheetEditable}}
-					<input
-						data-item-uses="magicitems.{{../id}}.{{table.id}}.uses"
-						type="text"
-						value="{{table.uses}}"
-						placeholder="0"
-						/>
-					<span class="sep"> / </span>
-					<input type="text" value="{{../charges}}" placeholder="0" />
-					{{else}}
-					{{feats.uses}} / {{../charges}}
+				draggable="true">
+				<div class="item-row">
+					<div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{table.displayName}}">
+								<img class="item-image gold-icon magic-item-image" src="{{table.img}}" alt="{{table.name}}">
+							<div class="name name-stacked">
+						<span class="title">{{ table.displayName }}</span>
+						<span class="subtitle"></span>
+							</div>
+							<div class="tags"></div>
+					</div>
+					{{#if ../chargesPerSpell}}
+					<div class="item-detail spell-slots">
+						{{#if ../sheetEditable}}
+						<input
+							data-item-uses="magicitems.{{../id}}.{{table.id}}.uses"
+							type="text"
+							value="{{table.uses}}"
+							placeholder="0"
+							/>
+						<span class="sep"> / </span>
+						<input type="text" value="{{../charges}}" placeholder="0" />
+						{{else}}
+						{{feats.uses}} / {{../charges}}
+						{{/if}}
+					</div>
+					<div class="item-detail spell-rechargeable">-</div>
 					{{/if}}
+					<div class="item-detail feat-consumption">
+						<span class="condensed">{{table.consumption}}</span>
+        			</div>
 				</div>
-				<div class="item-detail spell-rechargeable">-</div>
-				{{/if}}
-				<div class="item-detail feat-consumption">
-          <span class="condensed">{{table.consumption}}</span>
-        </div>
 			</li>
 			{{/each}} {{/if}}
 		</ol>

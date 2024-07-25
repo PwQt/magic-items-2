@@ -7,7 +7,7 @@ import { NumberUtils } from "../utils/number.js";
 
 export class MagicItem {
   constructor(flagsData) {
-    const data = mergeObject(this.defaultData(), flagsData || {}, { inplace: false });
+    const data = foundry.utils.mergeObject(this.defaultData(), flagsData || {}, { inplace: false });
 
     this.enabled = data.enabled;
     this.equipped = data.equipped;
@@ -182,7 +182,7 @@ export class MagicItem {
   }
 
   clear() {
-    mergeObject(this, this.defaultData());
+    foundry.utils.mergeObject(this, this.defaultData());
     this.spells = [];
     this.feats = [];
     this.tables = [];

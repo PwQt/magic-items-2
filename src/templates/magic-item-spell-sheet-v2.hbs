@@ -41,44 +41,46 @@
         data-entry-id="{{../id}}"
         draggable="true"
       >
-        <div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{spell.displayName}}">
-          <img class="item-image gold-icon magic-item-image" src="{{spell.img}}" alt="{{spell.name}}">
-          <div class="name name-stacked">
-            <span class="title">{{ spell.displayName }}</span>
-            <span class="subtitle">{{ spell.componentsVSM }}</span>
+        <div class="item-row">
+          <div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{spell.displayName}}">
+            <img class="item-image gold-icon magic-item-image" src="{{spell.img}}" alt="{{spell.name}}">
+            <div class="name name-stacked">
+              <span class="title">{{ spell.displayName }}</span>
+              <span class="subtitle">{{ spell.componentsVSM }}</span>
+            </div>
+            <div class="tags">
+              {{#each spell.componentsALL}}
+              {{#if tag}}
+              <span aria-label="{{ label }}">
+                <dnd5e-icon src="{{ icon }}"></dnd5e-icon>
+              </span>
+              {{/if}}
+              {{/each}}
+            </div>
           </div>
-          <div class="tags">
-            {{#each spell.componentsALL}}
-            {{#if tag}}
-            <span aria-label="{{ label }}">
-              <dnd5e-icon src="{{ icon }}"></dnd5e-icon>
-            </span>
+          {{#if ../chargesPerSpell}}
+          <div class="item-detail spell-slots">
+            {{#if ../sheetEditable}}
+            <input
+              data-item-uses="magicitems.{{../id}}.{{spell.id}}.uses"
+              type="text"
+              value="{{spell.uses}}"
+              placeholder="0"
+            />
+            <span class="sep"> / </span>
+            <input type="text" value="{{../charges}}" placeholder="0" />
+            {{else}}
+            {{spell.uses}} / {{../charges}}
             {{/if}}
-            {{/each}}
           </div>
-        </div>
-        {{#if ../chargesPerSpell}}
-        <div class="item-detail spell-slots">
-          {{#if ../sheetEditable}}
-          <input
-            data-item-uses="magicitems.{{../id}}.{{spell.id}}.uses"
-            type="text"
-            value="{{spell.uses}}"
-            placeholder="0"
-          />
-          <span class="sep"> / </span>
-          <input type="text" value="{{../charges}}" placeholder="0" />
           {{else}}
-          {{spell.uses}} / {{../charges}}
+          <div class="item-detail spell-slots">-</div>
           {{/if}}
+          <div class="item-detail spell-rechargeable">-</div>
+          <div class="item-detail spell-level">{{spell.level}}</div>
+          <div class="item-detail spell-consumption">{{spell.consumption}}</div>
+          <div class="item-detail spell-upcast">{{spell.canUpcastLabel}}</div>
         </div>
-        {{else}}
-        <div class="item-detail spell-slots">-</div>
-        {{/if}}
-        <div class="item-detail spell-rechargeable">-</div>
-        <div class="item-detail spell-level">{{spell.level}}</div>
-        <div class="item-detail spell-consumption">{{spell.consumption}}</div>
-        <div class="item-detail spell-upcast">{{spell.canUpcastLabel}}</div>
       </li>
       {{/each}}
       {{#if hasTableAsSpells}} {{#each tableAsSpells as |table|}}
@@ -87,35 +89,37 @@
           data-item-id="{{table.id}}"
           data-item-uuid="{{table.uuid}}"
           draggable="true">
-        <div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{spell.displayName}}">
-          <img class="item-image gold-icon magic-item-image" src="{{table.img}}" alt="{{table.name}}">
-          <div class="name name-stacked">
-            <span class="title">{{ table.displayName }}</span>
-            <span class="subtitle">{{localize "MAGICITEMS.RandomResult"}}</span>
+        <div class="item-row">
+          <div class="item-name item-action item-tooltip rollable" role="button" aria-label="{{spell.displayName}}">
+            <img class="item-image gold-icon magic-item-image" src="{{table.img}}" alt="{{table.name}}">
+            <div class="name name-stacked">
+              <span class="title">{{ table.displayName }}</span>
+              <span class="subtitle">{{localize "MAGICITEMS.RandomResult"}}</span>
+            </div>
           </div>
-        </div>
-        {{#if ../chargesPerSpell}}
-        <div class="item-detail spell-slots">
-          {{#if ../sheetEditable}}
-          <input
-            data-item-uses="magicitems.{{../id}}.{{table.id}}.uses"
-            type="text"
-            value="{{table.uses}}"
-            placeholder="0"
-          />
-          <span class="sep"> / </span>
-          <input type="text" value="{{../charges}}" placeholder="0" />
+          {{#if ../chargesPerSpell}}
+          <div class="item-detail spell-slots">
+            {{#if ../sheetEditable}}
+            <input
+              data-item-uses="magicitems.{{../id}}.{{table.id}}.uses"
+              type="text"
+              value="{{table.uses}}"
+              placeholder="0"
+            />
+            <span class="sep"> / </span>
+            <input type="text" value="{{../charges}}" placeholder="0" />
+            {{else}}
+            {{spell.uses}} / {{../charges}}
+            {{/if}}
+          </div>
           {{else}}
-          {{spell.uses}} / {{../charges}}
+          <div class="item-detail spell-slots">-</div>
           {{/if}}
+          <div class="item-detail spell-rechargeable">-</div>
+          <div class="item-detail spell-level">-</div>
+          <div class="item-detail spell-consumption">{{table.consumption}}</div>
+          <div class="item-detail spell-upcast">-</div>
         </div>
-        {{else}}
-        <div class="item-detail spell-slots">-</div>
-        {{/if}}
-        <div class="item-detail spell-rechargeable">-</div>
-        <div class="item-detail spell-level">-</div>
-        <div class="item-detail spell-consumption">{{table.consumption}}</div>
-        <div class="item-detail spell-upcast">-</div>
       </li>
       {{/each}} {{/if}}
     </ol>
