@@ -195,7 +195,7 @@ export class AbstractOwnedMagicItemEntry {
           existingEffect.update({ disabled: !existingEffect.disabled });
           return;
         }
-        effect = mergeObject(effect, {
+        effect = foundry.utils.mergeObject(effect, {
           disabled: false,
           transfer: false,
           origin: item.uuid,

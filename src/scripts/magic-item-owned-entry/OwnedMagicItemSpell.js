@@ -12,29 +12,29 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
       let data = await this.item.data();
 
       if (typeof data.system.save.scaling === "undefined") {
-        data = mergeObject(data, {
+        data = foundry.utils.mergeObject(data, {
           "system.save.scaling": "spell",
         });
       }
 
       if (this.item.flatDc) {
-        data = mergeObject(data, {
+        data = foundry.utils.mergeObject(data, {
           "system.save.scaling": "flat",
           "system.save.dc": this.item.dc,
         });
       }
 
       if (!MagicItemHelpers.isLevelScalingSettingOn()) {
-        data = mergeObject(data, {
+        data = foundry.utils.mergeObject(data, {
           "system.scaling": "none",
         });
       }
 
-      data = mergeObject(data, {
+      data = foundry.utils.mergeObject(data, {
         "system.preparation": { mode: "magicitems" },
       });
 
-      data = mergeObject(data, {
+      data = foundry.utils.mergeObject(data, {
         "flags.core": {
           sourceId: this.item.uuid,
         },

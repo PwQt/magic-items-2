@@ -8,11 +8,11 @@ export class OwnedMagicItemFeat extends AbstractOwnedMagicItemEntry {
     if (!this.ownedItem) {
       let data = await this.item.data();
 
-      data = mergeObject(data, {
+      data = foundry.utils.mergeObject(data, {
         "system.uses": null,
       });
 
-      data = mergeObject(data, {
+      data = foundry.utils.mergeObject(data, {
         "flags.core": {
           sourceId: this.item.uuid,
         },

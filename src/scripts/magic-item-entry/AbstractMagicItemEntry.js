@@ -5,7 +5,7 @@ import { MagicItemHelpers } from "../magic-item-helpers";
 
 export class AbstractMagicItemEntry {
   constructor(data) {
-    mergeObject(this, data);
+    foundry.utils.mergeObject(this, data);
     // Patch retrocompatbility
     if (this.pack?.startsWith("magic-items")) {
       this.pack = this.pack.replace("magic-items-2.", `${CONSTANTS.MODULE_ID}.`);
