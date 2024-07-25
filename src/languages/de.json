@@ -108,5 +108,10 @@
     "MAGICITEMS.MagicItemDestroyCheckFailure": "Misserfolg!",
     "MAGICITEMS.RandomResult": "Zufallsergebnis",
     "MAGICITEMS.SheetDestroy": "{target} bei 0 Ladungen zerstören",
-    "MAGICITEMS.SettingTabNames": "Magic Items"
+    "MAGICITEMS.SettingTabNames": "Magic Items",
+    "MAGICITEMS.SettingDisplayMainSheetItem": "Anzeigeort für Gegenstände",
+    "MAGICITEMS.SettingDisplayMainSheetItemHint": "Ort im jeweiligen Bogen, an dem Magic Items-Zauber und -Talente anzeigt werden (nur im Standardbogen)",
+    "MAGICITEMS.SettingDisplayMainSheetItemBottom": "Unten",
+    "MAGICITEMS.SettingDisplayMainSheetItemTop": "Oben",
+    "MAGICITEMS.DestroyCheckCustomDC": "Eigener SG"
 }
