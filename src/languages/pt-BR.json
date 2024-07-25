@@ -11,7 +11,7 @@
     "MAGICITEMS.SettingShowLeftChargesInChat": "Mostrar Cargas Restantes",
     "MAGICITEMS.SettingShowLeftChargesInChatHint": "Mostrar a quantidade de cargas restantes do item/magia em uma mensagem no chat",
     "MAGICITEMS.SettingDisplayMainSheetItem": "Exibição do Item",
-    "MAGICITEMS.SettingDisplayMainSheetItemHint": "Onde exibir as magias/características de itens mágicos em suas respectivas fichas (somente para Ficha Principal).",
+    "MAGICITEMS.SettingDisplayMainSheetItemHint": "Onde exibir as magias/características de itens mágicos em suas respectivas fichas (somente para Ficha Padrão).",
     "MAGICITEMS.SettingDisplayMainSheetItemBottom": "Abaixo",
     "MAGICITEMS.SettingDisplayMainSheetItemTop": "Acima",
     "MAGICITEMS.SheetActivation": "Opções de Ativação",
