@@ -16,6 +16,7 @@
     "weight": 0,
     "price": 80000,
     "attuned": false,
+    "attunement": "required",
     "equipped": false,
     "rarity": "Very rare",
     "identified": true,
@@ -112,7 +113,7 @@
           "consumption": "0",
           "upcast": "5",
           "upcastCost": "1",
-          "flatDc": false, 
+          "flatDc": false,
           "componentsVSM": "V, S",
           "componentsALL": [
             {
