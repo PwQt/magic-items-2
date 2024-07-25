@@ -16,6 +16,7 @@
     "weight": 4,
     "price": 12000,
     "attuned": false,
+    "attunement": "required",
     "equipped": false,
     "rarity": "Rare",
     "identified": true,

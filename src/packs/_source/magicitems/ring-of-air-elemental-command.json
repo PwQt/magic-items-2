@@ -16,6 +16,7 @@
     "weight": 0,
     "price": 35000,
     "attuned": false,
+    "attunement": "required",
     "equipped": false,
     "rarity": "Legendary",
     "identified": true,

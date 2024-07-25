@@ -16,9 +16,10 @@
     "weight": 0,
     "price": 14000,
     "attuned": false,
+    "attunement": "required",
     "equipped": false,
     "rarity": "Very rare",
-    "identified": false,
+    "identified": true,
     "activation": {
       "type": "action",
       "cost": 1,
