@@ -5,7 +5,7 @@
   "version": "4.1.6",
   "compatibility": {
     "minimum": 11,
-    "verified": 12.330,
+    "verified": 12.331,
     "maximum": 12.999
   },
   "authors": [
@@ -15,17 +15,6 @@
       "discord": "PwQt#7620",
       "ko-fi": "pewukut"
     },
-    {
-      "name": "p4535992",
-      "url": "https://github.com/p4535992",
-      "discord": "",
-      "twitter": "",
-      "patreon": "p4535992",
-      "github": "p4535992",
-      "ko-fi": "",
-      "reddit": "",
-      "email": ""
-    }
   ],
   "socket": true,
   "languages": [
