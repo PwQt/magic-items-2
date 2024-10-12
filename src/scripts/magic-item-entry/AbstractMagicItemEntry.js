@@ -34,7 +34,7 @@ export class AbstractMagicItemEntry {
 
   async renderSheet() {
     this.entity().then((entity) => {
-      entity.ownership.default = CONST.DOCUMENT_PERMISSION_LEVELS.LIMITED;
+      entity.ownership.default = CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED;
       const sheet = entity.sheet;
       sheet.render(true);
     });

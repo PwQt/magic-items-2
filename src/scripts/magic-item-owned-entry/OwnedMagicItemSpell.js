@@ -24,12 +24,6 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         });
       }
 
-      if (!MagicItemHelpers.isLevelScalingSettingOn()) {
-        data = foundry.utils.mergeObject(data, {
-          "system.scaling": "none",
-        });
-      }
-
       data = foundry.utils.mergeObject(data, {
         "system.preparation": { mode: "magicitems" },
       });
@@ -53,9 +47,17 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
 
     let proceed = async () => {
       let spell = this.ownedItem;
-      if (upcastLevel !== spell.system.level) {
-        spell = spell.clone({ "system.level": upcastLevel }, { keepId: true });
+      let clonedOwnedItem = this.ownedItem;
+      let configSpellUpcast = spell.system.level;
+
+      if (spell.system.level === 0 && !MagicItemHelpers.isLevelScalingSettingOn()) {
+        spell = spell.clone({ "system.scaling": "none" }, { keepId: true });
+        clonedOwnedItem = clonedOwnedItem.clone({ "system.scaling": "none" }, { keepId: true });
         spell.prepareFinalAttributes();
+      }
+
+      if (upcastLevel !== spell.system.level) {
+        configSpellUpcast = upcastLevel;
       }
 
       if (spell.effects?.size > 0 && !MagicItemHelpers.isMidiItemEffectWorkflowOn()) {
@@ -64,12 +66,14 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
       }
 
       let chatData = await spell.use(
-        {},
+        {
+          slotLevel: configSpellUpcast,
+        },
         {
           configureDialog: false,
           createMessage: true,
           flags: {
-            "dnd5e.itemData": this.ownedItem.toJSON(),
+            "dnd5e.itemData": clonedOwnedItem.toJSON(),
           },
         },
       );
