@@ -137,7 +137,7 @@
         "compatibility": {
           "minimum": "3.3.0",
           "verified": "3.3.1",
-          "maximum": "3.3.999"
+          "maximum": "4.3.999"
         }
       }
     ],

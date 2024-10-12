@@ -286,6 +286,23 @@ Hooks.on(`renderItemSheet5e`, (app, html, data) => {
   MagicItemTab.bind(app, html, data);
 });
 
+Hooks.on(`renderItemSheet5e2`, (app, html, data) => {
+  data.tabs.push({
+    classes: "item",
+    label: "Magic Items",
+    tab: "magic-items",
+  });
+  if (tidyApi?.isTidy5eItemSheet(app)) {
+    return;
+  }
+
+  if (!MagicItemTab.isAllowedToShow()) {
+    return;
+  }
+
+  MagicItemTab.bind(app, html, data);
+});
+
 Hooks.on(`renderActorSheet5eCharacter`, (app, html, data) => {
   if (tidyApi?.isTidy5eCharacterSheet(app)) {
     return;

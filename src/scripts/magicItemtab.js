@@ -1,11 +1,12 @@
 import CONSTANTS from "./constants/constants.js";
+import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { MagicItem } from "./magic-item/MagicItem.js";
 
 const magicItemTabs = [];
 
 export class MagicItemTab {
   static bind(app, html, item) {
-    if (MagicItemTab.isAcceptedItemType(item.document)) {
+    if (MagicItemTab.isAcceptedItemType(item.item)) {
       let tab = magicItemTabs[app.id];
       if (!tab) {
         tab = new MagicItemTab(app);
@@ -85,7 +86,10 @@ export class MagicItemTab {
   }
 
   async render(app) {
-    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.hbs`, this.magicItem);
+    let template = null;
+    if (MagicItemTab.isUsingNew5eSheet(this.item)) {
+      template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab-v2.hbs`, this.magicItem);
+    }
     let el = this.html.find(`.magicitems-content`);
     if (el.length) {
       el.replaceWith(template);
@@ -245,5 +249,9 @@ export class MagicItemTab {
 
   static isAllowedToShow() {
     return game.user.isGM || !game.settings.get(CONSTANTS.MODULE_ID, "hideFromPlayers");
+  }
+
+  static isUsingNew5eSheet(item) {
+    return item?.sheet && MagicItemHelpers.isUsingNew5eSheet(item?.sheet);
   }
 }

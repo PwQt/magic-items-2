@@ -20,6 +20,8 @@
     "MAGICITEMS.SheetTot": "total",
     "MAGICITEMS.SheetActives": "active",
     "MAGICITEMS.SheetUses": "Uses",
+    "MAGICITEMS.TabSettingsLegend": "Magic Items Settings",
+    "MAGICITEMS.TabTableLegend": "Elements",
     "MAGICITEMS.RechargeUnitDaily": "Daily",
     "MAGICITEMS.RechargeUnitDawn": "At Dawn",
     "MAGICITEMS.RechargeUnitSunset": "At Sunset",

@@ -11,7 +11,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
     if (!this.ownedItem) {
       let data = await this.item.data();
 
-      if (typeof data.system.save.scaling === "undefined") {
+      if (typeof data.system.activities.includes(save.scaling) === "undefined") {
         data = foundry.utils.mergeObject(data, {
           "system.save.scaling": "spell",
         });
