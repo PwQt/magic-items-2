@@ -35,8 +35,8 @@ const MIGRATION = {
    * @returns {Promise<void>} No Response
    */
   async updateFlagScopeMagicItem(mi) {
-    const miFlag = getProperty(mi, `flags.magic-items-2`);
-    const miFlagNewScope = getProperty(mi, `flags.${CONSTANTS.MODULE_ID}`);
+    const miFlag = foundry.utils.getProperty(mi, `flags.magic-items-2`);
+    const miFlagNewScope = foundry.utils.getProperty(mi, `flags.${CONSTANTS.MODULE_ID}`);
     if (!isEmptyObject(miFlag) && isEmptyObject(miFlagNewScope)) {
       Logger.info(`Update flagsScope item ${mi.name}...`);
       if (miFlag.spells?.length > 0) {
