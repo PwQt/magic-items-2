@@ -2,6 +2,7 @@ import Logger from "../lib/Logger";
 import { MagicItemUpcastDialog } from "../magicitemupcastdialog";
 import { AbstractOwnedMagicItemEntry } from "./AbstractOwnedMagicItemEntry";
 import { MagicItemHelpers } from "../magic-item-helpers";
+import { RetrieveHelpers } from "../lib/retrieve-helpers";
 
 export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
   async roll() {
@@ -48,7 +49,45 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
     let proceed = async () => {
       let spell = this.ownedItem;
       let clonedOwnedItem = this.ownedItem;
-      let configSpellUpcast = spell.system.level;
+      let itemUseConfiguration = {};
+
+      if (
+        MagicItemHelpers.canSummon() &&
+        (spell.system.summons?.creatureTypes?.length > 0 || spell.system.summons?.profiles?.length > 0)
+      ) {
+        const summonProfilesSync = (profiles) => {
+          const mapProfiles = profiles.map((profile) => {
+            const name = profile.name?.length ? profile.name : RetrieveHelpers.getActorSync(profile.uuid).name;
+            const obj = {
+              key: profile._id,
+              value: name,
+            };
+            return obj;
+          });
+          return mapProfiles;
+        };
+        const summonProfiles = summonProfilesSync(spell.system.summons?.profiles);
+
+        const creatureTypes = new Array();
+        for (const type of spell.system.summons?.creatureTypes) {
+          const name = CONFIG.DND5E.creatureTypes[type];
+          const obj = {
+            key: type,
+            value: name.label,
+          };
+          creatureTypes.push(obj);
+        }
+
+        let summonningMessageResult = await this.askSummonningMessage(summonProfiles.flat(), creatureTypes.flat());
+
+        foundry.utils.mergeObject(itemUseConfiguration, {
+          createSummons: summonningMessageResult.createSummons.value === "on",
+          summonsProfile: summonningMessageResult.summonsProfile.value,
+          summonsOptions: {
+            creatureType: summonningMessageResult.creatureType.value,
+          },
+        });
+      }
 
       if (spell.system.level === 0 && !MagicItemHelpers.isLevelScalingSettingOn()) {
         spell = spell.clone({ "system.scaling": "none" }, { keepId: true });
@@ -57,7 +96,9 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
       }
 
       if (upcastLevel !== spell.system.level) {
-        configSpellUpcast = upcastLevel;
+        foundry.utils.mergeObject(itemUseConfiguration, {
+          slotLevel: upcastLevel,
+        });
       }
 
       if (spell.effects?.size > 0 && !MagicItemHelpers.isMidiItemEffectWorkflowOn()) {
@@ -65,18 +106,13 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         spell.prepareFinalAttributes();
       }
 
-      let chatData = await spell.use(
-        {
-          slotLevel: configSpellUpcast,
+      let chatData = await spell.use(itemUseConfiguration, {
+        configureDialog: false,
+        createMessage: true,
+        flags: {
+          "dnd5e.itemData": clonedOwnedItem.toJSON(),
         },
-        {
-          configureDialog: false,
-          createMessage: true,
-          flags: {
-            "dnd5e.itemData": clonedOwnedItem.toJSON(),
-          },
-        },
-      );
+      });
       if (chatData) {
         await this.consume(consumption);
         if (!this.magicItem.isDestroyed) {
@@ -93,8 +129,8 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
     if (this.hasCharges(consumption)) {
       await proceed();
     } else {
-      this.showNoChargesMessage(() => {
-        proceed();
+      this.showNoChargesMessage(async () => {
+        await proceed();
       });
     }
   }

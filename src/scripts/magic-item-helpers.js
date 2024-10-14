@@ -17,6 +17,10 @@ export class MagicItemHelpers {
     return game.settings.get(CONSTANTS.MODULE_ID, "scaleSpellDamage");
   }
 
+  static canSummon() {
+    return game.user.can("TOKEN_CREATE") && (game.user.isGM || game.settings.get("dnd5e", "allowSummoning"));
+  }
+
   static numeric = function (value, fallback) {
     // if ($.isNumeric(value)) {
     //   return parseInt(value);
