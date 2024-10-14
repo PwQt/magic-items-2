@@ -95,7 +95,7 @@ export class MagicItemHelpers {
 
   static async updateMagicItemFlagOnItem(item) {
     Logger.info(`Updating item ${item.name}`);
-    const itemFlag = getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
+    const itemFlag = foundry.utils.getProperty(item, `flags.${CONSTANTS.MODULE_ID}`);
     Logger.debug("", itemFlag);
     let updateItem = false;
     if (!isEmptyObject(itemFlag)) {
