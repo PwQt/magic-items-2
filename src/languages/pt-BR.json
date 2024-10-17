@@ -113,5 +113,7 @@
     "MAGICITEMS.ToggleActiveEffectDialogYes": "Sim",
     "MAGICITEMS.ToggleActiveEffectDialogNo": "Não",
     "MAGICITEMS.ToggleActiveEffectError": "Ocorreu um erro ao adicionar um efeito ativo. Por favor, verifique o console.",
-    "MAGICITEMS.ShowChargesMessage": "O item mágico \"{name}\" possui {chargesLeft} cargas restantes, de um total de {chargesMax} cargas."
+    "MAGICITEMS.ShowChargesMessage": "O item mágico \"{name}\" possui {chargesLeft} cargas restantes, de um total de {chargesMax} cargas.",
+    "MAGICITEMS.SummoningDialogTitle": "Opções de Invocação",
+    "MAGICITEMS.SummoningDialogButton": "Confirmar Invocação"
 }
