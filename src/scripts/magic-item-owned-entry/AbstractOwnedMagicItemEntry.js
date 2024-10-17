@@ -1,7 +1,6 @@
 import CONSTANTS from "../constants/constants";
 import Logger from "../lib/Logger";
 import { RetrieveHelpers } from "../lib/retrieve-helpers";
-import { MagicItemSummonDialogHelper } from "../magic-item-summon-dialog-helper";
 
 export class AbstractOwnedMagicItemEntry {
   constructor(magicItem, item) {
@@ -166,18 +165,21 @@ export class AbstractOwnedMagicItemEntry {
     x.render(true);
   }
 
-  async askSummonningMessage(summonList, creatureTypes) {
-    const title = game.i18n.localize("MAGICITEMS.ToggleActiveEffectDialogTitle");
+  async askSummonningMessage(summonOptions) {
     let html = await renderTemplate(
       `modules/${CONSTANTS.MODULE_ID}/templates/magic-item-summon-dialog.hbs`,
-      new MagicItemSummonDialogHelper(true, summonList, creatureTypes),
+      summonOptions,
     );
     let dialog = await foundry.applications.api.DialogV2.prompt({
-      window: { title: title },
+      window: {
+        title: game.i18n.localize("MAGICITEMS.SummoningDialogTitle"),
+      },
       content: html,
       modal: true,
+      rejectClose: false,
       ok: {
-        label: "Confirm Summon",
+        label: game.i18n.localize("MAGICITEMS.SummoningDialogButton"),
+        icon: "fas fa-wand-magic-sparkles",
         callback: (event, button, dialog) => button.form.elements,
       },
     });

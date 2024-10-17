@@ -51,42 +51,25 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
       let clonedOwnedItem = this.ownedItem;
       let itemUseConfiguration = {};
 
+      const sOptions = MagicItemHelpers.createSummoningOptions(spell);
       if (
         MagicItemHelpers.canSummon() &&
-        (spell.system.summons?.creatureTypes?.length > 0 || spell.system.summons?.profiles?.length > 0)
+        (spell.system.summons?.creatureTypes?.length > 1 || spell.system.summons?.profiles?.length > 1)
       ) {
-        const summonProfilesSync = (profiles) => {
-          const mapProfiles = profiles.map((profile) => {
-            const name = profile.name?.length ? profile.name : RetrieveHelpers.getActorSync(profile.uuid).name;
-            const obj = {
-              key: profile._id,
-              value: name,
-            };
-            return obj;
+        const summoningDialogResult = await this.askSummonningMessage(sOptions);
+        if (summoningDialogResult) {
+          foundry.utils.mergeObject(itemUseConfiguration, {
+            createSummons: summoningDialogResult.createSummons?.value === "on",
+            summonsProfile: summoningDialogResult.summonsProfile?.value,
+            summonsOptions: {
+              creatureType: summoningDialogResult.creatureType?.value,
+              creatureSize: summoningDialogResult.creatureSize?.value,
+            },
           });
-          return mapProfiles;
-        };
-        const summonProfiles = summonProfilesSync(spell.system.summons?.profiles);
-
-        const creatureTypes = new Array();
-        for (const type of spell.system.summons?.creatureTypes) {
-          const name = CONFIG.DND5E.creatureTypes[type];
-          const obj = {
-            key: type,
-            value: name.label,
-          };
-          creatureTypes.push(obj);
+        } else {
+          Logger.info(`The summoning dialog has been dismissed, not using the item.`);
+          return;
         }
-
-        let summonningMessageResult = await this.askSummonningMessage(summonProfiles.flat(), creatureTypes.flat());
-
-        foundry.utils.mergeObject(itemUseConfiguration, {
-          createSummons: summonningMessageResult.createSummons.value === "on",
-          summonsProfile: summonningMessageResult.summonsProfile.value,
-          summonsOptions: {
-            creatureType: summonningMessageResult.creatureType.value,
-          },
-        });
       }
 
       if (spell.system.level === 0 && !MagicItemHelpers.isLevelScalingSettingOn()) {
