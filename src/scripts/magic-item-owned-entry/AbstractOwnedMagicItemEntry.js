@@ -165,6 +165,27 @@ export class AbstractOwnedMagicItemEntry {
     x.render(true);
   }
 
+  async askSummonningMessage(summonOptions) {
+    let html = await renderTemplate(
+      `modules/${CONSTANTS.MODULE_ID}/templates/magic-item-summon-dialog.hbs`,
+      summonOptions,
+    );
+    let dialog = await foundry.applications.api.DialogV2.prompt({
+      window: {
+        title: game.i18n.localize("MAGICITEMS.SummoningDialogTitle"),
+      },
+      content: html,
+      modal: true,
+      rejectClose: false,
+      ok: {
+        label: game.i18n.localize("MAGICITEMS.SummoningDialogButton"),
+        icon: "fas fa-wand-magic-sparkles",
+        callback: (event, button, dialog) => button.form.elements,
+      },
+    });
+    return dialog;
+  }
+
   computeSaveDC(item) {
     const data = this.magicItem.actor.system;
     data.attributes.spelldc = data.attributes.spellcasting ? data.abilities[data.attributes.spellcasting].dc : 10;

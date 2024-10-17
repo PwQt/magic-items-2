@@ -1,0 +1,41 @@
+<form id="summon-form">
+    {{#if (ne createSummons null)}}
+    <div class="form-group">
+        <label class="checkbox">
+            <input type="checkbox" name="createSummons" {{ checked createSummons }}>
+            {{ localize "DND5E.Summoning.Action.Place" }}
+        </label>
+        {{#if profiles}}
+        <div class="form-fields">
+            <select name="summonsProfile" aria-label="{{ localize 'DND5E.Summoning.Profile.Label' }}">
+                {{ selectOptions profiles selected=summonsProfile }}
+            </select>
+        </div>
+        {{else}}
+        <input type="hidden" name="summonsProfile" value="{{ profile }}">
+        {{/if}}
+    </div>
+
+    {{#if creatureSizes}}
+    <div class="form-group">
+        <label>{{ localize "DND5E.Size" }}</label>
+        <div class="form-fields">
+            <select name="creatureSize">
+                {{ selectOptions creatureSizes }}
+            </select>
+        </div>
+    </div>
+    {{/if}}
+
+    {{#if creatureTypes}}
+    <div class="form-group">
+        <label>{{ localize "DND5E.CreatureType" }}</label>
+        <div class="form-fields">
+            <select name="creatureType">
+                {{ selectOptions creatureTypes }}
+            </select>
+        </div>
+    </div>
+    {{/if}}
+    {{/if}}
+</form>

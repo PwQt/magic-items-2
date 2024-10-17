@@ -17,6 +17,10 @@ export class MagicItemHelpers {
     return game.settings.get(CONSTANTS.MODULE_ID, "scaleSpellDamage");
   }
 
+  static canSummon() {
+    return game.user.can("TOKEN_CREATE") && (game.user.isGM || game.settings.get("dnd5e", "allowSummoning"));
+  }
+
   static numeric = function (value, fallback) {
     // if ($.isNumeric(value)) {
     //   return parseInt(value);
@@ -148,5 +152,47 @@ export class MagicItemHelpers {
         Logger.info(`Update of item ${item.name} skipped - no flags updated`);
       }
     }
+  }
+
+  /**
+   * Create details on the summoning profiles and other related options.
+   * Method fetched from D&D5e ability-use-dialog.mjs
+   * @param {Item5e} item  The item.
+   * @returns {{ profiles: object, creatureTypes: object }|null}
+   */
+  static createSummoningOptions(item) {
+    const summons = item.system.summons;
+    if (!summons?.profiles.length) return null;
+    const options = { mode: summons.mode, createSummons: true };
+    const rollData = item.getRollData();
+    const level = summons.relevantLevel;
+    options.profiles = Object.fromEntries(
+      summons.profiles
+        .map((profile) => {
+          if (!summons.mode && !fromUuidSync(profile.uuid)) return null;
+          const withinRange = (profile.level.min ?? -Infinity) <= level && level <= (profile.level.max ?? Infinity);
+          if (!withinRange) return null;
+          return [profile._id, summons.getProfileLabel(profile, rollData)];
+        })
+        .filter((f) => f),
+    );
+    if (Object.values(options.profiles).every((p) => p.startsWith("1 × "))) {
+      Object.entries(options.profiles).forEach(([k, v]) => (options.profiles[k] = v.replace("1 × ", "")));
+    }
+    if (Object.values(options.profiles).length <= 1) {
+      options.profile = Object.keys(options.profiles)[0];
+      options.profiles = null;
+    }
+    if (summons.creatureSizes.size > 1)
+      options.creatureSizes = summons.creatureSizes.reduce((obj, k) => {
+        obj[k] = CONFIG.DND5E.actorSizes[k]?.label;
+        return obj;
+      }, {});
+    if (summons.creatureTypes.size > 1)
+      options.creatureTypes = summons.creatureTypes.reduce((obj, k) => {
+        obj[k] = CONFIG.DND5E.creatureTypes[k]?.label;
+        return obj;
+      }, {});
+    return options;
   }
 }

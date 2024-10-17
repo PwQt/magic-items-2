@@ -113,5 +113,7 @@
     "MAGICITEMS.ToggleActiveEffectDialogYes": "Yes",
     "MAGICITEMS.ToggleActiveEffectDialogNo": "No",
     "MAGICITEMS.ToggleActiveEffectError": "An error occured while adding active effect - please check console.",
-    "MAGICITEMS.ShowChargesMessage": "The magic item \"{name}\" has {chargesLeft} charges out of {chargesMax} left."
+    "MAGICITEMS.ShowChargesMessage": "The magic item \"{name}\" has {chargesLeft} charges out of {chargesMax} left.",
+    "MAGICITEMS.SummoningDialogTitle": "Summoning Options",
+    "MAGICITEMS.SummoningDialogButton": "Confirm summon"
 }
