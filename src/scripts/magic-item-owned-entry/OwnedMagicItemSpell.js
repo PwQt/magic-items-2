@@ -2,6 +2,7 @@ import Logger from "../lib/Logger";
 import { MagicItemUpcastDialog } from "../magicitemupcastdialog";
 import { AbstractOwnedMagicItemEntry } from "./AbstractOwnedMagicItemEntry";
 import { MagicItemHelpers } from "../magic-item-helpers";
+import { RetrieveHelpers } from "../lib/retrieve-helpers";
 
 export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
   async roll() {
@@ -48,7 +49,28 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
     let proceed = async () => {
       let spell = this.ownedItem;
       let clonedOwnedItem = this.ownedItem;
-      let configSpellUpcast = spell.system.level;
+      let itemUseConfiguration = {};
+
+      const sOptions = MagicItemHelpers.createSummoningOptions(spell);
+      if (
+        MagicItemHelpers.canSummon() &&
+        (spell.system.summons?.creatureTypes?.length > 1 || spell.system.summons?.profiles?.length > 1)
+      ) {
+        const summoningDialogResult = await this.askSummonningMessage(sOptions);
+        if (summoningDialogResult) {
+          foundry.utils.mergeObject(itemUseConfiguration, {
+            createSummons: summoningDialogResult.createSummons?.value === "on",
+            summonsProfile: summoningDialogResult.summonsProfile?.value,
+            summonsOptions: {
+              creatureType: summoningDialogResult.creatureType?.value,
+              creatureSize: summoningDialogResult.creatureSize?.value,
+            },
+          });
+        } else {
+          Logger.info(`The summoning dialog has been dismissed, not using the item.`);
+          return;
+        }
+      }
 
       if (spell.system.level === 0 && !MagicItemHelpers.isLevelScalingSettingOn()) {
         spell = spell.clone({ "system.scaling": "none" }, { keepId: true });
@@ -57,7 +79,9 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
       }
 
       if (upcastLevel !== spell.system.level) {
-        configSpellUpcast = upcastLevel;
+        foundry.utils.mergeObject(itemUseConfiguration, {
+          slotLevel: upcastLevel,
+        });
       }
 
       if (spell.effects?.size > 0 && !MagicItemHelpers.isMidiItemEffectWorkflowOn()) {
@@ -65,18 +89,13 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         spell.prepareFinalAttributes();
       }
 
-      let chatData = await spell.use(
-        {
-          slotLevel: configSpellUpcast,
+      let chatData = await spell.use(itemUseConfiguration, {
+        configureDialog: false,
+        createMessage: true,
+        flags: {
+          "dnd5e.itemData": clonedOwnedItem.toJSON(),
         },
-        {
-          configureDialog: false,
-          createMessage: true,
-          flags: {
-            "dnd5e.itemData": clonedOwnedItem.toJSON(),
-          },
-        },
-      );
+      });
       if (chatData) {
         await this.consume(consumption);
         if (!this.magicItem.isDestroyed) {
@@ -93,8 +112,8 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
     if (this.hasCharges(consumption)) {
       await proceed();
     } else {
-      this.showNoChargesMessage(() => {
-        proceed();
+      this.showNoChargesMessage(async () => {
+        await proceed();
       });
     }
   }
