@@ -1,6 +1,6 @@
 {
-    "MAGICITEMS.SettingIdentifiedOnly": "Sólo Identificado",
-    "MAGICITEMS.SettingIdentifiedOnlyHint": "Mostrar poderes Mágicos sólo en objetos identificados",
+    "MAGICITEMS.SettingIdentifiedOnly": "Solo Identificado",
+    "MAGICITEMS.SettingIdentifiedOnlyHint": "Muestra propiedades mágicas solo para elementos identificados",
     "MAGICITEMS.SettingHideFromPlayers": "Ocultar la pestaña configuración a los jugadores",
     "MAGICITEMS.SettingHideFromPlayersHint": "Esconde la pestaña de config. de obj. mág. de los jugadores",
     "MAGICITEMS.SheetActivation": "Opciones de activación",
@@ -113,5 +113,7 @@
     "MAGICITEMS.SettingDisplayMainSheetItemHint": "Dónde mostrar hechizos/dotes de objetos mágicos en sus respectivas hojas (solo para la hoja predeterminada)",
     "MAGICITEMS.SettingDisplayMainSheetItemBottom": "Abajo",
     "MAGICITEMS.DestroyCheckCustomDC": "CC personalizado",
-    "MAGICITEMS.SettingDisplayMainSheetItemTop": "Arriba"
+    "MAGICITEMS.SettingDisplayMainSheetItemTop": "Arriba",
+    "MAGICITEMS.SummoningDialogButton": "Confirmar la convocatoria",
+    "MAGICITEMS.SummoningDialogTitle": "Opciones de convocatoria"
 }
