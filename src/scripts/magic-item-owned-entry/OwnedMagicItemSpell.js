@@ -37,12 +37,6 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         }
       }
 
-      // if (this.item.checkAtkBonus) {
-      //   data = foundry.utils.mergeObject(data, {
-      //     "system"
-      //   });
-      // }
-
       data = foundry.utils.mergeObject(data, {
         "system.preparation": { mode: "magicitems" },
       });
@@ -94,7 +88,6 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         spell = spell.clone({ "system.scaling": "none" }, { keepId: true });
         clonedOwnedItem = clonedOwnedItem.clone({ "system.scaling": "none" }, { keepId: true });
         spell.prepareFinalAttributes();
-        //clonedOwnedItem.prepareFinalAttributes();
       }
 
       if (upcastLevel !== spell.system.level) {
