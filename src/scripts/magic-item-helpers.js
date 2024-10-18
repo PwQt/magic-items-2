@@ -50,7 +50,9 @@ export class MagicItemHelpers {
 
   static getEntityNameWithBabele(entity) {
     if (game.modules.get("babele")?.active) {
-      return game.babele && entity.getFlag("babele", "hasTranslation") ? entity.getFlag("babele", "name") : entity.name;
+      return game.babele && entity.getFlag("babele", "hasTranslation")
+        ? entity.getFlag("babele", "originalName")
+        : entity.name;
     } else {
       return entity.name;
     }

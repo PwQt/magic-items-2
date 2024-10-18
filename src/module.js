@@ -89,10 +89,20 @@ Hooks.once("init", () => {
   });
 
   if (typeof Babele !== "undefined") {
-    Babele.get().register({
+    game.babele.register({
+      module: CONSTANTS.MODULE_ID,
+      lang: "en",
+      dir: "languages/packs/en",
+    });
+    game.babele.register({
       module: CONSTANTS.MODULE_ID,
       lang: "it",
-      dir: "lang/packs/it",
+      dir: "languages/packs/it",
+    });
+    game.babele.register({
+      module: CONSTANTS.MODULE_ID,
+      lang: "pl",
+      dir: "languages/packs/pl",
     });
   }
 });
