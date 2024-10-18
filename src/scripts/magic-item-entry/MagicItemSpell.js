@@ -13,6 +13,7 @@ export class MagicItemSpell extends AbstractMagicItemEntry {
     this.dc = this.flatDc && this.dc ? this.dc : "";
     this.componentsVSM = this.componentsVSM;
     this.componentsALL = this.componentsALL;
+    this.atkBonus = this.checkAtkBonus && this.atkBonus ? this.atkBonus : "";
   }
 
   get levels() {
