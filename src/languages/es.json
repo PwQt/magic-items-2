@@ -115,5 +115,7 @@
     "MAGICITEMS.DestroyCheckCustomDC": "CC personalizado",
     "MAGICITEMS.SettingDisplayMainSheetItemTop": "Arriba",
     "MAGICITEMS.SummoningDialogButton": "Confirmar la convocatoria",
-    "MAGICITEMS.SummoningDialogTitle": "Opciones de convocatoria"
+    "MAGICITEMS.SummoningDialogTitle": "Opciones de convocatoria",
+    "MAGICITEMS.SheetAttackBonus": "Bonificación por ataque",
+    "MAGICITEMS.SheetSaveDC": "Guardar DC"
 }
