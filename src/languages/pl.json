@@ -115,5 +115,7 @@
     "MAGICITEMS.SettingDisplayMainSheetItemTop": "Na górze",
     "MAGICITEMS.SettingDisplayMainSheetItemHint": "Gdzie wyświetlić Czar/Cechę otrzymaną z Magicznego Przedmiotu na karcie (tylko dla Domyślnej Karty)",
     "MAGICITEMS.SummoningDialogTitle": "Opcje przywoływania",
-    "MAGICITEMS.SummoningDialogButton": "Potwierdź"
+    "MAGICITEMS.SummoningDialogButton": "Potwierdź",
+    "MAGICITEMS.SheetSaveDC": "Wł. ST",
+    "MAGICITEMS.SheetAttackBonus": "Atk. bonus"
 }
