@@ -102,7 +102,8 @@
           <div class="item-detail spell-consumption-head">{{localize "MAGICITEMS.SheetConsumption"}}</div>
           <div class="item-detail spell-upcast-head">{{localize "MAGICITEMS.SheetUpcast"}}</div>
           <div class="item-detail spell-cost-head">{{localize "MAGICITEMS.SheetCost"}}</div>
-          <div class="item-detail spell-dc-head">Save DC</div>
+          <div class="item-detail spell-dc-head">{{localize "MAGICITEMS.SheetSaveDC"}}</div>
+          <div class="item-detail spell-atk-bonus">{{localize "MAGICITEMS.SheetAttackBonus"}}</div>
           <div class="item-controls spell-controls-head">&nbsp;</div>
         </li>
         <ol class="item-list">
@@ -168,6 +169,21 @@
                   name="flags.magicitems.spells.{{i}}.dc"
                   value="{{item.dc}}"
                   {{enabled item.flatDc}}
+                />
+              </div>
+              <div class="item-detail flexrow spell-atk-bonus">
+                <input
+                  class="atk-bonus-checkbox"
+                  type="checkbox"
+                  name="flags.magicitems.spells.{{i}}.checkAtkBonus"
+                  {{checked item.checkAtkBonus}}
+                />
+                <input
+                  class="atk-bonus"
+                  type="text"
+                  name="flags.magicitems.spells.{{i}}.atkBonus"
+                  value="{{item.atkBonus}}"
+                  {{enabled item.checkAtkBonus}}
                 />
               </div>
               <div class="item-controls">

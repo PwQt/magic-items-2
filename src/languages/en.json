@@ -56,6 +56,8 @@
     "MAGICITEMS.SheetEffect": "Effect",
     "MAGICITEMS.SheetUpcast": "Upcast",
     "MAGICITEMS.SheetCost": "Cost/Lvl",
+    "MAGICITEMS.SheetSaveDC": "Save DC",
+    "MAGICITEMS.SheetAttackBonus": "Atk. Bonus",
     "MAGICITEMS.SheetNoRecharge": "Not Rechargeable",
     "MAGICITEMS.SheetNoChargesMessage": "does not have enough charge for",
     "MAGICITEMS.SheetDialogTitle": "Warning!",

@@ -25,6 +25,24 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         });
       }
 
+      if (data.system.actionType === "rsak" || data.system.actionType === "msak") {
+        let attackBonusValue = this.item.atkBonus.toString();
+        if (!this.item.checkAtkBonus) {
+          attackBonusValue = this.magicItem.actor?.system?.attributes?.prof?.toString();
+        }
+        if (data.system.attack.bonus) {
+          data.system.attack.bonus += `+ ${attackBonusValue}`;
+        } else {
+          data.system.attack.bonus = attackBonusValue;
+        }
+      }
+
+      // if (this.item.checkAtkBonus) {
+      //   data = foundry.utils.mergeObject(data, {
+      //     "system"
+      //   });
+      // }
+
       data = foundry.utils.mergeObject(data, {
         "system.preparation": { mode: "magicitems" },
       });
@@ -51,11 +69,11 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
       let clonedOwnedItem = this.ownedItem;
       let itemUseConfiguration = {};
 
-      const sOptions = MagicItemHelpers.createSummoningOptions(spell);
       if (
         MagicItemHelpers.canSummon() &&
         (spell.system.summons?.creatureTypes?.length > 1 || spell.system.summons?.profiles?.length > 1)
       ) {
+        const sOptions = MagicItemHelpers.createSummoningOptions(spell);
         const summoningDialogResult = await this.askSummonningMessage(sOptions);
         if (summoningDialogResult) {
           foundry.utils.mergeObject(itemUseConfiguration, {
@@ -76,6 +94,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         spell = spell.clone({ "system.scaling": "none" }, { keepId: true });
         clonedOwnedItem = clonedOwnedItem.clone({ "system.scaling": "none" }, { keepId: true });
         spell.prepareFinalAttributes();
+        //clonedOwnedItem.prepareFinalAttributes();
       }
 
       if (upcastLevel !== spell.system.level) {
@@ -93,7 +112,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
         configureDialog: false,
         createMessage: true,
         flags: {
-          "dnd5e.itemData": clonedOwnedItem.toJSON(),
+          "dnd5e.itemData": clonedOwnedItem,
         },
       });
       if (chatData) {
