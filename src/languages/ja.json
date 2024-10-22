@@ -3,7 +3,7 @@
     "MAGICITEMS.SettingDebug": "デバッグを有効化",
     "MAGICITEMS.SettingScaleSpellDamage": "レベルに応じた呪文のダメージ増加",
     "MAGICITEMS.SettingShowLeftChargesInChat": "残りチャージを表示",
-    "MAGICITEMS.SheetActivation": "有効化の条件",
+    "MAGICITEMS.SheetActivation": "有効化条件",
     "MAGICITEMS.SheetActivationEquipped": "装備済",
     "MAGICITEMS.SheetActivationAttuned": "同調済",
     "MAGICITEMS.SheetTot": "合計",
@@ -21,7 +21,7 @@
     "MAGICITEMS.JusDestroyType": "即破壊",
     "MAGICITEMS.LoosePowersType": "能力を失う",
     "MAGICITEMS.EffectTypeDestroy": "破壊",
-    "MAGICITEMS.SheetEnabled": "魔法のアイテム？",
+    "MAGICITEMS.SheetEnabled": "魔法のアイテム",
     "MAGICITEMS.SheetCharges": "最大チャージ数",
     "MAGICITEMS.SheetDestroy": "チャージ数が0になったら{target}を破壊",
     "MAGICITEMS.SheetObjectTarget": "アイテム",
@@ -113,5 +113,9 @@
     "MAGICITEMS.SettingDisplayMainSheetItemBottom": "下",
     "MAGICITEMS.SettingDisplayMainSheetItemTop": "上",
     "MAGICITEMS.DestroyCheckCustomDC": "カスタム難易度",
-    "MAGICITEMS.SettingDisplayMainSheetItemHint": "各自のキャラクターシート中で魔法のアイテムの呪文／特技を表示する位置（デフォルト・シートのみ）"
+    "MAGICITEMS.SettingDisplayMainSheetItemHint": "各自のキャラクターシート中で魔法のアイテムの呪文／特技を表示する位置（デフォルト・シートのみ）",
+    "MAGICITEMS.SheetSaveDC": "セーヴ難易度",
+    "MAGICITEMS.SheetAttackBonus": "攻撃ボーナス",
+    "MAGICITEMS.SummoningDialogButton": "召喚の確認",
+    "MAGICITEMS.SummoningDialogTitle": "召喚オプション"
 }
