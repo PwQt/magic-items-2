@@ -102,6 +102,8 @@ a set of inherited spells/feats divided by item will be displayed after his owne
 
 From here you can cast spells or use feats provided by the items and monitor the consumption/recharges.
 
+You can move the Display of the Spells/Feats up to the top of the sheet in settings.
+
 ## Api
 
 All informations about the api and the sheet integration can be found here [API](./wiki/api.md)
