@@ -3,6 +3,7 @@ import CONSTANTS from "./constants/constants.js";
 import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { RetrieveHelpers } from "./lib/retrieve-helpers.js";
 import { MagicItemActor } from "./magicitemactor.js";
+import Logger from "./lib/Logger.js";
 
 const magicItemSheets = [];
 
@@ -220,8 +221,12 @@ export class MagicItemSheet {
       });
     }
     const itemTmp = await fromUuid(uuid);
-    itemTmp.ownership.default = CONST.DOCUMENT_PERMISSION_LEVELS.LIMITED;
-    itemTmp.sheet.render(true);
+    if (itemTmp) {
+      itemTmp.ownership.default = CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED;
+      itemTmp.sheet.render(true);
+    } else {
+      Logger.error(`An item with UUID ${uuid} could not be found. Please verify.`);
+    }
   }
 
   /**
