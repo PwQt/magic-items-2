@@ -1,3 +1,34 @@
+### 4.2.5
+#### Bugfixes
+* [#194] Update to deprecated CONST property, which made the sheet possibly not-visible
+* [#170] Not applying proficiency bonus on spell attack
+* [#178] Various Babele-related fixes
+
+#### Features
+* [#170] Added a custom attack bonus option per spell
+  
+### 4.2.4
+#### Bugfixes
+* [#184] update to-be-deprecated methods by @PwQt
+
+#### Features
+* [#185] Summoning on Magic Items spells by @PwQt
+
+### 4.2.3
+* [#169] fix to incorrect spell scaling removal
+
+### 4.2.2.*
+* Remove deprecated elements from module.json
+
+### 4.2.1
+* Update default packs to have proper attunement options as in their descriptions [#162]
+
+### 4.2.0
+* Added compatibility with D&D 3.3+ especially with the new NPC sheet,
+  * This version _MIGHT_ break compatibility with default D&D sheets for D&D versions 3.2- due to adding one more `<div>` tag
+* Added proper Item quantity subtraction whenever an actor posseses more than one instance of items.
+* Upgraded deprecated methods from `globalThis` to `foundry.utils`
+
 ### 4.1.5.1
 * Missing .json in the russian language pack in module.json file.
 
