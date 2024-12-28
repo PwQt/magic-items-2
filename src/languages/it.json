@@ -75,7 +75,7 @@
     "MAGICITEMS.SheetSpellLevel7": "7°",
     "MAGICITEMS.SheetSpellLevel8": "8°",
     "MAGICITEMS.SheetSpellLevel9": "9°",
-    "MAGICITEMS.SheetSpellUpcast0": "no upcast",
+    "MAGICITEMS.SheetSpellUpcast0": "Nessun upcast",
     "MAGICITEMS.SheetSpellUpcast1": "fino al 1°",
     "MAGICITEMS.SheetSpellUpcast2": "fino al 2°",
     "MAGICITEMS.SheetSpellUpcast3": "fino al 3°",
@@ -108,5 +108,14 @@
     "MAGICITEMS.ToggleActiveEffectDialogMessage": "Vuoi attivare/disattivare un effetto attivo sui token selezionati?",
     "MAGICITEMS.ToggleActiveEffectDialogTitle": "Attiva/disattiva un effetto attivo",
     "MAGICITEMS.ToggleActiveEffectDialogYes": "Si",
-    "MAGICITEMS.ToggleActiveEffectDialogNo": "No"
+    "MAGICITEMS.ToggleActiveEffectDialogNo": "No",
+    "MAGICITEMS.SettingDisplayMainSheetItem": "Posizione Visualizzazione Oggetto",
+    "MAGICITEMS.SettingDisplayMainSheetItemTop": "In Alto",
+    "MAGICITEMS.DestroyCheckCustomDC": "CD Personalizzata",
+    "MAGICITEMS.SettingDisplayMainSheetItemHint": "Dove visualizzare gli incantesimi/talenti degli oggetti magici nelle rispettive schede (solo per la scheda predefinita)",
+    "MAGICITEMS.SummoningDialogTitle": "Opzioni Evocazione",
+    "MAGICITEMS.SheetAttackBonus": "Bonus Att",
+    "MAGICITEMS.SummoningDialogButton": "Conferma Evocazione",
+    "MAGICITEMS.SettingDisplayMainSheetItemBottom": "In Basso",
+    "MAGICITEMS.SheetSaveDC": "CD Tiro Salvezza"
 }
