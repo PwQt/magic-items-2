@@ -17,6 +17,7 @@
     "MAGICITEMS.SheetActivation": "Activation Options",
     "MAGICITEMS.SheetActivationEquipped": "Equipped",
     "MAGICITEMS.SheetActivationAttuned": "Attuned",
+    "MAGICITEMS.SheetInternalCharges": "Use item internal charges?",
     "MAGICITEMS.SheetTot": "total",
     "MAGICITEMS.SheetActives": "active",
     "MAGICITEMS.SheetUses": "Uses",

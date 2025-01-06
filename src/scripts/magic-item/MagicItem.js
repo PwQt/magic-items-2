@@ -1,4 +1,5 @@
 import { MAGICITEMS } from "../config.js";
+import { RetrieveHelpers } from "../lib/retrieve-helpers.js";
 import { MagicItemFeat } from "../magic-item-entry/MagicItemFeat.js";
 import { MagicItemSpell } from "../magic-item-entry/MagicItemSpell.js";
 import { MagicItemTable } from "../magic-item-entry/MagicItemTable.js";
@@ -12,6 +13,7 @@ export class MagicItem {
     this.enabled = data.enabled;
     this.equipped = data.equipped;
     this.attuned = data.attuned;
+    this.internal = data.internal;
     this.charges = NumberUtils.parseIntOrGetDefault(data.charges, 0);
     this.chargeType = data.chargeType;
     this.rechargeable = data.rechargeable;
@@ -81,6 +83,7 @@ export class MagicItem {
     return {
       enabled: false,
       equipped: false,
+      internal: false,
       attuned: false,
       charges: 0,
       chargeType: "c1",
@@ -105,6 +108,7 @@ export class MagicItem {
       enabled: this.enabled,
       charges: this.charges,
       chargeType: this.chargeType,
+      internal: this.internal,
       rechargeable: this.rechargeable,
       recharge: this.recharge,
       rechargeType: this.rechargeType,
@@ -366,6 +370,23 @@ export class MagicItem {
     if (this.savedTables > this.tables.length) {
       for (let i = this.tables.length; i < this.savedTables; i++) {
         this.tablesGarbage.push(i);
+      }
+    }
+  }
+
+  async updateInternalCharges(isChecked, item) {
+    if (isChecked) {
+      let itemData = await RetrieveHelpers.getItemAsync(item);
+      let itemChargeData = itemData.system.uses;
+
+      this.charges = itemChargeData.max;
+      this.uses = itemChargeData.value;
+      this.chargeType = MAGICITEMS.CHARGE_TYPE_WHOLE_ITEM;
+      if (itemChargeData.per) {
+        this.rechargeable = false;
+        this.recharge = 0;
+        this.rechargeType = MAGICITEMS.FORMULA_FULL;
+        this.rechargeUnit = "";
       }
     }
   }

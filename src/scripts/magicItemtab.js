@@ -1,5 +1,6 @@
 import CONSTANTS from "./constants/constants.js";
 import { MagicItem } from "./magic-item/MagicItem.js";
+import Logger from "./lib/Logger.js";
 
 const magicItemTabs = [];
 
@@ -185,7 +186,7 @@ export class MagicItemTab {
    * @param {MagicItem} params.magicItem A Magic Item instance
    * @param {Function}  params.onItemUpdatingCallback A callback for handling when item updates are about to be applied. This is useful for current tab management.
    */
-  static activateTabContentsListeners({
+  static async activateTabContentsListeners({
     html,
     item,
     magicItem,
@@ -211,6 +212,15 @@ export class MagicItemTab {
     });
     html.find(".item-delete.item-table").click((evt) => {
       magicItem.removeTable(evt.target.getAttribute("data-table-idx"));
+      onMagicItemUpdatingCallback?.();
+      item.update({
+        flags: {
+          [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
+        },
+      });
+    });
+    html.find("input[name='flags.magicitems.internal']").click(async (evt) => {
+      await magicItem.updateInternalCharges(evt.target.checked, item);
       onMagicItemUpdatingCallback?.();
       item.update({
         flags: {
