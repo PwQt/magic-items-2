@@ -384,10 +384,20 @@ export class MagicItem {
       this.chargeType = MAGICITEMS.CHARGE_TYPE_WHOLE_ITEM;
       if (itemChargeData.per) {
         this.rechargeable = false;
-        this.recharge = 0;
-        this.rechargeType = MAGICITEMS.FORMULA_FULL;
-        this.rechargeUnit = "";
+        this.recharge = itemChargeData.recovery;
+        this.rechargeType = this.chargesTypeCompatible(itemChargeData);
+        this.rechargeUnit = MAGICITEMS.RECHARGE_TRANSLATION[itemChargeData.per];
       }
+    }
+  }
+
+  chargesTypeCompatible(chargeData) {
+    if (["lr", "sr", "day"].includes(chargeData.per)) {
+      return MAGICITEMS.FORMULA_FULL;
+    } else if (NumberUtils.parseIntOrGetDefault(chargeData.recovery, 0) !== 0) {
+      return MAGICITEMS.NUMERIC_RECHARGE;
+    } else {
+      return MAGICITEMS.FORMULA_RECHARGE;
     }
   }
 }
