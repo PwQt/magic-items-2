@@ -219,6 +219,7 @@ export class MagicItemTab {
         },
       });
     });
+
     html.find("input[name='flags.magicitems.internal']").click(async (evt) => {
       await magicItem.updateInternalCharges(evt.target.checked, item);
       onMagicItemUpdatingCallback?.();
@@ -228,6 +229,7 @@ export class MagicItemTab {
         },
       });
     });
+
     magicItem.spells.forEach((spell, idx) => {
       html.find(`a[data-spell-idx="${idx}"]`).click((evt) => {
         spell.renderSheet();

@@ -102,28 +102,17 @@ export class OwnedMagicItem extends MagicItem {
   }
 
   async consume(consumption) {
-    Logger.log(`consumption: ${consumption}`);
-    Logger.logObject(this.item);
-    // this.uses = Math.max(this.uses - consumption, 0);
-    // if (await this.destroyed()) {
-    //   if (this.destroyType === "dt1") {
-    //     this.isDestroyed = true;
-    //     await this.destroyItem();
-    //   } else {
-    //     this.toggleEnabled(false);
-    //   }
-    // }
     if (this.item.system.uses.value) {
       const usage = Math.max(this.item.system.uses.value - consumption, 0);
       var embeddedDocument = await RetrieveHelpers.getItemAsync(this.item);
       embeddedDocument.update({
-        ["system.uses.value"]: usage,
+        [CONSTANTS.CURRENT_CHARGES_PATH]: usage,
       });
       this.uses = usage;
     } else if (this.uses) {
       if (!this.item.system.uses.autoDestroy) {
         if (await this.destroyed()) {
-          if (this.destroyType === "dt1") {
+          if (this.destroyType === MAGICITEMS.DESTROY_JUST_DESTROY) {
             this.isDestroyed = true;
             await this.destroyItem();
           } else {
