@@ -348,6 +348,14 @@ Hooks.on("updateItem", async (item, change, options, userId) => {
   if (item.actor) {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
+    if (miActor && item.flags.magicitems?.internal) {
+      const miItem = miActor.magicItem(item.id);
+      if (miItem) {
+        await miItem.updateInternalCharges(item.flags.magicitems?.internal, item);
+        miItem.rechargeableLabel = miItem.getRechargeableLabel();
+        miItem.update();
+      }
+    }
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
       setTimeout(miActor.buildItems.bind(miActor), 500);
     }

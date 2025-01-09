@@ -375,19 +375,23 @@ export class MagicItem {
   }
 
   async updateInternalCharges(isChecked, item) {
-    if (isChecked) {
-      let itemData = await RetrieveHelpers.getItemAsync(item);
-      let itemChargeData = itemData.system.uses;
-
+    let itemData = await RetrieveHelpers.getItemAsync(item);
+    const itemChargeData = itemData.system.uses;
+    if (isChecked && itemChargeData?.per) {
       this.charges = itemChargeData.max;
       this.uses = itemChargeData.value;
       this.chargeType = MAGICITEMS.CHARGE_TYPE_WHOLE_ITEM;
-      if (itemChargeData.per) {
-        this.rechargeable = false;
-        this.recharge = itemChargeData.recovery;
-        this.rechargeType = this.chargesTypeCompatible(itemChargeData);
-        this.rechargeUnit = MAGICITEMS.RECHARGE_TRANSLATION[itemChargeData.per];
-      }
+      this.rechargeable = false;
+      this.recharge = itemChargeData.recovery;
+      this.rechargeType = this.chargesTypeCompatible(itemChargeData);
+      this.rechargeUnit = MAGICITEMS.RECHARGE_TRANSLATION[itemChargeData.per];
+    } else if (isChecked && !itemChargeData?.per) {
+      this.charges = 0;
+      this.uses = 0;
+      this.chargeType = MAGICITEMS.CHARGE_TYPE_WHOLE_ITEM;
+      this.rechargeable = false;
+      this.rechargeUnit = "";
+      this.rechargeType = MAGICITEMS.NUMERIC_RECHARGE;
     }
   }
 

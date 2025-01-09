@@ -276,6 +276,12 @@ export class OwnedMagicItem extends MagicItem {
       });
   }
 
+  getRechargeableLabel() {
+    return `(${game.i18n.localize("MAGICITEMS.SheetRecharge")}: ${this.rechargeText} ${
+      MagicItemHelpers.localized(MAGICITEMS.rechargeUnits)[this.rechargeUnit]
+    } )`;
+  }
+
   formatMessage(msg) {
     return `
             <div class="dnd5e chat-card item-card">
