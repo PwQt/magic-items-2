@@ -1,24 +1,27 @@
 {
   "name": "Robe of Stars",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "equipment",
   "system": {
     "description": {
       "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>This black or dark blue robe is embroidered with small white or silver stars. You gain a +1 bonus to saving throws while you wear it.</p>\n<p>Six stars, located on the robe's upper front portion, are particularly large. While wearing this robe, you can use an action to pull off one of the stars and use it to cast @Compendium[dnd5e.spells.41JIhpDyM9Anm7cs]{Magic Missile} as a 5th-level spell.</p>\n<p>Daily at dusk, 1d6 removed stars reappear on the robe.</p>\n<p>While you wear the robe, you can use an action to enter the Astral Plane along with everything you are wearing and carrying. You remain there until you use an action to return to the plane you were on. You reappear in the last space you occupied, or if that space is occupied, the nearest unoccupied space.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 194",
+    "source": {
+      "custom": "DMG pg. 194"
+    },
     "quantity": 1,
-    "weight": 1,
-    "price": 60000,
+    "weight": {
+      "value": 1,
+      "units": "lb"
+    },
+    "price": {
+      "value": 60000,
+      "denomination": "gp"
+    },
     "attuned": false,
     "attunement": "required",
     "equipped": false,
-    "rarity": "Very rare",
+    "rarity": "veryRare",
     "identified": true,
     "activation": {
       "type": "action",
@@ -26,14 +29,15 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": "inst"
     },
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 120,
@@ -42,19 +46,24 @@
     },
     "uses": {
       "value": 6,
-      "max": 6,
-      "per": "charges"
+      "max": "6",
+      "per": "charges",
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "util",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -76,8 +85,8 @@
     },
     "armor": {
       "value": 0,
-      "type": "clothing",
-      "dex": 0
+      "dex": 0,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -90,11 +99,24 @@
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
-    "proficient": false,
-    "attributes": {
-      "spelldc": 10
-    }
+    "proficient": 0,
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "clothing",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "flags": {
     "magicitems": {
@@ -140,6 +162,15 @@
   },
   "img": "icons/magic/water/orb-ice-web.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
   "_id": "6OIuQJx4aAlxqlG2",
   "_key": "!items!6OIuQJx4aAlxqlG2"
 }

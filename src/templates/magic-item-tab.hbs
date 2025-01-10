@@ -11,12 +11,17 @@
       <input type="checkbox" name="flags.magicitems.equipped" {{checked equipped}} style="margin-right: 5px;" />
       {{localize "MAGICITEMS.SheetActivationAttuned"}}
       <input type="checkbox" name="flags.magicitems.attuned" {{checked attuned}} />
+      
     </div>
     <div class="form-group">
+      <label>{{localize "MAGICITEMS.SheetInternalCharges"}}</label>
+      <input type="checkbox" name="flags.magicitems.internal" {{checked internal}} />
+    </div>
+    <div class="form-group {{ifThen internal 'hidden' ''}}">
       <label>{{localize "MAGICITEMS.SheetCharges"}}</label>
       <div class="form-fields" style="flex: 1">
-        <input class="magic-item-charges" type="text" name="flags.magicitems.charges" value="{{charges}}" />
-        <select name="flags.magicitems.chargeType" class="magic-item-charges-type">
+        <input class="magic-item-charges" type="text" name="flags.magicitems.charges" value="{{charges}}" {{disabled (eq internal true)}}/>
+        <select name="flags.magicitems.chargeType" class="magic-item-charges-type" {{disabled (eq internal true)}}>
           {{#select chargeType}}
             {{#each chargeTypes as |name key|}}
               <option value="{{key}}">{{name}}</option>
@@ -57,7 +62,7 @@
       <input type="text" name="flags.magicitems.destroyFlavorText" value="{{destroyFlavorText}}" />
     </div>
 
-    <div class="form-group">
+    <div class="form-group {{ifThen internal 'hidden' ''}}">
       <label>{{localize "MAGICITEMS.SheetRechargeable"}}</label>
       <input type="checkbox" name="flags.magicitems.rechargeable" {{checked rechargeable}} />
     </div>

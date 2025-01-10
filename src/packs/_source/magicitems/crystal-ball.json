@@ -1,24 +1,27 @@
 {
   "name": "Crystal Ball",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "consumable",
   "system": {
     "description": {
       "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>The typical Crystal Ball, a very rare item, is about 6 inches in diameter. While touching it, you can cast the @Compendium[dnd5e.spells.fVbCxFRaORalHB20]{Scrying} spell (save DC 17) with it.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 159",
+    "source": {
+      "custom": "DMG pg. 159"
+    },
     "quantity": 1,
-    "weight": 7,
-    "price": 50000,
+    "weight": {
+      "value": 7,
+      "units": "lb"
+    },
+    "price": {
+      "value": 50000,
+      "denomination": "gp"
+    },
     "attuned": false,
     "attunement": "required",
     "equipped": false,
-    "rarity": "Very rare",
+    "rarity": "veryRare",
     "identified": true,
     "activation": {
       "type": "action",
@@ -26,14 +29,15 @@
       "condition": ""
     },
     "duration": {
-      "value": 10,
+      "value": "10",
       "units": "minute"
     },
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,21 +46,25 @@
     },
     "uses": {
       "value": null,
-      "max": 0,
-      "per": "",
+      "max": "",
+      "per": null,
       "autoDestroy": false,
-      "autoUse": false
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -67,10 +75,24 @@
       "dc": 17,
       "scaling": "flat"
     },
-    "consumableType": "trinket",
-    "attributes": {
-      "spelldc": 10
-    }
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "trinket",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "properties": []
   },
   "flags": {
     "magicitems": {
@@ -127,6 +149,15 @@
   },
   "img": "icons/commodities/gems/pearl-natural.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
   "_id": "pRVszgDobtw8Ov4I",
   "_key": "!items!pRVszgDobtw8Ov4I"
 }
