@@ -1,25 +1,27 @@
 {
-  "_id": "hWHtehdckla2iZ6D",
   "name": "Helm of Telepathy",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "equipment",
   "system": {
     "description": {
       "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>While wearing this helm, you can use an action to cast the @Compendium[dnd5e.spells.ppWAAEul0QHtm4er]{Detect Thoughts} spell (save DC 13) from it. As long as you maintain concentration on the spell, you can use a bonus action to send a telepathic message to a creature you are focused on. It can reply using a bonus action to do so while your focus on it continues.<br>While focusing on a creature with Detect Thoughts, you can use an action to cast the @Compendium[dnd5e.spells.zMAWdyc8UVb37BK4]{Suggestion} spell (save DC 13) from the helm on that creature. Once used, the Suggestion&nbsp;property can't be used again until the next dawn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 174",
+    "source": {
+      "custom": "DMG pg. 174"
+    },
     "quantity": 1,
-    "weight": 2,
-    "price": 12000,
+    "weight": {
+      "value": 2,
+      "units": "lb"
+    },
+    "price": {
+      "value": 12000,
+      "denomination": "gp"
+    },
     "attuned": false,
     "attunement": "required",
     "equipped": false,
-    "rarity": "Uncommon",
+    "rarity": "uncommon",
     "identified": true,
     "activation": {
       "type": "action",
@@ -27,14 +29,15 @@
       "condition": ""
     },
     "duration": {
-      "value": 0,
+      "value": "",
       "units": ""
     },
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 30,
@@ -43,19 +46,24 @@
     },
     "uses": {
       "value": 1,
-      "max": 1,
-      "per": "day"
+      "max": "1",
+      "per": "day",
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -68,8 +76,8 @@
     },
     "armor": {
       "value": 0,
-      "type": "clothing",
-      "dex": 0
+      "dex": 0,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -82,11 +90,24 @@
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
-    "proficient": false,
-    "attributes": {
-      "spelldc": 10
-    }
+    "proficient": 0,
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "clothing",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "flags": {
     "magicitems": {
@@ -173,5 +194,15 @@
   },
   "img": "icons/magic/control/control-influence-rally-purple.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
+  "_id": "hWHtehdckla2iZ6D",
   "_key": "!items!hWHtehdckla2iZ6D"
 }

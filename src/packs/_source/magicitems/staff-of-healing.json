@@ -1,24 +1,27 @@
 {
   "name": "Staff of Healing",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "weapon",
   "system": {
     "description": {
       "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em style=\"box-sizing: border-box; user-select: text;\">(Requires attunement by a bard, cleric, or druid)</em></p>\n<p>This staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC and spellcasting ability modifier: @Compendium[dnd5e.spells.uUWb1wZgtMou0TVP]{Cure Wounds} (1 charge per spell level, up to 4th), @Compendium[dnd5e.spells.F0GsG0SJzsIOacwV]{Lesser Restoration} (2 charges), or @Compendium[dnd5e.spells.Pyzmm8R7rVsNAPsd]{Mass Cure Wounds} (5 charges).</p>\n<p>The staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff vanishes in a flash of light, lost forever.</p>\n<p><em style=\"color: #191813; font-size: 13px;\">Foundry note: the Other Formula button has been configured to roll the staff's recharge rate at dawn if required.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 202",
+    "source": {
+      "custom": "DMG pg. 202"
+    },
     "quantity": 1,
-    "weight": 4,
-    "price": 13000,
+    "weight": {
+      "value": 4,
+      "units": "lb"
+    },
+    "price": {
+      "value": 13000,
+      "denomination": "gp"
+    },
     "attuned": false,
     "attunement": "required",
     "equipped": false,
-    "rarity": "Very rare",
+    "rarity": "veryRare",
     "identified": true,
     "activation": {
       "type": "action",
@@ -26,14 +29,15 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,19 +46,24 @@
     },
     "uses": {
       "value": 10,
-      "max": 10,
-      "per": "charges"
+      "max": "10",
+      "per": "charges",
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "heal",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,27 +83,25 @@
       "dt": null,
       "conditions": ""
     },
-    "weaponType": "simpleM",
-    "properties": {
-      "amm": false,
-      "hvy": false,
-      "fin": false,
-      "fir": false,
-      "foc": false,
-      "lgt": false,
-      "lod": false,
-      "rch": false,
-      "rel": false,
-      "ret": false,
-      "spc": false,
-      "thr": false,
-      "two": false,
-      "ver": false
+    "properties": [],
+    "proficient": 0,
+    "unidentified": {
+      "description": ""
     },
-    "proficient": false,
-    "attributes": {
-      "spelldc": 10
-    }
+    "type": {
+      "value": "simpleM",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "flags": {
     "magicitems": {
@@ -188,6 +195,15 @@
   },
   "img": "icons/weapons/staves/staff-simple-green.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
   "_id": "3aC7M01xVlXwU5ur",
   "_key": "!items!3aC7M01xVlXwU5ur"
 }
