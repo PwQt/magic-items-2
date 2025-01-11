@@ -117,5 +117,6 @@
     "MAGICITEMS.SummoningDialogTitle": "Opcje przywoływania",
     "MAGICITEMS.SummoningDialogButton": "Potwierdź",
     "MAGICITEMS.SheetSaveDC": "Wł. ST",
-    "MAGICITEMS.SheetAttackBonus": "Atk. bonus"
+    "MAGICITEMS.SheetAttackBonus": "Atk. bonus",
+    "MAGICITEMS.SheetInternalCharges": "Czy używać \"wewnętrznych\" ładunków z przedmiotu?"
 }
