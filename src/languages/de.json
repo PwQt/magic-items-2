@@ -117,5 +117,6 @@
     "MAGICITEMS.SummoningDialogTitle": "Beschwörungsoptionen",
     "MAGICITEMS.SummoningDialogButton": "Beschwörung bestätigen",
     "MAGICITEMS.SheetSaveDC": "Rettungs-SG",
-    "MAGICITEMS.SheetAttackBonus": "Angriffsbonus"
+    "MAGICITEMS.SheetAttackBonus": "Angriffsbonus",
+    "MAGICITEMS.SheetInternalCharges": "Interne Ladungen des Gegenstands benutzen?"
 }
