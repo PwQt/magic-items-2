@@ -1,6 +1,7 @@
 import { MAGICITEMS } from "../config";
 import CONSTANTS from "../constants/constants";
 import Logger from "../lib/Logger";
+import { RetrieveHelpers } from "../lib/retrieve-helpers";
 import { MagicItemHelpers } from "../magic-item-helpers";
 import { OwnedMagicItemFeat } from "../magic-item-owned-entry/OwnedMagicItemFeat";
 import { OwnedMagicItemSpell } from "../magic-item-owned-entry/OwnedMagicItemSpell";
@@ -101,13 +102,23 @@ export class OwnedMagicItem extends MagicItem {
   }
 
   async consume(consumption) {
-    this.uses = Math.max(this.uses - consumption, 0);
-    if (await this.destroyed()) {
-      if (this.destroyType === "dt1") {
-        this.isDestroyed = true;
-        await this.destroyItem();
-      } else {
-        this.toggleEnabled(false);
+    if (this.item.system.uses.value) {
+      const usage = Math.max(this.item.system.uses.value - consumption, 0);
+      var embeddedDocument = await RetrieveHelpers.getItemAsync(this.item);
+      embeddedDocument.update({
+        [CONSTANTS.CURRENT_CHARGES_PATH]: usage,
+      });
+      this.uses = usage;
+    } else if (this.uses) {
+      if (!this.item.system.uses.autoDestroy) {
+        if (await this.destroyed()) {
+          if (this.destroyType === MAGICITEMS.DESTROY_JUST_DESTROY) {
+            this.isDestroyed = true;
+            await this.destroyItem();
+          } else {
+            this.toggleEnabled(false);
+          }
+        }
       }
     }
   }
@@ -152,19 +163,25 @@ export class OwnedMagicItem extends MagicItem {
   }
 
   async onShortRest() {
-    if (this.rechargeable && this.rechargeUnit === MAGICITEMS.SHORT_REST) {
+    if ((this.rechargeable && this.rechargeUnit === MAGICITEMS.SHORT_REST) || this.internal) {
       return await this.doRecharge();
     }
   }
 
   async onLongRest() {
-    if (this.rechargeable && [MAGICITEMS.LONG_REST, MAGICITEMS.SHORT_REST].includes(this.rechargeUnit)) {
+    if (
+      (this.rechargeable && [MAGICITEMS.LONG_REST, MAGICITEMS.SHORT_REST].includes(this.rechargeUnit)) ||
+      this.internal
+    ) {
       return await this.doRecharge();
     }
   }
 
   async onNewDay() {
-    if (this.rechargeable && [MAGICITEMS.DAILY, MAGICITEMS.DAWN, MAGICITEMS.SUNSET].includes(this.rechargeUnit)) {
+    if (
+      (this.rechargeable && [MAGICITEMS.DAILY, MAGICITEMS.DAWN, MAGICITEMS.SUNSET].includes(this.rechargeUnit)) ||
+      this.internal
+    ) {
       return await this.doRecharge();
     }
   }
@@ -176,53 +193,56 @@ export class OwnedMagicItem extends MagicItem {
 
     let prefix = game.i18n.localize("MAGICITEMS.SheetRechargedBy");
     let postfix = game.i18n.localize("MAGICITEMS.SheetChargesLabel");
-    if (this.rechargeType === MAGICITEMS.NUMERIC_RECHARGE) {
-      amount = parseInt(this.recharge);
-      msg += `<b>${prefix}</b>: ${this.recharge} ${postfix}`;
-    }
-    if (this.rechargeType === MAGICITEMS.FORMULA_RECHARGE) {
-      let r = new Roll(this.recharge);
-      await r.evaluate();
-      amount = r.total;
-      msg += `<b>${prefix}</b>: ${r.result} = ${r.total} ${postfix}`;
-    }
-    if (this.rechargeType === MAGICITEMS.FORMULA_FULL) {
-      msg += `<b>${game.i18n.localize("MAGICITEMS.RechargeTypeFullText")}</b>`;
-    }
-
-    if (this.chargesOnWholeItem) {
-      if (this.isFull()) {
-        return;
+    if (!this.internal) {
+      if (this.rechargeType === MAGICITEMS.NUMERIC_RECHARGE) {
+        amount = parseInt(this.recharge);
+        msg += `<b>${prefix}</b>: ${this.recharge} ${postfix}`;
       }
-
+      if (this.rechargeType === MAGICITEMS.FORMULA_RECHARGE) {
+        let r = new Roll(this.recharge);
+        await r.evaluate();
+        amount = r.total;
+        msg += `<b>${prefix}</b>: ${r.result} = ${r.total} ${postfix}`;
+      }
       if (this.rechargeType === MAGICITEMS.FORMULA_FULL) {
-        updated = this.charges;
-      } else {
-        updated = Math.min(this.uses + amount, parseInt(this.charges));
+        msg += `<b>${game.i18n.localize("MAGICITEMS.RechargeTypeFullText")}</b>`;
       }
 
-      this.setUses(updated);
-    } else {
-      if (this.ownedEntries.filter((entry) => !entry.isFull()).length === 0) {
-        return;
-      }
-
-      this.ownedEntries.forEach((entry) => {
-        if (this.rechargeType === MAGICITEMS.FORMULA_FULL) {
-          entry.uses = this.charges;
-        } else {
-          entry.uses = Math.min(entry.uses + amount, parseInt(this.charges));
+      if (this.chargesOnWholeItem) {
+        if (this.isFull()) {
+          return;
         }
+
+        if (this.rechargeType === MAGICITEMS.FORMULA_FULL) {
+          updated = this.charges;
+        } else {
+          updated = Math.min(this.uses + amount, parseInt(this.charges));
+        }
+
+        this.setUses(updated);
+      } else {
+        if (this.ownedEntries.filter((entry) => !entry.isFull()).length === 0) {
+          return;
+        }
+
+        this.ownedEntries.forEach((entry) => {
+          if (this.rechargeType === MAGICITEMS.FORMULA_FULL) {
+            entry.uses = this.charges;
+          } else {
+            entry.uses = Math.min(entry.uses + amount, parseInt(this.charges));
+          }
+        });
+      }
+      ChatMessage.create({
+        speaker: { actor: this.actor },
+        type: CONST.CHAT_MESSAGE_TYPES.OTHER,
+        content: this.formatMessage(msg),
       });
+    } else {
+      this.setUses(this.item.system.uses.value);
     }
 
     this.update();
-
-    ChatMessage.create({
-      speaker: { actor: this.actor },
-      type: CONST.CHAT_MESSAGE_TYPES.OTHER,
-      content: this.formatMessage(msg),
-    });
   }
 
   entryBy(itemId) {
@@ -254,6 +274,12 @@ export class OwnedMagicItem extends MagicItem {
       .then(() => {
         this.magicItemActor.resumeListening();
       });
+  }
+
+  getRechargeableLabel() {
+    return `(${game.i18n.localize("MAGICITEMS.SheetRecharge")}: ${this.rechargeText} ${
+      MagicItemHelpers.localized(MAGICITEMS.rechargeUnits)[this.rechargeUnit]
+    } )`;
   }
 
   formatMessage(msg) {

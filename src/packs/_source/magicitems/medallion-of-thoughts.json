@@ -1,24 +1,27 @@
 {
   "name": "Medallion of Thoughts",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "equipment",
   "system": {
     "description": {
       "value": "<p><em>Wondrous item, (requires attunement)</em></p>\n<p>The medallion has 3 charges. While wearing it, you can use an action and expend 1 charge to cast the @Compendium[dnd5e.spells.ppWAAEul0QHtm4er]{Detect Thoughts}&nbsp;spell (save DC 13) from it. The medallion regains 1d3 expended charges daily at dawn.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 181",
+    "source": {
+      "custom": "DMG pg. 181"
+    },
     "quantity": 1,
-    "weight": 0.01,
-    "price": 3000,
+    "weight": {
+      "value": 0.01,
+      "units": "lb"
+    },
+    "price": {
+      "value": 3000,
+      "denomination": "gp"
+    },
     "attuned": false,
     "attunement": "required",
     "equipped": false,
-    "rarity": "Uncommon",
+    "rarity": "uncommon",
     "identified": true,
     "activation": {
       "type": "action",
@@ -26,14 +29,15 @@
       "condition": ""
     },
     "duration": {
-      "value": 0,
+      "value": "",
       "units": ""
     },
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "creature"
+      "type": "creature",
+      "prompt": true
     },
     "range": {
       "value": 30,
@@ -42,19 +46,24 @@
     },
     "uses": {
       "value": 3,
-      "max": 3,
-      "per": "charges"
+      "max": "3",
+      "per": "charges",
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -67,8 +76,8 @@
     },
     "armor": {
       "value": 0,
-      "type": "trinket",
-      "dex": 0
+      "dex": 0,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -81,11 +90,24 @@
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
-    "proficient": false,
-    "attributes": {
-      "spelldc": 10
-    }
+    "proficient": 0,
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "trinket",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "flags": {
     "magicitems": {
@@ -142,6 +164,15 @@
   },
   "img": "icons/equipment/neck/pendant-bronze-gem-blue.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
   "_id": "gPfCf4F3pmV6NcJK",
   "_key": "!items!gPfCf4F3pmV6NcJK"
 }

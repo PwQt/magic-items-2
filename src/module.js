@@ -89,10 +89,20 @@ Hooks.once("init", () => {
   });
 
   if (typeof Babele !== "undefined") {
-    Babele.get().register({
+    game.babele.register({
+      module: CONSTANTS.MODULE_ID,
+      lang: "en",
+      dir: "languages/packs/en",
+    });
+    game.babele.register({
       module: CONSTANTS.MODULE_ID,
       lang: "it",
-      dir: "lang/packs/it",
+      dir: "languages/packs/it",
+    });
+    game.babele.register({
+      module: CONSTANTS.MODULE_ID,
+      lang: "pl",
+      dir: "languages/packs/pl",
     });
   }
 });
@@ -355,6 +365,14 @@ Hooks.on("updateItem", async (item, change, options, userId) => {
   if (item.actor) {
     const actor = item.actor;
     const miActor = MagicItemActor.get(actor.id);
+    if (miActor && item.flags.magicitems?.internal) {
+      const miItem = miActor.magicItem(item.id);
+      if (miItem) {
+        await miItem.updateInternalCharges(item.flags.magicitems?.internal, item);
+        miItem.rechargeableLabel = miItem.getRechargeableLabel();
+        miItem.update();
+      }
+    }
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
       setTimeout(miActor.buildItems.bind(miActor), 500);
     }

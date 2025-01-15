@@ -113,5 +113,10 @@
     "MAGICITEMS.SettingDisplayMainSheetItem": "Miejsce wyświetlania elementu",
     "MAGICITEMS.SettingDisplayMainSheetItemBottom": "Na dole",
     "MAGICITEMS.SettingDisplayMainSheetItemTop": "Na górze",
-    "MAGICITEMS.SettingDisplayMainSheetItemHint": "Gdzie wyświetlić Czar/Cechę otrzymaną z Magicznego Przedmiotu na karcie (tylko dla Domyślnej Karty)"
+    "MAGICITEMS.SettingDisplayMainSheetItemHint": "Gdzie wyświetlić Czar/Cechę otrzymaną z Magicznego Przedmiotu na karcie (tylko dla Domyślnej Karty)",
+    "MAGICITEMS.SummoningDialogTitle": "Opcje przywoływania",
+    "MAGICITEMS.SummoningDialogButton": "Potwierdź",
+    "MAGICITEMS.SheetSaveDC": "Wł. ST",
+    "MAGICITEMS.SheetAttackBonus": "Atk. bonus",
+    "MAGICITEMS.SheetInternalCharges": "Czy używać \"wewnętrznych\" ładunków z przedmiotu?"
 }

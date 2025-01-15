@@ -1,24 +1,27 @@
 {
   "name": "Staff of Charming",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "weapon",
   "system": {
     "description": {
       "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em style=\"box-sizing: border-box; user-select: text;\">(Requires attunement by a bard, cleric, druid, sorcerer, warlock, or wizard)</em></p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">While holding this staff, you can use an action to expend 1 of its 10 charges to cast&nbsp;<a class=\"entity-link\" style=\"box-sizing: border-box; user-select: text;\" draggable=\"true\" data-pack=\"dnd5e.spells\" data-id=\"eS7XnnApoxRxYXPs\">&nbsp;Charm Person</a>,&nbsp;<a class=\"entity-link\" style=\"box-sizing: border-box; user-select: text;\" draggable=\"true\" data-pack=\"dnd5e.spells\" data-id=\"arzCrMRgcNiQuh43\">&nbsp;Command</a>, or <a class=\"entity-link\" style=\"box-sizing: border-box; user-select: text;\" draggable=\"true\" data-pack=\"dnd5e.spells\" data-id=\"4dSvfvTy2ZIJ3K4k\">Comprehend Languages</a>&nbsp;from it using your spell save DC. The staff can also be used as a magic quarterstaff.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">If you are holding the staff and fail a saving throw against an enchantment spell that targets only you, you can turn your failed save into a successful one. You can't use this property of the staff again until the next dawn. If you succeed on a save against an enchantment spell that targets only you, with or without the staff's intervention, you can use your reaction to expend 1 charge from the staff and turn the spell back on its caster as if you had cast the spell.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">The staff regains 1d8 + 2 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff becomes a nonmagical quarterstaff.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em>Foundry note: the Other Formula button has been configured to roll the staff's recharge rate at dawn if required.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 201",
+    "source": {
+      "custom": "DMG pg. 201"
+    },
     "quantity": 1,
-    "weight": 4,
-    "price": 12000,
+    "weight": {
+      "value": 4,
+      "units": "lb"
+    },
+    "price": {
+      "value": 12000,
+      "denomination": "gp"
+    },
     "attuned": false,
     "attunement": "required",
     "equipped": false,
-    "rarity": "Rare",
+    "rarity": "rare",
     "identified": true,
     "activation": {
       "type": "action",
@@ -26,14 +29,15 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 5,
@@ -42,19 +46,24 @@
     },
     "uses": {
       "value": 10,
-      "max": 10,
-      "per": "charges"
+      "max": "10",
+      "per": "charges",
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -79,27 +88,27 @@
       "dt": null,
       "conditions": ""
     },
-    "weaponType": "simpleM",
-    "properties": {
-      "amm": false,
-      "hvy": false,
-      "fin": false,
-      "fir": false,
-      "foc": false,
-      "lgt": false,
-      "lod": false,
-      "rch": false,
-      "rel": false,
-      "ret": false,
-      "spc": false,
-      "thr": false,
-      "two": false,
-      "ver": true
+    "properties": [
+      "ver"
+    ],
+    "proficient": 0,
+    "unidentified": {
+      "description": ""
     },
-    "proficient": false,
-    "attributes": {
-      "spelldc": 10
-    }
+    "type": {
+      "value": "simpleM",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "flags": {
     "magicitems": {
@@ -199,6 +208,15 @@
   },
   "img": "icons/weapons/staves/staff-simple-green.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
   "_id": "owvd2M56AE11eSdY",
   "_key": "!items!owvd2M56AE11eSdY"
 }

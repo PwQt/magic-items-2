@@ -1,24 +1,27 @@
 {
   "name": "Wand of Enemy Detection",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "consumable",
   "system": {
     "description": {
       "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em style=\"box-sizing: border-box; user-select: text;\">(Requires attunement)</em></p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">This wand has 7 charges. While holding it, you can use an action and expend 1 charge to speak its command word. For the next minute, you know the direction of the nearest creature hostile to you within 60 feet, but not its distance from you. The wand can sense the presence of hostile creatures that are ethereal, invisible, disguised, or hidden, as well as those in plain sight. The effect ends if you stop holding the wand.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">The wand regains 1d6 + 1 expended charges daily at dawn. If you expend the wand's last charge, roll a d20. On a 1, the wand crumbles into ashes and is destroyed.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 210",
+    "source": {
+      "custom": "DMG pg. 210"
+    },
     "quantity": 1,
-    "weight": 1,
-    "price": 4000,
+    "weight": {
+      "value": 1,
+      "units": "lb"
+    },
+    "price": {
+      "value": 4000,
+      "denomination": "gp"
+    },
     "attuned": false,
     "attunement": "required",
     "equipped": false,
-    "rarity": "Rare",
+    "rarity": "rare",
     "identified": true,
     "activation": {
       "type": "action",
@@ -26,14 +29,15 @@
       "condition": "Command word."
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 60,
@@ -42,21 +46,25 @@
     },
     "uses": {
       "value": 7,
-      "max": 7,
+      "max": "7",
       "per": "charges",
       "autoDestroy": false,
-      "autoUse": true
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "util",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -67,10 +75,24 @@
       "dc": null,
       "scaling": "flat"
     },
-    "consumableType": "wand",
-    "attributes": {
-      "spelldc": 10
-    }
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "wand",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "properties": []
   },
   "flags": {
     "magicitems": {
@@ -103,6 +125,15 @@
   },
   "img": "icons/weapons/staves/staff-simple-green.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
   "_id": "CJHG79Uo6Higmmvg",
   "_key": "!items!CJHG79Uo6Higmmvg"
 }

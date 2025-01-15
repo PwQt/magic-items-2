@@ -11,12 +11,17 @@
       <input type="checkbox" name="flags.magicitems.equipped" {{checked equipped}} style="margin-right: 5px;" />
       {{localize "MAGICITEMS.SheetActivationAttuned"}}
       <input type="checkbox" name="flags.magicitems.attuned" {{checked attuned}} />
+      
     </div>
     <div class="form-group">
+      <label>{{localize "MAGICITEMS.SheetInternalCharges"}}</label>
+      <input type="checkbox" name="flags.magicitems.internal" {{checked internal}} />
+    </div>
+    <div class="form-group {{ifThen internal 'hidden' ''}}">
       <label>{{localize "MAGICITEMS.SheetCharges"}}</label>
       <div class="form-fields" style="flex: 1">
-        <input class="magic-item-charges" type="text" name="flags.magicitems.charges" value="{{charges}}" />
-        <select name="flags.magicitems.chargeType" class="magic-item-charges-type">
+        <input class="magic-item-charges" type="text" name="flags.magicitems.charges" value="{{charges}}" {{disabled (eq internal true)}}/>
+        <select name="flags.magicitems.chargeType" class="magic-item-charges-type" {{disabled (eq internal true)}}>
           {{#select chargeType}}
             {{#each chargeTypes as |name key|}}
               <option value="{{key}}">{{name}}</option>
@@ -57,7 +62,7 @@
       <input type="text" name="flags.magicitems.destroyFlavorText" value="{{destroyFlavorText}}" />
     </div>
 
-    <div class="form-group">
+    <div class="form-group {{ifThen internal 'hidden' ''}}">
       <label>{{localize "MAGICITEMS.SheetRechargeable"}}</label>
       <input type="checkbox" name="flags.magicitems.rechargeable" {{checked rechargeable}} />
     </div>
@@ -102,7 +107,8 @@
           <div class="item-detail spell-consumption-head">{{localize "MAGICITEMS.SheetConsumption"}}</div>
           <div class="item-detail spell-upcast-head">{{localize "MAGICITEMS.SheetUpcast"}}</div>
           <div class="item-detail spell-cost-head">{{localize "MAGICITEMS.SheetCost"}}</div>
-          <div class="item-detail spell-dc-head">Save DC</div>
+          <div class="item-detail spell-dc-head">{{localize "MAGICITEMS.SheetSaveDC"}}</div>
+          <div class="item-detail spell-atk-bonus">{{localize "MAGICITEMS.SheetAttackBonus"}}</div>
           <div class="item-controls spell-controls-head">&nbsp;</div>
         </li>
         <ol class="item-list">
@@ -168,6 +174,21 @@
                   name="flags.magicitems.spells.{{i}}.dc"
                   value="{{item.dc}}"
                   {{enabled item.flatDc}}
+                />
+              </div>
+              <div class="item-detail flexrow spell-atk-bonus">
+                <input
+                  class="atk-bonus-checkbox"
+                  type="checkbox"
+                  name="flags.magicitems.spells.{{i}}.checkAtkBonus"
+                  {{checked item.checkAtkBonus}}
+                />
+                <input
+                  class="atk-bonus"
+                  type="text"
+                  name="flags.magicitems.spells.{{i}}.atkBonus"
+                  value="{{item.atkBonus}}"
+                  {{enabled item.checkAtkBonus}}
                 />
               </div>
               <div class="item-controls">

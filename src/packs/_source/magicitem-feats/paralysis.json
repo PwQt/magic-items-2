@@ -1,31 +1,29 @@
 {
   "name": "Paralysis",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "feat",
   "system": {
     "description": {
       "value": "<p><span style=\"color: #191813; font-size: 13px;\">You can use an action to expend 1 of its charges to cause a thin blue ray to streak from the tip toward a creature you can see within 60 feet of you. The target must succeed on a DC 15 Constitution saving throw or be paralyzed for 1 minute. At the end of each of the target's turns, it can repeat the saving throw, ending the effect on itself on a success.</span></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "",
+    "source": {
+      "custom": ""
+    },
     "activation": {
       "type": "action",
       "cost": 1,
       "condition": ""
     },
     "duration": {
-      "value": 1,
+      "value": "1",
       "units": "minute"
     },
     "target": {
-      "value": 60,
+      "value": "60",
       "width": null,
       "units": "ft",
-      "type": "radius"
+      "type": "radius",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -34,19 +32,24 @@
     },
     "uses": {
       "value": null,
-      "max": 0,
-      "per": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "con",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -62,13 +65,35 @@
       "value": null,
       "charged": false
     },
-    "attributes": {
-      "spelldc": 10
-    }
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "type": {
+      "value": "",
+      "subtype": ""
+    },
+    "prerequisites": {
+      "level": null
+    },
+    "properties": []
   },
   "flags": {},
   "img": "icons/magic/water/water-iceberg-bubbles.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
   "_id": "NNqYJ9J4MPJtLgFW",
   "_key": "!items!NNqYJ9J4MPJtLgFW"
 }

@@ -113,5 +113,10 @@
     "MAGICITEMS.SettingDisplayMainSheetItemHint": "Ort im jeweiligen Bogen, an dem Magic Items-Zauber und -Talente anzeigt werden (nur im Standardbogen)",
     "MAGICITEMS.SettingDisplayMainSheetItemBottom": "Unten",
     "MAGICITEMS.SettingDisplayMainSheetItemTop": "Oben",
-    "MAGICITEMS.DestroyCheckCustomDC": "Eigener SG"
+    "MAGICITEMS.DestroyCheckCustomDC": "Eigener SG",
+    "MAGICITEMS.SummoningDialogTitle": "Beschwörungsoptionen",
+    "MAGICITEMS.SummoningDialogButton": "Beschwörung bestätigen",
+    "MAGICITEMS.SheetSaveDC": "Rettungs-SG",
+    "MAGICITEMS.SheetAttackBonus": "Angriffsbonus",
+    "MAGICITEMS.SheetInternalCharges": "Interne Ladungen des Gegenstands benutzen?"
 }

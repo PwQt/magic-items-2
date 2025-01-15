@@ -1,25 +1,27 @@
 {
-  "_id": "UhljLbe06YSkJgO6",
   "name": "Staff of Power",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "weapon",
   "system": {
     "description": {
       "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em style=\"box-sizing: border-box; user-select: text;\">(Requires attunement by a sorcerer, warlock, or wizard)</em></p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">This staff can be wielded as a magic quarterstaff that grants a +2 bonus to attack and damage rolls made with it. While holding it, you gain a +2 bonus to Armor Class, saving throws, and spell attack rolls.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">The staff has 20 charges for the following properties. The staff regains 2d8 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff retains its +2 bonus to attack and damage rolls but loses all other properties. On a 20, the staff regains 1d8 + 2 charges.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><strong>Power Strike</strong>.&nbsp;When you hit with a melee attack using the staff, you can expend 1 charge to deal an extra 1d6 force damage to the target.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><strong>Spells</strong>. While holding this staff, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC and spell attack bonus: @Compendium[dnd5e.spells.RpKjTlYASrfqUPVA]{Cone of Cold} (5 charges), @Compendium[dnd5e.spells.ztgcdrWPshKRpFd0]{Fireball} (5th-level version, 5 charges), @Compendium[dnd5e.spells.WmQpxfjZwF3MGUby]{Globe of Invulnerability} (6 charges), @Compendium[dnd5e.spells.l9Ju5KE7bbn3WpTm]{Hold Monster} (5 charges), @Compendium[dnd5e.spells.MRxldJd6C4bsBo3O]{Levitate} (2 charges), @Compendium[dnd5e.spells.IyikgTEOTv701jgQ]{Lightning Bolt} (5th-level version, 5 charges), @Compendium[dnd5e.spells.41JIhpDyM9Anm7cs]{Magic Missile} (1 charge), @Compendium[dnd5e.spells.ODhLKBxLnvvLOnw1]{Ray of Enfeeblement} (1 charge), or @Compendium[dnd5e.spells.o9ZCvuD2B1OTcubb]{Wall of Force} (5 charges).</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><strong>Retributive Strike</strong>. You can use an action to break the staff over your knee or against a solid surface, performing a retributive strike. The staff is destroyed and releases its remaining magic in an explosion that expands to fill a 30-foot-radius sphere centered on it.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">You have a 50 percent chance to instantly travel to a random plane of existence, avoiding the explosion. If you fail to avoid the effect, you take force damage equal to 16 × the number of charges in the staff. Every other creature in the area must make a DC 17 Dexterity saving throw. On a failed save, a creature takes an amount of damage based on how far away it is from the point of origin, as shown in the following table. On a successful save, a creature takes half as much damage.</p>\n<table border=\"1\">\n<tbody>\n<tr>\n<td><strong>Distance from Origin</strong></td>\n<td><strong>Damage</strong></td>\n</tr>\n<tr>\n<td>10 ft. away or closer</td>\n<td>8 x the number of charges in the staff</td>\n</tr>\n<tr>\n<td>11 to 20 ft. away</td>\n<td>6 x the number of charges in the staff</td>\n</tr>\n<tr>\n<td>21 to 30 ft. away</td>\n<td>4 x the number of charges in the staff</td>\n</tr>\n</tbody>\n</table>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em>Foundry note: the Other Formula button has been configured to roll the staff's recharge rate at dawn if required.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 202",
+    "source": {
+      "custom": "DMG pg. 202"
+    },
     "quantity": 1,
-    "weight": 4,
-    "price": 95500,
+    "weight": {
+      "value": 4,
+      "units": "lb"
+    },
+    "price": {
+      "value": 95500,
+      "denomination": "gp"
+    },
     "attuned": false,
     "attunement": "required",
     "equipped": false,
-    "rarity": "Very rare",
+    "rarity": "veryRare",
     "identified": true,
     "activation": {
       "type": "action",
@@ -27,14 +29,15 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": 5,
@@ -43,19 +46,24 @@
     },
     "uses": {
       "value": 20,
-      "max": 20,
-      "per": "charges"
+      "max": "20",
+      "per": "charges",
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "mwak",
-    "attackBonus": 2,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [
         [
@@ -80,27 +88,27 @@
       "dt": null,
       "conditions": ""
     },
-    "weaponType": "simpleM",
-    "properties": {
-      "amm": false,
-      "hvy": false,
-      "fin": false,
-      "fir": false,
-      "foc": false,
-      "lgt": false,
-      "lod": false,
-      "rch": false,
-      "rel": false,
-      "ret": false,
-      "spc": false,
-      "thr": false,
-      "two": false,
-      "ver": true
+    "properties": [
+      "ver"
+    ],
+    "proficient": 0,
+    "unidentified": {
+      "description": ""
     },
-    "proficient": false,
-    "attributes": {
-      "spelldc": 10
-    }
+    "type": {
+      "value": "simpleM",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "2",
+      "flat": false
+    },
+    "container": null,
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "flags": {
     "magicitems": {
@@ -400,5 +408,15 @@
   },
   "img": "icons/weapons/staves/staff-skull-brown.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
+  "_id": "UhljLbe06YSkJgO6",
   "_key": "!items!UhljLbe06YSkJgO6"
 }

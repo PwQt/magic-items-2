@@ -1,24 +1,27 @@
 {
   "name": "Staff of Frost",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "weapon",
   "system": {
     "description": {
       "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em style=\"box-sizing: border-box; user-select: text;\">(Requires attunement by a druid, sorcerer, warlock, or wizard)</em></p>\n<p>You have resistance to cold damage while you hold this staff.</p>\n<p>The staff has 10 charges. While holding it, you can use an action to expend 1 or more of its charges to cast one of the following spells from it, using your spell save DC: @Compendium[dnd5e.spells.RpKjTlYASrfqUPVA]{Cone of Cold} (5 charges), @Compendium[dnd5e.spells.IBJmWjzbQGu7M4UX]{Fog Cloud} (1 charge), @Compendium[dnd5e.spells.WN2LWEljYU6QqnRH]{Ice Storm} (4 charges), or @Compendium[dnd5e.spells.fzZnVKLmBMo2f5up]{Wall of Ice} (4 charges).</p>\n<p>The staff regains 1d6 + 4 expended charges daily at dawn. If you expend the last charge, roll a d20. On a 1, the staff turns to water and is destroyed.</p>\n<p><em style=\"color: #191813; font-size: 13px;\">Foundry note: the Other Formula button has been configured to roll the staff's recharge rate at dawn if required.</em></p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 201",
+    "source": {
+      "custom": "DMG pg. 201"
+    },
     "quantity": 1,
-    "weight": 4,
-    "price": 26000,
+    "weight": {
+      "value": 4,
+      "units": "lb"
+    },
+    "price": {
+      "value": 26000,
+      "denomination": "gp"
+    },
     "attuned": false,
     "attunement": "required",
     "equipped": false,
-    "rarity": "Very rare",
+    "rarity": "veryRare",
     "identified": true,
     "activation": {
       "type": "action",
@@ -26,14 +29,15 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,19 +46,24 @@
     },
     "uses": {
       "value": 10,
-      "max": 10,
-      "per": "charges"
+      "max": "10",
+      "per": "charges",
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -74,27 +83,25 @@
       "dt": null,
       "conditions": ""
     },
-    "weaponType": "simpleM",
-    "properties": {
-      "amm": false,
-      "hvy": false,
-      "fin": false,
-      "fir": false,
-      "foc": false,
-      "lgt": false,
-      "lod": false,
-      "rch": false,
-      "rel": false,
-      "ret": false,
-      "spc": false,
-      "thr": false,
-      "two": false,
-      "ver": false
+    "properties": [],
+    "proficient": 0,
+    "unidentified": {
+      "description": ""
     },
-    "proficient": false,
-    "attributes": {
-      "spelldc": 10
-    }
+    "type": {
+      "value": "simpleM",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null
   },
   "flags": {
     "magicitems": {
@@ -235,6 +242,15 @@
   },
   "img": "icons/weapons/staves/staff-ornate-engraved-blue.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
   "_id": "E7E7QrTtykvBpIUK",
   "_key": "!items!E7E7QrTtykvBpIUK"
 }

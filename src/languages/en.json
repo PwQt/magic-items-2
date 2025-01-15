@@ -17,6 +17,7 @@
     "MAGICITEMS.SheetActivation": "Activation Options",
     "MAGICITEMS.SheetActivationEquipped": "Equipped",
     "MAGICITEMS.SheetActivationAttuned": "Attuned",
+    "MAGICITEMS.SheetInternalCharges": "Use item internal charges?",
     "MAGICITEMS.SheetTot": "total",
     "MAGICITEMS.SheetActives": "active",
     "MAGICITEMS.SheetUses": "Uses",
@@ -58,6 +59,8 @@
     "MAGICITEMS.SheetEffect": "Effect",
     "MAGICITEMS.SheetUpcast": "Upcast",
     "MAGICITEMS.SheetCost": "Cost/Lvl",
+    "MAGICITEMS.SheetSaveDC": "Save DC",
+    "MAGICITEMS.SheetAttackBonus": "Atk. Bonus",
     "MAGICITEMS.SheetNoRecharge": "Not Rechargeable",
     "MAGICITEMS.SheetNoChargesMessage": "does not have enough charge for",
     "MAGICITEMS.SheetDialogTitle": "Warning!",
@@ -115,5 +118,7 @@
     "MAGICITEMS.ToggleActiveEffectDialogYes": "Yes",
     "MAGICITEMS.ToggleActiveEffectDialogNo": "No",
     "MAGICITEMS.ToggleActiveEffectError": "An error occured while adding active effect - please check console.",
-    "MAGICITEMS.ShowChargesMessage": "The magic item \"{name}\" has {chargesLeft} charges out of {chargesMax} left."
+    "MAGICITEMS.ShowChargesMessage": "The magic item \"{name}\" has {chargesLeft} charges out of {chargesMax} left.",
+    "MAGICITEMS.SummoningDialogTitle": "Summoning Options",
+    "MAGICITEMS.SummoningDialogButton": "Confirm summon"
 }

@@ -14,6 +14,7 @@ const CONSTANTS = {
   WEIGHT_PROPERTY_PATH: "system.weight",
   PRICE_PROPERTY_PATH: "system.price",
   SPELL_LEVEL_PROPERTY_PATH: "system.level",
+  CURRENT_CHARGES_PATH: "system.uses.value",
   DISPLAY_OPTIONS: {
     BOTTOM: 0,
     TOP: 1,

@@ -1,24 +1,27 @@
 {
   "name": "Ring of Telekinesis",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "equipment",
   "system": {
     "description": {
       "value": "<p><em>(Requires attunement)</em></p>\n<p>While wearing this ring, you can cast the @Compendium[dnd5e.spells.HQfd7jJyULIoGxrZ]{Telekinesis}&nbsp;spell at will, but you can target only objects that aren't being worn or carried.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 193",
+    "source": {
+      "custom": "DMG pg. 193"
+    },
     "quantity": 1,
-    "weight": 0,
-    "price": 80000,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
+    "price": {
+      "value": 80000,
+      "denomination": "gp"
+    },
     "attuned": false,
     "attunement": "required",
     "equipped": false,
-    "rarity": "Very rare",
+    "rarity": "veryRare",
     "identified": true,
     "activation": {
       "type": "action",
@@ -26,14 +29,15 @@
       "condition": "Target object cannot be currently worn or carried."
     },
     "duration": {
-      "value": 10,
+      "value": "10",
       "units": "minute"
     },
     "target": {
-      "value": 1,
+      "value": "1",
       "width": null,
       "units": "",
-      "type": "object"
+      "type": "object",
+      "prompt": true
     },
     "range": {
       "value": 60,
@@ -42,19 +46,24 @@
     },
     "uses": {
       "value": null,
-      "max": 0,
-      "per": ""
+      "max": "",
+      "per": null,
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "util",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -67,8 +76,8 @@
     },
     "armor": {
       "value": 0,
-      "type": "trinket",
-      "dex": 0
+      "dex": 0,
+      "magicalBonus": null
     },
     "hp": {
       "value": 0,
@@ -81,11 +90,24 @@
       "conditions": ""
     },
     "strength": null,
-    "stealth": false,
-    "proficient": false,
-    "attributes": {
-      "spelldc": 10
-    }
+    "proficient": 0,
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "trinket",
+      "baseItem": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "properties": []
   },
   "flags": {
     "magicitems": {
@@ -137,6 +159,15 @@
   },
   "img": "icons/equipment/finger/ring-inlay-red.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
   "_id": "LiguLEoQHYD2flnQ",
   "_key": "!items!LiguLEoQHYD2flnQ"
 }

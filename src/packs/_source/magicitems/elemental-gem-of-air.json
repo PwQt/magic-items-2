@@ -1,23 +1,26 @@
 {
   "name": "Elemental Gem of Air",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "consumable",
   "system": {
     "description": {
       "value": "<p><em>Wondrous item</em></p>\n<p>This blue sapphire contains a mote of elemental energy. When you use an action to break the gem, an&nbsp;<span style=\"background-color: rgba(0, 0, 0, 0.05);\">@Compendium[dnd5e.monsters.banHjKDMCegbUwYE]{Air Elemental}</span>is summoned as if you had cast the @Compendium[dnd5e.spells.1LkZvINag7KqBmDR]{Conjure Elemental} spell, and the gem's magic is lost.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 167",
+    "source": {
+      "custom": "DMG pg. 167"
+    },
     "quantity": 1,
-    "weight": 0,
-    "price": 960,
+    "weight": {
+      "value": 0,
+      "units": "lb"
+    },
+    "price": {
+      "value": 960,
+      "denomination": "gp"
+    },
     "attuned": false,
     "equipped": false,
-    "rarity": "Uncommon",
+    "rarity": "uncommon",
     "identified": true,
     "activation": {
       "type": "action",
@@ -25,14 +28,15 @@
       "condition": ""
     },
     "duration": {
-      "value": 0,
+      "value": "",
       "units": ""
     },
     "target": {
-      "value": 10,
+      "value": "10",
       "width": null,
       "units": "ft",
-      "type": "square"
+      "type": "square",
+      "prompt": true
     },
     "range": {
       "value": 90,
@@ -41,21 +45,25 @@
     },
     "uses": {
       "value": 1,
-      "max": 1,
+      "max": "1",
       "per": "charges",
       "autoDestroy": true,
-      "autoUse": true
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": null,
     "actionType": "",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -66,10 +74,25 @@
       "dc": null,
       "scaling": "spell"
     },
-    "consumableType": "trinket",
-    "attributes": {
-      "spelldc": 10
-    }
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "trinket",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "attunement": "",
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "properties": []
   },
   "flags": {
     "magicitems": {
@@ -127,6 +150,15 @@
   },
   "img": "icons/commodities/gems/gem-rough-rose-teal.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
   "_id": "e3WD7AoKNQhKGB4x",
   "_key": "!items!e3WD7AoKNQhKGB4x"
 }

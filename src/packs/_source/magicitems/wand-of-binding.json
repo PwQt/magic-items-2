@@ -1,24 +1,27 @@
 {
   "name": "Wand of Binding",
-  "permission": {
-    "default": 0,
-    "e1GJldqKX2xtXEGs": 3
-  },
   "type": "consumable",
   "system": {
     "description": {
       "value": "<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><em style=\"box-sizing: border-box; user-select: text;\">(Requires attunement by a spellcaster)</em></p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\">This wand has 7 charges for the following properties. It regains 1d6 + 1 expended charges daily at dawn. If you expend the wand's last charge, roll a d20. On a 1, the wand crumbles into ashes and is destroyed.</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><strong style=\"box-sizing: border-box; user-select: text;\">Spells</strong>. While holding the wand, you can use an action to expend some of its charges to cast one of the following spells (save DC 17): @Compendium[dnd5e.spells.l9Ju5KE7bbn3WpTm]{Hold Monster} (5 charges) or @Compendium[dnd5e.spells.3Lo9boi7P2ro6QV4]{Hold Person}&nbsp;(2 charges).</p>\n<p style=\"box-sizing: border-box; user-select: text; color: #191813; font-size: 13px;\"><strong style=\"box-sizing: border-box; user-select: text;\">Assisted Escape</strong>. While holding the wand, you can use your reaction to expend 1 charge and gain advantage on a saving throw you make to avoid being paralyzed or restrained, or you can expend 1 charge and gain advantage on any check you make to escape a grapple.</p>",
-      "chat": "",
-      "unidentified": ""
+      "chat": ""
     },
-    "source": "DMG pg. 209",
+    "source": {
+      "custom": "DMG pg. 209"
+    },
     "quantity": 1,
-    "weight": 1,
-    "price": 10000,
+    "weight": {
+      "value": 1,
+      "units": "lb"
+    },
+    "price": {
+      "value": 10000,
+      "denomination": "gp"
+    },
     "attuned": false,
     "attunement": "required",
     "equipped": false,
-    "rarity": "Rare",
+    "rarity": "rare",
     "identified": true,
     "activation": {
       "type": "action",
@@ -26,14 +29,15 @@
       "condition": ""
     },
     "duration": {
-      "value": null,
+      "value": "",
       "units": ""
     },
     "target": {
-      "value": null,
+      "value": "",
       "width": null,
       "units": "",
-      "type": ""
+      "type": "",
+      "prompt": true
     },
     "range": {
       "value": null,
@@ -42,21 +46,25 @@
     },
     "uses": {
       "value": 7,
-      "max": 7,
+      "max": "7",
       "per": "charges",
       "autoDestroy": false,
-      "autoUse": true
+      "recovery": "",
+      "prompt": true
     },
     "consume": {
       "type": "",
       "target": "",
-      "amount": null
+      "amount": null,
+      "scale": false
     },
     "ability": "",
     "actionType": "save",
-    "attackBonus": 0,
     "chatFlavor": "",
-    "critical": null,
+    "critical": {
+      "threshold": null,
+      "damage": ""
+    },
     "damage": {
       "parts": [],
       "versatile": ""
@@ -67,10 +75,24 @@
       "dc": 17,
       "scaling": "flat"
     },
-    "consumableType": "wand",
-    "attributes": {
-      "spelldc": 10
-    }
+    "unidentified": {
+      "description": ""
+    },
+    "type": {
+      "value": "wand",
+      "subtype": ""
+    },
+    "attack": {
+      "bonus": "",
+      "flat": false
+    },
+    "container": null,
+    "cover": null,
+    "crewed": false,
+    "enchantment": null,
+    "summons": null,
+    "magicalBonus": null,
+    "properties": []
   },
   "flags": {
     "magicitems": {
@@ -163,6 +185,15 @@
   },
   "img": "icons/weapons/staves/staff-ornate-engraved-blue.webp",
   "effects": [],
+  "_stats": {
+    "coreVersion": "12.331",
+    "systemId": null,
+    "systemVersion": null,
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "folder": null,
   "_id": "nU5ToL7WxCTgiASY",
   "_key": "!items!nU5ToL7WxCTgiASY"
 }
