@@ -117,5 +117,6 @@
     "MAGICITEMS.SheetAttackBonus": "Bonus Att",
     "MAGICITEMS.SummoningDialogButton": "Conferma Evocazione",
     "MAGICITEMS.SettingDisplayMainSheetItemBottom": "In Basso",
-    "MAGICITEMS.SheetSaveDC": "CD Tiro Salvezza"
+    "MAGICITEMS.SheetSaveDC": "CD Tiro Salvezza",
+    "MAGICITEMS.SheetInternalCharges": "Utilizzare le spese interne degli articoli?"
 }
