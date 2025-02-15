@@ -42,7 +42,7 @@
 		"jsdoc": "^4.0.2",
 		"less": "^4.2.0",
 		"less-watch-compiler": "^1.16.3",
-		"lint-staged": "^13.3.0",
+		"lint-staged": "^15.4.3",
 		"prettier": "^3.2.5",
 		"rollup": "^3.29.4",
 		"sass": "^1.71.1",
