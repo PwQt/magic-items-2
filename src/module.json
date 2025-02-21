@@ -67,7 +67,12 @@
       "lang": "ja",
 			"name": "Japanese",
 			"path": "languages/ja.json"
-		}
+		},
+    {
+    	"lang": "zh-tw",
+			"name": "Chinese (Simplified)",
+			"path": "languages/zh_SIMPLIFIED.json"
+    }
   ],
   "packs": [
     {
