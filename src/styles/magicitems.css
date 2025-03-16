@@ -201,47 +201,82 @@
   border-color: var(--t5ek-primary-font-color);
 }
 
-.dnd5e2 .items-section .items-header .spell-slots,
-.dnd5e2 .items-section .item .spell-slots {
-  width: 50px;
+/* New 5e Item Sheet */
+
+.dnd5e2 .magicitems-content .item {
+  line-height: 30px;
+  padding: 2px 2px;
+  border-bottom: 1px solid #44433d;
 }
 
-.dnd5e2 .editable .items-section .items-header .spell-slots input {
-  color: white;
-  width: 50%;
-}
-
-.dnd5e2 .items-section .items-header .spell-rechargeable,
-.dnd5e2 .items-section .item .spell-rechargeable {
-  width: 150px;
+.dnd5e2 .magicitems-content .items-header .item-detail,
+.dnd5e2 .magicitems-content .item .item-detail,
+.dnd5e2 .magicitems-content .items-header .item-header,
+.dnd5e2 .magicitems-content .item .item-header {
   display: flex;
-  gap: 0.1875rem;
-  align-self: center;
-  align-items: baseline;
-}
-
-.dnd5e2 .items-section .items-header .spell-level,
-.dnd5e2 .items-section .item .spell-level {
-  width: 40px;
-}
-
-.dnd5e2 .items-section .items-header .spell-consumption,
-.dnd5e2 .items-section .item .spell-consumption {
-  width: 60px;
-}
-
-.dnd5e2 .items-section .items-header .spell-upcast,
-.dnd5e2 .items-section .item .spell-upcast {
-  width: 50px;
+  align-items: center;
   justify-content: center;
-  padding: 0;
+  text-align: center;
+}
+.dnd5e2 .magicitems-content .items-header .item-name,
+.dnd5e2 .magicitems-content .item .item-name {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
   position: relative;
+  border: none;
+  cursor: pointer;
+  flex: 4;
+  line-height: 1;
+}
+.dnd5e2 .magicitems-content .items-header .spell-level,
+.dnd5e2 .magicitems-content .item .spell-level {
+  flex-grow: 1;
+  flex-basis: 4em;
+}
+.dnd5e2 .magicitems-content .items-header .spell-upcast,
+.dnd5e2 .magicitems-content .item .spell-upcast {
+  flex-grow: 1;
+  flex-basis: 4em;
+}
+.dnd5e2 .magicitems-content .items-header .spell-consumption,
+.dnd5e2 .magicitems-content .item .spell-consumption {
+  flex-grow: 0.5;
+  flex-basis: 3em;
+}
+.dnd5e2 .magicitems-content .items-header .spell-cost,
+.dnd5e2 .magicitems-content .item .spell-cost {
+  flex-grow: 0.5;
+  flex-basis: 3em;
+}
+.dnd5e2 .magicitems-content .items-header .spell-dc,
+.dnd5e2 .magicitems-content .item .spell-dc,
+.dnd5e2 .magicitems-content .items-header .spell-atk-bonus,
+.dnd5e2 .magicitems-content .item .spell-atk-bonus {
+  flex-grow: 0.8;
+  flex-basis: 4em;
 }
 
-.dnd5e2 .items-section .items-header .feat-consumption,
-.dnd5e2 .items-section .item .feat-consumption {
-  width: 70px;
+.dnd5e2 .magicitems-content .items-header .feat-effect,
+.dnd5e2 .magicitems-content .item .feat-effect,
+.dnd5e2 .magicitems-content .items-header .feat-consumption,
+.dnd5e2 .magicitems-content .item .feat-consumption,
+.dnd5e2 .magicitems-content .items-header .table-usage,
+.dnd5e2 .magicitems-content .item .table-usage,
+.dnd5e2 .magicitems-content .items-header .table-consumption,
+.dnd5e2 .magicitems-content .item .table-consumption {
+  flex-grow: 1;
+  flex-basis: 2rem;
+}
+
+.dnd5e2 .magicitems-content .items-header .item-controls,
+.dnd5e2 .magicitems-content .item .item-controls {
+  display: flex;
   justify-content: center;
-  padding: 0;
-  position: relative;
+  padding: 0 2px 0 3px;
+  flex-basis: 2rem;
+}
+
+.dnd5e2 .magicitems-content .item.item-detail select {
+  width: 100%;
 }
