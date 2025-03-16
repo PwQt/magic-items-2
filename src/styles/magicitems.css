@@ -280,3 +280,20 @@
 .dnd5e2 .magicitems-content .item.item-detail select {
   width: 100%;
 }
+
+.dnd5e2 .magicitems-element-content .items-header .item-name,
+.dnd5e2 .magicitems-element-content .item .item-name {
+  flex: 3.5;
+}
+
+.dnd5e2 .magicitems-element-content .items-header .spell-rechargeable,
+.dnd5e2 .magicitems-element-content .item .spell-rechargeable,
+.dnd5e2 .magicitems-element-content .items-header .spell-consumption,
+.dnd5e2 .magicitems-element-content .item .spell-consumption,
+.dnd5e2 .magicitems-element-content .items-header .spell-upcast,
+.dnd5e2 .magicitems-element-content .item .spell-upcast,
+.dnd5e2 .magicitems-element-content .items-header .spell-slots,
+.dnd5e2 .magicitems-element-content .item .spell-slots {
+  display: flex;
+  flex: 1;
+}
