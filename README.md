@@ -22,6 +22,8 @@ If you wish to buy me a coffee, follow this link:
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J6UHCX0)
 
+## D&D 4 Upgrade
+An upgrade is _in progress_ (albeit very slow), you can check the main task for the progress [here](https://github.com/PwQt/magic-items-2/issues/180).
 
 ## Translation
 
