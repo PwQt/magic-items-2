@@ -12,7 +12,9 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
     if (!this.ownedItem) {
       let data = await this.item.data();
 
-      if (typeof data.system.activities.includes(save.scaling) === "undefined") {
+      let save = data.system.activities?.getByType("save");
+
+      if (!Array.isArray(save) || save.length === 0) {
         data = foundry.utils.mergeObject(data, {
           "system.save.scaling": "spell",
         });
@@ -61,7 +63,9 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
     let proceed = async () => {
       let spell = this.ownedItem;
       let clonedOwnedItem = this.ownedItem;
-      let itemUseConfiguration = {};
+      let itemUseConfiguration = {
+        consumeSpellSlot: false,
+      };
 
       if (
         MagicItemHelpers.canSummon() &&
@@ -124,7 +128,7 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
     if (this.hasCharges(consumption)) {
       await proceed();
     } else {
-      this.showNoChargesMessage(async () => {
+      await this.showNoChargesMessage(async () => {
         await proceed();
       });
     }

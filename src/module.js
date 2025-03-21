@@ -300,7 +300,7 @@ Hooks.on(`renderItemSheet5e2`, (app, html, data) => {
   data.tabs.push({
     classes: "item",
     label: "Magic Items",
-    tab: "magic-items",
+    tab: "magicitems",
   });
   if (tidyApi?.isTidy5eItemSheet(app)) {
     return;
