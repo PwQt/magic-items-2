@@ -102,7 +102,6 @@ export class OwnedMagicItemSpell extends AbstractOwnedMagicItemEntry {
 
       if (spell.effects?.size > 0 && !MagicItemHelpers.isMidiItemEffectWorkflowOn()) {
         spell = spell.clone({ effects: {} }, { keepId: true });
-        spell.prepareFinalAttributes();
       }
 
       let chatData = await spell.use(itemUseConfiguration, {
