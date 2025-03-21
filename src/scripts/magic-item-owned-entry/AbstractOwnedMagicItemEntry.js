@@ -119,50 +119,57 @@ export class AbstractOwnedMagicItemEntry {
     return destroyed;
   }
 
-  showNoChargesMessage(callback) {
+  async showNoChargesMessage(callback) {
     const message = game.i18n.localize("MAGICITEMS.SheetNoChargesMessage");
-    const title = game.i18n.localize("MAGICITEMS.SheetDialogTitle");
-    let d = new Dialog({
-      title: title,
-      content: `<b>'${this.magicItem.name}'</b> - ${message} <b>'${this.item.name}'</b><br><br>`,
-      buttons: {
-        use: {
-          icon: '<i class="fas fa-check"></i>',
+    const dialog = new foundry.applications.api.DialogV2({
+      window: { title: game.i18n.localize("MAGICITEMS.SheetDialogTitle") },
+      content: `<p>
+                  <b>${this.magicItem.name}</b> - ${message} <b>${this.item.name}</b>
+                </p>`,
+      rejectClose: false,
+      buttons: [
+        {
+          action: "use",
+          icon: "fas fa-check",
           label: game.i18n.localize("MAGICITEMS.SheetDialogUseAnyway"),
-          callback: () => callback(),
+          callback: (event, button, dialog) => callback(),
         },
-        close: {
-          icon: '<i class="fas fa-times"></i>',
+        {
+          action: "close",
           label: game.i18n.localize("MAGICITEMS.SheetDialogClose"),
-          callback: () => d.close(),
+          icon: "fas fa-times",
+          default: true,
+          callback: () => dialog.close(),
         },
-      },
-      default: "close",
+      ],
     });
-    d.render(true);
+    dialog.render({ force: true });
   }
 
   activeEffectMessage(callback) {
     const message = game.i18n.localize("MAGICITEMS.ToggleActiveEffectDialogMessage");
     const title = game.i18n.localize("MAGICITEMS.ToggleActiveEffectDialogTitle");
-    let x = new Dialog({
-      title: title,
-      content: `${message}<br><br>`,
-      buttons: {
-        use: {
-          icon: '<i class="fas fa-check"></i>',
+    const dialog = new foundry.applications.api.DialogV2({
+      window: { title: title },
+      content: `<p>${message}</p>`,
+      rejectClose: false,
+      buttons: [
+        {
+          action: "use",
+          icon: "fas fa-check",
           label: game.i18n.localize("MAGICITEMS.ToggleActiveEffectDialogYes"),
           callback: () => callback(),
+          default: true,
         },
-        close: {
-          icon: '<i class="fas fa-times"></i>',
+        {
+          action: "close",
+          icon: "fas fa-times",
           label: game.i18n.localize("MAGICITEMS.ToggleActiveEffectDialogNo"),
-          callback: () => x.close(),
+          callback: () => dialog.close(),
         },
-      },
-      default: "use",
+      ],
     });
-    x.render(true);
+    dialog.render({ force: true });
   }
 
   async askSummonningMessage(summonOptions) {

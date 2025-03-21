@@ -13,7 +13,7 @@ export class MagicItemTable extends AbstractMagicItemEntry {
   }
 
   async roll(actor) {
-    let entity = await this.entity();
+    let entity = await MagicItemHelpers.fetchEntity(this);
     let result = await entity.draw();
     if (result && result.results && result.results.length === 1 && result.results[0].collection) {
       const collectionId = result.results[0].documentCollection;
