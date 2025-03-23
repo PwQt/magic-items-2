@@ -22,7 +22,7 @@
     "MAGICITEMS.SheetActivationAttuned": "已同调",
     "MAGICITEMS.SheetInternalCharges": "使用物品的内置充能？",
     "MAGICITEMS.SheetTot": "总计",
-    "MAGICITEMS.SheetActives": "主动",
+    "MAGICITEMS.SheetActives": "激活",
     "MAGICITEMS.SheetUses": "使用次数",
     "MAGICITEMS.RechargeUnitDaily": "每日",
     "MAGICITEMS.RechargeUnitDawn": "黎明时",
@@ -112,11 +112,11 @@
     "MAGICITEMS.WarnNoMagicItem": "你的受控角色未拥有名为…的物品。 ",
     "MAGICITEMS.WarnNoMagicItemSpell": "你的受控角色未拥有名为…的法术或专长。 ",
     "MAGICITEMS.RandomResult": "随机结果",
-    "MAGICITEMS.ToggleActiveEffectDialogMessage": "你是否要将一个生效的效应切换到所选的指示物（们）上？",
-    "MAGICITEMS.ToggleActiveEffectDialogTitle": "切换主动效应",
+    "MAGICITEMS.ToggleActiveEffectDialogMessage": "你是否要将一个激活的效应切换到所选的指示物（们）上？",
+    "MAGICITEMS.ToggleActiveEffectDialogTitle": "切换激活效应",
     "MAGICITEMS.ToggleActiveEffectDialogYes": "是",
     "MAGICITEMS.ToggleActiveEffectDialogNo": "否",
-    "MAGICITEMS.ToggleActiveEffectError": "在添加主动效应时出现错误 - 请查看控制台。",
+    "MAGICITEMS.ToggleActiveEffectError": "在添加激活效应时出现错误 - 请查看控制台。",
     "MAGICITEMS.ShowChargesMessage": "魔法物品 “{name}” 剩余 {chargesLeft} 充能，其最大充能次数为 {chargesMax} 。",
     "MAGICITEMS.SummoningDialogButton": "确认召唤"
 }
