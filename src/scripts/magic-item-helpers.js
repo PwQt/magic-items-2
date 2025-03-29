@@ -4,7 +4,11 @@ import { isRealNumber, isEmptyObject } from "./lib/lib.js";
 
 export class MagicItemHelpers {
   static isUsingNew5eSheet(sheet) {
-    return sheet?.constructor?.name === "ActorSheet5eCharacter2" || sheet?.constructor?.name === "ActorSheet5eNPC2";
+    return (
+      sheet?.constructor?.name === "ActorSheet5eCharacter2" ||
+      sheet?.constructor?.name === "ActorSheet5eNPC2" ||
+      sheet?.constructor?.name === "ItemSheet5e2"
+    );
   }
 
   static isMidiItemEffectWorkflowOn() {
