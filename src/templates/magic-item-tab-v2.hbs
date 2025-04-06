@@ -23,11 +23,7 @@
       <div class="form-fields" style="flex: 1">
         <input class="magic-item-charges" type="text" name="flags.magicitems.charges" value="{{charges}}" {{disabled (eq internal true)}}/>
         <select name="flags.magicitems.chargeType" class="magic-item-charges-type" {{disabled (eq internal true)}}>
-          {{#select chargeType}}
-            {{#each chargeTypes as |name key|}}
-              <option value="{{key}}">{{name}}</option>
-            {{/each}}
-          {{/select}}
+          {{ selectOptions chargeTypes }}
         </select>
       </div>
     </div>
@@ -36,22 +32,13 @@
       <div class="form-fields">
         <input type="checkbox" name="flags.magicitems.destroy" {{checked destroy}} style="margin: 3px 10px;" />
         <select name="flags.magicitems.destroyCheck" class="magic-item-destroy-check" {{disabled (eq destroy false)}}>
-          {{#select destroyCheck}}
-            {{#each destroyChecks as |name key|}}
-              <option value="{{key}}">{{name}}</option>
-            {{/each}}
-          {{/select}}
+          {{ selectOptions destroyChecks }}
         </select>
         <select
           name="flags.magicitems.destroyType"
           class="magic-item-destroy-type {{ifThen (eq chargeType 'c1') '' 'hidden'}}"
-          {{disabled (eq destroy false)}}
-        >
-          {{#select destroyType}}
-            {{#each destroyTypes as |name key|}}
-              <option value="{{key}}">{{name}}</option>
-            {{/each}}
-          {{/select}}
+          {{disabled (eq destroy false)}} >
+          {{ selectOptions destroyTypes }}
         </select>
         <input type="text" name="flags.magicitems.destroyDC" class="magic-item-destroy-dc {{ifThen (eq destroyCheck 'd3') '' 'hidden'}}" 
               value="{{destroyDC}}" style="margin: 3px 10px;" {{disabled (eq destroy false)}} />
@@ -78,18 +65,10 @@
           {{disabled (eq rechargeType "t3")}}
         />
         <select name="flags.magicitems.rechargeType">
-          {{#select rechargeType}}
-            {{#each rechargeTypes as |name key|}}
-              <option value="{{key}}">{{name}}</option>
-            {{/each}}
-          {{/select}}
+          {{ selectOptions rechargeType }}
         </select>
         <select name="flags.magicitems.rechargeUnit">
-          {{#select rechargeUnit}}
-            {{#each rechargeUnits as |name key|}}
-              <option value="{{key}}">{{name}}</option>
-            {{/each}}
-          {{/select}}
+          {{ selectOptions rechargeUnits }}
         </select>
       </div>
     </div>
@@ -136,11 +115,7 @@
                 </h3>
                 <div class="item-detail spell-level">
                   <select class="spell-level" name="flags.magicitems.spells.{{i}}.level">
-                    {{#select item.level}}
-                      {{#each item.levels as |name key|}}
-                        <option value="{{key}}">{{name}}</option>
-                      {{/each}}
-                    {{/select}}
+                    {{ selectOptions item.levels }}
                   </select>
                 </div>
                 <div class="item-detail spell-consumption">
@@ -153,11 +128,7 @@
                 </div>
                 <div class="item-detail spell-upcast">
                   <select class="spell-upcast" name="flags.magicitems.spells.{{i}}.upcast">
-                    {{#select item.upcast}}
-                      {{#each item.upcasts as |name key|}}
-                        <option value="{{key}}">{{name}}</option>
-                      {{/each}}
-                    {{/select}}
+                    {{ selectOptions item.upcasts }}
                   </select>
                 </div>
                 <div class="item-detail spell-cost">
@@ -238,11 +209,7 @@
                 </h3>
                 <div class="item-detail feat-effect">
                   <select class="feat-effect" name="flags.magicitems.feats.{{i}}.effect">
-                    {{#select item.effect}}
-                      {{#each item.effects as |name key|}}
-                        <option value="{{key}}">{{name}}</option>
-                      {{/each}}
-                    {{/select}}
+                    {{ selectOptions item.effects }}
                   </select>
                 </div>
                 <div class="item-detail feat-consumption">
@@ -293,11 +260,7 @@
                 </h3>
                 <div class="item-detail table-usage">
                   <select class="table-usage" name="flags.magicitems.tables.{{i}}.usage">
-                    {{#select item.usage}}
-                      {{#each item.usages as |name key|}}
-                        <option value="{{key}}">{{name}}</option>
-                      {{/each}}
-                    {{/select}}
+                    {{ selectOptions item.usages }}
                   </select>
                 </div>
                 <div class="item-detail table-consumption">
