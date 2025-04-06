@@ -114,9 +114,10 @@ export class MagicItemTab {
 
     if (this.activate && !this.isActive()) {
       app._tabs[0].activate(`${CONSTANTS.MODULE_ID}`);
-
-      this.activate = false;
+      app.setPosition();
     }
+
+    this.activate = false;
   }
 
   isActive() {

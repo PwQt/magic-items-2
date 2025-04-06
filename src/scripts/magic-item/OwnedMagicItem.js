@@ -112,6 +112,7 @@ export class OwnedMagicItem extends MagicItem {
       });
       this.uses = usage;
     } else if (this.uses) {
+      this.uses = Math.max(this.uses - consumption, 0);
       if (!this.item.system.uses.autoDestroy) {
         if (await this.destroyed()) {
           if (this.destroyType === MAGICITEMS.DESTROY_JUST_DESTROY) {
