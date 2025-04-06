@@ -114,10 +114,9 @@ export class MagicItemTab {
 
     if (this.activate && !this.isActive()) {
       app._tabs[0].activate(`${CONSTANTS.MODULE_ID}`);
-      app.setPosition();
-    }
 
-    this.activate = false;
+      this.activate = false;
+    }
   }
 
   isActive() {
@@ -216,16 +215,6 @@ export class MagicItemTab {
     });
     html.find(".item-delete.item-table").click((evt) => {
       magicItem.removeTable(evt.target.getAttribute("data-table-idx"));
-      onMagicItemUpdatingCallback?.();
-      item.update({
-        flags: {
-          [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
-        },
-      });
-    });
-
-    html.find("input[name='flags.magicitems.internal']").click(async (evt) => {
-      await magicItem.updateInternalCharges(evt.target.checked, item);
       onMagicItemUpdatingCallback?.();
       item.update({
         flags: {

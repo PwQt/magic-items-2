@@ -102,11 +102,13 @@ export class OwnedMagicItem extends MagicItem {
   }
 
   async consume(consumption) {
-    if (this.item.system.uses.value) {
+    if (this.internal && this.item.system.uses !== "undefined") {
       const usage = Math.max(this.item.system.uses.value - consumption, 0);
+      const spent = Math.max(this.item.system.uses.spent + consumption, 0);
       var embeddedDocument = await RetrieveHelpers.getItemAsync(this.item);
       embeddedDocument.update({
         [CONSTANTS.CURRENT_CHARGES_PATH]: usage,
+        [CONSTANTS.CHARGES_SPENT_PATH]: spent,
       });
       this.uses = usage;
     } else if (this.uses) {
@@ -284,9 +286,9 @@ export class OwnedMagicItem extends MagicItem {
 
   formatMessage(msg) {
     return `
-            <div class="dnd5e chat-card item-card">
+            <div class="dnd5e2 chat-card item-card">
                 <header class="card-header flexrow">
-                    <img src="${this.img}" title="Palla di Fuoco" width="36" height="36" />
+                    <img src="${this.img}" title="magic items" width="36" height="36" />
                     <h3 class="item-name">${this.name}</h3>
                 </header>
 
