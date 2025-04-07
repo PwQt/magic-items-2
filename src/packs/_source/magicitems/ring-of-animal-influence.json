@@ -7,7 +7,9 @@
       "chat": ""
     },
     "source": {
-      "custom": "DMG pg. 189"
+      "custom": "DMG pg. 189",
+      "revision": 1,
+      "rules": "2024"
     },
     "quantity": 1,
     "weight": {
@@ -22,56 +24,10 @@
     "equipped": false,
     "rarity": "rare",
     "identified": true,
-    "activation": {
-      "type": "action",
-      "cost": 1,
-      "condition": ""
-    },
-    "duration": {
-      "value": "",
-      "units": ""
-    },
-    "target": {
-      "value": "30",
-      "width": null,
-      "units": "ft",
-      "type": "cone",
-      "prompt": true
-    },
-    "range": {
-      "value": 30,
-      "long": null,
-      "units": "ft"
-    },
     "uses": {
-      "value": 3,
       "max": "3",
-      "per": "charges",
-      "recovery": "",
-      "prompt": true
-    },
-    "consume": {
-      "type": "",
-      "target": "",
-      "amount": null,
-      "scale": false
-    },
-    "ability": "",
-    "actionType": "save",
-    "chatFlavor": "",
-    "critical": {
-      "threshold": null,
-      "damage": ""
-    },
-    "damage": {
-      "parts": [],
-      "versatile": ""
-    },
-    "formula": "",
-    "save": {
-      "ability": "wis",
-      "dc": 13,
-      "scaling": "flat"
+      "spent": 0,
+      "recovery": []
     },
     "armor": {
       "value": 0,
@@ -97,17 +53,97 @@
       "value": "trinket",
       "baseItem": ""
     },
-    "attack": {
-      "bonus": "",
-      "flat": false
-    },
     "container": null,
     "attunement": "",
     "cover": null,
     "crewed": false,
-    "enchantment": null,
-    "summons": null,
-    "properties": []
+    "properties": [],
+    "activities": {
+      "dnd5eactivity000": {
+        "_id": "dnd5eactivity000",
+        "type": "save",
+        "activation": {
+          "type": "action",
+          "value": 1,
+          "condition": "",
+          "override": false
+        },
+        "consumption": {
+          "targets": [
+            {
+              "type": "itemUses",
+              "target": "",
+              "value": "1",
+              "scaling": {
+                "mode": "",
+                "formula": ""
+              }
+            }
+          ],
+          "scaling": {
+            "allowed": false,
+            "max": ""
+          },
+          "spellSlot": true
+        },
+        "description": {
+          "chatFlavor": ""
+        },
+        "duration": {
+          "concentration": false,
+          "value": "",
+          "units": "",
+          "special": "",
+          "override": false
+        },
+        "effects": [],
+        "range": {
+          "value": "30",
+          "units": "ft",
+          "special": "",
+          "override": false
+        },
+        "target": {
+          "template": {
+            "count": "",
+            "contiguous": false,
+            "type": "cone",
+            "size": "30",
+            "width": "",
+            "height": "",
+            "units": "ft"
+          },
+          "affects": {
+            "count": "",
+            "type": "",
+            "choice": false,
+            "special": ""
+          },
+          "prompt": true,
+          "override": false
+        },
+        "uses": {
+          "spent": 0,
+          "max": "",
+          "recovery": []
+        },
+        "damage": {
+          "onSave": "half",
+          "parts": []
+        },
+        "save": {
+          "ability": [
+            "wis"
+          ],
+          "dc": {
+            "calculation": "",
+            "formula": "13"
+          }
+        },
+        "sort": 0
+      }
+    },
+    "identifier": ""
   },
   "flags": {
     "magicitems": {
@@ -217,6 +253,10 @@
           ]
         }
       }
+    },
+    "dnd5e": {
+      "persistSourceMigration": true,
+      "migratedUses": 3
     }
   },
   "img": "icons/equipment/finger/ring-cabochon-gold-orange.webp",
