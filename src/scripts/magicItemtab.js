@@ -90,6 +90,8 @@ export class MagicItemTab {
     let template = null;
     if (MagicItemTab.isUsingNew5eSheet(this.item)) {
       template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab-v2.hbs`, this.magicItem);
+    } else {
+      template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.hbs`, this.magicItem);
     }
     let el = this.html.find(`.magicitems-content`);
     if (el.length) {
