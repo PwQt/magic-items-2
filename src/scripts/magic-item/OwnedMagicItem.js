@@ -245,7 +245,7 @@ export class OwnedMagicItem extends MagicItem {
       this.setUses(this.item.system.uses.value);
     }
 
-    this.update();
+    await this.update();
   }
 
   entryBy(itemId) {
@@ -266,7 +266,7 @@ export class OwnedMagicItem extends MagicItem {
     }
   }
 
-  update() {
+  async update() {
     this.magicItemActor.suspendListening();
     this.item
       .update({
@@ -289,7 +289,7 @@ export class OwnedMagicItem extends MagicItem {
     return `
             <div class="dnd5e2 chat-card item-card">
                 <header class="card-header flexrow">
-                    <img src="${this.img}" title="magic items" width="36" height="36" />
+                    <img src="${this.img}" title="Magic Items" width="36" height="36" />
                     <h3 class="item-name">${this.name}</h3>
                 </header>
 

@@ -23,7 +23,7 @@
         <div class="form-fields" style="flex: 1">
           <input class="magic-item-charges" type="text" name="flags.magicitems.charges" value="{{charges}}" {{disabled (eq internal true)}}/>
           <select name="flags.magicitems.chargeType" class="magic-item-charges-type" {{disabled (eq internal true)}}>
-            {{ selectOptions chargeTypes }}
+            {{ selectOptions chargeTypes selected=chargeType }}
           </select>
         </div>
       </div>
@@ -32,13 +32,13 @@
         <div class="form-fields">
           <input type="checkbox" name="flags.magicitems.destroy" {{checked destroy}} style="margin: 3px 10px;" />
           <select name="flags.magicitems.destroyCheck" class="magic-item-destroy-check" {{disabled (eq destroy false)}}>
-            {{ selectOptions destroyChecks }}
+            {{ selectOptions destroyChecks selected=destroyCheck }}
           </select>
           <select
             name="flags.magicitems.destroyType"
             class="magic-item-destroy-type {{ifThen (eq chargeType 'c1') '' 'hidden'}}"
             {{disabled (eq destroy false)}} >
-            {{ selectOptions destroyTypes }}
+            {{ selectOptions destroyTypes selected=destroyType }}
           </select>
           <input type="text" name="flags.magicitems.destroyDC" class="magic-item-destroy-dc {{ifThen (eq destroyCheck 'd3') '' 'hidden'}}" 
                 value="{{destroyDC}}" style="margin: 3px 10px;" {{disabled (eq destroy false)}} />
@@ -65,10 +65,10 @@
             {{disabled (eq rechargeType "t3")}}
           />
           <select name="flags.magicitems.rechargeType">
-            {{ selectOptions rechargeTypes }}
+            {{ selectOptions rechargeTypes selected=rechargeType }}
           </select>
           <select name="flags.magicitems.rechargeUnit">
-            {{ selectOptions rechargeUnits }}
+            {{ selectOptions rechargeUnits selected=rechargeUnit }}
           </select>
         </div>
       </div>
@@ -114,7 +114,7 @@
                   </h3>
                   <div class="item-detail spell-level">
                     <select class="spell-level" name="flags.magicitems.spells.{{i}}.level">
-                      {{ selectOptions item.levels }}
+                      {{ selectOptions item.levels selected=item.level }}
                     </select>
                   </div>
                   <div class="item-detail spell-consumption">
@@ -127,7 +127,7 @@
                   </div>
                   <div class="item-detail spell-upcast">
                     <select class="spell-upcast" name="flags.magicitems.spells.{{i}}.upcast">
-                      {{ selectOptions item.upcasts }}
+                      {{ selectOptions item.upcasts selected=item.upcast }}
                     </select>
                   </div>
                   <div class="item-detail spell-cost">
@@ -208,7 +208,7 @@
                   </h3>
                   <div class="item-detail feat-effect">
                     <select class="feat-effect" name="flags.magicitems.feats.{{i}}.effect">
-                      {{ selectOptions item.effects }}
+                      {{ selectOptions item.effects selected=item.effect }}
                     </select>
                   </div>
                   <div class="item-detail feat-consumption">
@@ -259,7 +259,7 @@
                   </h3>
                   <div class="item-detail table-usage">
                     <select class="table-usage" name="flags.magicitems.tables.{{i}}.usage">
-                      {{ selectOptions item.usages }}
+                      {{ selectOptions item.usages selected=item.usage }}
                     </select>
                   </div>
                   <div class="item-detail table-consumption">
