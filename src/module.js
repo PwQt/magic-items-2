@@ -5,6 +5,7 @@ import { MagicItemActor } from "./scripts/magicitemactor.js";
 import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
 import { MagicItem } from "./scripts/magic-item/MagicItem.js";
+import Logger from "./scripts/lib/Logger.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -296,6 +297,23 @@ Hooks.on(`renderItemSheet5e`, (app, html, data) => {
   MagicItemTab.bind(app, html, data);
 });
 
+Hooks.on(`renderItemSheet5e2`, (app, html, data) => {
+  data.tabs.push({
+    classes: "item",
+    label: "Magic Items",
+    tab: "magicitems",
+  });
+  if (tidyApi?.isTidy5eItemSheet(app)) {
+    return;
+  }
+
+  if (!MagicItemTab.isAllowedToShow()) {
+    return;
+  }
+
+  MagicItemTab.bind(app, html, data);
+});
+
 Hooks.on(`renderActorSheet5eCharacter`, (app, html, data) => {
   if (tidyApi?.isTidy5eCharacterSheet(app)) {
     return;
@@ -353,7 +371,6 @@ Hooks.on("updateItem", async (item, change, options, userId) => {
       if (miItem) {
         await miItem.updateInternalCharges(item.flags.magicitems?.internal, item);
         miItem.rechargeableLabel = miItem.getRechargeableLabel();
-        miItem.update();
       }
     }
     if (miActor && miActor.listening && miActor.actor.id === actor.id) {
@@ -390,5 +407,13 @@ Hooks.on("preDeleteItem", async (item, options, userId) => {
   const actorEntity = item.actor;
   if (!actorEntity) {
     return;
+  }
+});
+
+Hooks.on("dnd5e.dropItemSheetData", (item, sheet, data) => {
+  const isOnMagicItemsTab = !!sheet.form?.querySelector(".active .magicitems-content");
+  const isItemType = data.type === "Item";
+  if (isOnMagicItemsTab && isItemType) {
+    return false;
   }
 });

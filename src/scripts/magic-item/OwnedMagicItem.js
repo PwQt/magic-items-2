@@ -102,11 +102,13 @@ export class OwnedMagicItem extends MagicItem {
   }
 
   async consume(consumption) {
-    if (this.item.system.uses.value) {
+    if (this.internal && this.item.system.uses !== "undefined") {
       const usage = Math.max(this.item.system.uses.value - consumption, 0);
+      const spent = Math.max(this.item.system.uses.spent + consumption, 0);
       var embeddedDocument = await RetrieveHelpers.getItemAsync(this.item);
       embeddedDocument.update({
         [CONSTANTS.CURRENT_CHARGES_PATH]: usage,
+        [CONSTANTS.CHARGES_SPENT_PATH]: spent,
       });
       this.uses = usage;
     } else if (this.uses) {
@@ -243,7 +245,7 @@ export class OwnedMagicItem extends MagicItem {
       this.setUses(this.item.system.uses.value);
     }
 
-    this.update();
+    await this.update();
   }
 
   entryBy(itemId) {
@@ -264,7 +266,7 @@ export class OwnedMagicItem extends MagicItem {
     }
   }
 
-  update() {
+  async update() {
     this.magicItemActor.suspendListening();
     this.item
       .update({
@@ -285,11 +287,17 @@ export class OwnedMagicItem extends MagicItem {
 
   formatMessage(msg) {
     return `
-            <div class="dnd5e chat-card item-card">
-                <header class="card-header flexrow">
-                    <img src="${this.img}" title="Palla di Fuoco" width="36" height="36" />
-                    <h3 class="item-name">${this.name}</h3>
-                </header>
+            <div class="dnd5e2 chat-card midi-chat-card">
+                <section class="card-header description">
+                  <header class="summary">
+                    <img class="gold-icon" src="${this.img}" alt="${this.name}" />
+                    <div class="name-stacked border">
+                      <span class="title">
+                        ${this.name}
+                      </span>
+                    </div>
+                  </header>
+                </section>
 
                 <div class="card-content">${msg}</div>
             </div>`;

@@ -201,6 +201,7 @@
   border-color: var(--t5ek-primary-font-color);
 }
 
+/* New 5e Item Sheet */
 .dnd5e2 .items-section .items-header .spell-slots,
 .dnd5e2 .items-section .item .spell-slots {
   width: 50px;
@@ -244,4 +245,104 @@
   justify-content: center;
   padding: 0;
   position: relative;
+}
+
+.dnd5e2 .magic-items-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 1px;
+  overflow-y: auto;
+}
+
+.dnd5e2 .magic-items-list .item:last-child {
+  border-bottom: none;
+}
+
+.dnd5e2 .spell-slots,
+.dnd5e2 .spell-comps {
+  font-size: 12px;
+  text-align: center;
+  color: #7a7971;
+}
+
+.dnd5e2 .magicitems-content input[type="text"],
+.dnd5e2 .magicitems-content select {
+  height: 24px;
+  border: 1px solid #7a7971;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dnd5e2 .magicitems-content .magic-item-charges {
+  flex: 0.5;
+}
+
+.dnd5e2 .magic-items-list .item .item-detail {
+  padding: 0 1px 0 1px;
+}
+
+.dnd5e2 .spell-drag-content {
+  height: 70px;
+  text-align: center;
+  color: #828180;
+  line-height: 5;
+  border: 2px #828180 dotted;
+}
+
+.dnd5e2 .magic-items-list .items-header .item-controls,
+.dnd5e2 .magic-items-list .item .item-controls {
+  flex-basis: 2rem;
+  display: flex;
+  justify-content: center;
+  padding: 0 5px 0 3px;
+  width: 10px;
+}
+
+.dnd5e2 .magic-items-list .item-detail select {
+  width: 100%;
+}
+
+.dnd5e2 .magic-items-list .item .item-name {
+  cursor: pointer;
+  width: 80px;
+  overflow-y: auto;
+  border-bottom: none;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+.dnd5e2 .magic-items-list .items-header .spell-level,
+.dnd5e2 .magic-items-list .item .spell-level {
+  width: 60px;
+}
+.dnd5e2 .magic-items-list .items-header .spell-consumption,
+.dnd5e2 .magic-items-list .item .spell-consumption {
+  width: 35px;
+}
+.dnd5e2 .magic-items-list .items-header .spell-upcast,
+.dnd5e2 .magic-items-list .item .spell-upcast {
+  width: 65px;
+}
+.dnd5e2 .magic-items-list .items-header .spell-cost,
+.dnd5e2 .magic-items-list .item .spell-cost {
+  width: 30px;
+}
+.dnd5e2 .magic-items-list .items-header .spell-dc,
+.dnd5e2 .magic-items-list .item .spell-dc {
+  width: 60px;
+}
+.dnd5e2 .magic-items-list .items-header .spell-atk-bonus,
+.dnd5e2 .magic-items-list .item .spell-atk-bonus {
+  width: 60px;
+}
+
+.dnd5e2 .magic-items-list .items-header .feat-effect,
+.dnd5e2 .magic-items-list .item .feat-effect,
+.dnd5e2 .magic-items-list .items-header .feat-consumption,
+.dnd5e2 .magic-items-list .item .feat-consumption,
+.dnd5e2 .magic-items-list .items-header .table-usage,
+.dnd5e2 .magic-items-list .item .table-usage,
+.dnd5e2 .magic-items-list .items-header .table-consumption,
+.dnd5e2 .magic-items-list .item .table-consumption {
+  width: 100px;
+  padding: 0 5px 0 5px;
 }
