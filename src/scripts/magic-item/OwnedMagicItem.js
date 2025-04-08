@@ -290,7 +290,7 @@ export class OwnedMagicItem extends MagicItem {
             <div class="dnd5e2 chat-card midi-chat-card">
                 <section class="card-header description">
                   <header class="summary">
-                    <img class="gold-icon" src="${this.img}" alt="${this.name}" width="36" height="36" />
+                    <img class="gold-icon" src="${this.img}" alt="${this.name}" />
                     <div class="name-stacked border">
                       <span class="title">
                         ${this.name}
