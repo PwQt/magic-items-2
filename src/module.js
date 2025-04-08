@@ -5,6 +5,7 @@ import { MagicItemActor } from "./scripts/magicitemactor.js";
 import { MagicItemSheet } from "./scripts/magicitemsheet.js";
 import { MagicItemTab } from "./scripts/magicItemtab.js";
 import { MagicItem } from "./scripts/magic-item/MagicItem.js";
+import Logger from "./scripts/lib/Logger.js";
 
 // CONFIG.debug.hooks = true;
 
@@ -406,5 +407,13 @@ Hooks.on("preDeleteItem", async (item, options, userId) => {
   const actorEntity = item.actor;
   if (!actorEntity) {
     return;
+  }
+});
+
+Hooks.on("dnd5e.dropItemSheetData", (item, sheet, data) => {
+  const isOnMagicItemsTab = !!sheet.form?.querySelector(".active .magicitems-content");
+  const isItemType = data.type === "Item";
+  if (isOnMagicItemsTab && isItemType) {
+    return false;
   }
 });
