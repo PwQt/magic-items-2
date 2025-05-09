@@ -90,5 +90,7 @@
     "MAGICITEMS.SheetFeatEffect1": "Détruit",
     "MAGICITEMS.WarnNoActor": "vous n'avez pas de personnage contrôlé, sélectionnez un personnage et réessayez.",
     "MAGICITEMS.WarnNoMagicItem": "Votre personnage contrôlé ne dispose pas d'objet nommé ",
-    "MAGICITEMS.WarnNoMagicItemSpell": "Votre personnage contrôlé n'a pas de sort / aptitude nommé "
+    "MAGICITEMS.WarnNoMagicItemSpell": "Votre personnage contrôlé n'a pas de sort / aptitude nommé ",
+    "MAGICITEMS.SettingTabNames": "Objets magiques",
+    "MAGICITEMS.SettingDebug": "Permettre débugage"
 }
