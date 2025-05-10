@@ -117,5 +117,6 @@
     "MAGICITEMS.SummoningDialogButton": "Confirmar la convocatoria",
     "MAGICITEMS.SummoningDialogTitle": "Opciones de convocatoria",
     "MAGICITEMS.SheetAttackBonus": "Bonificación por ataque",
-    "MAGICITEMS.SheetSaveDC": "Guardar DC"
+    "MAGICITEMS.SheetSaveDC": "Guardar DC",
+    "MAGICITEMS.SheetInternalCharges": "¿Usar cargas internas de los objetos?"
 }
