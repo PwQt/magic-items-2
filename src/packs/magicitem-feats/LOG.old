@@ -1,14 +1,14 @@
-2025/01/10-17:09:57.420 4efc Recovering log #25
-2025/01/10-17:09:57.422 4efc Delete type=0 #25
-2025/01/10-17:09:57.422 4efc Delete type=3 #23
-2025/01/10-17:09:57.425 2fa4 Level-0 table #31: started
-2025/01/10-17:09:57.426 2fa4 Level-0 table #31: 6346 bytes OK
-2025/01/10-17:09:57.427 2fa4 Delete type=0 #29
-2025/01/10-17:09:57.427 2fa4 Manual compaction at level-0 from '!items!7khqOxRGYGa8sZ3D' @ 72057594037927935 : 1 .. '!items!nrV4PEgY98SCB7KC' @ 0 : 0; will stop at '!items!nrV4PEgY98SCB7KC' @ 29 : 1
-2025/01/10-17:09:57.427 2fa4 Compacting 1@0 + 1@1 files
-2025/01/10-17:09:57.428 2fa4 Generated table #32@0: 6 keys, 6346 bytes
-2025/01/10-17:09:57.428 2fa4 Compacted 1@0 + 1@1 files => 6346 bytes
-2025/01/10-17:09:57.429 2fa4 compacted to: files[ 0 1 0 0 0 0 0 ]
-2025/01/10-17:09:57.429 2fa4 Delete type=2 #27
-2025/01/10-17:09:57.429 2fa4 Delete type=2 #31
-2025/01/10-17:09:57.430 2fa4 Manual compaction at level-0 from '!items!nrV4PEgY98SCB7KC' @ 29 : 1 .. '!items!nrV4PEgY98SCB7KC' @ 0 : 0; will stop at (end)
+2025/04/07-10:22:05.093 54c4 Recovering log #51
+2025/04/07-10:22:05.096 54c4 Delete type=0 #51
+2025/04/07-10:22:05.096 54c4 Delete type=3 #50
+2025/04/07-10:22:05.099 557c Level-0 table #55: started
+2025/04/07-10:22:05.100 557c Level-0 table #55: 6346 bytes OK
+2025/04/07-10:22:05.101 557c Delete type=0 #53
+2025/04/07-10:22:05.101 557c Manual compaction at level-0 from '!items!7khqOxRGYGa8sZ3D' @ 72057594037927935 : 1 .. '!items!nrV4PEgY98SCB7KC' @ 0 : 0; will stop at '!items!nrV4PEgY98SCB7KC' @ 41 : 1
+2025/04/07-10:22:05.101 557c Compacting 1@0 + 1@1 files
+2025/04/07-10:22:05.102 557c Generated table #56@0: 6 keys, 6346 bytes
+2025/04/07-10:22:05.102 557c Compacted 1@0 + 1@1 files => 6346 bytes
+2025/04/07-10:22:05.102 557c compacted to: files[ 0 1 0 0 0 0 0 ]
+2025/04/07-10:22:05.102 557c Delete type=2 #45
+2025/04/07-10:22:05.103 557c Delete type=2 #55
+2025/04/07-10:22:05.103 557c Manual compaction at level-0 from '!items!nrV4PEgY98SCB7KC' @ 41 : 1 .. '!items!nrV4PEgY98SCB7KC' @ 0 : 0; will stop at (end)

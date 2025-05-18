@@ -19,6 +19,7 @@ const CONSTANTS = {
     BOTTOM: 0,
     TOP: 1,
   },
+  CHARGES_SPENT_PATH: "system.uses.spent",
 };
 CONSTANTS.PATH = `modules/${CONSTANTS.MODULE_NAME}/`;
 
