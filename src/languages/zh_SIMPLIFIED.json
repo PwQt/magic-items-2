@@ -42,7 +42,7 @@
     "MAGICITEMS.EffectTypeDestroy": "摧毁",
     "MAGICITEMS.SheetEnabled": "是魔法物品吗？",
     "MAGICITEMS.SheetCharges": "最大充能数",
-    "MAGICITEMS.SheetDestroy": "能次数归零时摧毁 {target}",
+    "MAGICITEMS.SheetDestroy": "充能次数归零时摧毁 {target}",
     "MAGICITEMS.SheetObjectTarget": "物品",
     "MAGICITEMS.SheetSpellTarget": "法术",
     "MAGICITEMS.SheetDestroyFlavorText": "聊天信息叙述",
