@@ -1,3 +1,6 @@
+# Module no longer in active development. Should you want to continue development, feel free to contact me via GitHub or Discord.
+
+
 # FoundryVTT - Magic Items
 ![](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fversion%3Fstyle%3Dflat%26url%3Dhttps%3A%2F%2Fgithub.com%2FPwQt%2Fmagic-items-2%2Freleases%2Flatest%2Fdownload%2Fmodule.json)
 ![](https://img.shields.io/endpoint?url=https%3A%2F%2Ffoundryshields.com%2Fsystem%3FnameType%3Dfoundry%26showVersion%3D1%26style%3Dflat%26url%3Dhttps%3A%2F%2Fgithub.com%2FPwQt%2Fmagic-items-2%2Freleases%2Flatest%2Fdownload%2Fmodule.json)
