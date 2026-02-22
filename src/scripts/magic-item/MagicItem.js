@@ -376,16 +376,23 @@ export class MagicItem {
 
   async updateInternalCharges(isChecked, item) {
     let itemData = await RetrieveHelpers.getItemAsync(item);
-    const itemChargeData = itemData.system.uses;
-    if (isChecked && itemChargeData?.per) {
-      this.charges = itemChargeData.max;
-      this.uses = itemChargeData.value;
+    const itemUseData = itemData.system.uses;
+    if (isChecked && itemUseData.recovery?.length) {
+      let possibleRecoveries = itemUseData.recovery.filter((el, idx) =>
+        ["lr", "sr", "day", "dawn", "dusk"].includes(el.period),
+      );
+      let recovery;
+      if (possibleRecoveries?.length) {
+        recovery = possibleRecoveries[0];
+      }
+      this.charges = itemUseData.max;
+      this.uses = itemUseData.value;
       this.chargeType = MAGICITEMS.CHARGE_TYPE_WHOLE_ITEM;
       this.rechargeable = false;
-      this.recharge = itemChargeData.recovery;
-      this.rechargeType = this.chargesTypeCompatible(itemChargeData);
-      this.rechargeUnit = MAGICITEMS.RECHARGE_TRANSLATION[itemChargeData.per];
-    } else if (isChecked && !itemChargeData?.per) {
+      this.recharge = recovery.formula ?? 0;
+      this.rechargeType = this.chargesTypeCompatible(recovery);
+      this.rechargeUnit = MAGICITEMS.RECHARGE_TRANSLATION[recovery.period];
+    } else if (isChecked && !itemUseData.recovery.length) {
       this.charges = 0;
       this.uses = 0;
       this.chargeType = MAGICITEMS.CHARGE_TYPE_WHOLE_ITEM;
@@ -395,10 +402,15 @@ export class MagicItem {
     }
   }
 
-  chargesTypeCompatible(chargeData) {
-    if (["lr", "sr", "day"].includes(chargeData.per)) {
+  /**
+   * Method to translate the way charges are handled into Magic Items charges
+   * @param {*} rechargeData
+   * @returns
+   */
+  chargesTypeCompatible(rechargeData) {
+    if (["lr", "sr", "day"].includes(rechargeData.period)) {
       return MAGICITEMS.FORMULA_FULL;
-    } else if (NumberUtils.parseIntOrGetDefault(chargeData.recovery, 0) !== 0) {
+    } else if (NumberUtils.parseIntOrGetDefault(rechargeData.formula, 0) !== 0) {
       return MAGICITEMS.NUMERIC_RECHARGE;
     } else {
       return MAGICITEMS.FORMULA_RECHARGE;

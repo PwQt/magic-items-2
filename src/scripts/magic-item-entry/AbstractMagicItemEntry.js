@@ -33,50 +33,13 @@ export class AbstractMagicItemEntry {
   }
 
   async renderSheet() {
-    this.entity().then((entity) => {
-      entity.ownership.default = CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED;
-      const sheet = entity.sheet;
-      sheet.render(true);
-    });
+    let entity = await MagicItemHelpers.fetchEntity(this);
+    entity.ownership.default = CONST.DOCUMENT_OWNERSHIP_LEVELS.LIMITED;
+    const sheet = entity.sheet;
+    sheet.render(true);
   }
 
-  entity() {
-    return new Promise((resolve, reject) => {
-      if (this.pack === "world") {
-        let entity = this.entityCls().collection?.instance?.get(this.id);
-        if (entity) {
-          resolve(entity);
-        } else {
-          Logger.warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + this.name, true);
-          reject();
-        }
-      } else {
-        const pack = game.packs.find((p) => p.collection === this.pack);
-        if (!pack) {
-          Logger.warn(`Cannot retrieve pack for if ${this.pack}`, true);
-        } else {
-          pack.getDocument(this.id)?.then((entity) => {
-            if (entity) {
-              resolve(entity);
-            } else {
-              Logger.warn(game.i18n.localize("MAGICITEMS.WarnNoMagicItemSpell") + this.name, true);
-              reject();
-            }
-          });
-        }
-      }
-    });
-  }
-
-  entityCls() {
-    return CONFIG["Item"];
-  }
-
-  data() {
-    return new Promise((resolve) => {
-      this.entity().then((entity) => {
-        resolve(entity.toJSON());
-      });
-    });
+  async data() {
+    return await MagicItemHelpers.fetchEntity(this);
   }
 }

@@ -1,4 +1,5 @@
 import CONSTANTS from "./constants/constants.js";
+import { MagicItemHelpers } from "./magic-item-helpers.js";
 import { MagicItem } from "./magic-item/MagicItem.js";
 import Logger from "./lib/Logger.js";
 
@@ -6,7 +7,7 @@ const magicItemTabs = [];
 
 export class MagicItemTab {
   static bind(app, html, item) {
-    if (MagicItemTab.isAcceptedItemType(item.document)) {
+    if (MagicItemTab.isAcceptedItemType(item.item)) {
       let tab = magicItemTabs[app.id];
       if (!tab) {
         tab = new MagicItemTab(app);
@@ -86,7 +87,12 @@ export class MagicItemTab {
   }
 
   async render(app) {
-    let template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.hbs`, this.magicItem);
+    let template = null;
+    if (MagicItemTab.isUsingNew5eSheet(this.item)) {
+      template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab-v2.hbs`, this.magicItem);
+    } else {
+      template = await renderTemplate(`modules/${CONSTANTS.MODULE_ID}/templates/magic-item-tab.hbs`, this.magicItem);
+    }
     let el = this.html.find(`.magicitems-content`);
     if (el.length) {
       el.replaceWith(template);
@@ -220,16 +226,6 @@ export class MagicItemTab {
       });
     });
 
-    html.find("input[name='flags.magicitems.internal']").click(async (evt) => {
-      await magicItem.updateInternalCharges(evt.target.checked, item);
-      onMagicItemUpdatingCallback?.();
-      item.update({
-        flags: {
-          [CONSTANTS.MODULE_ID]: magicItem.serializeData(),
-        },
-      });
-    });
-
     magicItem.spells.forEach((spell, idx) => {
       html.find(`a[data-spell-idx="${idx}"]`).click((evt) => {
         spell.renderSheet();
@@ -257,5 +253,9 @@ export class MagicItemTab {
 
   static isAllowedToShow() {
     return game.user.isGM || !game.settings.get(CONSTANTS.MODULE_ID, "hideFromPlayers");
+  }
+
+  static isUsingNew5eSheet(item) {
+    return item?.sheet && MagicItemHelpers.isUsingNew5eSheet(item?.sheet);
   }
 }

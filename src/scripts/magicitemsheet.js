@@ -16,14 +16,14 @@ export class MagicItemSheet {
    * @param html
    * @param data
    */
-  static bind(app, html, data) {
+  static async bind(app, html, data) {
     if (MagicItemActor.get(app.actor.id)) {
       let sheet = magicItemSheets[app.id];
       if (!sheet) {
         sheet = new MagicItemSheet(app.actor.id);
         magicItemSheets[app.id] = sheet;
       }
-      sheet.init(html, data);
+      await sheet.init(html, data);
     }
   }
 
@@ -34,7 +34,7 @@ export class MagicItemSheet {
    */
   constructor(actorId) {
     this.actor = MagicItemActor.get(actorId);
-    this.actor.onChange(() => this.render());
+    this.actor.onChange(async () => await this.render());
   }
 
   /**
@@ -43,12 +43,12 @@ export class MagicItemSheet {
    * @param html
    * @param data
    */
-  init(html, data) {
+  async init(html, data) {
     this.html = html;
     this.data = data;
 
     if (this.actor.hasMagicItems()) {
-      this.render();
+      await this.render();
     }
   }
 

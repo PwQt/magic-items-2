@@ -6,7 +6,7 @@
   "compatibility": {
     "minimum": 12,
     "verified": 12.331,
-    "maximum": 12.999
+    "maximum": 13.999
   },
   "authors": [
     {
@@ -140,9 +140,9 @@
         "type": "system",
         "manifest": "https://raw.githubusercontent.com/foundryvtt/dnd5e/master/system.json",
         "compatibility": {
-          "minimum": "3.3.0",
-          "verified": "3.3.1",
-          "maximum": "3.3.999"
+          "minimum": "4.3.0",
+          "verified": "4.3.8",
+          "maximum": "4.4.999"
         }
       }
     ],
